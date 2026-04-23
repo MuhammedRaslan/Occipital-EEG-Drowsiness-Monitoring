@@ -1,0 +1,319 @@
+{
+  "timestamp": "2026-04-21T00:33:27.679719",
+  "methodology": {
+    "dataset": "DROZY (O1/O2 only)",
+    "subjects": 10,
+    "epoch_duration_s": 10,
+    "representation": "raw-signal covariance matrices (2x2 SPD)",
+    "cov_estimator": "oas",
+    "total_epochs": 14498,
+    "awake_epochs": 7234,
+    "drowsy_epochs": 7264,
+    "cross_validation": "Leave-One-Subject-Out (LOSO)",
+    "normalization": "none (Riemannian geometry is scale-equivariant)",
+    "version": "v6"
+  },
+  "model_comparison": {
+    "MDM (Riemann)": {
+      "accuracy": 55.8,
+      "accuracy_mean": 55.79,
+      "accuracy_std": 10.4,
+      "accuracy_min": 35.78,
+      "accuracy_max": 72.98,
+      "precision": 55.81,
+      "recall": 55.8,
+      "f1_score": 55.78,
+      "auc_roc": 56.66,
+      "kappa": 0.1159,
+      "confusion_matrix": [
+        [
+          3899,
+          3335
+        ],
+        [
+          3073,
+          4191
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 53.191489361702125,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 54.986338797814206,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 51.33105802047781,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 44.2008486562942,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 59.53038674033149,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 69.94497936726273,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 35.782967032967036,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 58.78284923928078,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 57.15272978576365,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 72.97857636489287,
+          "n": 1447
+        }
+      ],
+      "fit_time_s": 275.4
+    },
+    "TS + LDA (Riemann)": {
+      "accuracy": 57.16,
+      "accuracy_mean": 57.15,
+      "accuracy_std": 8.7,
+      "accuracy_min": 43.34,
+      "accuracy_max": 69.45,
+      "precision": 57.24,
+      "recall": 57.16,
+      "f1_score": 57.03,
+      "auc_roc": 57.12,
+      "kappa": 0.143,
+      "confusion_matrix": [
+        [
+          3733,
+          3501
+        ],
+        [
+          2710,
+          4554
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 49.89704873026767,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 54.166666666666664,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 55.358361774744026,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 44.34229137199434,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 62.01657458563537,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 63.48005502063274,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 43.33791208791209,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 62.7939142461964,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 69.45404284727022,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 66.62059433310297,
+          "n": 1447
+        }
+      ],
+      "fit_time_s": 194.5
+    },
+    "TS + LogReg (Riemann)": {
+      "accuracy": 57.2,
+      "accuracy_mean": 57.19,
+      "accuracy_std": 8.9,
+      "accuracy_min": 43.27,
+      "accuracy_max": 69.25,
+      "precision": 57.25,
+      "recall": 57.2,
+      "f1_score": 57.12,
+      "auc_roc": 57.14,
+      "kappa": 0.1439,
+      "confusion_matrix": [
+        [
+          3815,
+          3419
+        ],
+        [
+          2786,
+          4478
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 49.485243651338365,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 53.96174863387978,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 55.358361774744026,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 44.05940594059406,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 62.01657458563537,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 63.96148555708391,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 43.269230769230774,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 63.347164591977865,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 69.2467173462336,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 67.17346233586731,
+          "n": 1447
+        }
+      ],
+      "fit_time_s": 194.1
+    },
+    "TS + SVM Linear (Riemann)": {
+      "accuracy": 57.03,
+      "accuracy_mean": 57.01,
+      "accuracy_std": 9.31,
+      "accuracy_min": 40.45,
+      "accuracy_max": 66.92,
+      "precision": 57.07,
+      "recall": 57.03,
+      "f1_score": 56.94,
+      "auc_roc": 57.4,
+      "kappa": 0.1404,
+      "confusion_matrix": [
+        [
+          3803,
+          3431
+        ],
+        [
+          2799,
+          4465
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 49.96568291008923,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 54.439890710382514,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 55.2901023890785,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 43.77652050919378,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 63.812154696132595,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 66.91884456671252,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 40.4532967032967,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 62.03319502074689,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 66.8279198341396,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 66.62059433310297,
+          "n": 1447
+        }
+      ],
+      "fit_time_s": 870.9
+    }
+  },
+  "best_model": "TS + LogReg (Riemann)"
+}

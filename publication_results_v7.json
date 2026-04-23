@@ -1,0 +1,565 @@
+{
+  "timestamp": "2026-04-21T00:43:30.935469",
+  "methodology": {
+    "dataset": "DROZY (O1/O2 only)",
+    "subjects": 10,
+    "epoch_duration_s": 10,
+    "total_epochs": 14498,
+    "awake_epochs": 7234,
+    "drowsy_epochs": 7264,
+    "cross_validation": "Nested LOSO (outer) + GroupKFold(3) (inner)",
+    "selection_metric": "weighted F1",
+    "version": "v7"
+  },
+  "model_comparison": {
+    "TS+LogReg (Riemann, tuned)": {
+      "accuracy": 57.34,
+      "accuracy_mean": 57.33,
+      "accuracy_std": 9.0,
+      "accuracy_min": 43.06,
+      "accuracy_max": 68.28,
+      "precision": 57.39,
+      "recall": 57.34,
+      "f1_score": 57.26,
+      "auc_roc": 57.33,
+      "kappa": 0.1466,
+      "confusion_matrix": [
+        [
+          3828,
+          3406
+        ],
+        [
+          2779,
+          4485
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 49.69114619080302,
+          "n": 1457,
+          "best_C": 0.01
+        },
+        {
+          "subject": "02F",
+          "accuracy": 53.893442622950815,
+          "n": 1464,
+          "best_C": 0.01
+        },
+        {
+          "subject": "03F",
+          "accuracy": 55.42662116040956,
+          "n": 1465,
+          "best_C": 0.1
+        },
+        {
+          "subject": "04M",
+          "accuracy": 44.05940594059406,
+          "n": 1414,
+          "best_C": 10.0
+        },
+        {
+          "subject": "05M",
+          "accuracy": 63.12154696132597,
+          "n": 1448,
+          "best_C": 0.01
+        },
+        {
+          "subject": "06M",
+          "accuracy": 65.95598349381018,
+          "n": 1454,
+          "best_C": 0.01
+        },
+        {
+          "subject": "07F",
+          "accuracy": 43.06318681318682,
+          "n": 1456,
+          "best_C": 0.01
+        },
+        {
+          "subject": "08M",
+          "accuracy": 62.171507607192254,
+          "n": 1446,
+          "best_C": 0.01
+        },
+        {
+          "subject": "09M",
+          "accuracy": 68.279198341396,
+          "n": 1447,
+          "best_C": 0.01
+        },
+        {
+          "subject": "10M",
+          "accuracy": 67.58811333794057,
+          "n": 1447,
+          "best_C": 0.01
+        }
+      ],
+      "inner_cv": [
+        {
+          "test_subj": "01M",
+          "best_C": 0.01,
+          "inner_f1": 54.09
+        },
+        {
+          "test_subj": "02F",
+          "best_C": 0.01,
+          "inner_f1": 58.23
+        },
+        {
+          "test_subj": "03F",
+          "best_C": 0.1,
+          "inner_f1": 58.0
+        },
+        {
+          "test_subj": "04M",
+          "best_C": 10.0,
+          "inner_f1": 59.01
+        },
+        {
+          "test_subj": "05M",
+          "best_C": 0.01,
+          "inner_f1": 57.95
+        },
+        {
+          "test_subj": "06M",
+          "best_C": 0.01,
+          "inner_f1": 54.53
+        },
+        {
+          "test_subj": "07F",
+          "best_C": 0.01,
+          "inner_f1": 54.93
+        },
+        {
+          "test_subj": "08M",
+          "best_C": 0.01,
+          "inner_f1": 56.82
+        },
+        {
+          "test_subj": "09M",
+          "best_C": 0.01,
+          "inner_f1": 55.84
+        },
+        {
+          "test_subj": "10M",
+          "best_C": 0.01,
+          "inner_f1": 57.01
+        }
+      ],
+      "fit_time_s": 89.3
+    },
+    "TS+LDA (Riemann, tuned)": {
+      "accuracy": 57.72,
+      "accuracy_mean": 57.7,
+      "accuracy_std": 10.01,
+      "accuracy_min": 42.03,
+      "accuracy_max": 73.31,
+      "precision": 57.73,
+      "recall": 57.72,
+      "f1_score": 57.69,
+      "auc_roc": 58.0,
+      "kappa": 0.1543,
+      "confusion_matrix": [
+        [
+          3989,
+          3245
+        ],
+        [
+          2885,
+          4379
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 50.44612216884008,
+          "n": 1457,
+          "best_shrinkage": 0.1
+        },
+        {
+          "subject": "02F",
+          "accuracy": 54.03005464480874,
+          "n": 1464,
+          "best_shrinkage": "auto"
+        },
+        {
+          "subject": "03F",
+          "accuracy": 55.358361774744026,
+          "n": 1465,
+          "best_shrinkage": 0.0
+        },
+        {
+          "subject": "04M",
+          "accuracy": 44.34229137199434,
+          "n": 1414,
+          "best_shrinkage": 0.0
+        },
+        {
+          "subject": "05M",
+          "accuracy": 65.4696132596685,
+          "n": 1448,
+          "best_shrinkage": 0.1
+        },
+        {
+          "subject": "06M",
+          "accuracy": 73.31499312242092,
+          "n": 1454,
+          "best_shrinkage": 0.5
+        },
+        {
+          "subject": "07F",
+          "accuracy": 42.032967032967036,
+          "n": 1456,
+          "best_shrinkage": 0.5
+        },
+        {
+          "subject": "08M",
+          "accuracy": 58.022130013831266,
+          "n": 1446,
+          "best_shrinkage": 0.5
+        },
+        {
+          "subject": "09M",
+          "accuracy": 63.23427781617139,
+          "n": 1447,
+          "best_shrinkage": 0.5
+        },
+        {
+          "subject": "10M",
+          "accuracy": 70.76710435383552,
+          "n": 1447,
+          "best_shrinkage": 0.5
+        }
+      ],
+      "inner_cv": [
+        {
+          "test_subj": "01M",
+          "best_shrinkage": 0.1,
+          "inner_f1": 54.52
+        },
+        {
+          "test_subj": "02F",
+          "best_shrinkage": "auto",
+          "inner_f1": 58.19
+        },
+        {
+          "test_subj": "03F",
+          "best_shrinkage": 0.0,
+          "inner_f1": 57.9
+        },
+        {
+          "test_subj": "04M",
+          "best_shrinkage": 0.0,
+          "inner_f1": 58.95
+        },
+        {
+          "test_subj": "05M",
+          "best_shrinkage": 0.1,
+          "inner_f1": 57.88
+        },
+        {
+          "test_subj": "06M",
+          "best_shrinkage": 0.5,
+          "inner_f1": 55.65
+        },
+        {
+          "test_subj": "07F",
+          "best_shrinkage": 0.5,
+          "inner_f1": 55.1
+        },
+        {
+          "test_subj": "08M",
+          "best_shrinkage": 0.5,
+          "inner_f1": 57.26
+        },
+        {
+          "test_subj": "09M",
+          "best_shrinkage": 0.5,
+          "inner_f1": 56.2
+        },
+        {
+          "test_subj": "10M",
+          "best_shrinkage": 0.5,
+          "inner_f1": 56.84
+        }
+      ],
+      "fit_time_s": 139.3
+    },
+    "LDA (subject_awake, tuned)": {
+      "accuracy": 52.48,
+      "accuracy_mean": 52.49,
+      "accuracy_std": 5.82,
+      "accuracy_min": 43.06,
+      "accuracy_max": 61.89,
+      "precision": 52.68,
+      "recall": 52.48,
+      "f1_score": 51.72,
+      "auc_roc": 53.26,
+      "kappa": 0.0502,
+      "confusion_matrix": [
+        [
+          4708,
+          2526
+        ],
+        [
+          4363,
+          2901
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 51.75017158544956,
+          "n": 1457,
+          "best_shrinkage": 0.0
+        },
+        {
+          "subject": "02F",
+          "accuracy": 50.75136612021858,
+          "n": 1464,
+          "best_shrinkage": "auto"
+        },
+        {
+          "subject": "03F",
+          "accuracy": 59.31740614334471,
+          "n": 1465,
+          "best_shrinkage": 0.0
+        },
+        {
+          "subject": "04M",
+          "accuracy": 52.40452616690241,
+          "n": 1414,
+          "best_shrinkage": "auto"
+        },
+        {
+          "subject": "05M",
+          "accuracy": 56.42265193370166,
+          "n": 1448,
+          "best_shrinkage": "auto"
+        },
+        {
+          "subject": "06M",
+          "accuracy": 46.76753782668501,
+          "n": 1454,
+          "best_shrinkage": 0.1
+        },
+        {
+          "subject": "07F",
+          "accuracy": 43.06318681318682,
+          "n": 1456,
+          "best_shrinkage": 0.0
+        },
+        {
+          "subject": "08M",
+          "accuracy": 61.89488243430152,
+          "n": 1446,
+          "best_shrinkage": "auto"
+        },
+        {
+          "subject": "09M",
+          "accuracy": 56.73807878369039,
+          "n": 1447,
+          "best_shrinkage": 0.0
+        },
+        {
+          "subject": "10M",
+          "accuracy": 45.74982722874913,
+          "n": 1447,
+          "best_shrinkage": 0.0
+        }
+      ],
+      "inner_cv": [
+        {
+          "test_subj": "01M",
+          "best_shrinkage": 0.0,
+          "inner_f1": 53.39
+        },
+        {
+          "test_subj": "02F",
+          "best_shrinkage": "auto",
+          "inner_f1": 54.86
+        },
+        {
+          "test_subj": "03F",
+          "best_shrinkage": 0.0,
+          "inner_f1": 53.73
+        },
+        {
+          "test_subj": "04M",
+          "best_shrinkage": "auto",
+          "inner_f1": 51.47
+        },
+        {
+          "test_subj": "05M",
+          "best_shrinkage": "auto",
+          "inner_f1": 48.23
+        },
+        {
+          "test_subj": "06M",
+          "best_shrinkage": 0.1,
+          "inner_f1": 49.57
+        },
+        {
+          "test_subj": "07F",
+          "best_shrinkage": 0.0,
+          "inner_f1": 54.98
+        },
+        {
+          "test_subj": "08M",
+          "best_shrinkage": "auto",
+          "inner_f1": 51.3
+        },
+        {
+          "test_subj": "09M",
+          "best_shrinkage": 0.0,
+          "inner_f1": 50.9
+        },
+        {
+          "test_subj": "10M",
+          "best_shrinkage": 0.0,
+          "inner_f1": 53.44
+        }
+      ],
+      "fit_time_s": 4.8
+    },
+    "LogReg (subject_awake, tuned)": {
+      "accuracy": 52.86,
+      "accuracy_mean": 52.86,
+      "accuracy_std": 6.17,
+      "accuracy_min": 41.55,
+      "accuracy_max": 62.17,
+      "precision": 53.08,
+      "recall": 52.86,
+      "f1_score": 52.08,
+      "auc_roc": 53.86,
+      "kappa": 0.0576,
+      "confusion_matrix": [
+        [
+          4744,
+          2490
+        ],
+        [
+          4345,
+          2919
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 52.16197666437886,
+          "n": 1457,
+          "best_C": 10.0
+        },
+        {
+          "subject": "02F",
+          "accuracy": 49.72677595628415,
+          "n": 1464,
+          "best_C": 0.1
+        },
+        {
+          "subject": "03F",
+          "accuracy": 59.31740614334471,
+          "n": 1465,
+          "best_C": 10.0
+        },
+        {
+          "subject": "04M",
+          "accuracy": 52.192362093352195,
+          "n": 1414,
+          "best_C": 1.0
+        },
+        {
+          "subject": "05M",
+          "accuracy": 57.80386740331491,
+          "n": 1448,
+          "best_C": 0.1
+        },
+        {
+          "subject": "06M",
+          "accuracy": 50.68775790921596,
+          "n": 1454,
+          "best_C": 0.01
+        },
+        {
+          "subject": "07F",
+          "accuracy": 41.5521978021978,
+          "n": 1456,
+          "best_C": 1.0
+        },
+        {
+          "subject": "08M",
+          "accuracy": 62.171507607192254,
+          "n": 1446,
+          "best_C": 0.01
+        },
+        {
+          "subject": "09M",
+          "accuracy": 57.843814789219074,
+          "n": 1447,
+          "best_C": 10.0
+        },
+        {
+          "subject": "10M",
+          "accuracy": 45.12785072563925,
+          "n": 1447,
+          "best_C": 10.0
+        }
+      ],
+      "inner_cv": [
+        {
+          "test_subj": "01M",
+          "best_C": 10.0,
+          "inner_f1": 53.51
+        },
+        {
+          "test_subj": "02F",
+          "best_C": 0.1,
+          "inner_f1": 55.07
+        },
+        {
+          "test_subj": "03F",
+          "best_C": 10.0,
+          "inner_f1": 52.9
+        },
+        {
+          "test_subj": "04M",
+          "best_C": 1.0,
+          "inner_f1": 51.62
+        },
+        {
+          "test_subj": "05M",
+          "best_C": 0.1,
+          "inner_f1": 48.38
+        },
+        {
+          "test_subj": "06M",
+          "best_C": 0.01,
+          "inner_f1": 49.37
+        },
+        {
+          "test_subj": "07F",
+          "best_C": 1.0,
+          "inner_f1": 54.94
+        },
+        {
+          "test_subj": "08M",
+          "best_C": 0.01,
+          "inner_f1": 51.31
+        },
+        {
+          "test_subj": "09M",
+          "best_C": 10.0,
+          "inner_f1": 50.79
+        },
+        {
+          "test_subj": "10M",
+          "best_C": 10.0,
+          "inner_f1": 53.37
+        }
+      ],
+      "fit_time_s": 32.1
+    }
+  },
+  "best_model": "TS+LDA (Riemann, tuned)"
+}

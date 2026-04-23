@@ -1,0 +1,152 @@
+{
+  "timestamp": "2026-04-21T04:17:33.843559",
+  "methodology": "v11 lean LDA, LOSO across SEED-VIG subjects. EEG onset = first time causal-smoothed (window=30s) p(drowsy) > 0.5 for 30s. Behavioural onset = first time causal-smoothed perclos > 0.7 for 60s. Lead = behav_onset \u2212 eeg_onset.",
+  "summary": {
+    "n_subjects_total": 19,
+    "n_subjects_with_both_onsets": 12,
+    "n_subjects_lead_positive": 6,
+    "median_lead_min": 0.08,
+    "mean_lead_min": -1.44,
+    "iqr_lead_min": [
+      -4.25,
+      3.08
+    ],
+    "max_lead_min": 27.17,
+    "min_lead_min": -61.33
+  },
+  "per_subject": [
+    {
+      "subject": "1",
+      "n_epochs": 397,
+      "behavioural_onset_s": 860.0,
+      "eeg_onset_s": 850.0,
+      "lead_time_s": 10.0
+    },
+    {
+      "subject": "2",
+      "n_epochs": 650,
+      "behavioural_onset_s": 2850.0,
+      "eeg_onset_s": null,
+      "lead_time_s": null
+    },
+    {
+      "subject": "3",
+      "n_epochs": 141,
+      "behavioural_onset_s": 2360.0,
+      "eeg_onset_s": 2750.0,
+      "lead_time_s": -390.0
+    },
+    {
+      "subject": "4",
+      "n_epochs": 834,
+      "behavioural_onset_s": 3580.0,
+      "eeg_onset_s": null,
+      "lead_time_s": null
+    },
+    {
+      "subject": "5",
+      "n_epochs": 1027,
+      "behavioural_onset_s": 690.0,
+      "eeg_onset_s": null,
+      "lead_time_s": null
+    },
+    {
+      "subject": "7",
+      "n_epochs": 108,
+      "behavioural_onset_s": 4060.0,
+      "eeg_onset_s": null,
+      "lead_time_s": null
+    },
+    {
+      "subject": "8",
+      "n_epochs": 639,
+      "behavioural_onset_s": 5680.0,
+      "eeg_onset_s": 5680.0,
+      "lead_time_s": 0.0
+    },
+    {
+      "subject": "9",
+      "n_epochs": 199,
+      "behavioural_onset_s": 1900.0,
+      "eeg_onset_s": null,
+      "lead_time_s": null
+    },
+    {
+      "subject": "10",
+      "n_epochs": 247,
+      "behavioural_onset_s": 2010.0,
+      "eeg_onset_s": 380.0,
+      "lead_time_s": 1630.0
+    },
+    {
+      "subject": "11",
+      "n_epochs": 274,
+      "behavioural_onset_s": 1980.0,
+      "eeg_onset_s": 590.0,
+      "lead_time_s": 1390.0
+    },
+    {
+      "subject": "12",
+      "n_epochs": 639,
+      "behavioural_onset_s": 130.0,
+      "eeg_onset_s": 340.0,
+      "lead_time_s": -210.0
+    },
+    {
+      "subject": "14",
+      "n_epochs": 340,
+      "behavioural_onset_s": 1860.0,
+      "eeg_onset_s": null,
+      "lead_time_s": null
+    },
+    {
+      "subject": "15",
+      "n_epochs": 288,
+      "behavioural_onset_s": 3820.0,
+      "eeg_onset_s": 4250.0,
+      "lead_time_s": -430.0
+    },
+    {
+      "subject": "16",
+      "n_epochs": 563,
+      "behavioural_onset_s": 1460.0,
+      "eeg_onset_s": 5140.0,
+      "lead_time_s": -3680.0
+    },
+    {
+      "subject": "17",
+      "n_epochs": 138,
+      "behavioural_onset_s": 940.0,
+      "eeg_onset_s": null,
+      "lead_time_s": null
+    },
+    {
+      "subject": "18",
+      "n_epochs": 622,
+      "behavioural_onset_s": 960.0,
+      "eeg_onset_s": 250.0,
+      "lead_time_s": 710.0
+    },
+    {
+      "subject": "19",
+      "n_epochs": 129,
+      "behavioural_onset_s": 4490.0,
+      "eeg_onset_s": 4480.0,
+      "lead_time_s": 10.0
+    },
+    {
+      "subject": "20",
+      "n_epochs": 669,
+      "behavioural_onset_s": 1030.0,
+      "eeg_onset_s": 1020.0,
+      "lead_time_s": 10.0
+    },
+    {
+      "subject": "21",
+      "n_epochs": 621,
+      "behavioural_onset_s": 2820.0,
+      "eeg_onset_s": 2910.0,
+      "lead_time_s": -90.0
+    }
+  ]
+}

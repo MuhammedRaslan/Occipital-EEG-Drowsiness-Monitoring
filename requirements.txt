@@ -1,0 +1,36 @@
+# Pinned dependency set for the IEEE Sensors submission of
+# "Pro-Active EEG Driver Monitoring with O1/O2 only".
+#
+# Tested on Python 3.14 (Windows 11). The pipeline (publication_analysis.py
+# through advance_prediction.py + make_figures.py + reproduce.py) was
+# generated under exactly these versions; downgrades within the same
+# minor are expected to work, but cross-major (e.g. numpy>=3) is not.
+
+# ── core scientific stack ──────────────────────────────────────────────
+numpy==2.4.2
+scipy==1.17.1
+pandas==2.3.3
+matplotlib==3.10.8
+
+# ── EEG I/O and signal processing ──────────────────────────────────────
+mne==1.11.0
+
+# ── classical ML and Riemannian geometry ───────────────────────────────
+scikit-learn==1.8.0
+pyriemann==0.11
+
+# ── extended-feature dependencies (entropy, 1/f slope) ─────────────────
+antropy==0.2.2
+fooof==1.1.1            # see specparam migration note in their CHANGELOG
+
+# ── deep-learning baseline (EEGNet, v14) ───────────────────────────────
+# CPU-only wheel from PyTorch's index. Install with:
+#   pip install torch==2.11.0+cpu --index-url https://download.pytorch.org/whl/cpu
+torch==2.11.0+cpu
+
+# ── Word report generation ─────────────────────────────────────────────
+python-docx==1.2.0
+
+# ── optional: dashboard / demo app ─────────────────────────────────────
+streamlit==1.55.0
+plotly==6.6.0

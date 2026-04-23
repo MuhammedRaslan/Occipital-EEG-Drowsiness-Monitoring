@@ -1,0 +1,376 @@
+{
+  "timestamp": "2026-04-21T16:24:49.702610",
+  "methodology": "Adds three phase-only coherence variants per band on top of the v11 lean 10-feature set: PLV (Lachaux 1999), imaginary coherence (Nolte 2004), and wPLI (Vinck 2011), each computed in theta/alpha/beta bands from O1\u2013O2. Phase variants are computed from the bandpass + Hilbert analytic signal of each epoch. LOSO LDA with subject_awake z-score, exactly matching the v11 protocol.",
+  "feature_set_lean": [
+    "sample_entropy_O1",
+    "sample_entropy_O2",
+    "perm_entropy_O1",
+    "perm_entropy_O2",
+    "aperiodic_slope_O1",
+    "aperiodic_slope_O2",
+    "paf_delta",
+    "coh_theta",
+    "coh_alpha",
+    "coh_beta"
+  ],
+  "feature_set_phase": [
+    "plv_theta",
+    "imcoh_theta",
+    "wpli_theta",
+    "plv_alpha",
+    "imcoh_alpha",
+    "wpli_alpha",
+    "plv_beta",
+    "imcoh_beta",
+    "wpli_beta"
+  ],
+  "n_features_combined": 19,
+  "lean_baseline": {
+    "concat": {
+      "accuracy": 62.1,
+      "f1_score": 62.08,
+      "precision": 62.13,
+      "recall": 62.1,
+      "kappa": 0.242,
+      "auc_roc": 64.55
+    },
+    "mean": {
+      "f1_score_mean": 60.82,
+      "f1_score_std": 14.62
+    },
+    "per_subject": [
+      {
+        "accuracy": 59.99,
+        "f1_score": 59.96,
+        "precision": 60.01,
+        "recall": 59.99,
+        "kappa": 0.1996,
+        "auc_roc": 62.92,
+        "held_out": "01M",
+        "n_test": 1457
+      },
+      {
+        "accuracy": 71.65,
+        "f1_score": 71.44,
+        "precision": 72.43,
+        "recall": 71.65,
+        "kappa": 0.4339,
+        "auc_roc": 76.76,
+        "held_out": "02F",
+        "n_test": 1464
+      },
+      {
+        "accuracy": 62.73,
+        "f1_score": 62.72,
+        "precision": 62.76,
+        "recall": 62.73,
+        "kappa": 0.2547,
+        "auc_roc": 66.97,
+        "held_out": "03F",
+        "n_test": 1465
+      },
+      {
+        "accuracy": 39.04,
+        "f1_score": 33.6,
+        "precision": 34.34,
+        "recall": 39.04,
+        "kappa": -0.2055,
+        "auc_roc": 30.65,
+        "held_out": "04M",
+        "n_test": 1414
+      },
+      {
+        "accuracy": 70.03,
+        "f1_score": 69.89,
+        "precision": 70.4,
+        "recall": 70.03,
+        "kappa": 0.4006,
+        "auc_roc": 77.37,
+        "held_out": "05M",
+        "n_test": 1448
+      },
+      {
+        "accuracy": 70.29,
+        "f1_score": 70.18,
+        "precision": 70.54,
+        "recall": 70.29,
+        "kappa": 0.4052,
+        "auc_roc": 76.31,
+        "held_out": "06M",
+        "n_test": 1454
+      },
+      {
+        "accuracy": 37.43,
+        "f1_score": 31.51,
+        "precision": 30.75,
+        "recall": 37.43,
+        "kappa": -0.2524,
+        "auc_roc": 30.24,
+        "held_out": "07F",
+        "n_test": 1456
+      },
+      {
+        "accuracy": 70.89,
+        "f1_score": 70.85,
+        "precision": 70.99,
+        "recall": 70.89,
+        "kappa": 0.4177,
+        "auc_roc": 78.17,
+        "held_out": "08M",
+        "n_test": 1446
+      },
+      {
+        "accuracy": 66.28,
+        "f1_score": 66.27,
+        "precision": 66.29,
+        "recall": 66.28,
+        "kappa": 0.3255,
+        "auc_roc": 71.96,
+        "held_out": "09M",
+        "n_test": 1447
+      },
+      {
+        "accuracy": 72.15,
+        "f1_score": 71.8,
+        "precision": 73.3,
+        "recall": 72.15,
+        "kappa": 0.4429,
+        "auc_roc": 81.85,
+        "held_out": "10M",
+        "n_test": 1447
+      }
+    ]
+  },
+  "phase_only": {
+    "concat": {
+      "accuracy": 59.73,
+      "f1_score": 59.72,
+      "precision": 59.74,
+      "recall": 59.73,
+      "kappa": 0.1947,
+      "auc_roc": 62.39
+    },
+    "mean": {
+      "f1_score_mean": 58.69,
+      "f1_score_std": 14.83
+    },
+    "per_subject": [
+      {
+        "accuracy": 55.11,
+        "f1_score": 54.9,
+        "precision": 55.19,
+        "recall": 55.11,
+        "kappa": 0.102,
+        "auc_roc": 58.18,
+        "held_out": "01M",
+        "n_test": 1457
+      },
+      {
+        "accuracy": 64.69,
+        "f1_score": 64.68,
+        "precision": 64.68,
+        "recall": 64.69,
+        "kappa": 0.2936,
+        "auc_roc": 67.79,
+        "held_out": "02F",
+        "n_test": 1464
+      },
+      {
+        "accuracy": 56.45,
+        "f1_score": 56.27,
+        "precision": 56.58,
+        "recall": 56.45,
+        "kappa": 0.1294,
+        "auc_roc": 59.86,
+        "held_out": "03F",
+        "n_test": 1465
+      },
+      {
+        "accuracy": 36.99,
+        "f1_score": 31.15,
+        "precision": 30.93,
+        "recall": 36.99,
+        "kappa": -0.2458,
+        "auc_roc": 27.33,
+        "held_out": "04M",
+        "n_test": 1414
+      },
+      {
+        "accuracy": 71.34,
+        "f1_score": 71.02,
+        "precision": 72.34,
+        "recall": 71.34,
+        "kappa": 0.4268,
+        "auc_roc": 80.0,
+        "held_out": "05M",
+        "n_test": 1448
+      },
+      {
+        "accuracy": 71.73,
+        "f1_score": 71.47,
+        "precision": 72.47,
+        "recall": 71.73,
+        "kappa": 0.4338,
+        "auc_roc": 79.76,
+        "held_out": "06M",
+        "n_test": 1454
+      },
+      {
+        "accuracy": 35.1,
+        "f1_score": 33.12,
+        "precision": 33.08,
+        "recall": 35.1,
+        "kappa": -0.2987,
+        "auc_roc": 36.27,
+        "held_out": "07F",
+        "n_test": 1456
+      },
+      {
+        "accuracy": 72.54,
+        "f1_score": 72.28,
+        "precision": 73.44,
+        "recall": 72.54,
+        "kappa": 0.4509,
+        "auc_roc": 79.46,
+        "held_out": "08M",
+        "n_test": 1446
+      },
+      {
+        "accuracy": 58.19,
+        "f1_score": 58.15,
+        "precision": 58.22,
+        "recall": 58.19,
+        "kappa": 0.1638,
+        "auc_roc": 61.97,
+        "held_out": "09M",
+        "n_test": 1447
+      },
+      {
+        "accuracy": 74.78,
+        "f1_score": 73.85,
+        "precision": 78.81,
+        "recall": 74.78,
+        "kappa": 0.4954,
+        "auc_roc": 89.85,
+        "held_out": "10M",
+        "n_test": 1447
+      }
+    ]
+  },
+  "combined_19feat": {
+    "concat": {
+      "accuracy": 61.88,
+      "f1_score": 61.84,
+      "precision": 61.95,
+      "recall": 61.88,
+      "kappa": 0.2378,
+      "auc_roc": 64.09
+    },
+    "mean": {
+      "f1_score_mean": 60.63,
+      "f1_score_std": 14.87
+    },
+    "per_subject": [
+      {
+        "accuracy": 59.51,
+        "f1_score": 59.41,
+        "precision": 59.59,
+        "recall": 59.51,
+        "kappa": 0.19,
+        "auc_roc": 62.64,
+        "held_out": "01M",
+        "n_test": 1457
+      },
+      {
+        "accuracy": 69.88,
+        "f1_score": 69.81,
+        "precision": 70.1,
+        "recall": 69.88,
+        "kappa": 0.398,
+        "auc_roc": 73.76,
+        "held_out": "02F",
+        "n_test": 1464
+      },
+      {
+        "accuracy": 62.46,
+        "f1_score": 62.4,
+        "precision": 62.55,
+        "recall": 62.46,
+        "kappa": 0.2493,
+        "auc_roc": 66.23,
+        "held_out": "03F",
+        "n_test": 1465
+      },
+      {
+        "accuracy": 38.83,
+        "f1_score": 32.92,
+        "precision": 33.43,
+        "recall": 38.83,
+        "kappa": -0.2092,
+        "auc_roc": 29.34,
+        "held_out": "04M",
+        "n_test": 1414
+      },
+      {
+        "accuracy": 70.65,
+        "f1_score": 70.57,
+        "precision": 70.89,
+        "recall": 70.65,
+        "kappa": 0.413,
+        "auc_roc": 77.53,
+        "held_out": "05M",
+        "n_test": 1448
+      },
+      {
+        "accuracy": 69.46,
+        "f1_score": 69.4,
+        "precision": 69.58,
+        "recall": 69.46,
+        "kappa": 0.3888,
+        "auc_roc": 75.94,
+        "held_out": "06M",
+        "n_test": 1454
+      },
+      {
+        "accuracy": 36.47,
+        "f1_score": 31.11,
+        "precision": 30.32,
+        "recall": 36.47,
+        "kappa": -0.2716,
+        "auc_roc": 31.01,
+        "held_out": "07F",
+        "n_test": 1456
+      },
+      {
+        "accuracy": 71.65,
+        "f1_score": 71.61,
+        "precision": 71.77,
+        "recall": 71.65,
+        "kappa": 0.4329,
+        "auc_roc": 79.82,
+        "held_out": "08M",
+        "n_test": 1446
+      },
+      {
+        "accuracy": 65.79,
+        "f1_score": 65.79,
+        "precision": 65.79,
+        "recall": 65.79,
+        "kappa": 0.3158,
+        "auc_roc": 71.37,
+        "held_out": "09M",
+        "n_test": 1447
+      },
+      {
+        "accuracy": 73.67,
+        "f1_score": 73.3,
+        "precision": 75.03,
+        "recall": 73.67,
+        "kappa": 0.4733,
+        "auc_roc": 82.98,
+        "held_out": "10M",
+        "n_test": 1447
+      }
+    ]
+  }
+}

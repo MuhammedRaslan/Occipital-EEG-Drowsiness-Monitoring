@@ -1,0 +1,303 @@
+{
+  "timestamp": "2026-04-16T13:32:50.712418",
+  "dataset": {
+    "name": "DROZY",
+    "subjects": 10,
+    "sessions_per_subject": 2,
+    "total_windows": 4809,
+    "awake_windows": 2400,
+    "drowsy_windows": 2409,
+    "window_duration_s": 60,
+    "step_s": 30,
+    "sampling_rate_hz": 128,
+    "channels": [
+      "O1",
+      "O2"
+    ]
+  },
+  "classification_stratified_split": {
+    "accuracy": 62.58,
+    "precision": 62.6,
+    "recall": 62.58,
+    "f1_score": 62.57,
+    "auc_roc": 68.93,
+    "confusion_matrix": [
+      [
+        309,
+        171
+      ],
+      [
+        189,
+        293
+      ]
+    ]
+  },
+  "classification_loso": {
+    "overall_accuracy": 53.77,
+    "mean_accuracy": 53.76,
+    "std_accuracy": 6.05,
+    "min_accuracy": 46.88,
+    "max_accuracy": 63.75,
+    "precision": 53.84,
+    "recall": 53.77,
+    "f1_score": 53.61,
+    "auc_roc": 53.79,
+    "confusion_matrix": [
+      [
+        1432,
+        968
+      ],
+      [
+        1255,
+        1154
+      ]
+    ],
+    "per_subject": [
+      {
+        "subject": "01M",
+        "accuracy": 51.5527950310559,
+        "n_test": 483
+      },
+      {
+        "subject": "02F",
+        "accuracy": 50.0,
+        "n_test": 486
+      },
+      {
+        "subject": "03F",
+        "accuracy": 56.5843621399177,
+        "n_test": 486
+      },
+      {
+        "subject": "04M",
+        "accuracy": 46.908315565031984,
+        "n_test": 469
+      },
+      {
+        "subject": "05M",
+        "accuracy": 61.04166666666667,
+        "n_test": 480
+      },
+      {
+        "subject": "06M",
+        "accuracy": 48.3402489626556,
+        "n_test": 482
+      },
+      {
+        "subject": "07F",
+        "accuracy": 51.345755693581786,
+        "n_test": 483
+      },
+      {
+        "subject": "08M",
+        "accuracy": 46.875,
+        "n_test": 480
+      },
+      {
+        "subject": "09M",
+        "accuracy": 63.74999999999999,
+        "n_test": 480
+      },
+      {
+        "subject": "10M",
+        "accuracy": 61.25000000000001,
+        "n_test": 480
+      }
+    ]
+  },
+  "prediction_validation": {
+    "detection_rate": 50.0,
+    "false_alarm_rate": 50.0,
+    "sensitivity": 50.0,
+    "specificity": 50.0,
+    "precision": 50.0,
+    "f1_score": 50.0,
+    "mean_first_alert_time_min": 7.5,
+    "total_drowsy_yellow": 205,
+    "total_drowsy_red": 95,
+    "total_drowsy_critical": 13,
+    "total_awake_critical_fa": 16,
+    "per_subject": [
+      {
+        "subject": "01M",
+        "baseline": 1.202370227439987,
+        "threshold": 1.8035553411599805,
+        "drowsy_total_alerts": 25,
+        "drowsy_yellow": 17,
+        "drowsy_red": 7,
+        "drowsy_critical": 1,
+        "drowsy_windows": 241,
+        "drowsy_detected": true,
+        "awake_total_alerts": 16,
+        "awake_yellow": 14,
+        "awake_red": 2,
+        "awake_critical": 0,
+        "awake_windows": 242,
+        "awake_false_alarm": false,
+        "first_alert_time_min": 0.5
+      },
+      {
+        "subject": "02F",
+        "baseline": 1.2278018760606209,
+        "threshold": 1.8417028140909313,
+        "drowsy_total_alerts": 41,
+        "drowsy_yellow": 21,
+        "drowsy_red": 20,
+        "drowsy_critical": 0,
+        "drowsy_windows": 241,
+        "drowsy_detected": false,
+        "awake_total_alerts": 73,
+        "awake_yellow": 32,
+        "awake_red": 31,
+        "awake_critical": 10,
+        "awake_windows": 245,
+        "awake_false_alarm": true,
+        "first_alert_time_min": 14.5
+      },
+      {
+        "subject": "03F",
+        "baseline": 1.2192667937987527,
+        "threshold": 1.828900190698129,
+        "drowsy_total_alerts": 43,
+        "drowsy_yellow": 29,
+        "drowsy_red": 14,
+        "drowsy_critical": 0,
+        "drowsy_windows": 244,
+        "drowsy_detected": false,
+        "awake_total_alerts": 40,
+        "awake_yellow": 28,
+        "awake_red": 12,
+        "awake_critical": 0,
+        "awake_windows": 242,
+        "awake_false_alarm": false,
+        "first_alert_time_min": 10.0
+      },
+      {
+        "subject": "04M",
+        "baseline": 1.5891809335655462,
+        "threshold": 2.3837714003483192,
+        "drowsy_total_alerts": 38,
+        "drowsy_yellow": 25,
+        "drowsy_red": 12,
+        "drowsy_critical": 1,
+        "drowsy_windows": 239,
+        "drowsy_detected": true,
+        "awake_total_alerts": 36,
+        "awake_yellow": 18,
+        "awake_red": 18,
+        "awake_critical": 0,
+        "awake_windows": 230,
+        "awake_false_alarm": false,
+        "first_alert_time_min": 0.5
+      },
+      {
+        "subject": "05M",
+        "baseline": 0.9227577154594324,
+        "threshold": 1.3841365731891486,
+        "drowsy_total_alerts": 13,
+        "drowsy_yellow": 12,
+        "drowsy_red": 0,
+        "drowsy_critical": 1,
+        "drowsy_windows": 240,
+        "drowsy_detected": true,
+        "awake_total_alerts": 49,
+        "awake_yellow": 29,
+        "awake_red": 17,
+        "awake_critical": 3,
+        "awake_windows": 240,
+        "awake_false_alarm": true,
+        "first_alert_time_min": 0.5
+      },
+      {
+        "subject": "06M",
+        "baseline": 1.2847148503560384,
+        "threshold": 1.9270722755340577,
+        "drowsy_total_alerts": 15,
+        "drowsy_yellow": 13,
+        "drowsy_red": 2,
+        "drowsy_critical": 0,
+        "drowsy_windows": 243,
+        "drowsy_detected": false,
+        "awake_total_alerts": 27,
+        "awake_yellow": 19,
+        "awake_red": 7,
+        "awake_critical": 1,
+        "awake_windows": 239,
+        "awake_false_alarm": true,
+        "first_alert_time_min": 10.5
+      },
+      {
+        "subject": "07F",
+        "baseline": 0.9749033518743806,
+        "threshold": 1.462355027811571,
+        "drowsy_total_alerts": 58,
+        "drowsy_yellow": 29,
+        "drowsy_red": 21,
+        "drowsy_critical": 8,
+        "drowsy_windows": 241,
+        "drowsy_detected": true,
+        "awake_total_alerts": 38,
+        "awake_yellow": 23,
+        "awake_red": 14,
+        "awake_critical": 1,
+        "awake_windows": 242,
+        "awake_false_alarm": true,
+        "first_alert_time_min": 0.5
+      },
+      {
+        "subject": "08M",
+        "baseline": 1.403271544994748,
+        "threshold": 2.104907317492122,
+        "drowsy_total_alerts": 45,
+        "drowsy_yellow": 28,
+        "drowsy_red": 15,
+        "drowsy_critical": 2,
+        "drowsy_windows": 240,
+        "drowsy_detected": true,
+        "awake_total_alerts": 11,
+        "awake_yellow": 11,
+        "awake_red": 0,
+        "awake_critical": 0,
+        "awake_windows": 240,
+        "awake_false_alarm": false,
+        "first_alert_time_min": 0.5
+      },
+      {
+        "subject": "09M",
+        "baseline": 1.377414129139297,
+        "threshold": 2.0661211937089456,
+        "drowsy_total_alerts": 22,
+        "drowsy_yellow": 19,
+        "drowsy_red": 3,
+        "drowsy_critical": 0,
+        "drowsy_windows": 240,
+        "drowsy_detected": false,
+        "awake_total_alerts": 12,
+        "awake_yellow": 10,
+        "awake_red": 1,
+        "awake_critical": 1,
+        "awake_windows": 240,
+        "awake_false_alarm": true,
+        "first_alert_time_min": 23.0
+      },
+      {
+        "subject": "10M",
+        "baseline": 1.2214232086518748,
+        "threshold": 1.832134812977812,
+        "drowsy_total_alerts": 13,
+        "drowsy_yellow": 12,
+        "drowsy_red": 1,
+        "drowsy_critical": 0,
+        "drowsy_windows": 240,
+        "drowsy_detected": false,
+        "awake_total_alerts": 18,
+        "awake_yellow": 17,
+        "awake_red": 1,
+        "awake_critical": 0,
+        "awake_windows": 240,
+        "awake_false_alarm": false,
+        "first_alert_time_min": 14.5
+      }
+    ]
+  }
+}

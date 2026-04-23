@@ -1,0 +1,1701 @@
+{
+  "timestamp": "2026-04-21T16:02:24.566880",
+  "methodology": "Per-person calibration on top of v11 lean (10-feature) shrinkage LDA. For each held-out DROZY subject S, generic LDA is trained on the other 9 subjects (each z-scored on its own first 60 s of session-1). S's calibration = first K seconds of session-1 + first K seconds of session-2 with labels. S's test = the remainder. Four regimes: generic (no calibration), threshold_shift (F1-optimal decision threshold on calibration), sample_augmentation (refit on pool union calibration with calibration upweighted x5), and subject_only (LDA fit purely on S's calibration data).",
+  "subjects": [
+    "01M",
+    "02F",
+    "03F",
+    "04M",
+    "05M",
+    "06M",
+    "07F",
+    "08M",
+    "09M",
+    "10M"
+  ],
+  "feature_set": [
+    "sample_entropy_O1",
+    "sample_entropy_O2",
+    "perm_entropy_O1",
+    "perm_entropy_O2",
+    "aperiodic_slope_O1",
+    "aperiodic_slope_O2",
+    "paf_delta",
+    "coh_theta",
+    "coh_alpha",
+    "coh_beta"
+  ],
+  "n_features": 10,
+  "z_window_seconds": null,
+  "augment_weight": 5.0,
+  "sweep": {
+    "cal_30s": {
+      "per_subject": {
+        "01M": {
+          "generic": {
+            "accuracy": 59.96,
+            "f1_score": 59.93,
+            "precision": 59.98,
+            "recall": 59.96,
+            "kappa": 0.1991,
+            "auc_roc": 62.93
+          },
+          "threshold_shift": {
+            "accuracy": 58.17,
+            "f1_score": 54.56,
+            "precision": 61.86,
+            "recall": 58.17,
+            "kappa": 0.1624,
+            "auc_roc": 62.93,
+            "chosen_threshold": 0.445
+          },
+          "sample_augmentation": {
+            "accuracy": 59.89,
+            "f1_score": 59.86,
+            "precision": 59.91,
+            "recall": 59.89,
+            "kappa": 0.1977,
+            "auc_roc": 63.23
+          },
+          "subject_only": {
+            "accuracy": 62.37,
+            "f1_score": 61.46,
+            "precision": 63.62,
+            "recall": 62.37,
+            "kappa": 0.2469,
+            "auc_roc": 67.22
+          },
+          "n_test": 1451,
+          "n_cal_per_class": 3
+        },
+        "02F": {
+          "generic": {
+            "accuracy": 71.67,
+            "f1_score": 71.45,
+            "precision": 72.49,
+            "recall": 71.67,
+            "kappa": 0.4343,
+            "auc_roc": 76.78
+          },
+          "threshold_shift": {
+            "accuracy": 54.8,
+            "f1_score": 43.77,
+            "precision": 74.51,
+            "recall": 54.8,
+            "kappa": 0.1026,
+            "auc_roc": 76.78,
+            "chosen_threshold": -0.9022
+          },
+          "sample_augmentation": {
+            "accuracy": 71.74,
+            "f1_score": 71.5,
+            "precision": 72.62,
+            "recall": 71.74,
+            "kappa": 0.4357,
+            "auc_roc": 76.95
+          },
+          "subject_only": {
+            "accuracy": 56.04,
+            "f1_score": 45.87,
+            "precision": 76.17,
+            "recall": 56.04,
+            "kappa": 0.127,
+            "auc_roc": 73.86
+          },
+          "n_test": 1458,
+          "n_cal_per_class": 3
+        },
+        "03F": {
+          "generic": {
+            "accuracy": 62.78,
+            "f1_score": 62.77,
+            "precision": 62.8,
+            "recall": 62.78,
+            "kappa": 0.2557,
+            "auc_roc": 67.07
+          },
+          "threshold_shift": {
+            "accuracy": 61.48,
+            "f1_score": 60.85,
+            "precision": 62.21,
+            "recall": 61.48,
+            "kappa": 0.2289,
+            "auc_roc": 67.07,
+            "chosen_threshold": -0.2108
+          },
+          "sample_augmentation": {
+            "accuracy": 62.78,
+            "f1_score": 62.78,
+            "precision": 62.8,
+            "recall": 62.78,
+            "kappa": 0.2557,
+            "auc_roc": 67.2
+          },
+          "subject_only": {
+            "accuracy": 60.04,
+            "f1_score": 58.82,
+            "precision": 61.32,
+            "recall": 60.04,
+            "kappa": 0.1999,
+            "auc_roc": 64.07
+          },
+          "n_test": 1459,
+          "n_cal_per_class": 3
+        },
+        "04M": {
+          "generic": {
+            "accuracy": 38.99,
+            "f1_score": 33.59,
+            "precision": 34.32,
+            "recall": 38.99,
+            "kappa": -0.2064,
+            "auc_roc": 30.5
+          },
+          "threshold_shift": {
+            "accuracy": 43.11,
+            "f1_score": 36.17,
+            "precision": 36.9,
+            "recall": 43.11,
+            "kappa": -0.1529,
+            "auc_roc": 30.5,
+            "chosen_threshold": -1.4104
+          },
+          "sample_augmentation": {
+            "accuracy": 38.71,
+            "f1_score": 33.39,
+            "precision": 34.04,
+            "recall": 38.71,
+            "kappa": -0.2122,
+            "auc_roc": 30.25
+          },
+          "subject_only": {
+            "accuracy": 42.47,
+            "f1_score": 39.11,
+            "precision": 40.86,
+            "recall": 42.47,
+            "kappa": -0.1399,
+            "auc_roc": 39.05
+          },
+          "n_test": 1408,
+          "n_cal_per_class": 3
+        },
+        "05M": {
+          "generic": {
+            "accuracy": 70.04,
+            "f1_score": 69.9,
+            "precision": 70.42,
+            "recall": 70.04,
+            "kappa": 0.4008,
+            "auc_roc": 77.43
+          },
+          "threshold_shift": {
+            "accuracy": 70.18,
+            "f1_score": 69.3,
+            "precision": 72.79,
+            "recall": 70.18,
+            "kappa": 0.4036,
+            "auc_roc": 77.43,
+            "chosen_threshold": 0.4476
+          },
+          "sample_augmentation": {
+            "accuracy": 69.9,
+            "f1_score": 69.75,
+            "precision": 70.33,
+            "recall": 69.9,
+            "kappa": 0.3981,
+            "auc_roc": 77.57
+          },
+          "subject_only": {
+            "accuracy": 59.22,
+            "f1_score": 58.2,
+            "precision": 60.23,
+            "recall": 59.22,
+            "kappa": 0.1845,
+            "auc_roc": 62.78
+          },
+          "n_test": 1442,
+          "n_cal_per_class": 3
+        },
+        "06M": {
+          "generic": {
+            "accuracy": 70.23,
+            "f1_score": 70.12,
+            "precision": 70.48,
+            "recall": 70.23,
+            "kappa": 0.4041,
+            "auc_roc": 76.24
+          },
+          "threshold_shift": {
+            "accuracy": 66.99,
+            "f1_score": 65.53,
+            "precision": 70.73,
+            "recall": 66.99,
+            "kappa": 0.342,
+            "auc_roc": 76.24,
+            "chosen_threshold": 0.5082
+          },
+          "sample_augmentation": {
+            "accuracy": 70.17,
+            "f1_score": 70.05,
+            "precision": 70.41,
+            "recall": 70.17,
+            "kappa": 0.4027,
+            "auc_roc": 76.39
+          },
+          "subject_only": {
+            "accuracy": 77.14,
+            "f1_score": 77.1,
+            "precision": 77.31,
+            "recall": 77.14,
+            "kappa": 0.5425,
+            "auc_roc": 84.37
+          },
+          "n_test": 1448,
+          "n_cal_per_class": 3
+        },
+        "07F": {
+          "generic": {
+            "accuracy": 37.38,
+            "f1_score": 31.49,
+            "precision": 30.73,
+            "recall": 37.38,
+            "kappa": -0.2534,
+            "auc_roc": 30.09
+          },
+          "threshold_shift": {
+            "accuracy": 32.69,
+            "f1_score": 31.81,
+            "precision": 31.73,
+            "recall": 32.69,
+            "kappa": -0.3466,
+            "auc_roc": 30.09,
+            "chosen_threshold": -0.3546
+          },
+          "sample_augmentation": {
+            "accuracy": 37.1,
+            "f1_score": 31.31,
+            "precision": 30.5,
+            "recall": 37.1,
+            "kappa": -0.2589,
+            "auc_roc": 30.32
+          },
+          "subject_only": {
+            "accuracy": 58.28,
+            "f1_score": 49.52,
+            "precision": 77.27,
+            "recall": 58.28,
+            "kappa": 0.1665,
+            "auc_roc": 74.19
+          },
+          "n_test": 1450,
+          "n_cal_per_class": 3
+        },
+        "08M": {
+          "generic": {
+            "accuracy": 70.97,
+            "f1_score": 70.93,
+            "precision": 71.09,
+            "recall": 70.97,
+            "kappa": 0.4194,
+            "auc_roc": 78.29
+          },
+          "threshold_shift": {
+            "accuracy": 67.01,
+            "f1_score": 65.53,
+            "precision": 70.56,
+            "recall": 67.01,
+            "kappa": 0.3403,
+            "auc_roc": 78.29,
+            "chosen_threshold": -0.2415
+          },
+          "sample_augmentation": {
+            "accuracy": 70.9,
+            "f1_score": 70.85,
+            "precision": 71.05,
+            "recall": 70.9,
+            "kappa": 0.4181,
+            "auc_roc": 78.57
+          },
+          "subject_only": {
+            "accuracy": 42.43,
+            "f1_score": 39.46,
+            "precision": 40.58,
+            "recall": 42.43,
+            "kappa": -0.1514,
+            "auc_roc": 35.87
+          },
+          "n_test": 1440,
+          "n_cal_per_class": 3
+        },
+        "09M": {
+          "generic": {
+            "accuracy": 66.34,
+            "f1_score": 66.33,
+            "precision": 66.36,
+            "recall": 66.34,
+            "kappa": 0.3268,
+            "auc_roc": 72.07
+          },
+          "threshold_shift": {
+            "accuracy": 55.1,
+            "f1_score": 45.78,
+            "precision": 66.23,
+            "recall": 55.1,
+            "kappa": 0.1015,
+            "auc_roc": 72.07,
+            "chosen_threshold": -0.8304
+          },
+          "sample_augmentation": {
+            "accuracy": 66.27,
+            "f1_score": 66.27,
+            "precision": 66.29,
+            "recall": 66.27,
+            "kappa": 0.3255,
+            "auc_roc": 72.22
+          },
+          "subject_only": {
+            "accuracy": 55.66,
+            "f1_score": 46.22,
+            "precision": 68.85,
+            "recall": 55.66,
+            "kappa": 0.1126,
+            "auc_roc": 70.76
+          },
+          "n_test": 1441,
+          "n_cal_per_class": 3
+        },
+        "10M": {
+          "generic": {
+            "accuracy": 72.31,
+            "f1_score": 71.97,
+            "precision": 73.45,
+            "recall": 72.31,
+            "kappa": 0.4461,
+            "auc_roc": 82.06
+          },
+          "threshold_shift": {
+            "accuracy": 73.63,
+            "f1_score": 73.47,
+            "precision": 74.19,
+            "recall": 73.63,
+            "kappa": 0.4725,
+            "auc_roc": 82.06,
+            "chosen_threshold": 0.0543
+          },
+          "sample_augmentation": {
+            "accuracy": 72.8,
+            "f1_score": 72.45,
+            "precision": 73.98,
+            "recall": 72.8,
+            "kappa": 0.4558,
+            "auc_roc": 82.2
+          },
+          "subject_only": {
+            "accuracy": 67.8,
+            "f1_score": 67.1,
+            "precision": 69.46,
+            "recall": 67.8,
+            "kappa": 0.3561,
+            "auc_roc": 76.25
+          },
+          "n_test": 1441,
+          "n_cal_per_class": 3
+        }
+      },
+      "overall": {
+        "generic": {
+          "accuracy": 62.07,
+          "f1_score": 60.85,
+          "auc_roc": 65.35,
+          "kappa": 0.2426,
+          "precision": 61.21,
+          "recall": 62.07,
+          "f1_std": 14.65,
+          "n_subjects_kept": 10
+        },
+        "threshold_shift": {
+          "accuracy": 58.32,
+          "f1_score": 54.68,
+          "auc_roc": 65.35,
+          "kappa": 0.1654,
+          "precision": 62.17,
+          "recall": 58.32,
+          "f1_std": 13.8,
+          "n_subjects_kept": 10
+        },
+        "sample_augmentation": {
+          "accuracy": 62.03,
+          "f1_score": 60.82,
+          "auc_roc": 65.49,
+          "kappa": 0.2418,
+          "precision": 61.19,
+          "recall": 62.03,
+          "f1_std": 14.74,
+          "n_subjects_kept": 10
+        },
+        "subject_only": {
+          "accuracy": 58.14,
+          "f1_score": 54.29,
+          "auc_roc": 64.84,
+          "kappa": 0.1645,
+          "precision": 63.57,
+          "recall": 58.14,
+          "f1_std": 11.75,
+          "n_subjects_kept": 10
+        }
+      },
+      "wall_clock_s": 7.3
+    },
+    "cal_60s": {
+      "per_subject": {
+        "01M": {
+          "generic": {
+            "accuracy": 59.93,
+            "f1_score": 59.9,
+            "precision": 59.96,
+            "recall": 59.93,
+            "kappa": 0.1985,
+            "auc_roc": 62.87
+          },
+          "threshold_shift": {
+            "accuracy": 51.14,
+            "f1_score": 36.39,
+            "precision": 64.18,
+            "recall": 51.14,
+            "kappa": 0.0209,
+            "auc_roc": 62.87,
+            "chosen_threshold": 1.1515
+          },
+          "sample_augmentation": {
+            "accuracy": 60.0,
+            "f1_score": 59.97,
+            "precision": 60.02,
+            "recall": 60.0,
+            "kappa": 0.1999,
+            "auc_roc": 63.17
+          },
+          "subject_only": {
+            "accuracy": 66.02,
+            "f1_score": 64.88,
+            "precision": 68.36,
+            "recall": 66.02,
+            "kappa": 0.3199,
+            "auc_roc": 71.84
+          },
+          "n_test": 1445,
+          "n_cal_per_class": 6
+        },
+        "02F": {
+          "generic": {
+            "accuracy": 71.63,
+            "f1_score": 71.4,
+            "precision": 72.45,
+            "recall": 71.63,
+            "kappa": 0.4333,
+            "auc_roc": 76.72
+          },
+          "threshold_shift": {
+            "accuracy": 54.61,
+            "f1_score": 43.42,
+            "precision": 74.39,
+            "recall": 54.61,
+            "kappa": 0.0989,
+            "auc_roc": 76.72,
+            "chosen_threshold": -0.9022
+          },
+          "sample_augmentation": {
+            "accuracy": 71.9,
+            "f1_score": 71.65,
+            "precision": 72.82,
+            "recall": 71.9,
+            "kappa": 0.4389,
+            "auc_roc": 77.01
+          },
+          "subject_only": {
+            "accuracy": 53.65,
+            "f1_score": 41.41,
+            "precision": 75.22,
+            "recall": 53.65,
+            "kappa": 0.08,
+            "auc_roc": 74.07
+          },
+          "n_test": 1452,
+          "n_cal_per_class": 6
+        },
+        "03F": {
+          "generic": {
+            "accuracy": 62.9,
+            "f1_score": 62.89,
+            "precision": 62.93,
+            "recall": 62.9,
+            "kappa": 0.2582,
+            "auc_roc": 67.28
+          },
+          "threshold_shift": {
+            "accuracy": 61.6,
+            "f1_score": 60.98,
+            "precision": 62.32,
+            "recall": 61.6,
+            "kappa": 0.2313,
+            "auc_roc": 67.28,
+            "chosen_threshold": -0.2108
+          },
+          "sample_augmentation": {
+            "accuracy": 63.04,
+            "f1_score": 63.03,
+            "precision": 63.06,
+            "recall": 63.04,
+            "kappa": 0.2609,
+            "auc_roc": 67.45
+          },
+          "subject_only": {
+            "accuracy": 45.77,
+            "f1_score": 45.76,
+            "precision": 45.76,
+            "recall": 45.77,
+            "kappa": -0.0847,
+            "auc_roc": 44.36
+          },
+          "n_test": 1453,
+          "n_cal_per_class": 6
+        },
+        "04M": {
+          "generic": {
+            "accuracy": 38.94,
+            "f1_score": 33.57,
+            "precision": 34.29,
+            "recall": 38.94,
+            "kappa": -0.2074,
+            "auc_roc": 30.3
+          },
+          "threshold_shift": {
+            "accuracy": 42.94,
+            "f1_score": 35.94,
+            "precision": 36.55,
+            "recall": 42.94,
+            "kappa": -0.1564,
+            "auc_roc": 30.3,
+            "chosen_threshold": -1.4104
+          },
+          "sample_augmentation": {
+            "accuracy": 38.59,
+            "f1_score": 33.39,
+            "precision": 34.02,
+            "recall": 38.59,
+            "kappa": -0.2146,
+            "auc_roc": 30.13
+          },
+          "subject_only": {
+            "accuracy": 46.43,
+            "f1_score": 38.89,
+            "precision": 41.76,
+            "recall": 46.43,
+            "kappa": -0.0865,
+            "auc_roc": 33.83
+          },
+          "n_test": 1402,
+          "n_cal_per_class": 6
+        },
+        "05M": {
+          "generic": {
+            "accuracy": 69.99,
+            "f1_score": 69.85,
+            "precision": 70.36,
+            "recall": 69.99,
+            "kappa": 0.3997,
+            "auc_roc": 77.38
+          },
+          "threshold_shift": {
+            "accuracy": 70.13,
+            "f1_score": 69.23,
+            "precision": 72.78,
+            "recall": 70.13,
+            "kappa": 0.4025,
+            "auc_roc": 77.38,
+            "chosen_threshold": 0.4476
+          },
+          "sample_augmentation": {
+            "accuracy": 70.19,
+            "f1_score": 70.05,
+            "precision": 70.59,
+            "recall": 70.19,
+            "kappa": 0.4039,
+            "auc_roc": 77.58
+          },
+          "subject_only": {
+            "accuracy": 63.65,
+            "f1_score": 61.94,
+            "precision": 66.63,
+            "recall": 63.65,
+            "kappa": 0.273,
+            "auc_roc": 69.93
+          },
+          "n_test": 1436,
+          "n_cal_per_class": 6
+        },
+        "06M": {
+          "generic": {
+            "accuracy": 70.25,
+            "f1_score": 70.14,
+            "precision": 70.49,
+            "recall": 70.25,
+            "kappa": 0.4044,
+            "auc_roc": 76.24
+          },
+          "threshold_shift": {
+            "accuracy": 66.99,
+            "f1_score": 65.54,
+            "precision": 70.71,
+            "recall": 66.99,
+            "kappa": 0.3421,
+            "auc_roc": 76.24,
+            "chosen_threshold": 0.5082
+          },
+          "sample_augmentation": {
+            "accuracy": 70.46,
+            "f1_score": 70.35,
+            "precision": 70.7,
+            "recall": 70.46,
+            "kappa": 0.4086,
+            "auc_roc": 76.51
+          },
+          "subject_only": {
+            "accuracy": 72.33,
+            "f1_score": 71.24,
+            "precision": 76.06,
+            "recall": 72.33,
+            "kappa": 0.4448,
+            "auc_roc": 84.29
+          },
+          "n_test": 1442,
+          "n_cal_per_class": 6
+        },
+        "07F": {
+          "generic": {
+            "accuracy": 37.33,
+            "f1_score": 31.47,
+            "precision": 30.71,
+            "recall": 37.33,
+            "kappa": -0.2545,
+            "auc_roc": 30.05
+          },
+          "threshold_shift": {
+            "accuracy": 34.56,
+            "f1_score": 34.52,
+            "precision": 34.53,
+            "recall": 34.56,
+            "kappa": -0.3088,
+            "auc_roc": 30.05,
+            "chosen_threshold": -0.5537
+          },
+          "sample_augmentation": {
+            "accuracy": 37.05,
+            "f1_score": 31.35,
+            "precision": 30.57,
+            "recall": 37.05,
+            "kappa": -0.26,
+            "auc_roc": 30.47
+          },
+          "subject_only": {
+            "accuracy": 63.64,
+            "f1_score": 58.37,
+            "precision": 77.79,
+            "recall": 63.64,
+            "kappa": 0.2736,
+            "auc_roc": 75.79
+          },
+          "n_test": 1444,
+          "n_cal_per_class": 6
+        },
+        "08M": {
+          "generic": {
+            "accuracy": 70.85,
+            "f1_score": 70.81,
+            "precision": 70.97,
+            "recall": 70.85,
+            "kappa": 0.417,
+            "auc_roc": 78.2
+          },
+          "threshold_shift": {
+            "accuracy": 66.95,
+            "f1_score": 65.45,
+            "precision": 70.48,
+            "recall": 66.95,
+            "kappa": 0.3389,
+            "auc_roc": 78.2,
+            "chosen_threshold": -0.2415
+          },
+          "sample_augmentation": {
+            "accuracy": 71.27,
+            "f1_score": 71.21,
+            "precision": 71.45,
+            "recall": 71.27,
+            "kappa": 0.4254,
+            "auc_roc": 78.78
+          },
+          "subject_only": {
+            "accuracy": 58.09,
+            "f1_score": 56.49,
+            "precision": 59.48,
+            "recall": 58.09,
+            "kappa": 0.1618,
+            "auc_roc": 62.54
+          },
+          "n_test": 1434,
+          "n_cal_per_class": 6
+        },
+        "09M": {
+          "generic": {
+            "accuracy": 66.27,
+            "f1_score": 66.26,
+            "precision": 66.29,
+            "recall": 66.27,
+            "kappa": 0.3254,
+            "auc_roc": 72.03
+          },
+          "threshold_shift": {
+            "accuracy": 56.03,
+            "f1_score": 47.21,
+            "precision": 68.26,
+            "recall": 56.03,
+            "kappa": 0.1211,
+            "auc_roc": 72.03,
+            "chosen_threshold": 0.8297
+          },
+          "sample_augmentation": {
+            "accuracy": 66.34,
+            "f1_score": 66.33,
+            "precision": 66.36,
+            "recall": 66.34,
+            "kappa": 0.3268,
+            "auc_roc": 72.41
+          },
+          "subject_only": {
+            "accuracy": 63.0,
+            "f1_score": 60.96,
+            "precision": 66.39,
+            "recall": 63.0,
+            "kappa": 0.2597,
+            "auc_roc": 70.87
+          },
+          "n_test": 1435,
+          "n_cal_per_class": 6
+        },
+        "10M": {
+          "generic": {
+            "accuracy": 72.4,
+            "f1_score": 72.07,
+            "precision": 73.51,
+            "recall": 72.4,
+            "kappa": 0.448,
+            "auc_roc": 82.08
+          },
+          "threshold_shift": {
+            "accuracy": 64.18,
+            "f1_score": 60.25,
+            "precision": 73.52,
+            "recall": 64.18,
+            "kappa": 0.2839,
+            "auc_roc": 82.08,
+            "chosen_threshold": 0.817
+          },
+          "sample_augmentation": {
+            "accuracy": 73.17,
+            "f1_score": 72.86,
+            "precision": 74.27,
+            "recall": 73.17,
+            "kappa": 0.4633,
+            "auc_roc": 82.57
+          },
+          "subject_only": {
+            "accuracy": 77.0,
+            "f1_score": 76.92,
+            "precision": 77.42,
+            "recall": 77.0,
+            "kappa": 0.5401,
+            "auc_roc": 85.22
+          },
+          "n_test": 1435,
+          "n_cal_per_class": 6
+        }
+      },
+      "overall": {
+        "generic": {
+          "accuracy": 62.05,
+          "f1_score": 60.84,
+          "auc_roc": 65.32,
+          "kappa": 0.2423,
+          "precision": 61.2,
+          "recall": 62.05,
+          "f1_std": 14.65,
+          "n_subjects_kept": 10
+        },
+        "threshold_shift": {
+          "accuracy": 56.91,
+          "f1_score": 51.89,
+          "auc_roc": 65.32,
+          "kappa": 0.1374,
+          "precision": 62.77,
+          "recall": 56.91,
+          "f1_std": 13.09,
+          "n_subjects_kept": 10
+        },
+        "sample_augmentation": {
+          "accuracy": 62.2,
+          "f1_score": 61.02,
+          "auc_roc": 65.61,
+          "kappa": 0.2453,
+          "precision": 61.39,
+          "recall": 62.2,
+          "f1_std": 14.84,
+          "n_subjects_kept": 10
+        },
+        "subject_only": {
+          "accuracy": 60.96,
+          "f1_score": 57.69,
+          "auc_roc": 67.27,
+          "kappa": 0.2182,
+          "precision": 65.49,
+          "recall": 60.96,
+          "f1_std": 11.82,
+          "n_subjects_kept": 10
+        }
+      },
+      "wall_clock_s": 5.1
+    },
+    "cal_120s": {
+      "per_subject": {
+        "01M": {
+          "generic": {
+            "accuracy": 59.94,
+            "f1_score": 59.9,
+            "precision": 59.98,
+            "recall": 59.94,
+            "kappa": 0.1988,
+            "auc_roc": 62.8
+          },
+          "threshold_shift": {
+            "accuracy": 59.32,
+            "f1_score": 57.97,
+            "precision": 60.63,
+            "recall": 59.32,
+            "kappa": 0.1857,
+            "auc_roc": 62.8,
+            "chosen_threshold": 0.2631
+          },
+          "sample_augmentation": {
+            "accuracy": 59.67,
+            "f1_score": 59.62,
+            "precision": 59.7,
+            "recall": 59.67,
+            "kappa": 0.1932,
+            "auc_roc": 63.12
+          },
+          "subject_only": {
+            "accuracy": 66.02,
+            "f1_score": 65.93,
+            "precision": 66.17,
+            "recall": 66.02,
+            "kappa": 0.3202,
+            "auc_roc": 69.82
+          },
+          "n_test": 1433,
+          "n_cal_per_class": 12
+        },
+        "02F": {
+          "generic": {
+            "accuracy": 71.46,
+            "f1_score": 71.22,
+            "precision": 72.31,
+            "recall": 71.46,
+            "kappa": 0.43,
+            "auc_roc": 76.5
+          },
+          "threshold_shift": {
+            "accuracy": 54.24,
+            "f1_score": 42.72,
+            "precision": 74.13,
+            "recall": 54.24,
+            "kappa": 0.0915,
+            "auc_roc": 76.5,
+            "chosen_threshold": -0.9022
+          },
+          "sample_augmentation": {
+            "accuracy": 71.74,
+            "f1_score": 71.48,
+            "precision": 72.67,
+            "recall": 71.74,
+            "kappa": 0.4356,
+            "auc_roc": 76.95
+          },
+          "subject_only": {
+            "accuracy": 55.97,
+            "f1_score": 45.76,
+            "precision": 76.15,
+            "recall": 55.97,
+            "kappa": 0.1258,
+            "auc_roc": 72.85
+          },
+          "n_test": 1440,
+          "n_cal_per_class": 12
+        },
+        "03F": {
+          "generic": {
+            "accuracy": 62.94,
+            "f1_score": 62.93,
+            "precision": 62.97,
+            "recall": 62.94,
+            "kappa": 0.2589,
+            "auc_roc": 67.28
+          },
+          "threshold_shift": {
+            "accuracy": 62.39,
+            "f1_score": 61.24,
+            "precision": 64.13,
+            "recall": 62.39,
+            "kappa": 0.2486,
+            "auc_roc": 67.28,
+            "chosen_threshold": 0.2471
+          },
+          "sample_augmentation": {
+            "accuracy": 63.15,
+            "f1_score": 63.14,
+            "precision": 63.17,
+            "recall": 63.15,
+            "kappa": 0.2631,
+            "auc_roc": 67.64
+          },
+          "subject_only": {
+            "accuracy": 55.31,
+            "f1_score": 54.67,
+            "precision": 55.58,
+            "recall": 55.31,
+            "kappa": 0.1054,
+            "auc_roc": 57.79
+          },
+          "n_test": 1441,
+          "n_cal_per_class": 12
+        },
+        "04M": {
+          "generic": {
+            "accuracy": 38.85,
+            "f1_score": 33.55,
+            "precision": 34.25,
+            "recall": 38.85,
+            "kappa": -0.2092,
+            "auc_roc": 30.2
+          },
+          "threshold_shift": {
+            "accuracy": 43.02,
+            "f1_score": 35.97,
+            "precision": 36.6,
+            "recall": 43.02,
+            "kappa": -0.155,
+            "auc_roc": 30.2,
+            "chosen_threshold": -1.4104
+          },
+          "sample_augmentation": {
+            "accuracy": 38.42,
+            "f1_score": 33.31,
+            "precision": 33.9,
+            "recall": 38.42,
+            "kappa": -0.218,
+            "auc_roc": 29.85
+          },
+          "subject_only": {
+            "accuracy": 38.56,
+            "f1_score": 37.95,
+            "precision": 37.95,
+            "recall": 38.56,
+            "kappa": -0.2337,
+            "auc_roc": 32.45
+          },
+          "n_test": 1390,
+          "n_cal_per_class": 12
+        },
+        "05M": {
+          "generic": {
+            "accuracy": 69.8,
+            "f1_score": 69.66,
+            "precision": 70.19,
+            "recall": 69.8,
+            "kappa": 0.3961,
+            "auc_roc": 77.24
+          },
+          "threshold_shift": {
+            "accuracy": 70.79,
+            "f1_score": 70.79,
+            "precision": 70.79,
+            "recall": 70.79,
+            "kappa": 0.4157,
+            "auc_roc": 77.24,
+            "chosen_threshold": 0.1387
+          },
+          "sample_augmentation": {
+            "accuracy": 69.94,
+            "f1_score": 69.79,
+            "precision": 70.36,
+            "recall": 69.94,
+            "kappa": 0.3989,
+            "auc_roc": 77.47
+          },
+          "subject_only": {
+            "accuracy": 67.28,
+            "f1_score": 67.27,
+            "precision": 67.28,
+            "recall": 67.28,
+            "kappa": 0.3455,
+            "auc_roc": 72.66
+          },
+          "n_test": 1424,
+          "n_cal_per_class": 12
+        },
+        "06M": {
+          "generic": {
+            "accuracy": 70.07,
+            "f1_score": 69.96,
+            "precision": 70.31,
+            "recall": 70.07,
+            "kappa": 0.4008,
+            "auc_roc": 76.04
+          },
+          "threshold_shift": {
+            "accuracy": 69.79,
+            "f1_score": 69.62,
+            "precision": 70.35,
+            "recall": 69.79,
+            "kappa": 0.3966,
+            "auc_roc": 76.04,
+            "chosen_threshold": 0.2377
+          },
+          "sample_augmentation": {
+            "accuracy": 70.42,
+            "f1_score": 70.32,
+            "precision": 70.64,
+            "recall": 70.42,
+            "kappa": 0.4078,
+            "auc_roc": 76.38
+          },
+          "subject_only": {
+            "accuracy": 77.06,
+            "f1_score": 76.98,
+            "precision": 77.4,
+            "recall": 77.06,
+            "kappa": 0.5408,
+            "auc_roc": 85.24
+          },
+          "n_test": 1430,
+          "n_cal_per_class": 12
+        },
+        "07F": {
+          "generic": {
+            "accuracy": 37.29,
+            "f1_score": 31.48,
+            "precision": 30.72,
+            "recall": 37.29,
+            "kappa": -0.2552,
+            "auc_roc": 30.06
+          },
+          "threshold_shift": {
+            "accuracy": 34.57,
+            "f1_score": 34.53,
+            "precision": 34.53,
+            "recall": 34.57,
+            "kappa": -0.3086,
+            "auc_roc": 30.06,
+            "chosen_threshold": -0.5537
+          },
+          "sample_augmentation": {
+            "accuracy": 37.15,
+            "f1_score": 31.57,
+            "precision": 30.88,
+            "recall": 37.15,
+            "kappa": -0.258,
+            "auc_roc": 30.78
+          },
+          "subject_only": {
+            "accuracy": 68.09,
+            "f1_score": 67.18,
+            "precision": 70.37,
+            "recall": 68.09,
+            "kappa": 0.362,
+            "auc_roc": 76.3
+          },
+          "n_test": 1432,
+          "n_cal_per_class": 12
+        },
+        "08M": {
+          "generic": {
+            "accuracy": 70.68,
+            "f1_score": 70.63,
+            "precision": 70.8,
+            "recall": 70.68,
+            "kappa": 0.4135,
+            "auc_roc": 78.06
+          },
+          "threshold_shift": {
+            "accuracy": 70.46,
+            "f1_score": 70.4,
+            "precision": 70.63,
+            "recall": 70.46,
+            "kappa": 0.4093,
+            "auc_roc": 78.06,
+            "chosen_threshold": 0.1103
+          },
+          "sample_augmentation": {
+            "accuracy": 71.45,
+            "f1_score": 71.39,
+            "precision": 71.64,
+            "recall": 71.45,
+            "kappa": 0.429,
+            "auc_roc": 79.21
+          },
+          "subject_only": {
+            "accuracy": 56.61,
+            "f1_score": 52.53,
+            "precision": 60.08,
+            "recall": 56.61,
+            "kappa": 0.1322,
+            "auc_roc": 64.25
+          },
+          "n_test": 1422,
+          "n_cal_per_class": 12
+        },
+        "09M": {
+          "generic": {
+            "accuracy": 66.27,
+            "f1_score": 66.26,
+            "precision": 66.28,
+            "recall": 66.27,
+            "kappa": 0.3254,
+            "auc_roc": 72.02
+          },
+          "threshold_shift": {
+            "accuracy": 57.55,
+            "f1_score": 51.09,
+            "precision": 66.1,
+            "recall": 57.55,
+            "kappa": 0.1515,
+            "auc_roc": 72.02,
+            "chosen_threshold": 0.6657
+          },
+          "sample_augmentation": {
+            "accuracy": 66.62,
+            "f1_score": 66.61,
+            "precision": 66.64,
+            "recall": 66.62,
+            "kappa": 0.3324,
+            "auc_roc": 72.46
+          },
+          "subject_only": {
+            "accuracy": 65.21,
+            "f1_score": 64.53,
+            "precision": 66.47,
+            "recall": 65.21,
+            "kappa": 0.3042,
+            "auc_roc": 70.88
+          },
+          "n_test": 1423,
+          "n_cal_per_class": 12
+        },
+        "10M": {
+          "generic": {
+            "accuracy": 72.52,
+            "f1_score": 72.21,
+            "precision": 73.58,
+            "recall": 72.52,
+            "kappa": 0.4504,
+            "auc_roc": 82.17
+          },
+          "threshold_shift": {
+            "accuracy": 64.09,
+            "f1_score": 60.05,
+            "precision": 73.71,
+            "recall": 64.09,
+            "kappa": 0.2821,
+            "auc_roc": 82.17,
+            "chosen_threshold": 0.817
+          },
+          "sample_augmentation": {
+            "accuracy": 74.07,
+            "f1_score": 73.74,
+            "precision": 75.33,
+            "recall": 74.07,
+            "kappa": 0.4813,
+            "auc_roc": 83.43
+          },
+          "subject_only": {
+            "accuracy": 78.22,
+            "f1_score": 78.2,
+            "precision": 78.31,
+            "recall": 78.22,
+            "kappa": 0.5643,
+            "auc_roc": 86.16
+          },
+          "n_test": 1423,
+          "n_cal_per_class": 12
+        }
+      },
+      "overall": {
+        "generic": {
+          "accuracy": 61.98,
+          "f1_score": 60.78,
+          "auc_roc": 65.24,
+          "kappa": 0.241,
+          "precision": 61.14,
+          "recall": 61.98,
+          "f1_std": 14.61,
+          "n_subjects_kept": 10
+        },
+        "threshold_shift": {
+          "accuracy": 58.62,
+          "f1_score": 55.44,
+          "auc_roc": 65.24,
+          "kappa": 0.1717,
+          "precision": 62.16,
+          "recall": 58.62,
+          "f1_std": 13.11,
+          "n_subjects_kept": 10
+        },
+        "sample_augmentation": {
+          "accuracy": 62.26,
+          "f1_score": 61.1,
+          "auc_roc": 65.73,
+          "kappa": 0.2465,
+          "precision": 61.49,
+          "recall": 62.26,
+          "f1_std": 14.88,
+          "n_subjects_kept": 10
+        },
+        "subject_only": {
+          "accuracy": 62.83,
+          "f1_score": 61.1,
+          "auc_roc": 68.84,
+          "kappa": 0.2567,
+          "precision": 65.58,
+          "recall": 62.83,
+          "f1_std": 12.41,
+          "n_subjects_kept": 10
+        }
+      },
+      "wall_clock_s": 4.7
+    },
+    "cal_300s": {
+      "per_subject": {
+        "01M": {
+          "generic": {
+            "accuracy": 59.77,
+            "f1_score": 59.71,
+            "precision": 59.82,
+            "recall": 59.77,
+            "kappa": 0.1953,
+            "auc_roc": 62.62
+          },
+          "threshold_shift": {
+            "accuracy": 59.06,
+            "f1_score": 57.64,
+            "precision": 60.4,
+            "recall": 59.06,
+            "kappa": 0.1805,
+            "auc_roc": 62.62,
+            "chosen_threshold": 0.2631
+          },
+          "sample_augmentation": {
+            "accuracy": 58.84,
+            "f1_score": 58.75,
+            "precision": 58.9,
+            "recall": 58.84,
+            "kappa": 0.1766,
+            "auc_roc": 62.1
+          },
+          "subject_only": {
+            "accuracy": 57.55,
+            "f1_score": 57.54,
+            "precision": 57.56,
+            "recall": 57.55,
+            "kappa": 0.1511,
+            "auc_roc": 59.07
+          },
+          "n_test": 1397,
+          "n_cal_per_class": 30
+        },
+        "02F": {
+          "generic": {
+            "accuracy": 71.08,
+            "f1_score": 70.82,
+            "precision": 72.0,
+            "recall": 71.08,
+            "kappa": 0.4226,
+            "auc_roc": 76.03
+          },
+          "threshold_shift": {
+            "accuracy": 67.66,
+            "f1_score": 65.47,
+            "precision": 74.08,
+            "recall": 67.66,
+            "kappa": 0.3561,
+            "auc_roc": 76.03,
+            "chosen_threshold": -0.2657
+          },
+          "sample_augmentation": {
+            "accuracy": 71.37,
+            "f1_score": 71.05,
+            "precision": 72.5,
+            "recall": 71.37,
+            "kappa": 0.4284,
+            "auc_roc": 76.68
+          },
+          "subject_only": {
+            "accuracy": 62.96,
+            "f1_score": 57.7,
+            "precision": 76.65,
+            "recall": 62.96,
+            "kappa": 0.2637,
+            "auc_roc": 74.47
+          },
+          "n_test": 1404,
+          "n_cal_per_class": 30
+        },
+        "03F": {
+          "generic": {
+            "accuracy": 62.92,
+            "f1_score": 62.91,
+            "precision": 62.95,
+            "recall": 62.92,
+            "kappa": 0.2585,
+            "auc_roc": 67.34
+          },
+          "threshold_shift": {
+            "accuracy": 62.85,
+            "f1_score": 62.85,
+            "precision": 62.85,
+            "recall": 62.85,
+            "kappa": 0.2569,
+            "auc_roc": 67.34,
+            "chosen_threshold": -0.0356
+          },
+          "sample_augmentation": {
+            "accuracy": 63.99,
+            "f1_score": 63.97,
+            "precision": 64.02,
+            "recall": 63.99,
+            "kappa": 0.2798,
+            "auc_roc": 68.05
+          },
+          "subject_only": {
+            "accuracy": 62.85,
+            "f1_score": 62.51,
+            "precision": 63.28,
+            "recall": 62.85,
+            "kappa": 0.2564,
+            "auc_roc": 69.64
+          },
+          "n_test": 1405,
+          "n_cal_per_class": 30
+        },
+        "04M": {
+          "generic": {
+            "accuracy": 38.48,
+            "f1_score": 33.29,
+            "precision": 33.9,
+            "recall": 38.48,
+            "kappa": -0.2163,
+            "auc_roc": 29.65
+          },
+          "threshold_shift": {
+            "accuracy": 42.84,
+            "f1_score": 35.69,
+            "precision": 36.15,
+            "recall": 42.84,
+            "kappa": -0.1592,
+            "auc_roc": 29.65,
+            "chosen_threshold": -1.412
+          },
+          "sample_augmentation": {
+            "accuracy": 37.52,
+            "f1_score": 32.69,
+            "precision": 33.06,
+            "recall": 37.52,
+            "kappa": -0.2359,
+            "auc_roc": 29.43
+          },
+          "subject_only": {
+            "accuracy": 45.57,
+            "f1_score": 43.08,
+            "precision": 44.18,
+            "recall": 45.57,
+            "kappa": -0.0981,
+            "auc_roc": 38.57
+          },
+          "n_test": 1354,
+          "n_cal_per_class": 30
+        },
+        "05M": {
+          "generic": {
+            "accuracy": 69.52,
+            "f1_score": 69.38,
+            "precision": 69.9,
+            "recall": 69.52,
+            "kappa": 0.3905,
+            "auc_roc": 76.97
+          },
+          "threshold_shift": {
+            "accuracy": 70.39,
+            "f1_score": 70.39,
+            "precision": 70.39,
+            "recall": 70.39,
+            "kappa": 0.4078,
+            "auc_roc": 76.97,
+            "chosen_threshold": 0.1387
+          },
+          "sample_augmentation": {
+            "accuracy": 69.45,
+            "f1_score": 69.29,
+            "precision": 69.86,
+            "recall": 69.45,
+            "kappa": 0.389,
+            "auc_roc": 77.32
+          },
+          "subject_only": {
+            "accuracy": 71.18,
+            "f1_score": 70.92,
+            "precision": 71.98,
+            "recall": 71.18,
+            "kappa": 0.4236,
+            "auc_roc": 80.25
+          },
+          "n_test": 1388,
+          "n_cal_per_class": 30
+        },
+        "06M": {
+          "generic": {
+            "accuracy": 70.3,
+            "f1_score": 70.18,
+            "precision": 70.57,
+            "recall": 70.3,
+            "kappa": 0.4054,
+            "auc_roc": 76.2
+          },
+          "threshold_shift": {
+            "accuracy": 69.8,
+            "f1_score": 69.64,
+            "precision": 70.32,
+            "recall": 69.8,
+            "kappa": 0.3967,
+            "auc_roc": 76.2,
+            "chosen_threshold": 0.2377
+          },
+          "sample_augmentation": {
+            "accuracy": 71.09,
+            "f1_score": 70.97,
+            "precision": 71.36,
+            "recall": 71.09,
+            "kappa": 0.4212,
+            "auc_roc": 77.41
+          },
+          "subject_only": {
+            "accuracy": 79.27,
+            "f1_score": 79.26,
+            "precision": 79.31,
+            "recall": 79.27,
+            "kappa": 0.5852,
+            "auc_roc": 87.1
+          },
+          "n_test": 1394,
+          "n_cal_per_class": 30
+        },
+        "07F": {
+          "generic": {
+            "accuracy": 37.03,
+            "f1_score": 31.4,
+            "precision": 30.65,
+            "recall": 37.03,
+            "kappa": -0.2603,
+            "auc_roc": 29.69
+          },
+          "threshold_shift": {
+            "accuracy": 48.57,
+            "f1_score": 37.98,
+            "precision": 45.66,
+            "recall": 48.57,
+            "kappa": -0.0274,
+            "auc_roc": 29.69,
+            "chosen_threshold": -1.3094
+          },
+          "sample_augmentation": {
+            "accuracy": 36.25,
+            "f1_score": 31.11,
+            "precision": 30.37,
+            "recall": 36.25,
+            "kappa": -0.2761,
+            "auc_roc": 30.95
+          },
+          "subject_only": {
+            "accuracy": 68.62,
+            "f1_score": 68.39,
+            "precision": 69.18,
+            "recall": 68.62,
+            "kappa": 0.3723,
+            "auc_roc": 77.95
+          },
+          "n_test": 1396,
+          "n_cal_per_class": 30
+        },
+        "08M": {
+          "generic": {
+            "accuracy": 70.27,
+            "f1_score": 70.23,
+            "precision": 70.41,
+            "recall": 70.27,
+            "kappa": 0.4055,
+            "auc_roc": 77.66
+          },
+          "threshold_shift": {
+            "accuracy": 70.13,
+            "f1_score": 70.1,
+            "precision": 70.21,
+            "recall": 70.13,
+            "kappa": 0.4026,
+            "auc_roc": 77.66,
+            "chosen_threshold": 0.1002
+          },
+          "sample_augmentation": {
+            "accuracy": 71.14,
+            "f1_score": 71.06,
+            "precision": 71.37,
+            "recall": 71.14,
+            "kappa": 0.4228,
+            "auc_roc": 79.44
+          },
+          "subject_only": {
+            "accuracy": 54.26,
+            "f1_score": 50.75,
+            "precision": 55.95,
+            "recall": 54.26,
+            "kappa": 0.0851,
+            "auc_roc": 60.31
+          },
+          "n_test": 1386,
+          "n_cal_per_class": 30
+        },
+        "09M": {
+          "generic": {
+            "accuracy": 66.4,
+            "f1_score": 66.4,
+            "precision": 66.41,
+            "recall": 66.4,
+            "kappa": 0.328,
+            "auc_roc": 72.05
+          },
+          "threshold_shift": {
+            "accuracy": 57.25,
+            "f1_score": 50.61,
+            "precision": 65.74,
+            "recall": 57.25,
+            "kappa": 0.1454,
+            "auc_roc": 72.05,
+            "chosen_threshold": 0.6514
+          },
+          "sample_augmentation": {
+            "accuracy": 67.2,
+            "f1_score": 67.19,
+            "precision": 67.2,
+            "recall": 67.2,
+            "kappa": 0.3439,
+            "auc_roc": 72.82
+          },
+          "subject_only": {
+            "accuracy": 68.57,
+            "f1_score": 68.36,
+            "precision": 69.06,
+            "recall": 68.57,
+            "kappa": 0.3712,
+            "auc_roc": 73.46
+          },
+          "n_test": 1387,
+          "n_cal_per_class": 30
+        },
+        "10M": {
+          "generic": {
+            "accuracy": 72.75,
+            "f1_score": 72.46,
+            "precision": 73.71,
+            "recall": 72.75,
+            "kappa": 0.4549,
+            "auc_roc": 82.38
+          },
+          "threshold_shift": {
+            "accuracy": 68.2,
+            "f1_score": 66.19,
+            "precision": 73.93,
+            "recall": 68.2,
+            "kappa": 0.3643,
+            "auc_roc": 82.38,
+            "chosen_threshold": 0.6269
+          },
+          "sample_augmentation": {
+            "accuracy": 75.49,
+            "f1_score": 75.19,
+            "precision": 76.73,
+            "recall": 75.49,
+            "kappa": 0.5097,
+            "auc_roc": 85.18
+          },
+          "subject_only": {
+            "accuracy": 82.48,
+            "f1_score": 82.46,
+            "precision": 82.64,
+            "recall": 82.48,
+            "kappa": 0.6496,
+            "auc_roc": 89.93
+          },
+          "n_test": 1387,
+          "n_cal_per_class": 30
+        }
+      },
+      "overall": {
+        "generic": {
+          "accuracy": 61.85,
+          "f1_score": 60.68,
+          "auc_roc": 65.06,
+          "kappa": 0.2384,
+          "precision": 61.03,
+          "recall": 61.85,
+          "f1_std": 14.65,
+          "n_subjects_kept": 10
+        },
+        "threshold_shift": {
+          "accuracy": 61.67,
+          "f1_score": 58.66,
+          "auc_roc": 65.06,
+          "kappa": 0.2324,
+          "precision": 62.97,
+          "recall": 61.67,
+          "f1_std": 12.37,
+          "n_subjects_kept": 10
+        },
+        "sample_augmentation": {
+          "accuracy": 62.23,
+          "f1_score": 61.13,
+          "auc_roc": 65.94,
+          "kappa": 0.2459,
+          "precision": 61.54,
+          "recall": 62.23,
+          "f1_std": 15.23,
+          "n_subjects_kept": 10
+        },
+        "subject_only": {
+          "accuracy": 65.33,
+          "f1_score": 64.1,
+          "auc_roc": 71.08,
+          "kappa": 0.306,
+          "precision": 66.98,
+          "recall": 65.33,
+          "f1_std": 11.65,
+          "n_subjects_kept": 10
+        }
+      },
+      "wall_clock_s": 5.8
+    }
+  }
+}

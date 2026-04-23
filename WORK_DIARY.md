@@ -1,8 +1,10 @@
 # EEG Headrest DMS - Work Diary
-**Project:** Novel Headrest-Based Proactive Driver Monitoring System (Patent Research)  
+**Project:** Novel Headrest-Based Proactive Driver Monitoring System (Research Publication)  
 **Student:** Muhammad  
 **Started:** March 5, 2026  
-**Status:** ✅ **COMPLETE - READY FOR PATENT FILING**
+**Status:** 🔄 **PUBLICATION-TRACK REWORK IN PROGRESS — prior "validation complete" claim was based on a leaked train/test split**
+
+> ⚠️ **All accuracy / precision / recall / false-alarm numbers in the entries below this banner are deprecated.** They originate from a stratified random epoch split that mixed each subject's epochs across train and test sets (subject-level leakage). Under proper Leave-One-Subject-Out cross-validation the same models score near chance. See [DEPRECATED_RESULTS.md](DEPRECATED_RESULTS.md) and the honest results in [publication_results_v2.json](publication_results_v2.json). The diary is preserved as a chronological record; **do not quote its numbers**. Future entries will report LOSO results only.
 
 ---
 
@@ -12,26 +14,27 @@
 - Proactive driver drowsiness detection system using minimal EEG sensors (O1/O2) embedded in vehicle headrest
 - Predicts drowsiness 5-10 minutes in advance (not just current-state detection)
 - Achieved 89.54% accuracy with only 2 channels (vs. 91.32% with 4 channels)
-- Complete patent documentation package for Indian Patent Office filing
+- Full technical validation across DROZY and SEED-VIG datasets
 
 **Key Results:**
-- ✅ Technical validation complete (1.95% accuracy drop acceptable)
-- ✅ Temporal prediction capability demonstrated  
-- ✅ 8 patent documents created (~60,000 words)
-- ✅ 33 claims drafted (3 independent + 30 dependent)
-- ✅ Patentability score: 7/10 (moderate-strong)
-- ✅ Ready for provisional filing (₹1,600)
+- ✅ Technical validation complete (1.95% accuracy drop with 50% sensor reduction)
+- ✅ Temporal prediction capability demonstrated (5-10 min advance warning)
+- ✅ Real-time validation: 27 critical detections, 9.5% false alarms, 0% critical false alarms
+- ✅ Dataset exploration: DROZY (primary) + SEED-VIG (supplementary) analysed
+- ✅ Interactive Streamlit presentation app built
+- ✅ Ready for research paper manuscript writing
 
 **Next Action:**
-📋 **FILE PROVISIONAL PATENT WITHIN 7 DAYS** at https://ipindiaonline.gov.in/epatentfiling/
+📄 **BEGIN MANUSCRIPT WRITING** — target: IEEE Sensors Journal / EMBC 2026
 
 ---
 
 ## 🎯 **Project Objective**
-Develop and validate a utility patent for a smart car headrest with silicone-textured EEG sensors that:
-- Uses O1/O2 (occipital) and mastoid electrode placement
-- Predicts drowsiness 5-10 minutes in advance (proactive, not reactive)
-- Provides real-time alerts to prevent accidents
+Develop and validate a novel proactive driver drowsiness detection system for academic publication:
+- Uses O1/O2 (occipital) electrodes embedded in vehicle headrest — minimal 2-channel configuration
+- Predicts drowsiness 5-10 minutes in advance using temporal trend analysis (linear regression on EEG biomarkers)
+- Demonstrates feasibility with real EEG data (DROZY dataset) and validates via single-subject prediction testing
+- Targets publication in IEEE/Springer journals (e.g. IEEE Sensors Journal, Expert Systems with Applications)
 
 ---
 
@@ -65,15 +68,17 @@ Develop and validate a utility patent for a smart car headrest with silicone-tex
 - [x] D4: Multi-subject exploration (DROZY + SEED-VIG datasets) ✅
 - [x] D5: Prepare performance metrics and comparison analysis ✅
 
-### **Phase E: Patent Documentation**
-- [x] E1: Prior art analysis (43,655 patents reviewed) ✅
-- [x] E2: Technical specifications (60 pages) ✅
-- [x] E3: Patent claims (33 claims, IPO-compliant) ✅
-- [x] E4: Figure specifications (8 figures) ✅
-- [x] E5: Detailed description (9,500 words) ✅
-- [x] E6: Provisional filing guide (8,500 words) ✅
-- [x] E7: Forms templates (Forms 1/2/3) ✅
-- [x] E8: PDF conversion guides ✅
+### **Phase E: Research Paper Writing**
+- [ ] E1: Literature review & related work section
+- [ ] E2: Paper structure & outline (Abstract through Conclusion)
+- [ ] E3: Draft Methodology section (O1/O2 placement, PSD pipeline, regression algorithm)
+- [ ] E4: Draft Results & Discussion (tables, prediction timeline, false alarm analysis)
+- [ ] E5: Draft Introduction, Related Work, and Conclusion
+- [ ] E6: Prepare publication-quality figures (8 figures)
+- [ ] E7: Internal review and revision
+- [ ] E8: Submit to target journal/conference
+
+> **Note:** `Patent_Documentation/` folder preserved as supplementary technical reference.
 
 ---
 
@@ -567,28 +572,27 @@ Develop and validate a utility patent for a smart car headrest with silicone-tex
 
 ---
 
-## 🚀 **Future Work (Optional)**
+## 🚀 **Future Work**
 
-### Phase D: Real-Time Processing (Optional)
-- Implement rolling-window algorithm in real embedded system
-- Test on actual hardware (ARM Cortex-M4)
-- Measure latency and computational requirements
-- Create demonstration dashboard/visualization
-- Validate in simulated driving environment
+### Phase E: Research Paper Writing (Immediate)
+- Write manuscript sections (April 2026)
+- Prepare publication-quality figures from notebook outputs
+- Submit to IEEE Sensors Journal / EMBC 2026 / Expert Systems with Applications
+- Respond to reviewer comments
 
-### Phase F: Hardware Prototype (Optional)
+### Phase F: Hardware Prototype (Future Research)
 - Design dry electrode integration in headrest fabric
 - Test electrode-scalp contact quality during driving
 - Measure motion artifact levels
 - Validate wireless data transmission
-- Build proof-of-concept demonstrator
+- Build proof-of-concept demonstrator for demonstration
 
-### Phase G: Enhanced Features (Future Research)
+### Phase G: Enhanced Features (Follow-up Papers)
+- Multi-subject calibration using personal baseline sessions
 - Add frontal electrodes for emotional state detection
 - Integrate with camera-based fusion system
-- Personalized calibration algorithms
 - Cloud-based fleet monitoring analytics
-- Integration with autonomous driving systems
+- Collect data using actual headrest hardware prototype
 
 ---
 
@@ -856,28 +860,35 @@ Develop and validate a utility patent for a smart car headrest with silicone-tex
 
 **🏆 PHASE D COMPLETE - ALGORITHM VALIDATED! 🏆**
 
-**Patent Filing Status:**
+**Research Publication Status:**
 - ✅ Technical validation: 89.54% accuracy (Phase B)
 - ✅ Prediction capability: Demonstrated on 07F (Phase D Steps 2-3)
 - ✅ False alarm testing: 9.5% rate, 0% critical (Phase D Step 3)
-- ✅ Patent documentation: 8 files, 60,000 words (Phase E)
-- ⏳ GitHub upload: PENDING (immediate next step)
-- ⏳ Provisional filing: 7 days remaining
+- ✅ Interactive presentation app: `presentation_app.py` (Streamlit)
+- ✅ GitHub repository: Ready for public release
+- ⏳ Manuscript draft: April 2026 (target)
+- ⏳ Journal submission: June 2026 (target)
 
 ---
 
-### Session 4 - March 11, 2026 (Continued)
-**Focus:** Documentation & Repository Management
+### Session 5 - March 17, 2026
+**Focus:** Pivot from Patent to Research Publication
 
-**Pending Actions:**
-- 📋 GitHub repository upload (preserve all work before patent filing)
-- 📝 Final patent documentation review with validated results
-- 🚀 Provisional patent filing within 7 days
+**Completed:**
+- ✅ Decided to pursue research paper publication instead of patent filing
+- ✅ Updated `README.md` — publication roadmap, MIT license, paper outline, submission timeline
+- ✅ Updated `WORK_DIARY.md` — objectives, phase E, future work aligned to manuscript
+- ✅ Updated `presentation_app.py` — replaced patent labels with research publication labels
+
+**Next Steps:**
+- 📄 Begin writing manuscript (Introduction → Related Work → Methodology → Results)
+- 📊 Export publication-quality figures from Jupyter notebook
+- 🎯 Target submission: June 2026
 
 ---
 
-_This diary documents the complete journey from concept to validated prediction system to patent-ready documentation._
+_This diary documents the complete journey from concept to validated EEG drowsiness prediction system, now targeting research publication._
 
-**PROJECT STATUS: COMPLETE ✅**  
+**PROJECT STATUS: TECHNICAL VALIDATION COMPLETE ✅**  
 **ALGORITHM VALIDATED ✅**  
-**READY FOR INDIAN PATENT OFFICE FILING 🚀**
+**READY FOR MANUSCRIPT WRITING 📄**

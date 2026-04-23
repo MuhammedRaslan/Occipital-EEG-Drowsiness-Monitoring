@@ -1,0 +1,249 @@
+{
+  "timestamp": "2026-04-21T16:17:59.179748",
+  "methodology": "Causal posterior smoothing on top of v11 lean LDA LOSO predictions. Two smoothers: causal exponential moving average over p(drowsy) with time constant \u03c4, and causal HMM forward filter with sticky transition probability P(stay). Reported under TWO segmentation regimes: (a) per_session \u2014 smoother resets at session boundaries (in DROZY this coincides with the awake\u2192drowsy label flip; the deployment-realistic equivalent is reset at every ignition event); (b) continuous \u2014 single segment per subject, no resets within subject; conservative because the smoother lags through the label transition and pays the F1 cost.",
+  "feature_set": [
+    "sample_entropy_O1",
+    "sample_entropy_O2",
+    "perm_entropy_O1",
+    "perm_entropy_O2",
+    "aperiodic_slope_O1",
+    "aperiodic_slope_O2",
+    "paf_delta",
+    "coh_theta",
+    "coh_alpha",
+    "coh_beta"
+  ],
+  "epoch_sec": 10,
+  "baseline": {
+    "accuracy": 62.1,
+    "f1_score": 62.08,
+    "precision": 62.13,
+    "recall": 62.1,
+    "kappa": 0.242,
+    "auc_roc": 64.55
+  },
+  "sweeps": {
+    "per_session": {
+      "ema": {
+        "tau_10s": {
+          "accuracy": 64.93,
+          "f1_score": 64.9,
+          "precision": 65.0,
+          "recall": 64.93,
+          "kappa": 0.2988,
+          "auc_roc": 67.58
+        },
+        "tau_30s": {
+          "accuracy": 69.11,
+          "f1_score": 69.06,
+          "precision": 69.26,
+          "recall": 69.11,
+          "kappa": 0.3824,
+          "auc_roc": 70.95
+        },
+        "tau_60s": {
+          "accuracy": 71.7,
+          "f1_score": 71.64,
+          "precision": 71.91,
+          "recall": 71.7,
+          "kappa": 0.4341,
+          "auc_roc": 72.64
+        },
+        "tau_120s": {
+          "accuracy": 73.8,
+          "f1_score": 73.74,
+          "precision": 74.06,
+          "recall": 73.8,
+          "kappa": 0.4762,
+          "auc_roc": 73.82
+        },
+        "tau_300s": {
+          "accuracy": 74.54,
+          "f1_score": 74.45,
+          "precision": 74.9,
+          "recall": 74.54,
+          "kappa": 0.4909,
+          "auc_roc": 74.13
+        },
+        "tau_600s": {
+          "accuracy": 74.8,
+          "f1_score": 74.57,
+          "precision": 75.79,
+          "recall": 74.8,
+          "kappa": 0.4963,
+          "auc_roc": 73.13
+        }
+      },
+      "hmm": {
+        "p_stay_0.9": {
+          "accuracy": 69.53,
+          "f1_score": 69.48,
+          "precision": 69.68,
+          "recall": 69.53,
+          "kappa": 0.3908,
+          "auc_roc": 71.6
+        },
+        "p_stay_0.95": {
+          "accuracy": 71.66,
+          "f1_score": 71.6,
+          "precision": 71.86,
+          "recall": 71.66,
+          "kappa": 0.4333,
+          "auc_roc": 73.07
+        },
+        "p_stay_0.98": {
+          "accuracy": 73.55,
+          "f1_score": 73.5,
+          "precision": 73.75,
+          "recall": 73.55,
+          "kappa": 0.4711,
+          "auc_roc": 74.35
+        },
+        "p_stay_0.99": {
+          "accuracy": 74.25,
+          "f1_score": 74.21,
+          "precision": 74.43,
+          "recall": 74.25,
+          "kappa": 0.4851,
+          "auc_roc": 74.99
+        }
+      }
+    },
+    "continuous": {
+      "ema": {
+        "tau_10s": {
+          "accuracy": 64.93,
+          "f1_score": 64.89,
+          "precision": 64.99,
+          "recall": 64.93,
+          "kappa": 0.2986,
+          "auc_roc": 67.57
+        },
+        "tau_30s": {
+          "accuracy": 69.11,
+          "f1_score": 69.06,
+          "precision": 69.26,
+          "recall": 69.11,
+          "kappa": 0.3824,
+          "auc_roc": 70.98
+        },
+        "tau_60s": {
+          "accuracy": 71.73,
+          "f1_score": 71.67,
+          "precision": 71.94,
+          "recall": 71.73,
+          "kappa": 0.4348,
+          "auc_roc": 72.79
+        },
+        "tau_120s": {
+          "accuracy": 73.96,
+          "f1_score": 73.9,
+          "precision": 74.21,
+          "recall": 73.96,
+          "kappa": 0.4793,
+          "auc_roc": 74.28
+        },
+        "tau_300s": {
+          "accuracy": 75.55,
+          "f1_score": 75.49,
+          "precision": 75.81,
+          "recall": 75.55,
+          "kappa": 0.5111,
+          "auc_roc": 75.72
+        },
+        "tau_600s": {
+          "accuracy": 76.92,
+          "f1_score": 76.79,
+          "precision": 77.57,
+          "recall": 76.92,
+          "kappa": 0.5386,
+          "auc_roc": 76.62
+        }
+      },
+      "hmm": {
+        "p_stay_0.9": {
+          "accuracy": 69.47,
+          "f1_score": 69.42,
+          "precision": 69.62,
+          "recall": 69.47,
+          "kappa": 0.3895,
+          "auc_roc": 71.5
+        },
+        "p_stay_0.95": {
+          "accuracy": 71.6,
+          "f1_score": 71.53,
+          "precision": 71.8,
+          "recall": 71.6,
+          "kappa": 0.432,
+          "auc_roc": 72.92
+        },
+        "p_stay_0.98": {
+          "accuracy": 73.4,
+          "f1_score": 73.35,
+          "precision": 73.62,
+          "recall": 73.4,
+          "kappa": 0.4682,
+          "auc_roc": 74.13
+        },
+        "p_stay_0.99": {
+          "accuracy": 74.04,
+          "f1_score": 74.0,
+          "precision": 74.24,
+          "recall": 74.04,
+          "kappa": 0.481,
+          "auc_roc": 74.7
+        }
+      }
+    }
+  },
+  "best": {
+    "per_session": {
+      "ema": {
+        "tau": "tau_600s",
+        "metrics": {
+          "accuracy": 74.8,
+          "f1_score": 74.57,
+          "precision": 75.79,
+          "recall": 74.8,
+          "kappa": 0.4963,
+          "auc_roc": 73.13
+        }
+      },
+      "hmm": {
+        "p_stay": "p_stay_0.99",
+        "metrics": {
+          "accuracy": 74.25,
+          "f1_score": 74.21,
+          "precision": 74.43,
+          "recall": 74.25,
+          "kappa": 0.4851,
+          "auc_roc": 74.99
+        }
+      }
+    },
+    "continuous": {
+      "ema": {
+        "tau": "tau_600s",
+        "metrics": {
+          "accuracy": 76.92,
+          "f1_score": 76.79,
+          "precision": 77.57,
+          "recall": 76.92,
+          "kappa": 0.5386,
+          "auc_roc": 76.62
+        }
+      },
+      "hmm": {
+        "p_stay": "p_stay_0.99",
+        "metrics": {
+          "accuracy": 74.04,
+          "f1_score": 74.0,
+          "precision": 74.24,
+          "recall": 74.04,
+          "kappa": 0.481,
+          "auc_roc": 74.7
+        }
+      }
+    }
+  }
+}

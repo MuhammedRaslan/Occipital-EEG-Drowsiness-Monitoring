@@ -1,0 +1,218 @@
+{
+  "timestamp": "2026-04-21T01:13:56.074235",
+  "methodology": {
+    "dataset": "DROZY (O1/O2 only)",
+    "subjects": 10,
+    "epoch_duration_s": 10,
+    "n_features": 50,
+    "feature_names": [
+      "delta_O1",
+      "theta_O1",
+      "alpha_O1",
+      "beta_O1",
+      "theta_alpha_ratio_O1",
+      "slow_fast_ratio_O1",
+      "spectral_entropy_O1",
+      "hjorth_activity_O1",
+      "hjorth_mobility_O1",
+      "hjorth_complexity_O1",
+      "zcr_O1",
+      "skewness_O1",
+      "dwt_0_O1",
+      "dwt_1_O1",
+      "dwt_2_O1",
+      "dwt_3_O1",
+      "dwt_4_O1",
+      "sample_entropy_O1",
+      "perm_entropy_O1",
+      "aperiodic_slope_O1",
+      "delta_O2",
+      "theta_O2",
+      "alpha_O2",
+      "beta_O2",
+      "theta_alpha_ratio_O2",
+      "slow_fast_ratio_O2",
+      "spectral_entropy_O2",
+      "hjorth_activity_O2",
+      "hjorth_mobility_O2",
+      "hjorth_complexity_O2",
+      "zcr_O2",
+      "skewness_O2",
+      "dwt_0_O2",
+      "dwt_1_O2",
+      "dwt_2_O2",
+      "dwt_3_O2",
+      "dwt_4_O2",
+      "sample_entropy_O2",
+      "perm_entropy_O2",
+      "aperiodic_slope_O2",
+      "asymmetry_theta",
+      "asymmetry_alpha",
+      "asymmetry_beta",
+      "mean_theta_alpha_ratio",
+      "total_theta",
+      "total_alpha",
+      "paf_delta",
+      "coh_theta",
+      "coh_alpha",
+      "coh_beta"
+    ],
+    "total_epochs": 14498,
+    "awake_epochs": 7234,
+    "drowsy_epochs": 7264,
+    "cross_validation": "Leave-One-Subject-Out (LOSO)",
+    "normalization": "subject_awake (whole session-1)",
+    "version": "v9"
+  },
+  "model_comparison": {
+    "LDA (shrinkage=auto)": {
+      "accuracy": 61.35,
+      "accuracy_mean": 61.32,
+      "accuracy_std": 10.49,
+      "accuracy_min": 42.58,
+      "accuracy_max": 74.55,
+      "precision": 61.64,
+      "recall": 61.35,
+      "f1_score": 61.13,
+      "auc_roc": 63.71,
+      "kappa": 0.2273,
+      "confusion_matrix": [
+        [
+          4992,
+          2242
+        ],
+        [
+          3361,
+          3903
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 54.28963623884695,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 62.568306010928964,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 65.46075085324232,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 43.14002828854314,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 69.4060773480663,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 66.71251719394773,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 42.582417582417584,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 74.55048409405256,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 64.96199032480995,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 69.52315134761575,
+          "n": 1447
+        }
+      ]
+    },
+    "LogReg (C=1, bal)": {
+      "accuracy": 60.66,
+      "accuracy_mean": 60.63,
+      "accuracy_std": 10.16,
+      "accuracy_min": 43.0,
+      "accuracy_max": 72.89,
+      "precision": 61.03,
+      "recall": 60.66,
+      "f1_score": 60.34,
+      "auc_roc": 62.76,
+      "kappa": 0.2134,
+      "confusion_matrix": [
+        [
+          5034,
+          2200
+        ],
+        [
+          3504,
+          3760
+        ]
+      ],
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 53.328757721345234,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 59.2896174863388,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 63.61774744027304,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 42.998585572843,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 68.99171270718232,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 67.88170563961485,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 43.543956043956044,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 72.89073305670816,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 64.20179682100898,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 69.52315134761575,
+          "n": 1447
+        }
+      ]
+    }
+  },
+  "best_model": "LDA (shrinkage=auto)"
+}

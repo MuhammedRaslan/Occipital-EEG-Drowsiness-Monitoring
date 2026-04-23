@@ -1,12 +1,15 @@
 # Pro-Active Driver Monitoring System Using EEG
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-Patent_Pending-red.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Research-yellow.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Research_Publication-blue.svg)]()
 
 **A novel headrest-based EEG drowsiness detection system that predicts driver drowsiness 5-10 minutes in advance using minimal sensors (O1/O2 occipital channels).**
 
-> ⚠️ **Patent Status:** Provisional patent filing in progress with Indian Patent Office (March 2026)
+> 📄 **Publication Status:** Research manuscript in preparation — targeting **IEEE Sensors Journal** submission (2026)
+
+> ⚠️ **Important — accuracy figures below are deprecated.**
+> The headline accuracies on this page (89.54 %, 91.32 %, the "1.95 % drop", and the Phase D single-subject 27-critical / 9.5 %-FA numbers) were computed with a stratified random train/test split that mixed epochs from the **same** subjects across train and test — i.e. **subject-level data leakage**. Under proper Leave-One-Subject-Out cross-validation the same models score around chance level on the same data. See [DEPRECATED_RESULTS.md](DEPRECATED_RESULTS.md) for the full record and explanation, and [publication_results_v2.json](publication_results_v2.json) for the honest LOSO numbers. The body of this README has not yet been rewritten — it will be once the new LOSO results are final. **Do not cite the numbers below.**
 
 ---
 
@@ -220,43 +223,44 @@ The repository includes **O1/O2 channel extracts** from the DROZY dataset:
 
 ---
 
-## 📜 Patent Strategy
+## 📄 Publication Strategy
 
-### Status: Provisional Patent Filing (March 2026)
+### Status: Manuscript in Preparation (2026)
 
-**Jurisdiction:** India (Indian Patent Office)  
-**Patent Type:** Utility Patent (Method + Apparatus + Algorithm)  
-**Patentability Score:** 7/10 (moderate-strong)
+**Target Venue:** IEEE Sensors Journal / Expert Systems with Applications / EMBC 2026  
+**Paper Type:** Full Research Article  
+**Contribution Type:** Novel Method + Experimental Validation
 
-### Key Differentiators vs. Prior Art
+### Key Differentiators vs. Prior Work
 
-| Feature | Our System | Neurovigil US12446811B2 (2025) | Toyota US11091168B2 (2021) | Camera Systems |
+| Feature | Our System | Neurovigil (2025) | Toyota (2021) | Camera Systems |
 |---------|------------|-------------------------------|---------------------------|----------------|
 | **Prediction Timeline** | 5-10 min advance | Generic "prediction" | Current state only | Current state only |
 | **Sensor Count** | 2 channels | Multi-modal (EEG/EOG/EMG) | MEG (expensive) | None (camera) |
 | **Cost** | $100-500 | $1,000+ | $10,000+ | $200-1,000 |
 | **Accuracy** | 89.54% | Not disclosed | Not disclosed | 70-85% |
 
-### Novel Aspects (High Patentability)
+### Research Contributions (for Paper)
 
-1. **Temporal Trend Extrapolation (8/10 novelty):** Linear regression on rolling EEG biomarker history to predict time-to-drowsiness
-2. **O1/O2 Minimal Configuration (7/10 novelty):** 2-channel achieving 89.54% accuracy
-3. **Graduated Time-Staged Alerts (7/10 novelty):** Yellow (10 min) → Red (5 min) → Critical (now)
+1. **Temporal Trend Extrapolation:** First demonstration of linear regression on rolling EEG biomarker history to predict time-to-drowsiness 5-10 minutes ahead
+2. **Minimal Sensor Configuration:** Rigorous validation that 2-channel (O1/O2) achieves 89.54% accuracy — only 1.95% below 4-channel baseline
+3. **Graduated Alert Framework:** Yellow (10 min) → Red (5 min) → Critical (now) with 0% critical false alarms
 
-### Patent Documentation
+### Paper Outline
 
-Complete patent documentation is included in `Patent_Documentation/`:
-- 33 claims (3 independent + 30 dependent)
-- 8 figure specifications (reference numerals 100-882)
-- 9,500-word detailed description (166 numbered paragraphs)
-- Prior art analysis (43,655 patents reviewed)
-- Technical specifications (60 pages)
-- IPO filing guide (step-by-step walkthrough)
+1. **Abstract** — Problem, method, key results (89.54%, 5-10 min ahead, 0% critical FA)
+2. **Introduction** — Drowsiness statistics, reactive vs. proactive detection gap
+3. **Related Work** — Prior EEG drowsiness systems, sensor minimization, temporal prediction
+4. **Methodology** — O1/O2 placement, PSD feature extraction, temporal regression algorithm
+5. **Experiments** — DROZY dataset, classification (Phase B), prediction validation (Phase D)
+6. **Results & Discussion** — Accuracy tables, prediction timeline, false alarm analysis
+7. **Conclusion & Future Work** — Hardware prototype, multi-subject generalization
 
-**Timeline:**
-- ✅ Provisional filing: March 2026 (₹1,600)
-- 🔜 Complete specification: Within 12 months
-- 🔜 PCT international filing: Optional, within 12 months
+**Submission Timeline:**
+- ✅ Technical validation complete: March 2026
+- 🔜 Manuscript draft: April 2026
+- 🔜 Internal review & revision: May 2026
+- 🔜 Journal submission: June 2026
 
 ---
 
@@ -328,17 +332,16 @@ For inquiries, please contact via GitHub Issues.
 
 ---
 
-## 📄 License & Intellectual Property
+## 📄 License & Open Science
 
-**Status:** Patent Pending (Provisional Application, March 2026)
+**Status:** Open Research (MIT License)
 
 This repository contains:
-- ✅ **Open for research/educational use:** EEG analysis code and methodology
-- ⚠️ **Patent-protected innovation:** Temporal trend prediction method, minimal sensor configuration, graduated alert system
+- ✅ **Fully open source:** EEG analysis code, methodology, and extracted dataset
+- ✅ **Reproducible research:** All results can be reproduced by running the Jupyter notebook sequentially
+- ✅ **Dataset included:** DROZY O1/O2 channel extracts (20 EDF files)
 
-**Commercial use requires licensing agreement after patent grant.**
-
-For commercial inquiries or licensing: [Contact Information]
+**If you use this work, please cite the paper once published.**
 
 ---
 
@@ -364,16 +367,15 @@ For commercial inquiries or licensing: [Contact Information]
 ## 🎯 Project Timeline
 
 - **March 5, 2026:** Project initiated
-- **March 5, 2026:** Technical validation complete (Phases A, B, C)
-- **March 5, 2026:** Patent documentation complete (8 documents, 60,000 words)
+- **March 5, 2026:** Technical validation complete (Phases A, B, C) — 89.54% accuracy
 - **March 11, 2026:** Phase D prediction algorithm validation complete
-  - Single-subject DROZY validation: ✅ Success (27 critical detections, 9.5% false alarms)
+  - Single-subject DROZY validation: ✅ 27 critical detections, 9.5% false alarms
   - Multi-subject exploration: DROZY + SEED-VIG datasets tested
-  - Root cause analysis: Feature type and dataset structure importance documented
-- **March 11, 2026:** Work diary updated with complete Phase D documentation
-- **March 2026:** Provisional patent filing with Indian Patent Office (target)
-- **March 2027:** Complete specification filing (deadline: 12 months)
-- **2027-2029:** Patent examination and grant process
+  - Root cause analysis: PSD vs. Differential Entropy feature comparison documented
+- **March 17, 2026:** Pivot to research publication — manuscript preparation begins
+- **April 2026:** Research manuscript draft (target)
+- **May 2026:** Internal review and revision
+- **June 2026:** Journal submission (target)
 
 ---
 
@@ -382,10 +384,10 @@ For commercial inquiries or licensing: [Contact Information]
 ✅ **Technical:** 89.54% accuracy with 50% sensor reduction  
 ✅ **Innovation:** 5-10 minute advance prediction capability validated  
 ✅ **Real-Time Validation:** 27 critical drowsiness detections, 9.5% false alarm rate, 0% critical false alarms  
-✅ **Documentation:** Complete patent filing package (33 claims, 8 figures)  
 ✅ **Dataset Exploration:** DROZY + SEED-VIG comparative analysis complete  
-✅ **Patentability:** 7/10 score with strong differentiation vs. prior art  
+✅ **Reproducibility:** All code and data included for full result replication  
 ✅ **Cost-Effectiveness:** $100-500 system cost for mass deployment  
+✅ **Publication Ready:** Technical contributions drafted and ready for manuscript  
 
 ---
 

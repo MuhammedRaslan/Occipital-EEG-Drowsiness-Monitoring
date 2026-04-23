@@ -143,7 +143,7 @@ def main():
     """Main execution function"""
     
     # Directory paths
-    base_dir = r"C:\Users\muham\OneDrive\Documents\#1_DMS"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     drozy_input_dir = os.path.join(base_dir, "DROZY")
     drozy_output_dir = os.path.join(base_dir, "DROZY_O1_O2")
     
