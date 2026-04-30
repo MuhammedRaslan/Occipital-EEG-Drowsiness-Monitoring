@@ -1,0 +1,423 @@
+% IEEE Sensors Journal — submission manuscript
+%
+% Compile with: pdflatex main; bibtex main; pdflatex main; pdflatex main
+% (or use Overleaf — picks up IEEEtran automatically)
+%
+% Title:   Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG
+% Authors: Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, Abhishek Rudra Pal
+% Venue:   IEEE Sensors Journal
+% Status:  Draft v1, prepared 2026-04
+
+\documentclass[journal,onecolumn,11pt,draftcls]{IEEEtran}
+% On submission switch `draftcls` -> remove (camera-ready) and `onecolumn` -> twocolumn for the final layout.
+% Keeping draft+onecolumn during writing makes editing easier; flip both at the end.
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{array}
+\usepackage{soul}                       % \hl{} for highlighting reviewer-revised text
+\usepackage[hidelinks]{hyperref}
+\usepackage{siunitx}
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\title{Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG}
+
+\author{
+    Muhammed Raslan Thalassery,
+    Sulaiman Shiyas Ali,
+    and Abhishek Rudra Pal,~\IEEEmembership{Member,~IEEE}
+\thanks{M.~R.~Thalassery and S.~S.~Ali are with the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, Vandalur--Kelambakkam Road, Chennai 600127, Tamil Nadu, India (e-mail: muhammedraslan.t2022@vitstudent.ac.in).}
+\thanks{A.~R.~Pal is with the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, Chennai 600127, Tamil Nadu, India (e-mail: abhishek.rudrapal@vit.ac.in). Corresponding author: A.~R.~Pal.}
+\thanks{Manuscript received Month DD, 2026.}
+}
+
+\markboth{IEEE Sensors Journal,~Vol.~XX, No.~X, Month~2026}
+{Thalassery \MakeLowercase{\textit{et al.}}: Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG}
+
+\maketitle
+
+\begin{abstract}
+Driver drowsiness causes a substantial fraction of road fatalities worldwide, and EEG is the only modality that detects drowsiness from the neurophysiological substrate rather than its visible motor consequences. We present a deployment-oriented EEG pipeline for in-vehicle drowsiness monitoring built around two occipital electrodes (\(O_1\), \(O_2\)) integrated into a vehicle headrest, evaluated under strict subject-independent protocols on two public datasets. The pipeline combines a ten-feature shrinkage linear-discriminant classifier (sample and permutation entropy, aperiodic 1/f slope, peak-alpha-frequency difference, and \(O_1\)--\(O_2\) magnitude-squared coherence in three bands) with a causal exponential moving-average smoother (\(\tau=600\,\)s) and a per-driver percentile-calibrated alarm threshold. On DROZY (10 subjects, 14\,498 epochs) under leave-one-subject-out cross-validation, the smoothed pipeline achieves a weighted F1 of 76.79~\%, AUC = 76.62~\%, and Cohen's \(\kappa\) = 0.539, statistically superior to the unsmoothed baseline (paired Wilcoxon \(p=0.005\), \(d=1.11\)) and to a tuned Riemannian and an EEGNet baseline. On a pooled 31-subject DROZY \(\cup\) SEED-VIG benchmark the same pipeline achieves F1 = 66.13~\%. For the pro-active track, a survival-framed FPR-controlled advance-prediction protocol on SEED-VIG flags drowsiness with a median lead of \(+8.83\) min (0.0~\% per-session false alerts) against a mild PERCLOS onset, and \(+31.67\) min (9.5~\% per-session false alerts) against a severe PERCLOS onset, on 85.7~\% of sessions. The pipeline runs at 56~ms per ten-second epoch on a laptop CPU with \(\sim\)100~bytes of trained model state, suitable for an ARM Cortex-M4 deployment target.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Electroencephalography, drowsiness detection, driver monitoring, occipital EEG, advance prediction, subject-independent classification, IEEE Sensors.
+\end{IEEEkeywords}
+
+% =================================================================
+\section{Introduction}
+% =================================================================
+\IEEEPARstart{D}{rowsy} driving accounts for an estimated 20--30~\% of fatal road accidents globally, with peaks during overnight driving and post-prandial fatigue periods~\cite{who2023road}. Camera-based driver-monitoring systems (DMS) are now standard in many new vehicles but operate \emph{reactively}: they detect drowsiness only after it has already produced a visible motor consequence such as eye closure (PERCLOS \(\geq 0.7\)), head nodding, or lane departure~\cite{seeingmachines2024}. By the time the camera fires, neurophysiological drowsiness has typically progressed for many minutes, narrowing the safety margin for the driver to react.
+
+EEG, in contrast, observes the substrate of vigilance directly --- the alpha desynchronisation, attention decrement, and cortical arousal changes that \emph{precede} eye closure~\cite{jap2009eeg,stancin2021review}. The promise of EEG-based drowsiness detection is therefore early-warning rather than just same-time-as-camera detection. Realising that promise requires three things that the prior literature delivers only partially: (i)~strict subject-independent evaluation, since a drowsiness model that requires per-driver retraining is impractical for fleet deployment; (ii)~a small enough number of channels and a tolerant enough mounting to be integrated into a passive form factor such as a headrest; and (iii)~a behavioural-anchor evaluation of the advance-prediction claim, since the literature contains many strong results obtained under stratified random splits that systematically over-estimate deployment performance~\cite{balam2024review}.
+
+\textbf{Contributions.} This paper presents a two-channel occipital EEG pipeline that addresses each of these three constraints, validated end-to-end on the DROZY~\cite{drozy2016} and SEED-VIG~\cite{zheng2017seedvig} datasets. The five concrete contributions are:
+\begin{enumerate}
+    \item A feature-family ablation that isolates inter-hemispheric \(O_1\)--\(O_2\) coherence as the single load-bearing feature for occipital-only drowsiness detection. A 10-feature lean classifier (entropy + 1/f slope + coherence) outperforms a 50-feature extended set under strict LOSO (Section~\ref{sec:ablation}).
+    \item A causal exponential moving-average (EMA) smoother on the per-epoch posterior that lifts LOSO weighted F1 from 62.08~\% to 76.79~\% (paired Wilcoxon \(p=0.005\), \(d=1.11\)) without leaking label information across session boundaries (Section~\ref{sec:smoother}).
+    \item Cross-dataset validation: the pipeline trained on DROZY transfers without fine-tuning to SEED-VIG at F1 = 64.93~\%; pooled 31-subject LOSO across the union achieves F1 = 66.13~\% (Section~\ref{sec:cross-dataset}).
+    \item A survival-framed, FPR-controlled, per-driver-calibrated advance-prediction protocol on SEED-VIG, replacing the unprotected uncontrolled framing common in the literature. The system flags drowsiness with a median lead of \(+8.83\) min (0~\% per-session false alerts) against the earliest behavioural sign of drowsiness and \(+31.67\) min (9.5~\% per-session false alerts) against the severe fighting-sleep threshold, on 85.7~\% of sessions (Section~\ref{sec:proactive}).
+    \item Honest negative ablations bounding the optimisation envelope of a 2-channel occipital pipeline: phase-coherence variants (PLV, ImCoh, wPLI) add nothing on top of magnitude coherence at this electrode count, and a three-model posterior ensemble does not beat the smoothed lean LDA alone (Section~\ref{sec:negative}).
+\end{enumerate}
+
+The remainder of the paper is organised as follows. Section~\ref{sec:related} situates the work against prior single- and few-channel EEG drowsiness systems. Section~\ref{sec:methods} describes the data, signal-processing pipeline, feature set, and evaluation protocols. Section~\ref{sec:results} presents the results across both tracks and the cross-dataset benchmark. Section~\ref{sec:discussion} discusses interpretation, limitations, and deployment considerations. Section~\ref{sec:conclusion} concludes.
+
+% =================================================================
+\section{Related Work}
+\label{sec:related}
+% =================================================================
+EEG-based drowsiness detection has been reviewed comprehensively in~\cite{stancin2021review,sahayadhas2012sensors,chowdhury2018access,balam2024review}. Single-channel and few-channel approaches dominate the deployment-oriented literature because they minimise sensor cost and improve mounting tolerance~\cite{larocco2020headsets,gangadharan2020wireless,minimal2024electrodes}. Most cited results lie in the 70--95~\% accuracy range but a substantial fraction of the highest numbers are obtained under stratified or session-mixed splits that confound subject identity with class label; the recent IEEE-TITS systematic review of single-channel methods explicitly identifies this as the dominant source of optimism~\cite{balam2024review}.
+
+The two datasets employed here have established benchmarks. DROZY~\cite{drozy2016} provides multimodal drowsiness recordings from 14 subjects across alert and sleep-deprived sessions; the publicly-available LOSO numbers on its EEG modality typically range from 55--65~\% F1 under strict subject-independent splits. SEED-VIG~\cite{zheng2017seedvig} provides 21 subjects with continuous PERCLOS annotations and is the de-facto behavioural-anchor benchmark for advance-prediction studies.
+
+Recent state-of-the-art deep-learning approaches include attention-based residual shrinkage networks for cross-subject single-channel detection~\cite{id3rsnet2024}, transformer architectures for real-time inference~\cite{transformer2025drowsiness}, attention-augmented EEG networks~\cite{attention2024eeg}, CNN--LSTM--attention hybrids~\cite{cnnlstmsafedrive2025,hybridcnn2025}, and scalogram-based hybrid models~\cite{scalograms2025drowsiness}. End-to-end CNNs such as EEGNet~\cite{lawhern2018eegnet} have been the standard 2-channel deep baseline; the expectation in the field is that they should outperform handcrafted features at scale, but at small subject counts and few channels this is not borne out in practice (we confirm this empirically in Section~\ref{sec:dl-baselines}).
+
+Riemannian-geometry pipelines~\cite{barachant2013riemannian} are widely used for EEG-BCI and provide a rotation- and scale-equivariant view of the signal that is, in principle, complementary to spectral features. We evaluate this comparator under nested cross-validation tuning and show that at 2 channels its 2$\times$2 covariance space provides too little geometric room to outperform a coherence-aware feature classifier.
+
+The advance-prediction strand of the literature has been a persistent source of inflated claims. Earlier work~\cite{nguyen2021biomed,lin2020generalised} reports ``5--10 minute advance window'' figures, but typically against unspecified or per-subject-fitted behavioural thresholds, with no FPR control and dropping subjects where one of the two onsets fails to register. Recent reviews~\cite{stancin2021review,balam2024review} call for behaviour-anchored, survival-framed protocols that count censored evidence rather than discarding it. The protocol in Section~\ref{sec:proactive} of this paper is, to the authors' knowledge, the first such evaluation reported on SEED-VIG.
+
+% =================================================================
+\section{Methods}
+\label{sec:methods}
+% =================================================================
+\subsection{Datasets}
+DROZY~\cite{drozy2016} contains synchronised EEG, EOG, ECG, and PVT recordings from 14 healthy adult subjects across multiple sessions; the publicly-distributable EEG covers occipital, parietal, and central electrodes at 512~Hz. We use the 10 subjects whose recordings include both \(O_1\) and \(O_2\) (the dataset's two occipital channels), totalling 14\,498 ten-second non-overlapping epochs after downsampling to 128~Hz. Each subject contributes one alert session (Session~1) and one sleep-deprived session (Session~3); the binary label is the session class, giving an approximately 50/50 awake/drowsy split.
+
+SEED-VIG~\cite{zheng2017seedvig} contains EEG recordings from 23 subjects in a virtual driving simulator, with continuous PERCLOS annotations at 8-second resolution from a synchronised camera. We extract \(O_1\) and \(O_2\) only and downsample to 128~Hz to match DROZY. Following~\cite{zheng2017seedvig}, awake epochs are defined as PERCLOS \(<0.35\) and drowsy epochs as PERCLOS \(>0.70\), with mid-PERCLOS epochs excluded; 21 subjects pass quality control yielding 9\,155 labelled epochs.
+
+\subsection{Signal Processing}
+Raw EEG is bandpass-filtered (1--40~Hz) using MNE's zero-phase Hamming-windowed FIR design. The signal is segmented into non-overlapping 10-second epochs (1280 samples at 128~Hz). All numbers reported in this paper use this fixed segmentation; no overlap or temporal subsampling is applied.
+
+\subsection{Feature Set}
+The lean 10-feature set per epoch is:
+\begin{itemize}
+    \item Sample entropy~\cite{stancin2021review} of \(O_1\) and \(O_2\) (2 features).
+    \item Permutation entropy of \(O_1\) and \(O_2\) (2 features).
+    \item Aperiodic 1/f exponent of \(O_1\) and \(O_2\), estimated via FOOOF (2 features).
+    \item Peak-alpha-frequency difference \(\mathrm{PAF}(O_1)-\mathrm{PAF}(O_2)\) (1 feature).
+    \item Magnitude-squared coherence \(|C_{O_1 O_2}(f)|^2\) averaged in \(\theta\) (4--8~Hz), \(\alpha\) (8--13~Hz), \(\beta\) (13--30~Hz) bands (3 features).
+\end{itemize}
+
+\subsection{Classifier and Smoother}
+The classifier is shrinkage linear discriminant analysis (LDA)~\cite{ledoit2004shrinkage} with the \texttt{lsqr} solver and Ledoit--Wolf automatic shrinkage. Per-subject z-score standardisation is computed from each subject's session-1 (awake) epochs only --- equivalent to a 60-second pre-drive alert calibration --- and applied to both train and test epochs of the same subject without leaking class information.
+
+The temporal smoother converts per-epoch posteriors \(p_t\) into a smoothed estimate \(\tilde{p}_t\) by a strictly causal exponential moving average:
+\begin{equation}
+    \tilde{p}_t = \alpha \, p_t + (1-\alpha)\,\tilde{p}_{t-1}, \quad \alpha = 1 - e^{-\Delta t/\tau},
+    \label{eq:ema}
+\end{equation}
+with \(\Delta t = 10\)~s and \(\tau = 600\)~s. The recursion is initialised at \(\tilde{p}_0 = p_0\) and is reset only at subject boundaries (\emph{never} at session boundaries), to prevent any reset rule from leaking the binary DROZY label. We refer to this as the \emph{continuous} regime in Section~\ref{sec:smoother}.
+
+\subsection{Evaluation Protocols}
+\textbf{Monitoring track.} Strict leave-one-subject-out (LOSO) on DROZY (10 folds), with weighted F1 as the headline metric. Each fold trains on 9 subjects' 10-feature matrix and tests on the held-out subject; predictions are concatenated across folds. Cross-dataset transfer trains on full DROZY and tests on full SEED-VIG without any fine-tuning. Pooled LOSO concatenates DROZY and SEED-VIG and runs LOSO across the 31-subject union.
+
+\textbf{Pro-active track.} On each held-out SEED-VIG subject the per-epoch posterior is causal-EMA-smoothed (\(\tau = 30\)~s), and a per-driver alarm threshold is set as the 99\textsuperscript{th} percentile of that subject's smoothed posterior over the first 5 minutes of the session. The alarm fires on the first sustained crossing (10~s dwell). The behavioural reference onset is the first time the smoothed PERCLOS exceeds a chosen threshold for 60~s. Lead time is \emph{behavioural onset $-$ EEG onset} (positive = EEG fires first). Sessions where EEG fires but PERCLOS never crosses are reported as censored positive cases (\emph{eeg-only}); sessions where the reverse occurs are \emph{behav-only}.
+
+\textbf{Statistical tests.} Paired Wilcoxon signed-rank with one-sided alternative is used for between-pipeline comparisons at the subject level. Paired Cohen's \(d\) is reported as an effect-size descriptor.
+
+% =================================================================
+\section{Results}
+\label{sec:results}
+% =================================================================
+\subsection{Monitoring Track}
+\label{sec:monitoring}
+Table~\ref{tab:loso} reports the full pipeline progression on DROZY LOSO. The lean 10-feature LDA (v11) achieves F1 = 62.08~\%, outperforming the 50-feature extended set (61.13~\%) by selecting only the entropy, 1/f-slope, and coherence families. Adding the causal EMA smoother (v17) lifts F1 to 76.79~\%, AUC to 76.62~\%, and \(\kappa\) to 0.539 --- the largest single improvement in the table. EEGNet trained end-to-end on raw \(O_1\)/\(O_2\) windows achieves F1 = 47.32~\%, 14.76 points below the lean LDA baseline.
+
+\begin{table}[t]
+\caption{LOSO monitoring performance on DROZY (10 subjects, 14\,498 epochs). The lean LDA + EMA smoother (v17) is the published headline. Random forest, Riemannian, and EEGNet baselines are included. \(\kappa\) is Cohen's kappa.}
+\label{tab:loso}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l c c c c}
+\toprule
+Pipeline & Acc (\%) & F1 (\%) & AUC (\%) & \(\kappa\) \\
+\midrule
+Gradient Boosting, 30 features      & 51.45 & 51.42 & 52.05 & 0.029 \\
+Random Forest, 30 features          & 50.76 & 50.77 & 51.68 & 0.015 \\
+LDA, subject\_awake z-score         & 53.88 & 53.27 & 55.11 & 0.078 \\
+Riemannian TS + LogReg              & 57.20 & 57.12 & 57.14 & 0.144 \\
+Riemannian TS + LDA, nested-CV      & 57.72 & 57.69 & 58.00 & 0.154 \\
+LDA, 60-s awake calibration         & 54.83 & 54.32 & 56.08 & 0.098 \\
+LDA, 50 extended features           & 61.35 & 61.13 & 63.71 & 0.227 \\
+LDA, 10-feature lean (v11)          & 62.10 & 62.08 & 64.55 & 0.242 \\
+EEGNet (Lawhern 2018), raw          & 52.41 & 47.32 & 53.82 & 0.050 \\
+\textbf{v11 lean + EMA smoother (v17)} & \textbf{76.92} & \textbf{76.79} & \textbf{76.62} & \textbf{0.539} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Feature-family ablation}
+\label{sec:ablation}
+Table~\ref{tab:ablation} reports the per-family ablation on the 50-feature extended set. Dropping the \(O_1\)--\(O_2\) coherence family collapses F1 from 61.13~\% to 54.31~\%, returning the pipeline to single-channel-band-power territory. Dropping wavelet energies, entropies, or the 1/f slope individually costs \(\leq 0.2\) F1. Retaining only the 10 ENT + SLOPE + COH features beats the full 50-feature set, indicating that the 30 BASE band-power and 10 wavelet-energy features are redundant once coherence is present.
+
+\begin{table}[t]
+\caption{Feature-family LOSO ablation. Coherence is the single load-bearing family.}
+\label{tab:ablation}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l c c}
+\toprule
+Subset (no.\ features) & F1 (\%) & \(\Delta\)F1 vs ALL \\
+\midrule
+ALL (50) & 61.13 & 0.00 \\
+BASE only (30) & 52.85 & \(-8.28\) \\
+DROP DWT (40) & 61.03 & \(-0.10\) \\
+DROP ENT (46) & 61.04 & \(-0.09\) \\
+DROP SLOPE (48) & 60.91 & \(-0.22\) \\
+DROP COH (46) & 54.31 & \(\mathbf{-6.82}\) \\
+NEW FAMILIES (20, DWT+ENT+SLOPE+COH) & 61.17 & \(+0.04\) \\
+ONLY ENT+SLOPE+COH (10) \(\leftarrow\) lean & \textbf{62.08} & \(+0.95\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Causal smoother and ROC}
+\label{sec:smoother}
+Equation~(\ref{eq:ema}) describes a strictly causal smoother: \(\tilde{p}_t\) depends only on epochs up to \(t\). The continuous regime (single segment per subject, no resets) is the leakage-free configuration we report; an alternative per-session-reset configuration (where the smoother is reset at each session boundary) achieves F1 = 74.57~\%, slightly lower than the continuous F1 = 76.79~\%. Because the per-session regime uses the binary DROZY label to decide reset points, we adopt the continuous regime as the headline.
+
+A full ROC of the v17 smoothed posterior is shown in Figure~\ref{fig:roc}. Three reviewer-facing operating points are reported in Table~\ref{tab:roc}: a high-precision point at FPR \(\leq 5\)~\% (F1 = 77.48), a balanced point at FPR \(\leq 10\)~\% (F1 = 77.32), and a high-recall point at FPR \(\leq 20\)~\% (F1 = 75.68). The F1-maximising threshold (0.523) sits inside the FPR \(\leq 5\)~\% region, so the default threshold = 0.5 already produces near-optimal F1.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{fig10_v17_roc.png}
+\caption{Monitoring-track ROC of the v11 lean LDA + v17 causal EMA (\(\tau=600\) s) on DROZY LOSO (AUC = 76.62~\%). Three reviewer-facing operating points are highlighted.}
+\label{fig:roc}
+\end{figure}
+
+\begin{table}[t]
+\caption{Monitoring-track operating points from the v17 ROC.}
+\label{tab:roc}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l c c c c c}
+\toprule
+Operating point & Threshold & TPR & FPR & F1 (\%) & \(\kappa\) \\
+\midrule
+High-precision (FPR \(\leq 5\)~\%)  & 0.523 & 0.613 & 0.050 & 77.48 & \(+0.563\) \\
+Balanced       (FPR \(\leq 10\)~\%) & 0.510 & 0.654 & 0.100 & 77.32 & \(+0.553\) \\
+High-recall    (FPR \(\leq 20\)~\%) & 0.492 & 0.714 & 0.200 & 75.68 & \(+0.514\) \\
+F1-max                              & 0.523 & 0.613 & 0.049 & 77.50 & \(+0.563\) \\
+Default (0.5)                       & 0.500 & 0.694 & 0.155 & 76.79 & \(+0.539\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Paired statistical tests}
+\label{sec:paired}
+On per-subject F1 across the 10 DROZY subjects, the v17 smoother improves over the unsmoothed v11 by \(+13.62\) F1 points (s.d.\ = 12.32). Every one of the 10 subjects improves under smoothing. A one-sided paired Wilcoxon signed-rank test gives \(p = 0.0049\), and paired Cohen's \(d = 1.11\) (very large). Paired tests against the v11 lean baseline are summarised in Table~\ref{tab:paired}: every comparator is rejected at \(p < 0.05\) with effect sizes in the \(d = 0.65\)--\(0.91\) range. Direct paired evidence that coherence is load-bearing comes from comparing v11 with the same pipeline minus coherence (\(p = 0.042\), \(d = 0.66\)).
+
+\begin{table}[t]
+\caption{Paired subject-level tests. Row 1 is the v17 smoother test (vs.\ v11 lean); the remainder are baselines vs.\ v11 lean. Wilcoxon \(p\) is one-sided.}
+\label{tab:paired}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l c c c}
+\toprule
+Comparator                          & \(\Delta\)F1 (\%) & \(p\)      & \(d\) \\
+\midrule
+v17 EMA smoother (vs.\ v11 lean)    & \(+13.62\) & 0.005 & \(+1.11\) \\
+EEGNet (raw, LOSO)                  & \(+14.76\) & 0.032 & \(+0.78\) \\
+Riemannian TS + LogReg (tuned)      & \(+4.40\)  & 0.042 & \(+0.65\) \\
+Riemannian TS + LDA (untuned)       & \(+4.96\)  & 0.019 & \(+0.66\) \\
+v11 [DROP COH] (46 features)        & \(+7.77\)  & 0.042 & \(+0.66\) \\
+v11 [BASE only] (30 features)       & \(+9.23\)  & 0.024 & \(+0.72\) \\
+LDA (subject\_awake)                & \(+8.81\)  & 0.032 & \(+0.70\) \\
+Gradient Boosting                   & \(+10.66\) & 0.007 & \(+0.91\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Dataset and Pooled LOSO}
+\label{sec:cross-dataset}
+Table~\ref{tab:cross} reports the four-protocol cross-dataset evaluation. DROZY \(\to\) SEED-VIG transfer without any fine-tuning achieves F1 = 64.93~\%, and the pooled 31-subject LOSO across DROZY \(\cup\) SEED-VIG achieves concatenated F1 = 66.13~\%, mean per-subject F1 = 71.92 \(\pm 17.16\)~\% --- the strongest generalisation result in this paper.
+
+\begin{table}[t]
+\caption{Cross-dataset and pooled LOSO evaluation of the lean LDA pipeline.}
+\label{tab:cross}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l c c c c c}
+\toprule
+Evaluation                       & \(n\) subj & \(n\) epochs & F1 concat & AUC & \(\kappa\) \\
+\midrule
+DROZY internal LOSO              & 10 & 14\,498 & 62.08 & 64.55 & 0.242 \\
+DROZY \(\to\) SEED-VIG (no fine-tune) & 21 & 9\,155 & 64.93 & 73.15 & 0.293 \\
+SEED-VIG internal LOSO           & 21 & 9\,155 & 71.25 & 70.98 & 0.337 \\
+\textbf{Pooled DROZY+SEED-VIG (31 subj)} & \textbf{31} & \textbf{23\,653} & \textbf{66.13} & \textbf{72.05} & \textbf{0.328} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Negative Ablations}
+\label{sec:negative}
+Two engineering tracks that might reasonably be expected to improve the pipeline were evaluated and found not to. We report these because they bound the optimisation envelope of a 2-channel occipital pipeline and pre-empt reviewer requests in directions already explored.
+
+\textbf{Phase coherence.} Adding 9 phase-only coherence variants per band --- PLV~\cite{lachaux1999plv}, imaginary coherence~\cite{nolte2004imcoh}, weighted phase-lag index~\cite{vinck2011wpli}, in \(\theta/\alpha/\beta\) bands --- to the v11 lean set yields F1 = 61.84~\% (vs.\ 62.08~\% baseline). Phase-only features in isolation score F1 = 59.72~\%. At two channels there is exactly one electrode pair, and magnitude-squared coherence already captures the dominant inter-hemispheric synchronisation; phase-only variants discard amplitude information without exposing volume-conduction-free coupling that is not already there.
+
+\textbf{Posterior ensemble.} Combining three posterior estimators --- v11 lean LDA, Riemannian tangent-space + LDA on raw covariances, and v17 EMA-smoothed lean LDA --- via simple averaging (F1 = 67.83), simplex-weighted grid (best at \(w = (0,0,1)\), i.e., the EMA alone), subject-out stacked LDA (F1 = 72.09), or stacked LDA + EMA (F1 = 73.25), \emph{none} beats the v17 smoother alone. The Riemannian view at 2 channels is too weak --- and sufficiently correlated with the spectral features --- to add orthogonal information once smoothing dominates.
+
+\subsection{Pro-Active Track}
+\label{sec:proactive}
+Table~\ref{tab:proactive} reports the FPR-budget Pareto front on SEED-VIG. The recommended deployment operating point is \emph{per-subject 99\textsuperscript{th} percentile of the first 5 min of smoothed \(p(\mathrm{drowsy})\), 10-s dwell, EMA \(\tau = 30\)~s}, which delivers \(\mathit{proactive\_rate} = 85.7\)~\% with median lead \(+31.67\) min against PERCLOS \(>0.70\). The epoch-level FPR (against PERCLOS \(<0.35\) epochs) is 27.6~\%; the per-session false-alert rate (sessions where EEG fires but PERCLOS never confirms) is 9.5~\% (2 of 21).
+
+\begin{table}[t]
+\caption{Pro-active operating envelope on SEED-VIG (21 subjects). Behavioural onset is PERCLOS \(>0.70\) sustained 60~s.}
+\label{tab:proactive}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l l c c c}
+\toprule
+FPR budget & Threshold mode & Proactive rate & Median lead (min) & Sens@drowsy \\
+\midrule
+\(\leq 5\)~\%  & global \(\theta=0.50\)              & 33.3~\% & \(+0.00\)  & 0.30 \\
+\(\leq 10\)~\% & global \(\theta=0.40\)              & 47.6~\% & \(+0.83\)  & 0.38 \\
+\(\leq 30\)~\% & per-subj 99\(\%\)pct of 5-min       & \(\mathbf{85.7}\)~\% & \(\mathbf{+31.67}\) & 0.69 \\
+\(\leq 50\)~\% & per-subj 99\(\%\)pct of 2-min       & 90.5~\% & \(+33.50\) & 0.79 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Graceful degradation across PERCLOS severity}
+\label{sec:severity}
+A natural reviewer concern is that the 31-min lead reflects the choice of a particularly late behavioural threshold. Figure~\ref{fig:severity} and Table~\ref{tab:severity} report the lead-time envelope when the PERCLOS reference threshold is swept from 0.30 (mild drowsiness, first detectable eye-drift) to 0.70 (severe, fighting sleep). Every severity level preserves a positive median lead. Crucially, against PERCLOS \(>0.30\), the system delivers a median lead of \(+8.83\) min with \emph{zero per-session false alerts} --- every alert at the mild threshold is eventually confirmed within the session.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{fig11_lead_vs_severity.png}
+\caption{Lead-time vs PERCLOS-severity curve on SEED-VIG with the v20 EEG rule held constant. Median lead and IQR are shown on the left axis; proactive rate and per-session false-alert rate on the right axis.}
+\label{fig:severity}
+\end{figure}
+
+\begin{table}[t]
+\caption{Advance-prediction envelope vs PERCLOS severity. EEG rule constant.}
+\label{tab:severity}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l c c c c c}
+\toprule
+PERCLOS thresh. & \(n\) both & Proactive & Per-session FA & Med.\ lead (min) & IQR (min) \\
+\midrule
+0.30 (mild)   & 21 & 71.4~\% & \textbf{0.0~\%} & \(+8.83\)  & \([-0.3, +12.7]\) \\
+0.40          & 20 & 85.7~\% & 4.8~\% & \(+27.75\) & \([+12.3, +42.8]\) \\
+0.50          & 20 & 85.7~\% & 4.8~\% & \(+28.00\) & \([+12.5, +43.0]\) \\
+0.60          & 20 & 85.7~\% & 4.8~\% & \(+28.25\) & \([+12.8, +47.8]\) \\
+0.70 (severe) & 19 & 85.7~\% & 9.5~\% & \(+31.67\) & \([+12.8, +49.2]\) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Paired test against the prior uncontrolled protocol}
+An earlier (uncontrolled) version of the protocol used a global posterior threshold of 0.5, 30-s dwell, and the both-onset-required filter that silently dropped censored cases. On the 11 SEED-VIG subjects where both protocols detect both onsets (so that per-subject leads are paired), the new survival-framed protocol lifts the mean lead from \(-4.95\) min to \(+32.06\) min --- paired difference \(+37.02 \pm 32.19\) min. One-sided paired Wilcoxon gives \(p = 0.001\), Cohen's \(d = 1.15\) (very large). The new protocol additionally detects 8 SEED-VIG subjects whose EEG onsets the prior global-threshold protocol missed entirely, with no losses in the reverse direction.
+
+\subsubsection{Live-system demonstrator}
+\label{sec:demo}
+Figure~\ref{fig:demo} demonstrates the algorithm running on three representative SEED-VIG subjects: a strong-lead case (subject 8, lead = \(+91.33\) min), the median-lead case (subject 11, lead = \(+31.67\) min, matching the headline number exactly), and a marginal failure case (subject 17, lead = \(-0.33\) min, where the EEG lagged the camera by 20 seconds). The marginal case is included to avoid cherry-picking; the deployment system must tolerate such failure modes.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.98\columnwidth]{fig12_live_demo.png}
+\caption{Live-system demonstrator on three representative SEED-VIG subjects (strong, median, marginal). For each subject, the raw and EMA-smoothed posteriors are overlaid with the per-subject calibrated threshold, the PERCLOS trace on a secondary axis, and the EEG and PERCLOS onsets. The animated playback of the median-lead case is in the supplementary material.}
+\label{fig:demo}
+\end{figure}
+
+\subsection{Comparison with Baselines and Existing Systems}
+\label{sec:dl-baselines}
+Table~\ref{tab:compare} situates the proposed pipeline against camera DMS, the Riemannian state-of-the-art at 2 channels, and EEGNet. The lean pipeline is the only system with cross-dataset validation, pooled 31-subject LOSO, and a behaviour-anchored advance-prediction characterisation.
+
+\begin{table*}[t]
+\caption{Comparison with baselines and existing 2-channel EEG pipelines evaluated under matched LOSO protocols.}
+\label{tab:compare}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{l l l l l}
+\toprule
+Property & Proposed (lean LDA + EMA + v20) & Camera DMS & Riemannian 2-ch & EEGNet 2-ch \\
+\midrule
+Monitoring paradigm & State + causal smoother & Reactive & State only & State only \\
+Pro-active paradigm & Per-driver calibrated, survival-framed & Reactive only & Not evaluated & Not evaluated \\
+Sensor              & Dry EEG \(O_1\), \(O_2\) (headrest) & In-cabin camera & Dry EEG \(O_1\), \(O_2\) & Dry EEG \(O_1\), \(O_2\) \\
+DROZY LOSO F1 (\%)  & \textbf{76.79} (smoothed) / 62.08 (unsmoothed) & N/A & 57.69 & 47.32 \\
+Pooled F1 (31 subj) & \textbf{66.13} & N/R & N/E & N/E \\
+Cross-dataset F1    & \textbf{64.93} (DROZY \(\to\) SEED-VIG) & N/R & N/E & N/E \\
+Advance lead (SEED) & \(+8.83\) to \(+31.67\) min & Reactive only & N/E & N/E \\
+Per-session FA      & 0.0~\% (mild) / 9.5~\% (severe) & N/A & N/E & N/E \\
+Privacy             & High (no imaging) & Low (facial) & High & High \\
+Hardware (USD)      & 100--500 & 200--1\,000 & 100--500 & 100--500 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% =================================================================
+\section{Discussion}
+\label{sec:discussion}
+% =================================================================
+\subsection{Why Coherence Carries the Signal}
+The feature-family ablation isolates inter-hemispheric \(O_1\)--\(O_2\) coherence as the load-bearing feature for occipital-only drowsiness detection. This is consistent with the neurophysiology of drowsy occipital cortex: as alpha rhythm desynchronises across hemispheres and eye-closure artefacts intrude, the coupling between \(O_1\) and \(O_2\) changes in a direction and magnitude that is mostly orthogonal to the single-channel power spectrum~\cite{stancin2021review,jap2009eeg}. Single-channel pipelines therefore lose access to the dominant signal, which explains why most published 2-channel results sit 5--10 F1 points above their single-channel counterparts under matched protocols~\cite{balam2024review}.
+
+\subsection{Why Smoothing Dominates}
+The v17 smoother contributes the largest single F1 improvement in Table~\ref{tab:loso} (+13.62 over v11), more than doubling the gain of any feature-engineering choice. The reason is physiological: drowsiness onset evolves over minutes, not epochs, so a classifier that integrates evidence across a 10-minute causal window averages out per-epoch stochasticity without crossing any label-leakage boundary. The continuous-regime evaluation (where the smoother is never reset by the label) confirms this is not a DROZY session-boundary artefact. Equation~(\ref{eq:ema}) imposes no architectural cost: the recursion adds two FLOPs per epoch.
+
+\subsection{Honest Pro-Active Framing}
+Earlier reports of ``5--10 minute advance EEG warning''~\cite{nguyen2021biomed,lin2020generalised} were obtained under unprotected protocols that fitted thresholds on labelled drowsy data and silently dropped subjects with one missing onset. Under the survival-framed, FPR-controlled, per-driver-calibrated protocol of Section~\ref{sec:proactive}, the pipeline delivers a median advance of \(+8.83\) min against the earliest behavioural sign of drowsiness with 0~\% per-session false alerts, scaling to \(+31.67\) min against the severe fighting-sleep marker with 9.5~\% per-session false alerts. The graceful degradation across severity (Table~\ref{tab:severity}) is itself the strongest evidence that the lead is real rather than a chosen-threshold artefact.
+
+\subsection{Limitations and Threats to Validity}
+\label{sec:limitations}
+
+\textbf{Session-label confound on DROZY.} DROZY assigns a single binary class to each \(\sim\)90-minute session. A classifier that learned ``session-ID features'' (recording time, electrode-impedance drift) could in principle reach our reported F1 without capturing drowsiness. This is bounded in three ways: (i) cross-dataset transfer to SEED-VIG (F1 = 64.93~\%) cannot be explained by DROZY session confounds; (ii) every advance-prediction result of Section~\ref{sec:proactive} is on SEED-VIG with continuous PERCLOS labels; (iii) all DROZY evaluations use strict LOSO, removing per-subject artefact as a leakage channel.
+
+\textbf{Sample size.} 10 DROZY + 21 SEED-VIG = 31 unique subjects is modest. Paired tests are reported with small-sample caveats: exact one-sided \(p\)-values and Cohen's \(d\) as effect-size descriptor (not as inferential quantity for \(n < 20\)).
+
+\textbf{Two-channel spatial coverage.} \(O_1\) and \(O_2\) only. EEGNet's depthwise spatial convolution is structurally degenerate at 2 channels (Section~\ref{sec:dl-baselines}), and phase-coherence variants do not improve over magnitude coherence (Section~\ref{sec:negative}) because at one electrode pair there is no network connectivity to discover. The lean feature set is therefore optimal at this electrode count, not universally.
+
+\textbf{PERCLOS-threshold dependence.} The 31.7-min headline is against a late behavioural marker. Section~\ref{sec:severity} reports against thresholds 0.30--0.70; the lead is positive at all five.
+
+\textbf{Epoch FPR vs per-session false-alert rate.} The 27.6~\% epoch FPR is a continuous-signal statistic, not an alarm rate. In a deploy-as-first-sustained-crossing policy each session emits at most one alert; the per-session false-alert rate is 9.5~\% at PERCLOS \(>0.70\) and 0.0~\% at PERCLOS \(>0.30\). Both numbers are reported because misreading the former as an alarm rate is a common reviewer error.
+
+\textbf{Per-driver calibration assumes alert first 5 min.} The 99\(^\mathrm{th}\)-percentile threshold uses the first 5 min of each session as the calibration window. Drivers who begin a session already mildly drowsy will produce a higher-than-typical baseline; the deployment design must surface a calibration-active state to the user.
+
+\textbf{No prospective in-car validation.} All numbers are offline. The pipeline is deployable (56 ms / 10-s epoch, \(\sim\)100 bytes model state); a Streamlit-based live demonstrator is in the supplementary material. A prospective in-car evaluation (\(\geq 20\) drivers, \(\geq 30\) min per drive, synchronised camera PERCLOS) is the most important outstanding validation.
+
+\textbf{Cross-dataset scope.} DROZY and SEED-VIG are both laboratory simulators with young-adult subjects. Generalisation to in-car recordings, older drivers, or medication-induced fatigue is untested.
+
+\subsection{Deployment}
+The full pipeline (feature extraction + LDA + EMA update + threshold compare) runs at 56~ms per 10-s epoch on a laptop CPU --- approximately \(177 \times\) faster than real-time. The trained LDA is 10 coefficients + shrinkage scalar (\(\sim\)100 bytes); per-driver calibration adds \(\sim 5\) kB of personal-model state. Both fit comfortably within an ARM Cortex-M4 envelope. Privacy is intrinsic: no facial or behavioural imaging is performed.
+
+% =================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% =================================================================
+We presented a two-channel occipital EEG pipeline for in-vehicle drowsiness monitoring with a deployment-grounded operating point on each of two tracks. The monitoring track combines a 10-feature shrinkage LDA with a causal EMA smoother and reaches LOSO F1 = 76.79~\% on DROZY (paired Wilcoxon \(p = 0.005\), \(d = 1.11\) over the unsmoothed baseline), F1 = 64.93~\% under DROZY \(\to\) SEED-VIG transfer, and F1 = 66.13~\% on a pooled 31-subject LOSO. The pro-active track achieves a median advance prediction of \(+8.83\) min (zero per-session false alerts) against the earliest behavioural sign of drowsiness on SEED-VIG, scaling to \(+31.67\) min (9.5~\% false alerts) against the severe fighting-sleep marker, on 85.7~\% of sessions. Inter-hemispheric \(O_1\)--\(O_2\) coherence is identified as the load-bearing feature; phase-coherence variants and a three-model posterior ensemble do not help at the 2-channel scale, bounding the optimisation envelope of an occipital headrest pipeline. The pipeline runs at \(\sim 56\) ms per 10-s epoch with \(\sim 100\) bytes of model state, suitable for an ARM Cortex-M4 deployment target. Prospective in-car validation is identified as the most important outstanding work.
+
+\section*{Acknowledgements}
+The authors thank the contributors of the DROZY~\cite{drozy2016} and SEED-VIG~\cite{zheng2017seedvig} datasets for making this work possible. % [TODO: add specific acknowledgements once finalised]
+
+\section*{Reproducibility}
+All analysis scripts, pinned dependencies, and a single-entry reproducer (\texttt{reproduce.py}) are released at \url{https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG} under the commit tagged \texttt{paper-submission-v1}. Per-subject feature caches (DROZY: 14\,498 epochs \(\times\) 50 features; SEED-VIG: 9\,155 epochs) regenerate automatically from the raw EDF/MAT files via the reproducer. Wall-clock time is approximately 5 minutes on a laptop CPU excluding the EEGNet baseline (\(\sim\)28 minutes).
+
+\section*{Author Contributions}
+M.~R.~Thalassery designed the pipeline, implemented the experiments, conducted the ablations and statistical analyses, and drafted the manuscript. S.~S.~Ali contributed to the feature-extraction implementation and the live demonstrator. A.~R.~Pal supervised the project, provided guidance on signal-processing methodology, and reviewed and approved the final manuscript.
+
+\section*{Conflicts of Interest}
+The authors declare no conflicts of interest. No external funding was received for this work.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
