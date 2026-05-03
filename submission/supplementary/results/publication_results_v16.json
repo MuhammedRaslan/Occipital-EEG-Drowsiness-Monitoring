@@ -1,0 +1,395 @@
+{
+  "timestamp": "2026-04-21T16:14:35.735935",
+  "methodology": "Pooled DROZY + SEED-VIG, lean 10-feature shrinkage LDA, strict 31-subject LOSO. Z-score is per-subject `subject_awake` (mean/std from each subject's label==0 epochs). Each fold trains LDA on 30 subjects and tests on 1; reported metrics are both concatenated (one confusion matrix over all held-out predictions) and mean per-subject F1 \u00b1 std.",
+  "feature_set": [
+    "sample_entropy_O1",
+    "sample_entropy_O2",
+    "perm_entropy_O1",
+    "perm_entropy_O2",
+    "aperiodic_slope_O1",
+    "aperiodic_slope_O2",
+    "paf_delta",
+    "coh_theta",
+    "coh_alpha",
+    "coh_beta"
+  ],
+  "n_subjects": 31,
+  "n_epochs": 23653,
+  "overall_concat": {
+    "accuracy": 67.52,
+    "f1_score": 66.13,
+    "precision": 68.12,
+    "recall": 67.52,
+    "kappa": 0.3186,
+    "auc_roc": 69.44
+  },
+  "overall_mean_per_subject": {
+    "accuracy_mean": 72.03,
+    "accuracy_std": 15.85,
+    "f1_score_mean": 71.92,
+    "f1_score_std": 17.16,
+    "auc_roc_mean": 72.37,
+    "kappa_mean": 0.3214
+  },
+  "by_dataset": {
+    "DROZY": {
+      "n_subjects": 10,
+      "f1_mean": 57.83,
+      "f1_std": 13.38,
+      "acc_mean": 61.39,
+      "auc_mean": 66.14,
+      "kappa_mean": 0.2295
+    },
+    "SEED": {
+      "n_subjects": 21,
+      "f1_mean": 78.63,
+      "f1_std": 14.48,
+      "acc_mean": 77.09,
+      "auc_mean": 75.64,
+      "kappa_mean": 0.3652
+    }
+  },
+  "per_subject": [
+    {
+      "accuracy": 58.27,
+      "f1_score": 55.6,
+      "precision": 60.82,
+      "recall": 58.27,
+      "kappa": 0.1646,
+      "auc_roc": 63.13,
+      "held_out": "DROZY-01M",
+      "n_test": 1457,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 64.89,
+      "f1_score": 63.41,
+      "precision": 67.5,
+      "recall": 64.89,
+      "kappa": 0.2955,
+      "auc_roc": 78.56,
+      "held_out": "DROZY-02F",
+      "n_test": 1464,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 62.05,
+      "f1_score": 59.76,
+      "precision": 65.73,
+      "recall": 62.05,
+      "kappa": 0.2422,
+      "auc_roc": 68.76,
+      "held_out": "DROZY-03F",
+      "n_test": 1465,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 43.21,
+      "f1_score": 32.35,
+      "precision": 32.74,
+      "recall": 43.21,
+      "kappa": -0.118,
+      "auc_roc": 32.14,
+      "held_out": "DROZY-04M",
+      "n_test": 1414,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 69.27,
+      "f1_score": 68.44,
+      "precision": 71.54,
+      "recall": 69.27,
+      "kappa": 0.3854,
+      "auc_roc": 76.2,
+      "held_out": "DROZY-05M",
+      "n_test": 1448,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 68.98,
+      "f1_score": 68.22,
+      "precision": 71.19,
+      "recall": 68.98,
+      "kappa": 0.3812,
+      "auc_roc": 77.15,
+      "held_out": "DROZY-06M",
+      "n_test": 1454,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 44.78,
+      "f1_score": 32.59,
+      "precision": 30.97,
+      "recall": 44.78,
+      "kappa": -0.1057,
+      "auc_roc": 32.52,
+      "held_out": "DROZY-07F",
+      "n_test": 1456,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 69.71,
+      "f1_score": 68.0,
+      "precision": 75.06,
+      "recall": 69.71,
+      "kappa": 0.3942,
+      "auc_roc": 82.77,
+      "held_out": "DROZY-08M",
+      "n_test": 1446,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 62.68,
+      "f1_score": 60.61,
+      "precision": 66.08,
+      "recall": 62.68,
+      "kappa": 0.2539,
+      "auc_roc": 71.73,
+      "held_out": "DROZY-09M",
+      "n_test": 1447,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 70.08,
+      "f1_score": 69.34,
+      "precision": 72.23,
+      "recall": 70.08,
+      "kappa": 0.4016,
+      "auc_roc": 78.47,
+      "held_out": "DROZY-10M",
+      "n_test": 1447,
+      "dataset": "DROZY"
+    },
+    {
+      "accuracy": 96.22,
+      "f1_score": 96.11,
+      "precision": 96.32,
+      "recall": 96.22,
+      "kappa": 0.8864,
+      "auc_roc": 99.64,
+      "held_out": "SEED-1",
+      "n_test": 397,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 75.3,
+      "f1_score": 79.17,
+      "precision": 86.12,
+      "recall": 75.3,
+      "kappa": 0.2357,
+      "auc_roc": 75.23,
+      "held_out": "SEED-10",
+      "n_test": 247,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 83.94,
+      "f1_score": 87.11,
+      "precision": 90.66,
+      "recall": 83.94,
+      "kappa": -0.0264,
+      "auc_roc": 47.3,
+      "held_out": "SEED-11",
+      "n_test": 274,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 79.19,
+      "f1_score": 79.17,
+      "precision": 79.15,
+      "recall": 79.19,
+      "kappa": 0.5663,
+      "auc_roc": 87.49,
+      "held_out": "SEED-12",
+      "n_test": 639,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 14.36,
+      "f1_score": 25.11,
+      "precision": 100.0,
+      "recall": 14.36,
+      "kappa": 0.0,
+      "auc_roc": NaN,
+      "held_out": "SEED-13",
+      "n_test": 383,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 76.76,
+      "f1_score": 76.49,
+      "precision": 77.08,
+      "recall": 76.76,
+      "kappa": 0.5263,
+      "auc_roc": 78.99,
+      "held_out": "SEED-14",
+      "n_test": 340,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 80.21,
+      "f1_score": 81.65,
+      "precision": 84.96,
+      "recall": 80.21,
+      "kappa": 0.4779,
+      "auc_roc": 86.92,
+      "held_out": "SEED-15",
+      "n_test": 288,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 81.88,
+      "f1_score": 82.61,
+      "precision": 85.46,
+      "recall": 81.88,
+      "kappa": 0.6026,
+      "auc_roc": 89.94,
+      "held_out": "SEED-16",
+      "n_test": 563,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 88.41,
+      "f1_score": 89.49,
+      "precision": 92.17,
+      "recall": 88.41,
+      "kappa": 0.6141,
+      "auc_roc": 93.54,
+      "held_out": "SEED-17",
+      "n_test": 138,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 83.92,
+      "f1_score": 83.96,
+      "precision": 84.5,
+      "recall": 83.92,
+      "kappa": 0.6789,
+      "auc_roc": 92.03,
+      "held_out": "SEED-18",
+      "n_test": 622,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 77.52,
+      "f1_score": 79.41,
+      "precision": 81.62,
+      "recall": 77.52,
+      "kappa": 0.0474,
+      "auc_roc": 45.78,
+      "held_out": "SEED-19",
+      "n_test": 129,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 76.0,
+      "f1_score": 81.45,
+      "precision": 87.74,
+      "recall": 76.0,
+      "kappa": -0.0951,
+      "auc_roc": 40.17,
+      "held_out": "SEED-2",
+      "n_test": 650,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 72.2,
+      "f1_score": 72.14,
+      "precision": 72.09,
+      "recall": 72.2,
+      "kappa": 0.2579,
+      "auc_roc": 66.17,
+      "held_out": "SEED-20",
+      "n_test": 669,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 82.93,
+      "f1_score": 83.97,
+      "precision": 86.53,
+      "recall": 82.93,
+      "kappa": 0.5534,
+      "auc_roc": 86.92,
+      "held_out": "SEED-21",
+      "n_test": 621,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 74.47,
+      "f1_score": 72.94,
+      "precision": 79.49,
+      "recall": 74.47,
+      "kappa": 0.477,
+      "auc_roc": 74.61,
+      "held_out": "SEED-3",
+      "n_test": 141,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 81.89,
+      "f1_score": 81.78,
+      "precision": 81.68,
+      "recall": 81.89,
+      "kappa": 0.5373,
+      "auc_roc": 83.57,
+      "held_out": "SEED-4",
+      "n_test": 834,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 71.47,
+      "f1_score": 72.1,
+      "precision": 73.36,
+      "recall": 71.47,
+      "kappa": 0.3769,
+      "auc_roc": 76.42,
+      "held_out": "SEED-5",
+      "n_test": 1027,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 85.43,
+      "f1_score": 92.14,
+      "precision": 100.0,
+      "recall": 85.43,
+      "kappa": 0.0,
+      "auc_roc": NaN,
+      "held_out": "SEED-6",
+      "n_test": 247,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 62.04,
+      "f1_score": 57.72,
+      "precision": 54.3,
+      "recall": 62.04,
+      "kappa": -0.164,
+      "auc_roc": 37.41,
+      "held_out": "SEED-7",
+      "n_test": 108,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 83.88,
+      "f1_score": 85.85,
+      "precision": 89.87,
+      "recall": 83.88,
+      "kappa": 0.4516,
+      "auc_roc": 86.72,
+      "held_out": "SEED-8",
+      "n_test": 639,
+      "dataset": "SEED"
+    },
+    {
+      "accuracy": 90.95,
+      "f1_score": 90.95,
+      "precision": 90.95,
+      "recall": 90.95,
+      "kappa": 0.6649,
+      "auc_roc": 88.32,
+      "held_out": "SEED-9",
+      "n_test": 199,
+      "dataset": "SEED"
+    }
+  ]
+}

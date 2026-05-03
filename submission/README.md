@@ -12,16 +12,54 @@ This directory contains everything needed to submit the manuscript to the IEEE S
 
 ## Files in this directory
 
-| File | What it is | When you need it |
-|---|---|---|
-| `main.tex` | The IEEEtran LaTeX manuscript source. ~10 pages when compiled with `\documentclass[journal,twocolumn]`. | Upload as the main manuscript. |
-| `references.bib` | BibTeX references — 32 entries; ~30 % from 2024–2025 to satisfy IEEE recency norms. | Compiled into `main.pdf` together with `main.tex`. |
-| `figures/` | High-resolution PNG figures referenced from `main.tex`. | Upload alongside the manuscript. |
-| `figures/graphical_abstract.png` | Single self-contained pipeline summary. | Upload as the graphical abstract (mandatory for Sensors). |
-| `cover_letter.md` | Cover letter to the editor-in-chief. Ready to paste into the portal's cover-letter field after substituting the date. | Mandatory at submission. |
-| `declarations.md` | Author contributions, COI, funding, data/code availability, ethics, AI-assistance disclosure. Each section is portal-ready. | Mandatory at submission. |
-| `suggested_reviewers.md` | 6 suggested reviewers with rationale + 1 to exclude. | Mandatory at submission. |
-| `graphical_abstract.py` | Source script for the graphical abstract figure (matplotlib). | Reproducibility — Sensors does not require source. |
+The folder is split into the **manuscript-side** files (top level) and the **supplementary-side** files (`supplementary/`). Everything that ScholarOne needs is here; nothing outside this folder needs to be touched at submission time.
+
+```
+submission/
+├── SUBMISSION_MANIFEST.md       # Single-page upload guide — open this beside the browser
+├── README.md                    # This file
+├── main.tex                     # IEEEtran manuscript source (compiles to main.pdf)
+├── references.bib               # BibTeX, 32 entries (~30% 2024-2025)
+├── cover_letter.md              # Editor cover letter
+├── declarations.md              # CRediT, COI, funding, data/code, ethics, AI disclosure
+├── suggested_reviewers.md       # 6 suggested + 1 exclusion
+├── graphical_abstract.py        # Source for figures/graphical_abstract.png
+├── figures/                     # Manuscript figures (4 PNGs at 200-240 dpi)
+│   ├── graphical_abstract.png
+│   ├── fig10_v17_roc.png
+│   ├── fig11_lead_vs_severity.png
+│   └── fig12_live_demo.png
+└── supplementary/               # Everything ScholarOne treats as supplementary
+    ├── README.md                # What's in supplementary and how to use it
+    ├── demo_v20.gif             # Live-system demonstrator (referenced in §V.D)
+    ├── reproduce.py             # Single-entry reproducer
+    ├── requirements.txt         # Pinned Python dependencies
+    ├── results/                 # JSON results behind every headline number
+    │   ├── publication_results_v17.json (monitoring F1 = 76.79)
+    │   ├── publication_results_v17_roc.json (ROC + 3 operating points)
+    │   ├── publication_results_v20.json (advance-prediction Pareto)
+    │   ├── publication_results_v20_severity.json (lead-vs-PERCLOS)
+    │   ├── publication_results_v10b.json (paired Wilcoxon + Cohen's d)
+    │   └── ... (10 more from v11/v12/v14/v15/v16/v18/v19/runtime)
+    └── scripts/                 # All analysis scripts called by reproduce.py
+        ├── ablation_analysis.py        (v11 — feature-family ablation)
+        ├── extended_features.py        (v9 — 50-feature LDA)
+        ├── hmm_smoothing.py            (v17 — causal EMA monitoring headline)
+        ├── advance_prediction_v20.py   (v20 — pro-active headline)
+        ├── pooled_loso.py              (v16 — 31-subject pooled LOSO)
+        ├── seed_vig_validation.py      (v12 — cross-dataset transfer)
+        ├── eegnet_baseline.py          (v14 — deep-learning baseline)
+        ├── personal_calibration.py     (v15 — per-driver calibration)
+        ├── extended_coherence.py       (v18 — phase-coh negative ablation)
+        ├── ensemble_analysis.py        (v19 — ensemble negative ablation)
+        ├── v17_roc.py                  (Tier 1 #1 — monitoring ROC)
+        ├── v17_v20_stats.py            (Tier 1 #2 — paired stats)
+        ├── v20_lead_vs_severity.py     (Tier 1 #3 — severity envelope)
+        ├── live_demo_figure.py         (Tier 1 #4 — programmatic demo)
+        └── ... (7 more: publication_analysis, riemannian, nested_cv,
+                 advance_prediction, runtime_benchmark, make_figures,
+                 extract_O1_O2_channels)
+```
 
 ---
 

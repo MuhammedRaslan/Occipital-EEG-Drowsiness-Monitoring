@@ -1,0 +1,579 @@
+{
+  "timestamp": "2026-04-21T04:06:31.296340",
+  "methodology": {
+    "dataset": "DROZY (O1/O2 only)",
+    "subjects": 10,
+    "epoch_duration_s": 10,
+    "total_epochs": 14498,
+    "cross_validation": "LOSO, LDA (shrinkage=auto)",
+    "normalization": "subject_awake (whole session-1)",
+    "feature_family_counts": {
+      "BASE": 30,
+      "DWT": 10,
+      "ENT": 4,
+      "SLOPE": 2,
+      "COH": 4
+    },
+    "version": "v11"
+  },
+  "ablations": {
+    "ALL (50)": {
+      "accuracy": 61.35,
+      "precision": 61.64,
+      "recall": 61.35,
+      "f1_score": 61.13,
+      "auc_roc": 63.71,
+      "kappa": 0.2273,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 54.28963623884695,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 62.568306010928964,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 65.46075085324232,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 43.14002828854314,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 69.4060773480663,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 66.71251719394773,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 42.582417582417584,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 74.55048409405256,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 64.96199032480995,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 69.52315134761575,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 50,
+      "time_s": 0.5
+    },
+    "BASE only (30)": {
+      "accuracy": 53.43,
+      "precision": 53.63,
+      "recall": 53.43,
+      "f1_score": 52.85,
+      "auc_roc": 54.89,
+      "kappa": 0.069,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 52.77968428277282,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 50.75136612021858,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 61.43344709897611,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 52.40452616690241,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 56.42265193370166,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 50.825309491059144,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 43.33791208791209,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 61.89488243430152,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 57.01451278507257,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 47.40843123704215,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 30,
+      "time_s": 0.3
+    },
+    "DROP DWT (40)": {
+      "accuracy": 61.24,
+      "precision": 61.51,
+      "recall": 61.24,
+      "f1_score": 61.03,
+      "auc_roc": 63.9,
+      "kappa": 0.2251,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 54.7700754975978,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 62.568306010928964,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 66.27986348122867,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 42.857142857142854,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 69.61325966850829,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 66.36863823933975,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 41.964285714285715,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 73.92807745504841,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 64.0635798203179,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 69.66136834830684,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 40,
+      "time_s": 0.4
+    },
+    "DROP ENT (46)": {
+      "accuracy": 61.24,
+      "precision": 61.5,
+      "recall": 61.24,
+      "f1_score": 61.04,
+      "auc_roc": 63.8,
+      "kappa": 0.2251,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 54.70144131777626,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 62.090163934426236,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 66.1433447098976,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 42.857142857142854,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 68.99171270718232,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 67.1251719394773,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 42.10164835164835,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 74.55048409405256,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 64.13268832066345,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 69.38493434692468,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 46,
+      "time_s": 0.4
+    },
+    "DROP SLOPE (48)": {
+      "accuracy": 61.13,
+      "precision": 61.41,
+      "recall": 61.13,
+      "f1_score": 60.91,
+      "auc_roc": 63.54,
+      "kappa": 0.2229,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 54.221002059025395,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 62.841530054644814,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 65.8703071672355,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 42.857142857142854,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 69.06077348066299,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 65.5433287482806,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 42.37637362637363,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 74.27385892116183,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 63.579820317899106,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 70.35245335176226,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 48,
+      "time_s": 0.5
+    },
+    "DROP COH (46)": {
+      "accuracy": 54.81,
+      "precision": 55.05,
+      "recall": 54.81,
+      "f1_score": 54.31,
+      "auc_roc": 56.72,
+      "kappa": 0.0965,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 52.367879203843515,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 53.48360655737705,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 59.453924914675774,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 53.46534653465347,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 59.87569060773481,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 51.23796423658872,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 41.48351648351649,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 63.90041493775933,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 62.26675881133379,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 50.58742225293711,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 46,
+      "time_s": 0.5
+    },
+    "ONLY DWT (10)": {
+      "accuracy": 53.18,
+      "precision": 53.23,
+      "recall": 53.18,
+      "f1_score": 53.05,
+      "auc_roc": 54.64,
+      "kappa": 0.0638,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 53.12285518188058,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 47.540983606557376,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 62.79863481228669,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 52.899575671852894,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 47.3756906077348,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 41.67812929848693,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 52.74725274725275,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 57.81466113416322,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 60.67726330338632,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 55.148583275742915,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 10,
+      "time_s": 0.1
+    },
+    "ONLY ENT+SLOPE+COH (10)": {
+      "accuracy": 62.1,
+      "precision": 62.13,
+      "recall": 62.1,
+      "f1_score": 62.08,
+      "auc_roc": 64.55,
+      "kappa": 0.242,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 59.98627316403569,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 71.65300546448088,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 62.730375426621166,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 39.038189533239034,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 70.02762430939227,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 70.2888583218707,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 37.43131868131868,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 70.88520055325034,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 66.27505183137527,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 72.14927436074638,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 10,
+      "time_s": 0.2
+    },
+    "NEW FAMILIES (20)": {
+      "accuracy": 61.24,
+      "precision": 61.34,
+      "recall": 61.24,
+      "f1_score": 61.17,
+      "auc_roc": 64.1,
+      "kappa": 0.225,
+      "per_subject": [
+        {
+          "subject": "01M",
+          "accuracy": 59.094028826355526,
+          "n": 1457
+        },
+        {
+          "subject": "02F",
+          "accuracy": 65.50546448087432,
+          "n": 1464
+        },
+        {
+          "subject": "03F",
+          "accuracy": 65.80204778156997,
+          "n": 1465
+        },
+        {
+          "subject": "04M",
+          "accuracy": 40.87694483734088,
+          "n": 1414
+        },
+        {
+          "subject": "05M",
+          "accuracy": 65.88397790055248,
+          "n": 1448
+        },
+        {
+          "subject": "06M",
+          "accuracy": 63.20495185694636,
+          "n": 1454
+        },
+        {
+          "subject": "07F",
+          "accuracy": 38.04945054945055,
+          "n": 1456
+        },
+        {
+          "subject": "08M",
+          "accuracy": 72.95988934993083,
+          "n": 1446
+        },
+        {
+          "subject": "09M",
+          "accuracy": 66.06772633033863,
+          "n": 1447
+        },
+        {
+          "subject": "10M",
+          "accuracy": 74.56807187284036,
+          "n": 1447
+        }
+      ],
+      "n_features_used": 20,
+      "time_s": 0.3
+    }
+  }
+}

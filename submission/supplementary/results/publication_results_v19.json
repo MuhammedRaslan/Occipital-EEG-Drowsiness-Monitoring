@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-04-21T16:29:51.880148",
+  "methodology": "Three-model posterior ensemble: M1 = v11 lean LDA (10 features), M2 = Riemannian tangent-space + LDA on 2x2 OAS covariances of raw O1/O2, M3 = causal EMA smoothing (\u03c4=600 s, continuous per-subject, no resets) of M1. Combiners: simple average, simplex-weighted (grid step 0.1, F1 maximised on held-out predictions), and subject-out stacked LDA over the three posteriors. (d) appends EMA smoothing to the stacked-LDA output.",
+  "individuals": {
+    "M1_lean": {
+      "accuracy": 62.1,
+      "f1_score": 62.08,
+      "precision": 62.13,
+      "recall": 62.1,
+      "kappa": 0.242,
+      "auc_roc": 64.55
+    },
+    "M2_riemann": {
+      "accuracy": 57.16,
+      "f1_score": 57.03,
+      "precision": 57.24,
+      "recall": 57.16,
+      "kappa": 0.143,
+      "auc_roc": 57.14
+    },
+    "M3_lean_ema": {
+      "accuracy": 76.92,
+      "f1_score": 76.79,
+      "precision": 77.57,
+      "recall": 76.92,
+      "kappa": 0.5386,
+      "auc_roc": 76.62
+    }
+  },
+  "combiners": {
+    "average": {
+      "accuracy": 67.85,
+      "f1_score": 67.83,
+      "precision": 67.89,
+      "recall": 67.85,
+      "kappa": 0.3571,
+      "auc_roc": 70.28
+    },
+    "weighted": {
+      "weights": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "metrics": {
+        "accuracy": 76.92,
+        "f1_score": 76.79,
+        "precision": 77.57,
+        "recall": 76.92,
+        "kappa": 0.5386,
+        "auc_roc": 76.62
+      }
+    },
+    "stacked_lda": {
+      "accuracy": 72.09,
+      "f1_score": 72.09,
+      "precision": 72.11,
+      "recall": 72.09,
+      "kappa": 0.4418,
+      "auc_roc": 74.92
+    },
+    "stacked_plus_ema": {
+      "accuracy": 73.27,
+      "f1_score": 73.25,
+      "precision": 73.33,
+      "recall": 73.27,
+      "kappa": 0.4654,
+      "auc_roc": 74.76
+    }
+  },
+  "epoch_sec": 10,
+  "tau_smooth": 600
+}
