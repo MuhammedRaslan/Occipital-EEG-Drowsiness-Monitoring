@@ -26,17 +26,21 @@ The reviewer rationale for shipping the JSON results: a reviewer who wants to sp
 | Manuscript claim | Backing JSON |
 |---|---|
 | LOSO progression table (Table I) | `publication_results_v3..v14.json` (incl. v9, v11, v14) |
-| v15 per-driver calibration sweep (Table) | `publication_results_v15.json` |
-| v16 pooled 31-subject LOSO (Table III) | `publication_results_v16.json` |
+| Feature-family ablation (Table II) | `publication_results_v11.json` |
+| Awake-vs-drowsy coherence stats (Table III, Fig 1) | `publication_results_v21_reviewer.json` (`item1_coherence`) |
+| v17 ROC operating points (Table IV, Fig 3) | `publication_results_v17_roc.json` |
+| Paired Wilcoxon + Cohen's d (Table V; v17-vs-v11, v20-vs-v13) | `publication_results_v10b.json` |
+| Per-subject F1/AUC/κ + 95% CIs (Table VI) | `publication_results_v21_reviewer.json` (`item2_subjectwise`) |
+| Cross-dataset transfer + pooled LOSO (Table VII) | `publication_results_v12.json`, `publication_results_v16.json` |
+| v20 advance-prediction Pareto (Table VIII) | `publication_results_v20.json` |
+| v20 lead-vs-severity (Table IX, Fig 4) | `publication_results_v20_severity.json` |
+| Baselines comparison (Table X) | drawn from v11 / v14 / v16 / v20 above |
 | v17 monitoring headline F1 = 76.79 | `publication_results_v17.json` |
-| v17 ROC operating points (Table II, Fig 2) | `publication_results_v17_roc.json` |
+| Raw-vs-EMA posterior + smoothing latency (Fig 2) | `publication_results_v21_reviewer.json` (`item3_latency`) + `publication_results_v17.json` |
 | v18 phase coherence negative ablation | `publication_results_v18.json` |
 | v19 posterior ensemble negative ablation | `publication_results_v19.json` |
-| v20 advance-prediction Pareto (Table IV) | `publication_results_v20.json` |
-| v20 lead-vs-severity (Table V, Fig 3) | `publication_results_v20_severity.json` |
-| Paired Wilcoxon + Cohen's d (v17-vs-v11, v20-vs-v13) | `publication_results_v10b.json` |
+| v15 per-driver calibration sweep (supporting only, not a numbered table) | `publication_results_v15.json` |
 | Runtime claim (56 ms / 10-s epoch) | `runtime_benchmark.json` |
-| DROZY → SEED-VIG cross-dataset transfer | `publication_results_v12.json` |
 
 ## Running the reproducer (for reviewers)
 
@@ -84,6 +88,7 @@ Tier 1 #1 : v17_roc.py                       monitoring ROC + 3 operating points
 Tier 1 #2 : v17_v20_stats.py                 paired Wilcoxon + Cohen's d
 Tier 1 #3 : v20_lead_vs_severity.py          lead-time vs PERCLOS-severity envelope
 Tier 1 #4 : live_demo_figure.py              programmatic live-demo figure + GIF
+v21       : reviewer_revision_analysis.py    coherence stats + per-subject CIs + EMA latency (internal-review additions)
 runtime   : runtime_benchmark.py             56 ms / 10-s epoch claim
 figures   : make_figures.py                  every figure in publication_figures_v5/
 ```

@@ -8,7 +8,7 @@ This is the single-page reference for the ScholarOne portal upload session. Prin
 |---|---|---|
 | **Manuscript** | Compiled PDF of the main paper | `main.pdf` (compile from `main.tex`) |
 | **Manuscript source** | LaTeX source archive | `main.tex` + `references.bib` (zip together) |
-| **Figure 1** ... **Figure 4** | High-resolution PNG, one per upload slot | `figures/graphical_abstract.png`, `figures/fig10_v17_roc.png`, `figures/fig11_lead_vs_severity.png`, `figures/fig12_live_demo.png` |
+| **Figure 1** ... **Figure 5** | High-resolution PNG, one per upload slot, in manuscript order | `figures/fig13_coherence_separation.png` (Fig 1), `figures/fig14_ema_raw_vs_smoothed.png` (Fig 2), `figures/fig10_v17_roc.png` (Fig 3), `figures/fig11_lead_vs_severity.png` (Fig 4), `figures/fig12_live_demo.png` (Fig 5) |
 | **Graphical abstract** | The pipeline-summary single-pane figure | `figures/graphical_abstract.png` |
 | **Cover letter** | Letter to editor-in-chief | paste body of `cover_letter.md` |
 | **Supplementary multimedia** | Animated demo | `supplementary/demo_v20.gif` |
@@ -26,8 +26,8 @@ This is the single-page reference for the ScholarOne portal upload session. Prin
 
 ## Pre-submission action list (fill in before opening the portal)
 
-- [ ] Replace `[TODO]` placeholders in `main.tex` with three real ORCIDs.
-- [ ] Replace `[TODO]` in `cover_letter.md` with three real ORCIDs and the submission date.
+- [ ] Replace `[TODO]` placeholders in `main.tex` with four real ORCIDs.
+- [ ] Replace `[TODO]` in `cover_letter.md` with four real ORCIDs and the submission date.
 - [ ] Make `https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG` public.
 - [ ] `git tag -a paper-submission-v1 -m "IEEE Sensors v1"; git push origin paper-submission-v1`.
 - [ ] Mint Zenodo DOI from the tag (zenodo.org → enable repo → create release).

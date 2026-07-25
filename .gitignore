@@ -58,6 +58,9 @@ Thumbs.db
 # Cached feature matrices — regeneratable from DROZY_O1_O2/ + SEED-VIG/ via reproduce.py
 *.npz
 
+# Packaged submission/Overleaf archives — repackaged copies of tracked files
+*.zip
+
 # Claude Code workspace & Streamlit local state (not source)
 .claude/
 .streamlit/

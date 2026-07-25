@@ -10,7 +10,9 @@ This file consolidates the four declaration paragraphs the portal will request. 
 
 **S. S. Ali (second author):** software (feature extraction, live demonstrator), validation, writing — review & editing.
 
-**A. R. Pal (corresponding author, last):** supervision, conceptualization (driver-monitoring framing), methodology guidance, writing — review & editing, project administration.
+**A. R. Pal (corresponding author, third):** supervision, conceptualization (driver-monitoring framing), methodology guidance, writing — review & editing, project administration.
+
+**G. Murali Mohan (fourth author):** supervision.
 
 All authors have read and approved the final manuscript and the listed authorship order.
 
@@ -24,7 +26,7 @@ The authors declare no conflicts of interest, financial or otherwise, related to
 
 ## 3. Funding
 
-This work received no external funding. The work was conducted as the corresponding-undergraduate-capstone project of the first and second authors at the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, under the supervision of the third author. No part of the manuscript preparation was supported by industry sponsorship.
+This work received no external funding. The work was conducted as the corresponding-undergraduate-capstone project of the first and second authors at the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, under the supervision of the third and fourth authors. No part of the manuscript preparation was supported by industry sponsorship.
 
 ---
 

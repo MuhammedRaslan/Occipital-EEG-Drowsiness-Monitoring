@@ -1,7 +1,7 @@
 # Cover letter — IEEE Sensors Journal submission
 
 **Manuscript:** Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG
-**Authors:** Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, Abhishek Rudra Pal
+**Authors:** Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, Abhishek Rudra Pal, G. Murali Mohan
 **Affiliation:** School of Mechanical Engineering (SMEC), Vellore Institute of Technology (VIT) Chennai, Vandalur–Kelambakkam Road, Chennai 600127, Tamil Nadu, India
 **Corresponding author:** Dr. Abhishek Rudra Pal (abhishek.rudrapal@vit.ac.in)
 **Date:** [TODO insert at submission]
@@ -12,7 +12,7 @@ Dear Editor-in-Chief,
 
 We submit for your consideration the enclosed manuscript titled **"Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG"** for publication in the IEEE Sensors Journal.
 
-**The contribution.** This work develops and validates a deployment-oriented EEG pipeline for in-vehicle drowsiness detection using two occipital electrodes (O₁ and O₂) integrated into a vehicle headrest. The pipeline combines a 10-feature shrinkage LDA classifier (sample/permutation entropy, aperiodic 1/f slope, peak-alpha-frequency difference, and inter-hemispheric coherence in three bands) with a causal exponential moving-average smoother and a per-driver percentile-calibrated alarm threshold. Two complementary tracks are reported. The monitoring track achieves a weighted F1 of 76.79 % under strict leave-one-subject-out cross-validation on DROZY (10 subjects, 14 498 epochs) — statistically superior to the unsmoothed lean-feature baseline (paired Wilcoxon p = 0.005, Cohen's d = 1.11) and to a tuned Riemannian and an EEGNet baseline — and 66.13 % on a pooled 31-subject DROZY ∪ SEED-VIG benchmark. The pro-active track, evaluated on SEED-VIG under a survival-framed FPR-controlled protocol, flags drowsiness with a median lead of +8.83 min (0.0 % per-session false alerts) against the earliest behavioural sign of drowsiness (PERCLOS > 0.30) and +31.67 min (9.5 % false alerts) against the severe fighting-sleep threshold, on 85.7 % of sessions.
+**The contribution.** This work develops and validates a deployment-oriented EEG pipeline for in-vehicle drowsiness detection using two occipital electrodes (O₁ and O₂) integrated into a vehicle headrest. The pipeline combines a 10-feature shrinkage LDA classifier (sample/permutation entropy, aperiodic 1/f slope, peak-alpha-frequency difference, and inter-hemispheric coherence in three bands) with a causal exponential moving-average smoother and a per-driver percentile-calibrated alarm threshold. Two complementary tracks are reported. The monitoring track achieves a weighted F1 of 76.79 % under strict leave-one-subject-out cross-validation on DROZY (10 subjects, 14 498 epochs) — statistically superior to the unsmoothed lean-feature baseline (paired Wilcoxon p = 0.005, Cohen's d = 1.11) and to a tuned Riemannian and an EEGNet baseline — and 66.13 % on a pooled 31-subject DROZY ∪ SEED-VIG benchmark. The pro-active track, evaluated on SEED-VIG under a survival-framed FPR-controlled protocol, flags drowsiness with a median lead of +8.83 min (0.0 % per-session false alerts) on 71.4 % of sessions against the earliest behavioural sign of drowsiness (PERCLOS > 0.30), and +31.67 min (9.5 % false alerts) on 85.7 % of sessions against the severe fighting-sleep threshold.
 
 **The novelty.** To our knowledge this is the first paper to report a behaviour-anchored, FPR-controlled, survival-framed advance-prediction evaluation on SEED-VIG, and to quantify the per-driver-calibration and causal-smoothing contributions to subject-independent F1 with paired statistical tests. The pro-active protocol replaces the unprotected uncontrolled framing common in the prior literature, in which advance leads were reported against unspecified or per-subject-fitted behavioural thresholds and censored evidence was silently dropped. We further report two honest negative ablations — phase-coherence variants (PLV / ImCoh / wPLI) and a three-model posterior ensemble — that bound the optimisation envelope of a 2-channel occipital pipeline and justify the lean-LDA-plus-EMA architecture as the deployable choice rather than an under-engineered one.
 
@@ -40,3 +40,4 @@ Email: abhishek.rudrapal@vit.ac.in
 On behalf of co-authors:
 Muhammed Raslan Thalassery (ORCID: [TODO])
 Sulaiman Shiyas Ali (ORCID: [TODO])
+G. Murali Mohan (ORCID: [TODO])
