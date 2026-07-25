@@ -162,35 +162,6 @@
   year      = {2021},
 }
 
-% !! UNVERIFIABLE 2026-07-25: no work with this title exists in Crossref.
-% !! Searched by title and by topic; nearest hits are unrelated. This entry is
-% !! CITED in the merged Introduction and in Sec. V.C as one of the two prior
-% !! reports of a "5-10 minute advance window" that this paper's contribution 4
-% !! is positioned against. It must be replaced with a real citation or the
-% !! novelty framing must be rewritten. DO NOT SUBMIT AS IS.
-@article{nguyen2021biomed,
-  author    = {Nguyen, T. and Ahn, S. and Kim, Y.},
-  title     = {{EEG}/{fNIRS} drowsiness prediction using time-series analysis},
-  journal   = {Biomed.\ Signal Process.\ Control},
-  volume    = {68},
-  pages     = {102701},
-  year      = {2021},
-  % FIXME-ISSUE: no issue number; other @article entries carry one.
-}
-
-% !! UNVERIFIABLE 2026-07-25: no work with this title exists in Crossref.
-% !! Same role as nguyen2021biomed -- cited as prior advance-prediction work in
-% !! the merged Introduction and Sec. V.C. Must be replaced or the claim
-% !! rewritten. DO NOT SUBMIT AS IS.
-@article{lin2020generalised,
-  author    = {Lin, C. T. and Chang, C. J. and Wang, J. F.},
-  title     = {A generalised {EEG}-based drowsiness prediction framework},
-  journal   = {{IEEE} Trans.\ Neural Syst.\ Rehabil.\ Eng.},
-  volume    = {28}, number = {4},
-  pages     = {937--947},
-  year      = {2020},
-}
-
 @article{barachant2013riemannian,
   author    = {Barachant, A. and Bonnet, S. and Congedo, M. and Jutten, C.},
   title     = {Classification of covariance matrices using a {Riemannian}-based kernel for {BCI} applications},
@@ -385,4 +356,81 @@
   volume    = {13}, number = {1},
   year      = {2026},
   doi       = {10.1038/s41597-025-06540-1},
+}
+
+% --- Verified prior work on EEG-based prediction of drowsiness / microsleep ---
+% Added 2026-07-25 to replace nguyen2021biomed and lin2020generalised, neither
+% of which exists (see the audit note at the head of this file). All four
+% records below were confirmed against Crossref by DOI.
+
+@article{buriro2018microsleep,
+  author    = {Buriro, A. B. and Shoorangiz, R. and Weddell, S. J. and Jones, R. D.},
+  title     = {Predicting microsleep states using {EEG} inter-channel relationships},
+  journal   = {{IEEE} Trans.\ Neural Syst.\ Rehabil.\ Eng.},
+  volume    = {26}, number = {12},
+  pages     = {2260--2269},
+  year      = {2018},
+  doi       = {10.1109/TNSRE.2018.2878587},
+}
+
+@article{golz2016microsleep,
+  author    = {Golz, M. and Sommer, D. and Krajewski, J.},
+  title     = {Prediction of immediately occurring microsleep events from brain electric signals},
+  journal   = {Curr.\ Dir.\ Biomed.\ Eng.},
+  volume    = {2}, number = {1},
+  pages     = {149--153},
+  year      = {2016},
+  doi       = {10.1515/cdbme-2016-0035},
+}
+
+@article{lin2005drowsiness,
+  author    = {Lin, C.-T. and Wu, R.-C. and Liang, S.-F. and Chao, W.-H. and Chen, Y.-J. and Jung, T.-P.},
+  title     = {{EEG}-based drowsiness estimation for safety driving using independent component analysis},
+  journal   = {{IEEE} Trans.\ Circuits Syst.\ I, Reg.\ Papers},
+  volume    = {52}, number = {12},
+  pages     = {2726--2738},
+  year      = {2005},
+  doi       = {10.1109/TCSI.2005.857555},
+}
+
+@article{ladouce2025vigilance,
+  author    = {Ladouce, S. and {Torre Tresols}, J. J. and {Le Goff}, K. and Dehais, F.},
+  title     = {{EEG}-based assessment of long-term vigilance and lapses of attention using a user-centered framework},
+  journal   = {J.\ Neural Eng.},
+  volume    = {22}, number = {3},
+  pages     = {036018},
+  year      = {2025},
+  doi       = {10.1088/1741-2552/add771},
+}
+
+% --- Form factor and cross-subject transfer (added 2026-07-25, item 5) ---
+% All verified against Crossref by DOI.
+
+@inproceedings{ha2016earmodule,
+  author    = {Ha, U. and Yoo, H.-J.},
+  title     = {An {EEG-NIRS} ear-module {SoC} for wearable drowsiness monitoring system},
+  booktitle = {Proc.\ {IEEE} Asian Solid-State Circuits Conf.\ ({A-SSCC})},
+  pages     = {193--196},
+  year      = {2016},
+  doi       = {10.1109/ASSCC.2016.7844168},
+}
+
+@article{athavipach2019inear,
+  author    = {Athavipach, C. and Pan-ngum, S. and Israsena, P.},
+  title     = {A wearable in-ear {EEG} device for emotion monitoring},
+  journal   = {Sensors},
+  volume    = {19}, number = {18},
+  pages     = {4014},
+  year      = {2019},
+  doi       = {10.3390/s19184014},
+}
+
+@article{maswanganyi2025transfer,
+  author    = {Maswanganyi, R. C. and Tu, C. and Owolawi, P. A. and Du, S.},
+  title     = {Single-source and multi-source cross-subject transfer based on domain adaptation algorithms for {EEG} classification},
+  journal   = {Mathematics},
+  volume    = {13}, number = {5},
+  pages     = {802},
+  year      = {2025},
+  doi       = {10.3390/math13050802},
 }
