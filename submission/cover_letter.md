@@ -1,9 +1,12 @@
 # Cover letter — IEEE Sensors Journal submission
 
 **Manuscript:** Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG
-**Authors:** Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, Abhishek Rudra Pal, G. Murali Mohan
-**Affiliation:** School of Mechanical Engineering (SMEC), Vellore Institute of Technology (VIT) Chennai, Vandalur–Kelambakkam Road, Chennai 600127, Tamil Nadu, India
-**Corresponding author:** Dr. Abhishek Rudra Pal (abhishek.rudrapal@vit.ac.in)
+**Authors:** Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, Abhishek Rudra Pal, Ahmed Chemori, G. Murali Mohan
+**Affiliations:**
+- School of Mechanical Engineering (SMEC), Vellore Institute of Technology (VIT) Chennai, Vandalur–Kelambakkam Road, Chennai 600127, Tamil Nadu, India
+- LIRMM, Université de Montpellier, CNRS, UMR 5506, 161 rue Ada, 34095 Montpellier Cedex 5, France
+
+**Corresponding author:** Dr. Ahmed Chemori (Ahmed.Chemori@lirmm.fr)
 **Date:** [TODO insert at submission]
 
 ---
@@ -22,7 +25,7 @@ We submit for your consideration the enclosed manuscript titled **"Pro-Active Dr
 
 - This manuscript has not been published or submitted elsewhere; an earlier version of this work appears solely as a university capstone thesis at VIT Chennai, which is not considered prior publication under IEEE policy.
 - All authors have approved the submission and agreed to the listed authorship order.
-- The authors declare no conflicts of interest. No external funding was received for this work.
+- The authors declare no conflicts of interest. [TODO: confirm the funding statement with Dr. Chemori — "no external funding was received for this work" was accurate while the work was VIT-internal, but a CNRS/LIRMM co-author may require an institutional or grant acknowledgement.]
 - All analysis scripts, pinned dependencies, and a single-entry reproducer are released at `https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG` (Zenodo DOI to be added after submission acceptance).
 - We have respected the data-use agreements for DROZY and SEED-VIG; no raw data is redistributed in the submission package.
 
@@ -30,14 +33,15 @@ We have suggested reviewers and excluded conflicts in the submission portal acco
 
 Sincerely,
 
-Dr. Abhishek Rudra Pal
-School of Mechanical Engineering
-Vellore Institute of Technology (VIT) Chennai
-Chennai 600127, Tamil Nadu, India
+Dr. Ahmed Chemori, Senior Member, IEEE
+CNRS Researcher HDR
+LIRMM, Université de Montpellier, CNRS, UMR 5506
+161 rue Ada, 34095 Montpellier Cedex 5, France
 ORCID: [TODO]
-Email: abhishek.rudrapal@vit.ac.in
+Email: Ahmed.Chemori@lirmm.fr
 
 On behalf of co-authors:
 Muhammed Raslan Thalassery (ORCID: [TODO])
 Sulaiman Shiyas Ali (ORCID: [TODO])
+Abhishek Rudra Pal (ORCID: [TODO])
 G. Murali Mohan (ORCID: [TODO])

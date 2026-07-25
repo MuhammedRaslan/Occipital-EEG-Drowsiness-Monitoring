@@ -158,24 +158,54 @@ def main():
               f"TPR={m['tpr']:.3f}  FPR={m['fpr']:.3f}  kappa={m['kappa']:+.3f}")
 
     # Figure: ROC with the three chosen operating points highlighted.
-    fig, ax = plt.subplots(figsize=(5.5, 5.0))
-    ax.plot(fpr, tpr, "-", lw=2, color="#1f3b6e", label=f"v17 ROC (AUC = {auc:.2f}%)")
-    ax.plot([0, 1], [0, 1], "--", color="0.6", lw=1, label="chance")
+    #
+    # Item 9 (A. Chemori): "rework the curve line style of Fig. 3 for better
+    # visibility and avoid overlapping in the text." Three changes:
+    #   (a) the title previously overflowed the axes and was clipped mid-word
+    #       in the compiled PDF ("...causal EMA (tau=6C"). It is now shorter,
+    #       uses a real tau glyph, and is wrapped explicitly.
+    #   (b) the ROC and the chance diagonal were near-indistinguishable at
+    #       print size. The ROC is now heavier and the diagonal darker with a
+    #       distinct dash pattern.
+    #   (c) the operating points carried long labels inside the legend box.
+    #       They are now annotated directly on the curve, leaving a two-line
+    #       legend that cannot crowd the plotted data.
+    #
+    # NOTE: figsize/dpi below reproduce the 1920x1500 px figure shipped in
+    # submission/figures/. Do not change these without regenerating the PNG —
+    # a previous hand-edit of the image left this script emitting a different
+    # size and a broken title, so reproduce.py silently undid the fix.
+    fig, ax = plt.subplots(figsize=(9.6, 7.5))
+    ax.plot(fpr, tpr, "-", lw=2.6, color="#1f3b6e", zorder=3,
+            label=f"v17 ROC (AUC = {auc:.2f}%)")
+    ax.plot([0, 1], [0, 1], color="0.45", lw=1.4, linestyle=(0, (6, 4)),
+            zorder=2, label="chance")
+    # The three operating points cluster in the upper-left, so their labels are
+    # parked in the empty mid-right of the axes and joined by leader lines.
+    # Fixed data coordinates (not offsets) keep them from colliding with each
+    # other, which offset placement did not.
     labels = {
-        "high_precision_FPR5":  ("o", "#1a7f3d", "high-precision (FPR<=5%)"),
-        "balanced_FPR10":       ("s", "#c75f1e", "balanced (FPR<=10%)"),
-        "high_recall_FPR20":    ("D", "#a02a2a", "high-recall (FPR<=20%)"),
+        "high_precision_FPR5":  ("o", "#1a7f3d", "high-precision (FPR $\\leq$ 5%)",  (0.40, 0.52)),
+        "balanced_FPR10":       ("s", "#c75f1e", "balanced (FPR $\\leq$ 10%)",       (0.40, 0.40)),
+        "high_recall_FPR20":    ("D", "#a02a2a", "high-recall (FPR $\\leq$ 20%)",    (0.40, 0.28)),
     }
-    for name, (mk, col, lbl) in labels.items():
+    for name, (mk, col, lbl, xytext) in labels.items():
         m = ops[name]
-        ax.plot(m["fpr"], m["tpr"], mk, color=col, ms=9, mec="k", mew=0.6,
-                label=f"{lbl}: TPR={m['tpr']:.2f}, F1={m['f1_score']:.1f}")
+        ax.plot(m["fpr"], m["tpr"], mk, color=col, ms=11, mec="k", mew=0.8, zorder=4)
+        ax.annotate(f"{lbl}\nTPR = {m['tpr']:.2f},  F1 = {m['f1_score']:.1f}%",
+                    xy=(m["fpr"], m["tpr"]), xytext=xytext,
+                    textcoords="data", fontsize=10, color=col,
+                    ha="left", va="center", linespacing=1.4,
+                    arrowprops=dict(arrowstyle="-", color=col, lw=0.9,
+                                    shrinkA=0, shrinkB=6,
+                                    connectionstyle="arc3,rad=-0.12"))
     ax.set_xlabel("False-positive rate (awake misclassified as drowsy)")
     ax.set_ylabel("True-positive rate (drowsy detected)")
-    ax.set_title("Monitoring-track ROC — v11 lean LDA + v17 causal EMA (tau=600 s)\nDROZY LOSO, 10 subjects, 14498 epochs")
+    ax.set_title("Monitoring-track ROC: lean LDA + causal EMA ($\\tau$ = 600 s)\n"
+                 "DROZY LOSO, 10 subjects, 14,498 epochs", fontsize=12, pad=10)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1.02)
     ax.grid(alpha=0.25)
-    ax.legend(loc="lower right", fontsize=8.5)
+    ax.legend(loc="lower right", fontsize=10, framealpha=0.95, edgecolor="0.8")
     fig.tight_layout()
     fig.savefig(FIG_PATH, dpi=200)
     plt.close(fig)

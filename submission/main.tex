@@ -41,9 +41,51 @@
 \usepackage{url}
 \usepackage{array}
 \usepackage{soul}                       % \hl{} for highlighting reviewer-revised text
+\usepackage[normalem]{ulem}             % \sout{} for struck-through deletions
 \usepackage[hidelinks]{hyperref}
 \usepackage{siunitx}
 \graphicspath{{figures/}}
+
+% =================================================================
+% Revision markup — A. Chemori review, received 2026-07-25.
+%
+%   clean  : submission copy   — final text only, deletions vanish
+%   review : Chemori's copy    — additions highlighted yellow
+%   track  : audit copy        — additions yellow, deletions red + struck
+%
+% Change ONE line below. Do not maintain separate copies of this file:
+% revision/build_variants.py generates the three Overleaf zips from it.
+% =================================================================
+\def\revmode{track}
+
+\definecolor{addyellow}{RGB}{255,245,150}
+\definecolor{delred}{RGB}{190,30,30}
+
+\makeatletter
+\def\@revclean{clean}
+\def\@revtrack{track}
+\ifx\revmode\@revclean
+  \newcommand{\add}[1]{#1}                                   % additions -> plain text
+  \newcommand{\del}[1]{}                                     % deletions -> removed entirely
+\else
+  \sethlcolor{addyellow}
+  \newcommand{\add}[1]{\hl{#1}}
+  \ifx\revmode\@revtrack
+    \newcommand{\del}[1]{{\color{delred}\sout{#1}}}
+  \else
+    \newcommand{\del}[1]{}                                   % review mode: additions only
+  \fi
+\fi
+\makeatother
+
+% Replaced text: \chg{old}{new}
+\newcommand{\chg}[2]{\del{#1}\add{#2}}
+
+% NOTE on usage: soul's \hl cannot re-typeset inline math or \cite, so inside
+% \add{} / \del{} / \chg{} any such content must be wrapped in \mbox{}:
+%     \add{the smoothed pipeline reaches \mbox{\(F_1 = 76.79\,\%\)}}
+%     \add{as reported previously~\mbox{\cite{balam2024review}}}
+% \hl also cannot span a paragraph break — mark each paragraph separately.
 
 \begin{document}
 
@@ -52,10 +94,14 @@
 \author{
     Muhammed Raslan Thalassery,
     Sulaiman Shiyas Ali,
-    Abhishek Rudra Pal,~\IEEEmembership{Member,~IEEE},
+    \chg{Abhishek Rudra Pal,~\IEEEmembership{Member,~IEEE},}{Abhishek Rudra Pal,}
+    \add{Ahmed Chemori,~\IEEEmembership{Senior Member,~IEEE},}
     and G.~Murali Mohan
 \thanks{M.~R.~Thalassery and S.~S.~Ali are with the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, Vandalur--Kelambakkam Road, Chennai 600127, Tamil Nadu, India (e-mail: muhammedraslan.t2022@vitstudent.ac.in).}
-\thanks{A.~R.~Pal and G.~Murali Mohan are with the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, Chennai 600127, Tamil Nadu, India (e-mail: abhishek.rudrapal@vit.ac.in; muralimohan.g@vit.ac.in). Corresponding author: A.~R.~Pal.}
+\thanks{\chg{A.~R.~Pal and G.~Murali Mohan are with the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, Chennai 600127, Tamil Nadu, India (e-mail: abhishek.rudrapal@vit.ac.in; muralimohan.g@vit.ac.in). Corresponding author: A.~R.~Pal.}{A.~R.~Pal and G.~Murali Mohan are with the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, Chennai 600127, Tamil Nadu, India (e-mail: abhishek.rudrapal@vit.ac.in; muralimohan.g@vit.ac.in).}}
+\thanks{\add{A.~Chemori is with LIRMM, Universit\'e de Montpellier, CNRS, UMR 5506, 161 rue Ada, 34095 Montpellier Cedex 5, France (e-mail: Ahmed.Chemori@lirmm.fr).}}
+\thanks{\add{Corresponding author: A.~Chemori.}}
+\thanks{\add{ORCID: M.~R.~Thalassery, [TODO]; S.~S.~Ali, [TODO]; A.~R.~Pal, [TODO]; A.~Chemori, [TODO]; G.~Murali Mohan, [TODO].}}
 \thanks{Manuscript received Month DD, 2026.}
 }
 
@@ -69,8 +115,42 @@ Driver drowsiness causes a substantial fraction of road fatalities worldwide, an
 \end{abstract}
 
 \begin{IEEEkeywords}
-Electroencephalography, drowsiness detection, driver monitoring, occipital EEG, advance prediction, subject-independent classification, IEEE Sensors.
+Electroencephalography, drowsiness detection, driver monitoring, occipital EEG, advance prediction, subject-independent classification, \chg{IEEE Sensors.}{vigilance, real-time systems.}
 \end{IEEEkeywords}
+
+% -----------------------------------------------------------------
+% Item 15 (A. Chemori): list of acronyms at the beginning of the paper.
+% The whole block is new; it is marked once at the heading rather than
+% per line, because soul's \hl is fragile inside \item[] labels.
+% -----------------------------------------------------------------
+\section*{\add{Nomenclature}}
+\begin{IEEEdescription}[\IEEEsetlabelwidth{PERCLOS}]
+\item[AUC]     Area under the receiver-operating-characteristic curve.
+\item[CNN]     Convolutional neural network.
+\item[DMS]     Driver-monitoring system.
+\item[DWT]     Discrete wavelet transform.
+\item[ECG]     Electrocardiography.
+\item[EEG]     Electroencephalography.
+\item[EMA]     Exponential moving average.
+\item[EOG]     Electro-oculography.
+\item[FIR]     Finite impulse response.
+\item[FOOOF]   ``Fitting oscillations and one-over-\emph{f}'' spectral parameterisation.
+\item[FPR]     False-positive rate.
+\item[HMM]     Hidden Markov model.
+\item[ImCoh]   Imaginary part of coherency.
+\item[IQR]     Interquartile range.
+\item[LDA]     Linear discriminant analysis.
+\item[LOSO]    Leave-one-subject-out cross-validation.
+\item[LSTM]    Long short-term memory network.
+\item[PAF]     Peak alpha frequency.
+\item[PERCLOS] Percentage of eyelid closure over the pupil over time.
+\item[PLV]     Phase-locking value.
+\item[PSD]     Power spectral density.
+\item[PVT]     Psychomotor vigilance task.
+\item[ROC]     Receiver operating characteristic.
+\item[TPR]     True-positive rate.
+\item[wPLI]    Weighted phase-lag index.
+\end{IEEEdescription}
 
 % =================================================================
 \section{Introduction}
@@ -130,18 +210,25 @@ The lean 10-feature set per epoch is:
 The classifier is shrinkage linear discriminant analysis (LDA)~\cite{ledoit2004shrinkage} with the \texttt{lsqr} solver and Ledoit--Wolf automatic shrinkage. Per-subject z-score standardisation is computed from each subject's session-1 (awake) epochs only --- equivalent to a 60-second pre-drive alert calibration --- and applied to both train and test epochs of the same subject without leaking class information.
 
 The temporal smoother converts per-epoch posteriors \(p_t\) into a smoothed estimate \(\tilde{p}_t\) by a strictly causal exponential moving average:
+% Item 14 (A. Chemori): the smoothing coefficient was previously \alpha, which
+% collided with the 8-13 Hz alpha band. Renamed to \lambda throughout. The
+% equation itself carries no \add/\del markup because soul's \hl cannot operate
+% inside math mode; the change is documented in the response letter and in the
+% highlighted sentence immediately below.
 \begin{equation}
-    \tilde{p}_t = \alpha \, p_t + (1-\alpha)\,\tilde{p}_{t-1}, \quad \alpha = 1 - e^{-\Delta t/\tau},
+    \tilde{p}_t = \lambda \, p_t + (1-\lambda)\,\tilde{p}_{t-1}, \quad \lambda = 1 - e^{-\Delta t/\tau},
     \label{eq:ema}
 \end{equation}
-with \(\Delta t = 10\)~s and \(\tau = 600\)~s. The recursion is initialised at \(\tilde{p}_0 = p_0\) and is reset only at subject boundaries (\emph{never} at session boundaries), to prevent any reset rule from leaking the binary DROZY label. We refer to this as the \emph{continuous} regime in Section~\ref{sec:smoother}.
+\add{Here \mbox{\(p_t \in [0,1]\)} is the classifier's posterior probability that epoch \mbox{\(t\)} is drowsy, \mbox{\(\tilde{p}_t\)} is its smoothed counterpart, \mbox{\(\lambda \in (0,1]\)} is the smoothing coefficient, \mbox{\(\Delta t\)} is the epoch duration, and \mbox{\(\tau\)} is the smoothing time constant. The coefficient is written \mbox{\(\lambda\)} rather than the conventional \mbox{\(\alpha\)} to avoid collision with the \mbox{\(\alpha\)} frequency band (8--13~Hz) used elsewhere in this paper.} In the configuration reported here \(\Delta t = 10\)~s and \(\tau = 600\)~s. The recursion is initialised at \(\tilde{p}_0 = p_0\) and is reset only at subject boundaries (\emph{never} at session boundaries), to prevent any reset rule from leaking the binary DROZY label. We refer to this as the \emph{continuous} regime in Section~\ref{sec:smoother}.
 
 \subsection{Evaluation Protocols}
+\add{The pipeline is assessed on two tasks that share a classifier but differ in their labels, time constants and success criteria. The \emph{monitoring} track asks how accurately the current vigilance state is recognised, is evaluated against binary session labels on DROZY, and is scored by weighted F1. The \emph{pro-active} track asks how far in advance a drowsiness episode is flagged, is evaluated against continuous PERCLOS annotations on SEED-VIG, and is scored by lead time under a controlled false-alert budget. The two protocols are defined in turn below, followed by the statistical procedures common to both.}
+
 \textbf{Monitoring track.} Strict leave-one-subject-out (LOSO) on DROZY (10 folds), with weighted F1 as the headline metric. Each fold trains on 9 subjects' 10-feature matrix and tests on the held-out subject; predictions are concatenated across folds. Cross-dataset transfer trains on full DROZY and tests on full SEED-VIG without any fine-tuning. Pooled LOSO concatenates DROZY and SEED-VIG and runs LOSO across the 31-subject union.
 
-\textbf{Pro-active track.} On each held-out SEED-VIG subject the per-epoch posterior is causal-EMA-smoothed (\(\tau = 30\)~s), and a per-driver alarm threshold is set as the 99\textsuperscript{th} percentile of that subject's smoothed posterior over the first 5 minutes of the session. The alarm fires on the first sustained crossing (10~s dwell). The behavioural reference onset is the first time the smoothed PERCLOS exceeds a chosen threshold for 60~s. Lead time is \emph{behavioural onset $-$ EEG onset} (positive = EEG fires first). Sessions where EEG fires but PERCLOS never crosses are reported as censored positive cases (\emph{eeg-only}); sessions where the reverse occurs are \emph{behav-only}.
+\textbf{Pro-active track.} On each held-out SEED-VIG subject the per-epoch posterior is causal-EMA-smoothed (\(\tau = 30\)~s), and a per-driver alarm threshold \add{\mbox{\(\eta\)}} is set as the 99\textsuperscript{th} percentile of that subject's smoothed posterior over the first 5 minutes of the session. The alarm fires on the first sustained crossing (10~s dwell). The behavioural reference onset is the first time the smoothed PERCLOS exceeds a chosen threshold for 60~s. Lead time is \emph{behavioural onset $-$ EEG onset} (positive = EEG fires first). Sessions where EEG fires but PERCLOS never crosses are reported as censored positive cases (\emph{eeg-only}); sessions where the reverse occurs are \emph{behav-only}.
 
-\textbf{Statistical tests.} Paired Wilcoxon signed-rank with one-sided alternative is used for between-pipeline comparisons at the subject level. Paired Cohen's \(d\) is reported as an effect-size descriptor.
+\textbf{Statistical tests.} Paired Wilcoxon signed-rank with one-sided alternative is used for between-pipeline comparisons at the subject level, \add{yielding the significance level \mbox{\(p\)} with \mbox{\(n = 10\)} paired subject-level observations on DROZY.} Paired Cohen's \(d\) is reported as an effect-size descriptor. \add{Two further statistics appear in the results: Cohen's \mbox{\(\kappa\)}, the chance-corrected agreement between predicted and true labels, and the Mann--Whitney \mbox{\(U\)} statistic used for the unpaired distributional contrasts of Section~\ref{sec:coh-stats}.}
 
 % =================================================================
 \section{Results}
@@ -369,7 +456,7 @@ Two engineering tracks that might reasonably be expected to improve the pipeline
 Table~\ref{tab:proactive} reports the FPR-budget Pareto front on SEED-VIG. The recommended deployment operating point is \emph{per-subject 99\textsuperscript{th} percentile of the first 5 min of smoothed \(p(\mathrm{drowsy})\), 10-s dwell, EMA \(\tau = 30\)~s}, which delivers \(\mathit{proactive\_rate} = 85.7\)~\% with median lead \(+31.67\) min against PERCLOS \(>0.70\). The epoch-level FPR (against PERCLOS \(<0.35\) epochs) is 27.6~\%; the per-session false-alert rate (sessions where EEG fires but PERCLOS never confirms) is 9.5~\% (2 of 21).
 
 \begin{table}[t]
-\caption{Pro-active operating envelope on SEED-VIG (21 subjects). Behavioural onset is PERCLOS \(>0.70\) sustained 60~s.}
+\caption{Pro-active operating envelope on SEED-VIG (21 subjects). Behavioural onset is PERCLOS \(>0.70\) sustained 60~s. \add{\(\eta\) denotes the alarm threshold applied to the smoothed posterior; it is written \(\eta\) rather than \(\theta\) to avoid collision with the \(\theta\) frequency band (4--8~Hz).}}
 \label{tab:proactive}
 \centering
 \small
@@ -378,8 +465,8 @@ Table~\ref{tab:proactive} reports the FPR-budget Pareto front on SEED-VIG. The r
 \toprule
 FPR budget & Threshold mode & Proactive rate & Median lead (min) & Sens@drowsy \\
 \midrule
-\(\leq 5\)~\%  & global \(\theta=0.50\)              & 33.3~\% & \(+0.00\)  & 0.30 \\
-\(\leq 10\)~\% & global \(\theta=0.40\)              & 47.6~\% & \(+0.83\)  & 0.38 \\
+\(\leq 5\)~\%  & global \(\eta=0.50\)                & 33.3~\% & \(+0.00\)  & 0.30 \\
+\(\leq 10\)~\% & global \(\eta=0.40\)                & 47.6~\% & \(+0.83\)  & 0.38 \\
 \(\leq 30\)~\% & per-subj 99\(\%\)pct of 5-min       & \(\mathbf{85.7}\)~\% & \(\mathbf{+31.67}\) & 0.69 \\
 \(\leq 50\)~\% & per-subj 99\(\%\)pct of 2-min       & 90.5~\% & \(+33.50\) & 0.79 \\
 \bottomrule
@@ -511,10 +598,10 @@ The authors thank the contributors of the DROZY~\cite{drozy2016} and SEED-VIG~\c
 All analysis scripts, pinned dependencies, and a single-entry reproducer (\texttt{reproduce.py}) are released at \url{https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG} under the commit tagged \texttt{paper-submission-v1}. Per-subject feature caches (DROZY: 14\,498 epochs \(\times\) 50 features; SEED-VIG: 9\,155 epochs) regenerate automatically from the raw EDF/MAT files via the reproducer. Wall-clock time is approximately 5 minutes on a laptop CPU excluding the EEGNet baseline (\(\sim\)28 minutes).
 
 \section*{Author Contributions}
-M.~R.~Thalassery designed the pipeline, implemented the experiments, conducted the ablations and statistical analyses, and drafted the manuscript. S.~S.~Ali contributed to the feature-extraction implementation and the live demonstrator. A.~R.~Pal supervised the project, provided guidance on signal-processing methodology, and reviewed and approved the final manuscript. G.~Murali Mohan provided project supervision and reviewed the final manuscript.
+M.~R.~Thalassery designed the pipeline, implemented the experiments, conducted the ablations and statistical analyses, and drafted the manuscript. S.~S.~Ali contributed to the feature-extraction implementation and the live demonstrator. A.~R.~Pal supervised the project, provided guidance on signal-processing methodology, and reviewed and approved the final manuscript. \add{A.~Chemori [TODO: CRediT contribution to be supplied by A.~Chemori].} G.~Murali Mohan provided project supervision and reviewed the final manuscript.
 
 \section*{Conflicts of Interest}
-The authors declare no conflicts of interest. No external funding was received for this work.
+The authors declare no conflicts of interest. \chg{No external funding was received for this work.}{[TODO: confirm with A.~Chemori whether CNRS/LIRMM requires a funding or institutional-support acknowledgement; the statement ``no external funding was received for this work'' was accurate while the work was VIT-internal.]}
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

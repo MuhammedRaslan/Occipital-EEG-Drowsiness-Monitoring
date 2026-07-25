@@ -257,16 +257,22 @@ rep = "05M"
 m = np.where(subj == rep)[0]
 t_min = np.arange(len(m)) * EPOCH_SEC / 60.0
 boundary = int(np.argmax(y[m] == 1))  # first drowsy epoch index
-fig, ax = plt.subplots(figsize=(7.2, 3.8))
+fig, ax = plt.subplots(figsize=(7.2, 4.2))
 ax.plot(t_min, p_raw[m], color="#bdbdbd", lw=0.8, label="raw posterior $p_t$")
 ax.plot(t_min, p_sm[m], color="#c1272d", lw=1.8, label=r"EMA-smoothed $\tilde p_t$ ($\tau=600$ s)")
-ax.axhline(0.5, color="black", ls=":", lw=0.8)
+ax.axhline(0.5, color="black", ls=":", lw=0.8, label="decision threshold (0.5)")
 ax.axvline(t_min[boundary], color="#1f78b4", ls="--", lw=1.0, label="awake$\\to$drowsy session boundary")
 ax.set_xlabel("Time within subject stream (min)")
 ax.set_ylabel("$p(\\mathrm{drowsy})$")
-ax.set_ylim(-0.02, 1.02)
-ax.set_title(f"Raw vs causal-EMA posterior (subject {rep})")
-ax.legend(loc="center left", fontsize=8, frameon=False)
+# Item 8 (A. Chemori): the legend previously sat at "center left", directly on
+# top of the traces — the 0.5 threshold line and the EMA curve struck through
+# the label text. Reserve a clear band above the data and lay the legend out
+# horizontally in that band so it cannot overlap any plotted element.
+ax.set_ylim(-0.02, 1.34)
+ax.legend(loc="upper left", ncol=2, fontsize=8, frameon=True,
+          framealpha=0.95, edgecolor="0.8", borderpad=0.5,
+          handlelength=1.8, columnspacing=1.4)
+ax.set_title(f"Raw vs causal-EMA posterior (subject {rep})", pad=8)
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
 f3path = os.path.join(FIGDIR, "fig14_ema_raw_vs_smoothed.png")

@@ -10,9 +10,11 @@ This file consolidates the four declaration paragraphs the portal will request. 
 
 **S. S. Ali (second author):** software (feature extraction, live demonstrator), validation, writing — review & editing.
 
-**A. R. Pal (corresponding author, third):** supervision, conceptualization (driver-monitoring framing), methodology guidance, writing — review & editing, project administration.
+**A. R. Pal (third author):** supervision, conceptualization (driver-monitoring framing), methodology guidance, writing — review & editing, project administration.
 
-**G. Murali Mohan (fourth author):** supervision.
+**A. Chemori (corresponding author, fourth):** [TODO — CRediT statement to be supplied by Dr. Chemori. Expected to include supervision, methodology guidance, and writing — review & editing, based on his pre-submission review of 2026-07-25; confirm with him before submission.]
+
+**G. Murali Mohan (fifth author):** supervision.
 
 All authors have read and approved the final manuscript and the listed authorship order.
 
@@ -26,7 +28,9 @@ The authors declare no conflicts of interest, financial or otherwise, related to
 
 ## 3. Funding
 
-This work received no external funding. The work was conducted as the corresponding-undergraduate-capstone project of the first and second authors at the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, under the supervision of the third and fourth authors. No part of the manuscript preparation was supported by industry sponsorship.
+[TODO — confirm with Dr. Chemori before submission. The statement below was accurate while the work was entirely VIT-internal; a CNRS/LIRMM co-author may carry an obligation to acknowledge laboratory or grant support, which must be added here if so.]
+
+This work received no external funding. The work was conducted as the undergraduate capstone project of the first and second authors at the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, under the supervision of the third, fourth and fifth authors. No part of the manuscript preparation was supported by industry sponsorship.
 
 ---
 
