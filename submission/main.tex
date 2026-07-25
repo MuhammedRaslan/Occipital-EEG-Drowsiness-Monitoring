@@ -75,7 +75,12 @@
   \sethlcolor{addyellow}
   \DeclareRobustCommand{\add}[1]{\hl{#1}}
   \ifx\revmode\@revtrack
-    \DeclareRobustCommand{\del}[1]{{\color{delred}\sout{#1}}}
+    % The trailing \, separates a deletion from the addition that follows it.
+    % Without it \chg{old}{new} sets them flush and the tracked copy prints
+    % "EEGInter-Hemispheric", "II. METHODSDATA, SIGNAL PROCESSING", "register.Work
+    % on predicting". The space lives in the track-mode definition only, so the
+    % clean and review builds (where \del is a no-op) gain no stray space.
+    \DeclareRobustCommand{\del}[1]{{\color{delred}\sout{#1}}\,}
   \else
     \DeclareRobustCommand{\del}[1]{}                         % review mode: additions only
   \fi
