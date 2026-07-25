@@ -1,0 +1,961 @@
+[
+ {
+  "key": "who2023road",
+  "bib_title": "Global Status Report on Road Safety 2023",
+  "bib_authors": [
+   "World Health Organization"
+  ],
+  "bib_venue": "World Health Organization",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "",
+  "bib_year": "2023",
+  "bib_doi": "",
+  "status": "NO-TITLE-MATCH",
+  "best_score": 0.72,
+  "closest": "76 European facts and the global status report on road safety 2015"
+ },
+ {
+  "key": "drozy2016",
+  "bib_title": "The ULg multimodality drowsiness database (called DROZY) and examples of use",
+  "bib_authors": [
+   "Massoz",
+   "Langohr",
+   "Fran cois",
+   "Verly"
+  ],
+  "bib_venue": "Proc.\\ IEEE Winter Conf.\\ Applications of Computer Vision (WACV)",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "1-7",
+  "bib_year": "2016",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Massoz",
+   "Langohr",
+   "Francois",
+   "Verly"
+  ],
+  "cr_venue": "2016 IEEE Winter Conference on Applications of Computer Vision (WACV)",
+  "cr_volume": "",
+  "cr_issue": "",
+  "cr_pages": "1-7",
+  "cr_year": "2016",
+  "cr_doi": "10.1109/wacv.2016.7477715",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "sahayadhas2012sensors",
+  "bib_title": "Detecting driver drowsiness based on sensors: A review",
+  "bib_authors": [
+   "Sahayadhas",
+   "Sundaraj",
+   "Murugappan"
+  ],
+  "bib_venue": "Sensors",
+  "bib_volume": "12",
+  "bib_issue": "12",
+  "bib_pages": "16937-16953",
+  "bib_year": "2012",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Sahayadhas",
+   "Sundaraj",
+   "Murugappan"
+  ],
+  "cr_venue": "Sensors",
+  "cr_volume": "12",
+  "cr_issue": "12",
+  "cr_pages": "16937-16953",
+  "cr_year": "2012",
+  "cr_doi": "10.3390/s121216937",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "stancin2021review",
+  "bib_title": "A review of EEG signal features and their application in driver drowsiness detection systems",
+  "bib_authors": [
+   "Stancin",
+   "Cifrek",
+   "Jovic"
+  ],
+  "bib_venue": "Sensors",
+  "bib_volume": "21",
+  "bib_issue": "11",
+  "bib_pages": "3786",
+  "bib_year": "2021",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Stancin",
+   "Cifrek",
+   "Jovic"
+  ],
+  "cr_venue": "Sensors",
+  "cr_volume": "21",
+  "cr_issue": "11",
+  "cr_pages": "3786",
+  "cr_year": "2021",
+  "cr_doi": "10.3390/s21113786",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "chowdhury2018access",
+  "bib_title": "Sensor applications and physiological features in drivers' drowsiness detection: A review",
+  "bib_authors": [
+   "Chowdhury",
+   "Shankaran",
+   "Kavakli",
+   "Haque"
+  ],
+  "bib_venue": "IEEE Sensors J.",
+  "bib_volume": "18",
+  "bib_issue": "8",
+  "bib_pages": "3055-3067",
+  "bib_year": "2018",
+  "bib_doi": "10.1109/JSEN.2018.2807245",
+  "status": "MATCHED",
+  "match_score": 0.99,
+  "cr_authors": [
+   "Chowdhury",
+   "Shankaran",
+   "Kavakli",
+   "Haque"
+  ],
+  "cr_venue": "IEEE Sensors Journal",
+  "cr_volume": "18",
+  "cr_issue": "8",
+  "cr_pages": "3055-3067",
+  "cr_year": "2018",
+  "cr_doi": "10.1109/jsen.2018.2807245",
+  "problems": []
+ },
+ {
+  "key": "jap2009eeg",
+  "bib_title": "Using EEG spectral components to assess algorithms for detecting fatigue",
+  "bib_authors": [
+   "Jap",
+   "Lal",
+   "Fischer",
+   "Bekiaris"
+  ],
+  "bib_venue": "Expert Syst.\\ Appl.",
+  "bib_volume": "36",
+  "bib_issue": "2",
+  "bib_pages": "2352-2359",
+  "bib_year": "2009",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Jap",
+   "Lal",
+   "Fischer",
+   "Bekiaris"
+  ],
+  "cr_venue": "Expert Systems with Applications",
+  "cr_volume": "36",
+  "cr_issue": "2",
+  "cr_pages": "2352-2359",
+  "cr_year": "2009",
+  "cr_doi": "10.1016/j.eswa.2007.12.043",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "seeingmachines2024",
+  "bib_title": "DMS market review and technology landscape",
+  "bib_authors": [
+   "Seeing Machines Ltd."
+  ],
+  "bib_venue": "Seeing Machines Ltd.",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "",
+  "bib_year": "2024",
+  "bib_doi": "",
+  "status": "NO-TITLE-MATCH",
+  "best_score": 0.45,
+  "closest": "Wearable sports technology - Market landscape and compute SoC trends"
+ },
+ {
+  "key": "larocco2020headsets",
+  "bib_title": "A systematic review of available low-cost EEG headsets used for drowsiness detection",
+  "bib_authors": [
+   "LaRocco",
+   "Le",
+   "Bhatt"
+  ],
+  "bib_venue": "Front.\\ Neuroinform.",
+  "bib_volume": "14",
+  "bib_issue": "",
+  "bib_pages": "553352",
+  "bib_year": "2020",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 0.99,
+  "cr_authors": [
+   "LaRocco",
+   "Le",
+   "Paeng"
+  ],
+  "cr_venue": "Frontiers in Neuroinformatics",
+  "cr_volume": "14",
+  "cr_issue": "",
+  "cr_pages": "",
+  "cr_year": "2020",
+  "cr_doi": "10.3389/fninf.2020.553352",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "gangadharan2020wireless",
+  "bib_title": "Drowsiness detection using portable wireless EEG",
+  "bib_authors": [
+   "Gangadharan",
+   "Vinod"
+  ],
+  "bib_venue": "Proc.\\ IEEE Int.\\ Conf.\\ Cybernetics, Robotics and Control (CRC)",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "34-38",
+  "bib_year": "2020",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Gangadharan K",
+   "Vinod"
+  ],
+  "cr_venue": "Computer Methods and Programs in Biomedicine",
+  "cr_volume": "214",
+  "cr_issue": "",
+  "cr_pages": "106535",
+  "cr_year": "2022",
+  "cr_doi": "10.1016/j.cmpb.2021.106535",
+  "problems": [
+   "VENUE-MISMATCH",
+   "YEAR-MISMATCH",
+   "PAGES-MISMATCH",
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "balam2024review",
+  "bib_title": "Systematic review of single-channel EEG-based drowsiness detection methods",
+  "bib_authors": [
+   "Balam"
+  ],
+  "bib_venue": "IEEE Trans.\\ Intell.\\ Transp.\\ Syst.",
+  "bib_volume": "25",
+  "bib_issue": "",
+  "bib_pages": "15210-15228",
+  "bib_year": "2024",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Balam"
+  ],
+  "cr_venue": "IEEE Transactions on Intelligent Transportation Systems",
+  "cr_volume": "25",
+  "cr_issue": "11",
+  "cr_pages": "15210-15228",
+  "cr_year": "2024",
+  "cr_doi": "10.1109/tits.2024.3442249",
+  "problems": [
+   "MISSING-ISSUE (crossref has 11)",
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "jeong2022consumer",
+  "bib_title": "Deep spatio-temporal convolutional bidirectional LSTM for drowsiness detection",
+  "bib_authors": [
+   "Jeong",
+   "Yoo",
+   "Yun"
+  ],
+  "bib_venue": "IEEE Trans.\\ Consumer Electron.",
+  "bib_volume": "68",
+  "bib_issue": "3",
+  "bib_pages": "294-302",
+  "bib_year": "2022",
+  "bib_doi": "",
+  "status": "NO-TITLE-MATCH",
+  "best_score": 0.59,
+  "closest": "Classification of Drowsiness Levels Based on a Deep Spatio-Temporal Convolutional Bidirectional LSTM Network Using Electroencephalography Signals"
+ },
+ {
+  "key": "cheng2021bibm",
+  "bib_title": "Temporal EEG imaging for drowsy driving prediction",
+  "bib_authors": [
+   "Cheng",
+   "Chen",
+   "Chen"
+  ],
+  "bib_venue": "Proc.\\ IEEE Int.\\ Conf.\\ Bioinformatics and Biomedicine (BIBM)",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "2741-2747",
+  "bib_year": "2021",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Cheng",
+   "Young",
+   "Lin"
+  ],
+  "cr_venue": "Applied Sciences",
+  "cr_volume": "9",
+  "cr_issue": "23",
+  "cr_pages": "5078",
+  "cr_year": "2019",
+  "cr_doi": "10.3390/app9235078",
+  "problems": [
+   "VENUE-MISMATCH",
+   "YEAR-MISMATCH",
+   "PAGES-MISMATCH",
+   "MISSING-ISSUE (crossref has 23)",
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "nunez2025patent",
+  "bib_title": "Headrest-integrated real-time alertness prediction system",
+  "bib_authors": [
+   "Nunez"
+  ],
+  "bib_venue": "",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "",
+  "bib_year": "2025",
+  "bib_doi": "",
+  "status": "NO-TITLE-MATCH",
+  "best_score": 0.48,
+  "closest": "Real-time ML-based MPPT system with integrated environmental forecasting and power prediction"
+ },
+ {
+  "key": "toyota2021patent",
+  "bib_title": "Drowsiness estimation device",
+  "bib_authors": [
+   "Toyota Motor Corporation"
+  ],
+  "bib_venue": "",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "",
+  "bib_year": "2021",
+  "bib_doi": "",
+  "status": "NO-TITLE-MATCH",
+  "best_score": 0.47,
+  "closest": "Factors Influencing the Success of Drowsiness Detection Device Development"
+ },
+ {
+  "key": "nguyen2021biomed",
+  "bib_title": "EEG/fNIRS drowsiness prediction using time-series analysis",
+  "bib_authors": [
+   "Nguyen",
+   "Ahn",
+   "Kim"
+  ],
+  "bib_venue": "Biomed.\\ Signal Process.\\ Control",
+  "bib_volume": "68",
+  "bib_issue": "",
+  "bib_pages": "102701",
+  "bib_year": "2021",
+  "bib_doi": "",
+  "status": "NO-TITLE-MATCH",
+  "best_score": 0.53,
+  "closest": "Real-time drowsiness detection using wearable, lightweight EEG sensors"
+ },
+ {
+  "key": "lin2020generalised",
+  "bib_title": "A generalised EEG-based drowsiness prediction framework",
+  "bib_authors": [
+   "Lin",
+   "Chang",
+   "Wang"
+  ],
+  "bib_venue": "IEEE Trans.\\ Neural Syst.\\ Rehabil.\\ Eng.",
+  "bib_volume": "28",
+  "bib_issue": "4",
+  "bib_pages": "937-947",
+  "bib_year": "2020",
+  "bib_doi": "",
+  "status": "NO-TITLE-MATCH",
+  "best_score": 0.58,
+  "closest": "EEG based Drowsiness Prediction Using Machine Learning Approach"
+ },
+ {
+  "key": "barachant2013riemannian",
+  "bib_title": "Classification of covariance matrices using a Riemannian-based kernel for BCI applications",
+  "bib_authors": [
+   "Barachant",
+   "Bonnet",
+   "Congedo",
+   "Jutten"
+  ],
+  "bib_venue": "Neurocomputing",
+  "bib_volume": "112",
+  "bib_issue": "",
+  "bib_pages": "172-178",
+  "bib_year": "2013",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Barachant",
+   "Bonnet",
+   "Congedo",
+   "Jutten"
+  ],
+  "cr_venue": "Neurocomputing",
+  "cr_volume": "112",
+  "cr_issue": "",
+  "cr_pages": "172-178",
+  "cr_year": "2013",
+  "cr_doi": "10.1016/j.neucom.2012.12.039",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "lawhern2018eegnet",
+  "bib_title": "EEGNet: a compact convolutional neural network for EEG-based brain-computer interfaces",
+  "bib_authors": [
+   "Lawhern",
+   "Solon",
+   "Waytowich",
+   "Gordon",
+   "Hung",
+   "Lance"
+  ],
+  "bib_venue": "J.\\ Neural Eng.",
+  "bib_volume": "15",
+  "bib_issue": "5",
+  "bib_pages": "056013",
+  "bib_year": "2018",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 0.99,
+  "cr_authors": [
+   "Lawhern",
+   "Solon",
+   "Waytowich",
+   "Gordon",
+   "Hung",
+   "Lance"
+  ],
+  "cr_venue": "Journal of Neural Engineering",
+  "cr_volume": "15",
+  "cr_issue": "5",
+  "cr_pages": "056013",
+  "cr_year": "2018",
+  "cr_doi": "10.1088/1741-2552/aace8c",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "zheng2017seedvig",
+  "bib_title": "A multimodal approach to estimating vigilance using EEG and forehead EOG",
+  "bib_authors": [
+   "Zheng",
+   "Lu"
+  ],
+  "bib_venue": "J.\\ Neural Eng.",
+  "bib_volume": "14",
+  "bib_issue": "2",
+  "bib_pages": "026017",
+  "bib_year": "2017",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Zheng",
+   "Lu"
+  ],
+  "cr_venue": "Journal of Neural Engineering",
+  "cr_volume": "14",
+  "cr_issue": "2",
+  "cr_pages": "026017",
+  "cr_year": "2017",
+  "cr_doi": "10.1088/1741-2552/aa5a98",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "ledoit2004shrinkage",
+  "bib_title": "A well-conditioned estimator for large-dimensional covariance matrices",
+  "bib_authors": [
+   "Ledoit",
+   "Wolf"
+  ],
+  "bib_venue": "J.\\ Multivar.\\ Anal.",
+  "bib_volume": "88",
+  "bib_issue": "2",
+  "bib_pages": "365-411",
+  "bib_year": "2004",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Ledoit",
+   "Wolf"
+  ],
+  "cr_venue": "Journal of Multivariate Analysis",
+  "cr_volume": "88",
+  "cr_issue": "2",
+  "cr_pages": "365-411",
+  "cr_year": "2004",
+  "cr_doi": "10.1016/s0047-259x(03)00096-4",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "nolte2004imcoh",
+  "bib_title": "Identifying true brain interaction from EEG data using the imaginary part of coherency",
+  "bib_authors": [
+   "Nolte",
+   "Bai",
+   "Wheaton",
+   "Mari",
+   "Vorbach",
+   "Hallett"
+  ],
+  "bib_venue": "Clin.\\ Neurophysiol.",
+  "bib_volume": "115",
+  "bib_issue": "10",
+  "bib_pages": "2292-2307",
+  "bib_year": "2004",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Nolte",
+   "Bai",
+   "Wheaton",
+   "Mari",
+   "Vorbach",
+   "Hallett"
+  ],
+  "cr_venue": "Clinical Neurophysiology",
+  "cr_volume": "115",
+  "cr_issue": "10",
+  "cr_pages": "2292-2307",
+  "cr_year": "2004",
+  "cr_doi": "10.1016/j.clinph.2004.04.029",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "vinck2011wpli",
+  "bib_title": "An improved index of phase-synchronization for electrophysiological data in the presence of volume-conduction, noise and sample-size bias",
+  "bib_authors": [
+   "Vinck",
+   "Oostenveld",
+   "van Wingerden",
+   "Battaglia",
+   "Pennartz"
+  ],
+  "bib_venue": "NeuroImage",
+  "bib_volume": "55",
+  "bib_issue": "4",
+  "bib_pages": "1548-1565",
+  "bib_year": "2011",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Vinck",
+   "Oostenveld",
+   "van Wingerden",
+   "Battaglia",
+   "Pennartz"
+  ],
+  "cr_venue": "NeuroImage",
+  "cr_volume": "55",
+  "cr_issue": "4",
+  "cr_pages": "1548-1565",
+  "cr_year": "2011",
+  "cr_doi": "10.1016/j.neuroimage.2011.01.055",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "lachaux1999plv",
+  "bib_title": "Measuring phase synchrony in brain signals",
+  "bib_authors": [
+   "Lachaux",
+   "Rodriguez",
+   "Martinerie",
+   "Varela"
+  ],
+  "bib_venue": "Hum.\\ Brain Mapp.",
+  "bib_volume": "8",
+  "bib_issue": "4",
+  "bib_pages": "194-208",
+  "bib_year": "1999",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Lachaux",
+   "Rodriguez",
+   "Martinerie",
+   "Varela"
+  ],
+  "cr_venue": "Human Brain Mapping",
+  "cr_volume": "8",
+  "cr_issue": "4",
+  "cr_pages": "194-208",
+  "cr_year": "1999",
+  "cr_doi": "10.1002/(sici)1097-0193(1999)8:4<194::aid-hbm4>3.0.co;2-c",
+  "problems": [
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "id3rsnet2024",
+  "bib_title": "ID3RSNet: cross-subject driver drowsiness detection from raw single-channel EEG with an interpretable residual shrinkage network",
+  "bib_authors": [
+   "Feng",
+   "Guo",
+   "Kwong"
+  ],
+  "bib_venue": "Front.\\ Neurosci.",
+  "bib_volume": "18",
+  "bib_issue": "",
+  "bib_pages": "1508747",
+  "bib_year": "2025",
+  "bib_doi": "10.3389/fnins.2024.1508747",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Feng",
+   "Guo",
+   "Kwong"
+  ],
+  "cr_venue": "Frontiers in Neuroscience",
+  "cr_volume": "18",
+  "cr_issue": "",
+  "cr_pages": "",
+  "cr_year": "2025",
+  "cr_doi": "10.3389/fnins.2024.1508747",
+  "problems": []
+ },
+ {
+  "key": "transformer2025drowsiness",
+  "bib_title": "Real-time driver drowsiness detection using transformer architectures: A novel deep learning approach",
+  "bib_authors": [
+   "Hassan",
+   "Ibrahim",
+   "Gomaa",
+   "Makhlouf",
+   "Hafiz"
+  ],
+  "bib_venue": "Sci.\\ Rep.",
+  "bib_volume": "15",
+  "bib_issue": "1",
+  "bib_pages": "",
+  "bib_year": "2025",
+  "bib_doi": "10.1038/s41598-025-02111-x",
+  "status": "LOOKUP-FAILED: <urlopen error [WinError 10054] An existing connection was forcibly closed by the remote host>"
+ },
+ {
+  "key": "attention2024eeg",
+  "bib_title": "Deep learning-based attention mechanism for automatic drowsiness detection using EEG signal",
+  "bib_authors": [
+   "Divvala",
+   "Mishra"
+  ],
+  "bib_venue": "IEEE Sensors Lett.",
+  "bib_volume": "8",
+  "bib_issue": "3",
+  "bib_pages": "1-4",
+  "bib_year": "2024",
+  "bib_doi": "10.1109/LSENS.2024.3363735",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Divvala",
+   "Mishra"
+  ],
+  "cr_venue": "IEEE Sensors Letters",
+  "cr_volume": "8",
+  "cr_issue": "3",
+  "cr_pages": "1-4",
+  "cr_year": "2024",
+  "cr_doi": "10.1109/lsens.2024.3363735",
+  "problems": []
+ },
+ {
+  "key": "nguyen2023behindear",
+  "bib_title": "Behind-the-ear EEG-based wearable driver drowsiness detection system using embedded tiny neural networks",
+  "bib_authors": [
+   "Nguyen",
+   "Mai",
+   "Lee",
+   "Chung"
+  ],
+  "bib_venue": "IEEE Sensors J.",
+  "bib_volume": "23",
+  "bib_issue": "19",
+  "bib_pages": "23875-23892",
+  "bib_year": "2023",
+  "bib_doi": "10.1109/JSEN.2023.3307766",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Nguyen",
+   "Mai",
+   "Lee",
+   "Chung"
+  ],
+  "cr_venue": "IEEE Sensors Journal",
+  "cr_volume": "23",
+  "cr_issue": "19",
+  "cr_pages": "23875-23892",
+  "cr_year": "2023",
+  "cr_doi": "10.1109/jsen.2023.3307766",
+  "problems": []
+ },
+ {
+  "key": "scalograms2025drowsiness",
+  "bib_title": "A novel hybrid approach for drowsiness detection using EEG scalograms to overcome inter-subject variability",
+  "bib_authors": [
+   "Aslan",
+   "others"
+  ],
+  "bib_venue": "Sensors",
+  "bib_volume": "25",
+  "bib_issue": "17",
+  "bib_pages": "5530",
+  "bib_year": "2025",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Zayed",
+   "Belhadj",
+   "Ben Khalifa",
+   "Valderrama",
+   "Bedoui"
+  ],
+  "cr_venue": "Sensors",
+  "cr_volume": "25",
+  "cr_issue": "17",
+  "cr_pages": "5530",
+  "cr_year": "2025",
+  "cr_doi": "10.3390/s25175530",
+  "problems": [
+   "AUTHOR-MISMATCH",
+   "TRUNCATED-AUTHORS",
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "minimal2024electrodes",
+  "bib_title": "Efficient generalized electroencephalography-based drowsiness detection approach with minimal electrodes",
+  "bib_authors": [
+   "Zayed",
+   "Belhadj",
+   "Ben Khalifa",
+   "Bedoui",
+   "Valderrama"
+  ],
+  "bib_venue": "Sensors",
+  "bib_volume": "24",
+  "bib_issue": "13",
+  "bib_pages": "4256",
+  "bib_year": "2024",
+  "bib_doi": "10.3390/s24134256",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Zayed",
+   "Belhadj",
+   "Ben Khalifa",
+   "Bedoui",
+   "Valderrama"
+  ],
+  "cr_venue": "Sensors",
+  "cr_volume": "24",
+  "cr_issue": "13",
+  "cr_pages": "4256",
+  "cr_year": "2024",
+  "cr_doi": "10.3390/s24134256",
+  "problems": []
+ },
+ {
+  "key": "hybrid2024simulated",
+  "bib_title": "EEG-based driver drowsiness detection based on simulated driving environment",
+  "bib_authors": [
+   "Cui",
+   "others"
+  ],
+  "bib_venue": "Neurocomputing",
+  "bib_volume": "606",
+  "bib_issue": "",
+  "bib_pages": "128350",
+  "bib_year": "2024",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 1.0,
+  "cr_authors": [
+   "Lin",
+   "Huang",
+   "Ma",
+   "Tang"
+  ],
+  "cr_venue": "Neurocomputing",
+  "cr_volume": "616",
+  "cr_issue": "",
+  "cr_pages": "128961",
+  "cr_year": "2025",
+  "cr_doi": "10.1016/j.neucom.2024.128961",
+  "problems": [
+   "AUTHOR-MISMATCH",
+   "TRUNCATED-AUTHORS",
+   "VOLUME-MISMATCH",
+   "YEAR-MISMATCH",
+   "PAGES-MISMATCH",
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "hybridcnn2025",
+  "bib_title": "Enhancing convolutional neural networks in electroencephalogram driver drowsiness detection using human-inspired optimizers",
+  "bib_authors": [
+   "Mihalache",
+   "others"
+  ],
+  "bib_venue": "Sci.\\ Rep.",
+  "bib_volume": "15",
+  "bib_issue": "",
+  "bib_pages": "93765",
+  "bib_year": "2025",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 0.99,
+  "cr_authors": [
+   "Yadav",
+   "Hussain",
+   "Shukla",
+   "B",
+   "Kalia",
+   "Mary",
+   "Hsu",
+   "Mishra",
+   "Saleem",
+   "El-Meligy"
+  ],
+  "cr_venue": "Scientific Reports",
+  "cr_volume": "15",
+  "cr_issue": "1",
+  "cr_pages": "",
+  "cr_year": "2025",
+  "cr_doi": "10.1038/s41598-025-93765-0",
+  "problems": [
+   "AUTHOR-MISMATCH",
+   "TRUNCATED-AUTHORS",
+   "MISSING-ISSUE (crossref has 1)",
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "cnnlstmsafedrive2025",
+  "bib_title": "SAFE-DRIVE-AI: A CNN-LSTM-Attention framework for drowsiness detection",
+  "bib_authors": [
+   "Patel",
+   "others"
+  ],
+  "bib_venue": "Eng.\\ Technol.\\ Appl.\\ Sci.\\ Res.",
+  "bib_volume": "15",
+  "bib_issue": "3",
+  "bib_pages": "12725",
+  "bib_year": "2025",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 0.97,
+  "cr_authors": [
+   "Nasir",
+   "Aljaidi",
+   "Alsarhan",
+   "Alshammari",
+   "Albalawi",
+   "Alshammari",
+   "Aldoghmi"
+  ],
+  "cr_venue": "Engineering, Technology &amp; Applied Science Research",
+  "cr_volume": "15",
+  "cr_issue": "5",
+  "cr_pages": "27594-27600",
+  "cr_year": "2025",
+  "cr_doi": "10.48084/etasr.12725",
+  "problems": [
+   "AUTHOR-MISMATCH",
+   "TRUNCATED-AUTHORS",
+   "PAGES-MISMATCH",
+   "MISSING-DOI"
+  ]
+ },
+ {
+  "key": "eeguldd2025",
+  "bib_title": "UL-DD: A multimodal drowsiness dataset using video, biometric signals, and behavioral data",
+  "bib_authors": [
+   "Ghoddoosian",
+   "others"
+  ],
+  "bib_venue": "arXiv preprint arXiv:2507.13403",
+  "bib_volume": "",
+  "bib_issue": "",
+  "bib_pages": "",
+  "bib_year": "2025",
+  "bib_doi": "",
+  "status": "MATCHED",
+  "match_score": 0.91,
+  "cr_authors": [
+   "Bodaghi",
+   "Hosseini",
+   "Gottumukkala",
+   "Bhupatiraju",
+   "Ahmad",
+   "Gabbouj"
+  ],
+  "cr_venue": "Scientific Data",
+  "cr_volume": "13",
+  "cr_issue": "1",
+  "cr_pages": "",
+  "cr_year": "2026",
+  "cr_doi": "10.1038/s41597-025-06540-1",
+  "problems": [
+   "AUTHOR-MISMATCH",
+   "TRUNCATED-AUTHORS",
+   "VENUE-MISMATCH",
+   "YEAR-MISMATCH",
+   "MISSING-ISSUE (crossref has 1)",
+   "MISSING-DOI"
+  ]
+ }
+]

@@ -94,12 +94,18 @@
   % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
-@inproceedings{gangadharan2020wireless,
-  author    = {Gangadharan, P. and Vinod, A. P.},
+% CORRECTED 2026-07-25 (DOI 10.1016/j.cmpb.2021.106535). Was recorded as an
+% IEEE CRC conference paper, 2020, pp. 34--38. It is a JOURNAL article in
+% Computer Methods and Programs in Biomedicine, 2022. Venue, year, type and
+% pages were all wrong.
+@article{gangadharan2020wireless,
+  author    = {{Gangadharan K}, S. and Vinod, A. P.},
   title     = {Drowsiness detection using portable wireless {EEG}},
-  booktitle = {Proc.\ {IEEE} Int.\ Conf.\ Cybernetics, Robotics and Control ({CRC})},
-  pages     = {34--38},
-  year      = {2020},
+  journal   = {Comput.\ Methods Programs Biomed.},
+  volume    = {214},
+  pages     = {106535},
+  year      = {2022},
+  doi       = {10.1016/j.cmpb.2021.106535},
 }
 
 @article{balam2024review,
@@ -112,21 +118,32 @@
   % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
+% CORRECTED 2026-07-25 (DOI 10.3390/brainsci9120348). Was recorded as Jeong,
+% Yoo and Yun, IEEE Trans. Consumer Electron. 68(3):294--302, 2022. Only the
+% first author was right: the paper is in Brain Sciences, 2019. Currently
+% uncited; keep or drop as the authors prefer.
 @article{jeong2022consumer,
-  author    = {Jeong, D. and Yoo, S. and Yun, J.},
-  title     = {Deep spatio-temporal convolutional bidirectional {LSTM} for drowsiness detection},
-  journal   = {{IEEE} Trans.\ Consumer Electron.},
-  volume    = {68}, number = {3},
-  pages     = {294--302},
-  year      = {2022},
+  author    = {Jeong, J.-H. and Yu, B.-W. and Lee, D.-H. and Lee, S.-W.},
+  title     = {Classification of drowsiness levels based on a deep spatio-temporal convolutional bidirectional {LSTM} network using electroencephalography signals},
+  journal   = {Brain Sci.},
+  volume    = {9}, number = {12},
+  pages     = {348},
+  year      = {2019},
+  doi       = {10.3390/brainsci9120348},
 }
 
-@inproceedings{cheng2021bibm,
-  author    = {Cheng, K. and Chen, G. and Chen, X.},
+% CORRECTED 2026-07-25 (DOI 10.3390/app9235078). Was recorded as Cheng, Chen
+% and Chen, IEEE BIBM 2021, pp. 2741--2747. The real paper is a 2019 Applied
+% Sciences article by Cheng, Young and Lin. Co-authors, venue, year and pages
+% were all wrong.
+@article{cheng2021bibm,
+  author    = {Cheng, E. J. and Young, K.-Y. and Lin, C.-T.},
   title     = {Temporal {EEG} imaging for drowsy driving prediction},
-  booktitle = {Proc.\ {IEEE} Int.\ Conf.\ Bioinformatics and Biomedicine ({BIBM})},
-  pages     = {2741--2747},
-  year      = {2021},
+  journal   = {Appl.\ Sci.},
+  volume    = {9}, number = {23},
+  pages     = {5078},
+  year      = {2019},
+  doi       = {10.3390/app9235078},
 }
 
 @misc{nunez2025patent,
@@ -145,6 +162,12 @@
   year      = {2021},
 }
 
+% !! UNVERIFIABLE 2026-07-25: no work with this title exists in Crossref.
+% !! Searched by title and by topic; nearest hits are unrelated. This entry is
+% !! CITED in the merged Introduction and in Sec. V.C as one of the two prior
+% !! reports of a "5-10 minute advance window" that this paper's contribution 4
+% !! is positioned against. It must be replaced with a real citation or the
+% !! novelty framing must be rewritten. DO NOT SUBMIT AS IS.
 @article{nguyen2021biomed,
   author    = {Nguyen, T. and Ahn, S. and Kim, Y.},
   title     = {{EEG}/{fNIRS} drowsiness prediction using time-series analysis},
@@ -155,6 +178,10 @@
   % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
+% !! UNVERIFIABLE 2026-07-25: no work with this title exists in Crossref.
+% !! Same role as nguyen2021biomed -- cited as prior advance-prediction work in
+% !! the merged Introduction and Sec. V.C. Must be replaced or the claim
+% !! rewritten. DO NOT SUBMIT AS IS.
 @article{lin2020generalised,
   author    = {Lin, C. T. and Chang, C. J. and Wang, J. F.},
   title     = {A generalised {EEG}-based drowsiness prediction framework},
@@ -284,14 +311,16 @@
   doi       = {10.1109/JSEN.2023.3307766},
 }
 
+% CORRECTED 2026-07-25 (DOI 10.3390/s25175530). Was "Aslan, M. and others";
+% the authors are Zayed et al. -- the same group as minimal2024electrodes.
 @article{scalograms2025drowsiness,
-  author    = {Aslan, M. and others},
+  author    = {Zayed, A. and Belhadj, N. and {Ben Khalifa}, K. and Valderrama, C. and Bedoui, M. H.},
   title     = {A novel hybrid approach for drowsiness detection using {EEG} scalograms to overcome inter-subject variability},
   journal   = {Sensors},
   volume    = {25}, number = {17},
   pages     = {5530},
   year      = {2025},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  doi       = {10.3390/s25175530},
 }
 
 % CORRECTED 2026-07-25 against Crossref (DOI 10.3390/s24134256).
@@ -307,42 +336,53 @@
   doi       = {10.3390/s24134256},
 }
 
+% CORRECTED 2026-07-25 (DOI 10.1016/j.neucom.2024.128961). Was "Cui, Y. and
+% others", vol. 606, art. 128350, 2024. Authors, volume, article number and
+% year were all wrong.
 @article{hybrid2024simulated,
-  author    = {Cui, Y. and others},
+  author    = {Lin, X. and Huang, Z. and Ma, W. and Tang, W.},
   title     = {{EEG}-based driver drowsiness detection based on simulated driving environment},
   journal   = {Neurocomputing},
-  volume    = {606},
-  pages     = {128350},
-  year      = {2024},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
-  % FIXME-ISSUE: no issue number; other @article entries carry one.
+  volume    = {616},
+  pages     = {128961},
+  year      = {2025},
+  doi       = {10.1016/j.neucom.2024.128961},
 }
 
+% CORRECTED 2026-07-25 (DOI 10.1038/s41598-025-93765-0). Was "Mihalache, S.
+% and others" with pages {93765}. The authors are Yadav et al. (10 authors, so
+% IEEE style takes the first followed by et al.), and "93765" was a fragment of
+% the DOI suffix, not a page number.
 @article{hybridcnn2025,
-  author    = {Mihalache, S. and others},
+  author    = {Yadav, A. and Hussain, R. and Shukla, M. and Jayaprakash, B. and Kalia, R. and Mary, S. P. and others},
   title     = {Enhancing convolutional neural networks in electroencephalogram driver drowsiness detection using human-inspired optimizers},
   journal   = {Sci.\ Rep.},
-  volume    = {15},
-  pages     = {93765},
+  volume    = {15}, number = {1},
   year      = {2025},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
-  % FIXME-ISSUE: no issue number; other @article entries carry one.
+  doi       = {10.1038/s41598-025-93765-0},
 }
 
+% CORRECTED 2026-07-25 (DOI 10.48084/etasr.12725). Was "Patel, R. and others"
+% with pages {12725}. The authors are Nasir et al.; "12725" was a fragment of
+% the DOI suffix. Real pages are 27594--27600, issue 5.
 @article{cnnlstmsafedrive2025,
-  author    = {Patel, R. and others},
+  author    = {Nasir, O. and Aljaidi, M. and Alsarhan, A. and Alshammari, S. A. and Albalawi, N. S. and Alshammari, N. H. and others},
   title     = {{SAFE-DRIVE-AI}: A {CNN--LSTM--Attention} framework for drowsiness detection},
   journal   = {Eng.\ Technol.\ Appl.\ Sci.\ Res.},
-  volume    = {15}, number = {3},
-  pages     = {12725},
+  volume    = {15}, number = {5},
+  pages     = {27594--27600},
   year      = {2025},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  doi       = {10.48084/etasr.12725},
 }
 
-@inproceedings{eeguldd2025,
-  author    = {Ghoddoosian, R. and others},
-  title     = {{UL-DD}: A multimodal drowsiness dataset using video, biometric signals, and behavioral data},
-  booktitle = {arXiv preprint arXiv:2507.13403},
-  year      = {2025},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+% CORRECTED 2026-07-25 (DOI 10.1038/s41597-025-06540-1). Was "Ghoddoosian, R.
+% and others", arXiv:2507.13403, 2025. The authors are Bodaghi et al. and the
+% paper is published in Scientific Data (2026), not an arXiv preprint.
+@article{eeguldd2025,
+  author    = {Bodaghi, M. and Hosseini, M. and Gottumukkala, R. and Bhupatiraju, R. T. and Ahmad, I. and Gabbouj, M.},
+  title     = {A multimodal drowsiness dataset using video, biometric, and behavioral data},
+  journal   = {Sci.\ Data},
+  volume    = {13}, number = {1},
+  year      = {2026},
+  doi       = {10.1038/s41597-025-06540-1},
 }
