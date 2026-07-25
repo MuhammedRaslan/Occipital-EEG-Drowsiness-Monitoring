@@ -51,15 +51,20 @@
   year      = {2021},
 }
 
+% CORRECTED 2026-07-25 against Crossref (DOI 10.1109/JSEN.2018.2807245).
+% The entry previously read "Chowdhury, M. E. H. and others", journal
+% {IEEE} Access, vol. 6, pp. 22235--22258. All four were wrong: the first
+% author is Anuva Chowdhury (not M. E. H.), and the paper is in IEEE SENSORS
+% JOURNAL, not IEEE Access. Note this means the manuscript already cites one
+% IEEE Sensors Journal paper once the venue is corrected.
 @article{chowdhury2018access,
-  author    = {Chowdhury, M. E. H. and others},
+  author    = {Chowdhury, A. and Shankaran, R. and Kavakli, M. and Haque, M. M.},
   title     = {Sensor applications and physiological features in drivers' drowsiness detection: A review},
-  journal   = {{IEEE} Access},
-  volume    = {6},
-  pages     = {22235--22258},
+  journal   = {{IEEE} Sensors J.},
+  volume    = {18}, number = {8},
+  pages     = {3055--3067},
   year      = {2018},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
-  % FIXME-ISSUE: no issue number; other @article entries carry one.
+  doi       = {10.1109/JSEN.2018.2807245},
 }
 
 @article{jap2009eeg,
@@ -225,37 +230,58 @@
 
 % --- Recent (2024-2025) papers ---
 
+% CORRECTED 2026-07-25 against Crossref (DOI 10.3389/fnins.2024.1508747).
+% Previously "Cui, J. and others" -- the authors are Feng, Guo and Kwong.
 @article{id3rsnet2024,
-  author    = {Cui, J. and others},
+  author    = {Feng, X. and Guo, Z. and Kwong, S.},
   title     = {{ID3RSNet}: cross-subject driver drowsiness detection from raw single-channel {EEG} with an interpretable residual shrinkage network},
   journal   = {Front.\ Neurosci.},
   volume    = {18},
   pages     = {1508747},
-  year      = {2024},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
-  % FIXME-ISSUE: no issue number; other @article entries carry one.
+  year      = {2025},
+  doi       = {10.3389/fnins.2024.1508747},
 }
 
+% CORRECTED 2026-07-25 against Crossref (DOI 10.1038/s41598-025-02111-x).
+% Previously "Sciaraffa, N. and others" with pages {2111}; the authors are
+% Hassan et al., and "2111" was not a page number -- it is a fragment of the
+% DOI suffix (s41598-025-02111-x). Article number pending verification.
 @article{transformer2025drowsiness,
-  author    = {Sciaraffa, N. and others},
+  author    = {Hassan, O. F. and Ibrahim, A. F. and Gomaa, A. and Makhlouf, M. A. and Hafiz, B.},
   title     = {Real-time driver drowsiness detection using transformer architectures: A novel deep learning approach},
   journal   = {Sci.\ Rep.},
-  volume    = {15},
-  pages     = {2111},
+  volume    = {15}, number = {1},
   year      = {2025},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
-  % FIXME-ISSUE: no issue number; other @article entries carry one.
+  doi       = {10.1038/s41598-025-02111-x},
 }
 
+% CORRECTED 2026-07-25 against Crossref (DOI 10.1109/LSENS.2024.3363735).
+% Previously "Mehmood, R. M. and others", {IEEE} Sensors J., vol. 24,
+% pp. 5614--5625. The authors are Divvala and Mishra, and the venue is IEEE
+% SENSORS LETTERS -- a different publication from IEEE Sensors Journal. Before
+% this correction the manuscript cited zero IEEE Sensors Journal papers while
+% appearing to cite one.
 @article{attention2024eeg,
-  author    = {Mehmood, R. M. and others},
+  author    = {Divvala, C. and Mishra, M.},
   title     = {Deep learning-based attention mechanism for automatic drowsiness detection using {EEG} signal},
-  journal   = {{IEEE} Sensors J.},
-  volume    = {24},
-  pages     = {5614--5625},
+  journal   = {{IEEE} Sensors Lett.},
+  volume    = {8}, number = {3},
+  pages     = {1--4},
   year      = {2024},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
-  % FIXME-ISSUE: no issue number; other @article entries carry one.
+  doi       = {10.1109/LSENS.2024.3363735},
+}
+
+% ADDED 2026-07-25 for item 13 (second IEEE Sensors Journal citation) and
+% item 5 (form-factor coverage). Verified against the publisher record;
+% DOI 10.1109/JSEN.2023.3307766.
+@article{nguyen2023behindear,
+  author    = {Nguyen, H. T. and Mai, N. D. and Lee, B. G. and Chung, W. Y.},
+  title     = {Behind-the-ear {EEG}-based wearable driver drowsiness detection system using embedded tiny neural networks},
+  journal   = {{IEEE} Sensors J.},
+  volume    = {23}, number = {19},
+  pages     = {23875--23892},
+  year      = {2023},
+  doi       = {10.1109/JSEN.2023.3307766},
 }
 
 @article{scalograms2025drowsiness,
@@ -268,14 +294,17 @@
   % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
 }
 
+% CORRECTED 2026-07-25 against Crossref (DOI 10.3390/s24134256).
+% Previously "Hultman, M. and others"; the authors are Zayed et al. The
+% published title spells out "Electroencephalography-Based", not "EEG-Based".
 @article{minimal2024electrodes,
-  author    = {Hultman, M. and others},
-  title     = {Efficient generalized {EEG}-based drowsiness detection approach with minimal electrodes},
+  author    = {Zayed, A. and Belhadj, N. and {Ben Khalifa}, K. and Bedoui, M. H. and Valderrama, C.},
+  title     = {Efficient generalized electroencephalography-based drowsiness detection approach with minimal electrodes},
   journal   = {Sensors},
   volume    = {24}, number = {13},
   pages     = {4256},
   year      = {2024},
-  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  doi       = {10.3390/s24134256},
 }
 
 @article{hybrid2024simulated,
