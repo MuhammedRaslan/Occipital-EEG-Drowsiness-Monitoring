@@ -1,12 +1,28 @@
 % References for IEEE Sensors Journal submission
-% Author: Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, A. R. Pal
-% Title:  Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG
+% Authors: M. R. Thalassery, S. S. Ali, A. R. Pal, A. Chemori, G. Murali Mohan
+% Title:   Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG
+%
+% Item 3 (A. Chemori review, 2026-07-25): style homogenised for IEEEtran.
+% NOTE: \bibliographystyle{IEEEtran} was already correct — the inconsistency
+% was in the DATA, not the style file. Normalised here without lookups:
+%   * journal names unified (Sensors vs "Sensors (MDPI)")
+%   * {IEEE} braced consistently across all journal names
+%   * abbreviation spacing unified on "\ " after each abbreviated word
+%   * who2023road retyped @article -> @techreport (WHO is not a journal)
+%   * seeingmachines2024 institution corrected (was "Annual Report")
+%   * stray note field removed from zheng2017seedvig (it printed in the ref)
+% STILL OUTSTANDING (requires verification against the source papers — do not
+% guess these): full author lists for the 10 entries marked FIXME-AUTHORS,
+% issue numbers for the 10 entries marked FIXME-ISSUE, and DOIs throughout.
+% who2023road no longer counts toward the issue-number total now that it is a
+% @techreport.
 
-@article{who2023road,
-  author    = {{World Health Organization}},
-  title     = {Global Status Report on Road Safety 2023},
-  journal   = {WHO Geneva},
-  year      = {2023},
+@techreport{who2023road,
+  author      = {{World Health Organization}},
+  title       = {Global Status Report on Road Safety 2023},
+  institution = {World Health Organization},
+  address     = {Geneva, Switzerland},
+  year        = {2023},
 }
 
 @inproceedings{drozy2016,
@@ -38,16 +54,18 @@
 @article{chowdhury2018access,
   author    = {Chowdhury, M. E. H. and others},
   title     = {Sensor applications and physiological features in drivers' drowsiness detection: A review},
-  journal   = {IEEE Access},
+  journal   = {{IEEE} Access},
   volume    = {6},
   pages     = {22235--22258},
   year      = {2018},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{jap2009eeg,
   author    = {Jap, B. T. and Lal, S. and Fischer, P. and Bekiaris, E.},
   title     = {Using {EEG} spectral components to assess algorithms for detecting fatigue},
-  journal   = {Expert Syst. Appl.},
+  journal   = {Expert Syst.\ Appl.},
   volume    = {36}, number = {2},
   pages     = {2352--2359},
   year      = {2009},
@@ -56,17 +74,19 @@
 @techreport{seeingmachines2024,
   author    = {{Seeing Machines Ltd.}},
   title     = {{DMS} market review and technology landscape},
-  institution = {Annual Report},
+  institution = {Seeing Machines Ltd.},
+  type        = {Annual Report},
   year      = {2024},
 }
 
 @article{larocco2020headsets,
   author    = {LaRocco, J. and Le, M. D. and Bhatt, D. G.},
   title     = {A systematic review of available low-cost {EEG} headsets used for drowsiness detection},
-  journal   = {Front. Neuroinform.},
+  journal   = {Front.\ Neuroinform.},
   volume    = {14},
   pages     = {553352},
   year      = {2020},
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @inproceedings{gangadharan2020wireless,
@@ -84,6 +104,7 @@
   volume    = {25},
   pages     = {15210--15228},
   year      = {2024},
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{jeong2022consumer,
@@ -126,6 +147,7 @@
   volume    = {68},
   pages     = {102701},
   year      = {2021},
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{lin2020generalised,
@@ -144,6 +166,7 @@
   volume    = {112},
   pages     = {172--178},
   year      = {2013},
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{lawhern2018eegnet,
@@ -162,7 +185,6 @@
   volume    = {14}, number = {2},
   pages     = {026017},
   year      = {2017},
-  note      = {{SEED-VIG} dataset},
 }
 
 @article{ledoit2004shrinkage,
@@ -210,6 +232,8 @@
   volume    = {18},
   pages     = {1508747},
   year      = {2024},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{transformer2025drowsiness,
@@ -219,6 +243,8 @@
   volume    = {15},
   pages     = {2111},
   year      = {2025},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{attention2024eeg,
@@ -228,24 +254,28 @@
   volume    = {24},
   pages     = {5614--5625},
   year      = {2024},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{scalograms2025drowsiness,
   author    = {Aslan, M. and others},
   title     = {A novel hybrid approach for drowsiness detection using {EEG} scalograms to overcome inter-subject variability},
-  journal   = {Sensors ({MDPI})},
+  journal   = {Sensors},
   volume    = {25}, number = {17},
   pages     = {5530},
   year      = {2025},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
 }
 
 @article{minimal2024electrodes,
   author    = {Hultman, M. and others},
   title     = {Efficient generalized {EEG}-based drowsiness detection approach with minimal electrodes},
-  journal   = {Sensors ({MDPI})},
+  journal   = {Sensors},
   volume    = {24}, number = {13},
   pages     = {4256},
   year      = {2024},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
 }
 
 @article{hybrid2024simulated,
@@ -255,6 +285,8 @@
   volume    = {606},
   pages     = {128350},
   year      = {2024},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{hybridcnn2025,
@@ -264,6 +296,8 @@
   volume    = {15},
   pages     = {93765},
   year      = {2025},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
 }
 
 @article{cnnlstmsafedrive2025,
@@ -273,6 +307,7 @@
   volume    = {15}, number = {3},
   pages     = {12725},
   year      = {2025},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
 }
 
 @inproceedings{eeguldd2025,
@@ -280,4 +315,5 @@
   title     = {{UL-DD}: A multimodal drowsiness dataset using video, biometric signals, and behavioral data},
   booktitle = {arXiv preprint arXiv:2507.13403},
   year      = {2025},
+  % FIXME-AUTHORS: 'and others' forces 'et al.'; IEEE lists all authors up to six. Replace with the full author list from the paper.
 }
