@@ -86,7 +86,7 @@ box(2, 4, 96, 10,
 
 # ── Title ──────────────────────────────────────────────────────────────
 ax.text(50, 92,
-        "Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG",
+        "Inter-Hemispheric Occipital Coherence for Subject-Independent Driver Drowsiness Monitoring and Advance Prediction",
         ha="center", va="center", fontsize=13, weight="bold", color=C_TXT)
 ax.text(50, 86,
         "Lean LDA + causal smoothing + per-driver calibration  →  "

@@ -1,11 +1,11 @@
 # Submission package — IEEE Sensors Journal
 
-**Manuscript:** Pro-Active Driver Drowsiness Monitoring Using Two-Channel Occipital EEG
+**Manuscript:** Inter-Hemispheric Occipital Coherence for Subject-Independent Driver Drowsiness Monitoring and Advance Prediction
 **Authors:** Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, Abhishek Rudra Pal, Ahmed Chemori, G. Murali Mohan
 **Affiliations:** School of Mechanical Engineering (SMEC), VIT Chennai, India · LIRMM, Université de Montpellier, CNRS, UMR 5506, France
 **Corresponding author:** Dr. Ahmed Chemori (Ahmed.Chemori@lirmm.fr)
 **Target venue:** IEEE Sensors Journal
-**Status:** Draft v1 — internal review pending before portal upload
+**Status:** Draft v4 — A. Chemori review of 2026-07-25 addressed; artifacts in `../revision/`
 
 This directory contains everything needed to submit the manuscript to the IEEE Sensors Journal ScholarOne portal.
 
@@ -20,12 +20,12 @@ submission/
 ├── SUBMISSION_MANIFEST.md       # Single-page upload guide — open this beside the browser
 ├── README.md                    # This file
 ├── main.tex                     # IEEEtran manuscript source (compiles to main.pdf)
-├── references.bib               # BibTeX, 32 entries (~30% 2024-2025)
+├── references.bib               # BibTeX, 38 entries / 36 cited (Crossref-verified)
 ├── cover_letter.md              # Editor cover letter
 ├── declarations.md              # CRediT, COI, funding, data/code, ethics, AI disclosure
 ├── suggested_reviewers.md       # 6 suggested + 1 exclusion
 ├── graphical_abstract.py        # Source for figures/graphical_abstract.png
-├── figures/                     # Manuscript figures (4 PNGs at 200-240 dpi)
+├── figures/                     # Manuscript figures (6 PNGs at 200-300 dpi)
 │   ├── graphical_abstract.png
 │   ├── fig10_v17_roc.png
 │   ├── fig11_lead_vs_severity.png
