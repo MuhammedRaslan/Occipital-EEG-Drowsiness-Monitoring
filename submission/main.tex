@@ -61,25 +61,29 @@
 \definecolor{addyellow}{RGB}{255,245,150}
 \definecolor{delred}{RGB}{190,30,30}
 
+% \DeclareRobustCommand (not \newcommand) is required: \hl and \sout are
+% fragile, and these macros appear inside \title{} and \section{}, which are
+% moving arguments written to the .aux/.toc. A fragile command there fails with
+% "Argument of \@sect has an extra }". Robust definitions survive the write.
 \makeatletter
 \def\@revclean{clean}
 \def\@revtrack{track}
 \ifx\revmode\@revclean
-  \newcommand{\add}[1]{#1}                                   % additions -> plain text
-  \newcommand{\del}[1]{}                                     % deletions -> removed entirely
+  \DeclareRobustCommand{\add}[1]{#1}                         % additions -> plain text
+  \DeclareRobustCommand{\del}[1]{}                           % deletions -> removed entirely
 \else
   \sethlcolor{addyellow}
-  \newcommand{\add}[1]{\hl{#1}}
+  \DeclareRobustCommand{\add}[1]{\hl{#1}}
   \ifx\revmode\@revtrack
-    \newcommand{\del}[1]{{\color{delred}\sout{#1}}}
+    \DeclareRobustCommand{\del}[1]{{\color{delred}\sout{#1}}}
   \else
-    \newcommand{\del}[1]{}                                   % review mode: additions only
+    \DeclareRobustCommand{\del}[1]{}                         % review mode: additions only
   \fi
 \fi
 \makeatother
 
 % Replaced text: \chg{old}{new}
-\newcommand{\chg}[2]{\del{#1}\add{#2}}
+\DeclareRobustCommand{\chg}[2]{\del{#1}\add{#2}}
 
 % NOTE on usage: soul's \hl cannot re-typeset inline math or \cite, so inside
 % \add{} / \del{} / \chg{} any such content must be wrapped in \mbox{}:
