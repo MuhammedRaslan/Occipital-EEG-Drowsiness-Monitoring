@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-25T20:48:01.119584",
+  "timestamp": "2026-07-25T22:29:15.127348",
   "methodology": "Full ROC of the v11 lean LDA + v17 causal EMA (tau=600 s, continuous per-subject) on DROZY LOSO. Operating points at three reviewer-facing FPR budgets (5%, 10%, 20%) plus the F1-max point and the default thr=0.5.",
   "tau_smooth_sec": 600,
   "auc_roc_smoothed": 76.62,

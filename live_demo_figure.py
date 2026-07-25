@@ -172,14 +172,34 @@ def plot_panel(ax, s, a, title_prefix):
     ax.plot(t_min, a["p_smooth"], "-", color="#1f3b6e", lw=1.6, label=f"p(drowsy) EMA tau={V20_TAU}s")
     ax.axhline(a["thr_eeg"], color="#c75f1e", ls="--", lw=1.0,
                label=f"per-subj thr = {a['thr_eeg']:.2f}")
+    # Onset labels. Both were previously drawn at y = 1.02 in axis coordinates,
+    # i.e. in the same band as the panel title, with no vertical stagger. That
+    # produced two collisions in the compiled PDF: each label overprinted the
+    # title, and when the two onsets fell close together in time they also
+    # overprinted each other ("PERCLOS onset" / "EEG onset" merging into an
+    # unreadable run). They are now placed inside the axes, staggered in y so
+    # they cannot touch each other, boxed so they stay legible over the traces,
+    # and horizontally aligned away from whichever axis edge they sit near.
+    def _onset_label(t_sec, text, colour, y, ls, lw):
+        x = t_sec / 60.0
+        ax.axvline(x, color=colour, lw=lw, ls=ls, alpha=0.9)
+        span = t_min[-1] - t_min[0]
+        frac = (x - t_min[0]) / span if span > 0 else 0.5
+        if frac < 0.12:
+            ha, dx = "left", 0.010 * span
+        elif frac > 0.88:
+            ha, dx = "right", -0.010 * span
+        else:
+            ha, dx = "center", 0.0
+        ax.text(x + dx, y, text, color=colour, fontsize=8, ha=ha, va="top",
+                transform=ax.get_xaxis_transform(), zorder=6,
+                bbox=dict(boxstyle="round,pad=0.18", facecolor="white",
+                          edgecolor="none", alpha=0.82))
+
     if a["eeg_t"] is not None:
-        ax.axvline(a["eeg_t"]/60.0, color="#c75f1e", lw=1.4, alpha=0.9)
-        ax.text(a["eeg_t"]/60.0, 1.02, "EEG onset", color="#c75f1e",
-                fontsize=8, ha="center", va="bottom", transform=ax.get_xaxis_transform())
+        _onset_label(a["eeg_t"], "EEG onset", "#c75f1e", 0.97, "-", 1.4)
     if a["behav_t"] is not None:
-        ax.axvline(a["behav_t"]/60.0, color="#a02a2a", lw=1.4, ls=":")
-        ax.text(a["behav_t"]/60.0, 1.02, "PERCLOS onset", color="#a02a2a",
-                fontsize=8, ha="center", va="bottom", transform=ax.get_xaxis_transform())
+        _onset_label(a["behav_t"], "PERCLOS onset", "#a02a2a", 0.86, ":", 1.4)
     ax.set_ylim(0, 1.0)
     ax.set_ylabel("p(drowsy)")
     ax.grid(alpha=0.25)

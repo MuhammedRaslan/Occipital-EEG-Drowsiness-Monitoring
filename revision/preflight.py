@@ -201,7 +201,7 @@ checks = [
  (6,  "III.E lead-in added",       "The pipeline is assessed on two tasks" in tex),
  (7,  "sections renamed",          "Data, Signal Processing, and Evaluation Design" in tex),
  (8,  "Fig 2 legend fixed",        "upper left" in io.open(os.path.join(ROOT, "reviewer_revision_analysis.py"), encoding="utf-8").read()),
- (9,  "Fig 3 + script fixed",      "figsize=(9.6, 7.5)" in io.open(os.path.join(ROOT, "v17_roc.py"), encoding="utf-8").read()),
+ (9,  "Fig 3 + script fixed",      "figsize=(7.6, 6.0)" in io.open(os.path.join(ROOT, "v17_roc.py"), encoding="utf-8").read()),
  (10, "future work added",         "textbf{Future work.}" in tex),
  (11, "IEEE Sensors keyword gone", "IEEE Sensors.\n\\end{IEEEkeywords}" not in tex),
  (12, "results restructured",      "Causal Smoothing and Operating-Point Selection" in tex),

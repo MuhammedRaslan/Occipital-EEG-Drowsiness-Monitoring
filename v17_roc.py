@@ -175,37 +175,38 @@ def main():
     # submission/figures/. Do not change these without regenerating the PNG —
     # a previous hand-edit of the image left this script emitting a different
     # size and a broken title, so reproduce.py silently undid the fix.
-    fig, ax = plt.subplots(figsize=(9.6, 7.5))
+    # figsize chosen so that at width=0.98\columnwidth the on-page text size
+    # matches Figs 1 and 2 (~85% scale). An earlier 9.6x7.5 version scaled to
+    # 57-66% and its labels came out visibly smaller than the other figures.
+    fig, ax = plt.subplots(figsize=(7.6, 6.0))
     ax.plot(fpr, tpr, "-", lw=2.6, color="#1f3b6e", zorder=3,
-            label=f"v17 ROC (AUC = {auc:.2f}%)")
+            label=f"v17 ROC  (AUC = {auc:.2f}%)")
     ax.plot([0, 1], [0, 1], color="0.45", lw=1.4, linestyle=(0, (6, 4)),
             zorder=2, label="chance")
-    # The three operating points cluster in the upper-left, so their labels are
-    # parked in the empty mid-right of the axes and joined by leader lines.
-    # Fixed data coordinates (not offsets) keep them from colliding with each
-    # other, which offset placement did not.
+    # The three operating points sit close together on the upper-left knee. An
+    # earlier revision annotated each one in the empty mid-right with leader
+    # lines; the lines then crossed each other's labels, trading one overlap for
+    # another. The markers now carry no on-plot text and their statistics go in
+    # the legend, which sits in the large empty lower-right region where it
+    # cannot touch the curve, the diagonal, or any other label.
     labels = {
-        "high_precision_FPR5":  ("o", "#1a7f3d", "high-precision (FPR $\\leq$ 5%)",  (0.40, 0.52)),
-        "balanced_FPR10":       ("s", "#c75f1e", "balanced (FPR $\\leq$ 10%)",       (0.40, 0.40)),
-        "high_recall_FPR20":    ("D", "#a02a2a", "high-recall (FPR $\\leq$ 20%)",    (0.40, 0.28)),
+        "high_precision_FPR5": ("o", "#1a7f3d", "high-precision  (FPR $\\leq$ 5%)"),
+        "balanced_FPR10":      ("s", "#c75f1e", "balanced  (FPR $\\leq$ 10%)"),
+        "high_recall_FPR20":   ("D", "#a02a2a", "high-recall  (FPR $\\leq$ 20%)"),
     }
-    for name, (mk, col, lbl, xytext) in labels.items():
+    for name, (mk, col, lbl) in labels.items():
         m = ops[name]
-        ax.plot(m["fpr"], m["tpr"], mk, color=col, ms=11, mec="k", mew=0.8, zorder=4)
-        ax.annotate(f"{lbl}\nTPR = {m['tpr']:.2f},  F1 = {m['f1_score']:.1f}%",
-                    xy=(m["fpr"], m["tpr"]), xytext=xytext,
-                    textcoords="data", fontsize=10, color=col,
-                    ha="left", va="center", linespacing=1.4,
-                    arrowprops=dict(arrowstyle="-", color=col, lw=0.9,
-                                    shrinkA=0, shrinkB=6,
-                                    connectionstyle="arc3,rad=-0.12"))
+        ax.plot(m["fpr"], m["tpr"], mk, color=col, ms=10, mec="k", mew=0.8,
+                zorder=4, linestyle="none",
+                label=f"{lbl}:  TPR = {m['tpr']:.2f},  F1 = {m['f1_score']:.1f}%")
     ax.set_xlabel("False-positive rate (awake misclassified as drowsy)")
     ax.set_ylabel("True-positive rate (drowsy detected)")
     ax.set_title("Monitoring-track ROC: lean LDA + causal EMA ($\\tau$ = 600 s)\n"
-                 "DROZY LOSO, 10 subjects, 14,498 epochs", fontsize=12, pad=10)
+                 "DROZY LOSO, 10 subjects, 14,498 epochs", fontsize=11, pad=8)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1.02)
     ax.grid(alpha=0.25)
-    ax.legend(loc="lower right", fontsize=10, framealpha=0.95, edgecolor="0.8")
+    ax.legend(loc="lower right", fontsize=8.5, framealpha=0.96,
+              edgecolor="0.75", borderpad=0.6, labelspacing=0.5)
     fig.tight_layout()
     fig.savefig(FIG_PATH, dpi=200)
     plt.close(fig)
