@@ -64,3 +64,4 @@ Thumbs.db
 # Claude Code workspace & Streamlit local state (not source)
 .claude/
 .streamlit/
+revision/*.zip
