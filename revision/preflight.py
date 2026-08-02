@@ -194,7 +194,7 @@ ck(len(figs) == len(set(figs)), "no figure included twice", "duplicate includegr
 sec("6. TRACEABILITY - CHEMORI'S 15 ITEMS")
 checks = [
  (1,  "title reworked",            "Inter-Hemispheric Occipital Coherence" in tex),
- (2,  "Chemori added + corresponding", "Chemori" in tex and "Corresponding author: A.~Chemori" in tex),
+ (2,  "Chemori added; Pal still corresponding", "Chemori" in tex and "Corresponding author: A.~R.~Pal" in tex),
  (3,  "bib normalised",            "Item 3 (A. Chemori review" in bib),
  (4,  "I+II merged",               "\\section{Related Work}" not in tex and "Prior Work on Single- and Few-Channel" in tex),
  (5,  "related work broadened",    len(cited) >= 35),

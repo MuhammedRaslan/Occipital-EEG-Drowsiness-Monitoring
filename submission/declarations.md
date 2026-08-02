@@ -10,9 +10,9 @@ This file consolidates the four declaration paragraphs the portal will request. 
 
 **S. S. Ali (second author):** software (feature extraction, live demonstrator), validation, writing — review & editing.
 
-**A. R. Pal (third author):** supervision, conceptualization (driver-monitoring framing), methodology guidance, writing — review & editing, project administration.
+**A. R. Pal (third author, corresponding author):** supervision, conceptualization (driver-monitoring framing), methodology guidance, writing — review & editing, project administration.
 
-**A. Chemori (corresponding author, fourth):** [TODO — CRediT statement to be supplied by Dr. Chemori. Expected to include supervision, methodology guidance, and writing — review & editing, based on his pre-submission review of 2026-07-25; confirm with him before submission.]
+**A. Chemori (fourth author):** [TODO — CRediT statement to be supplied by Dr. Chemori. Expected to include supervision, methodology guidance, and writing — review & editing, based on his pre-submission review of 2026-07-25; confirm with him before submission.]
 
 **G. Murali Mohan (fifth author):** supervision.
 

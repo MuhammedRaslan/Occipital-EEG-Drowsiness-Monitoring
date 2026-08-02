@@ -30,7 +30,7 @@ This is the single-page reference for the ScholarOne portal upload session. Prin
 - [ ] Replace `[TODO]` in `cover_letter.md` with **five** real ORCIDs and the submission date.
 - [ ] Obtain A. Chemori's CRediT contribution statement (`main.tex` Author Contributions, `declarations.md` §1).
 - [ ] Confirm the funding statement with A. Chemori — CNRS/LIRMM may require an acknowledgement (`main.tex` Conflicts, `cover_letter.md`, `declarations.md` §3).
-- [ ] Corresponding author is now **A. Chemori** (Ahmed.Chemori@lirmm.fr) — the ScholarOne account and all editor correspondence should be his, not A. R. Pal's.
+- [ ] Corresponding author remains **A. R. Pal** (abhishek.rudrapal@vit.ac.in) — the ScholarOne account and all editor correspondence stay with him. A. Chemori joins as fourth author only.
 - [ ] Make `https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG` public.
 - [ ] `git tag -a paper-submission-v1 -m "IEEE Sensors v1"; git push origin paper-submission-v1`.
 - [ ] Mint Zenodo DOI from the tag (zenodo.org → enable repo → create release).

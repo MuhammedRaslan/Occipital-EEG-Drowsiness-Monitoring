@@ -77,9 +77,9 @@ The old title named the sensor and the task but none of the three things that ma
 
 ### 2. Add me to the list of authors; I am an IEEE Senior Member
 
-**Done.** You are the fourth author and the **corresponding author**, with `Senior Member, IEEE`, affiliated to LIRMM, Université de Montpellier, CNRS, UMR 5506. The manuscript is now an India–France collaboration, and the cover letter says so.
+**Done.** You are the fourth author, with `Senior Member, IEEE`, affiliated to LIRMM, Université de Montpellier, CNRS, UMR 5506. Dr. Pal remains the corresponding author, as in the reviewed draft. The manuscript is now an India–France collaboration, and the cover letter says so.
 
-Propagated to `main.tex` (author block, affiliation `\thanks`, Author Contributions), `cover_letter.md` (header, corresponding author, signature), `declarations.md` (CRediT, funding), `SUBMISSION_MANIFEST.md` and `README.md`.
+Propagated to `main.tex` (author block, affiliation `\thanks`, Author Contributions), `cover_letter.md`, `declarations.md` (CRediT, funding), `SUBMISSION_MANIFEST.md` and `README.md`.
 
 While making this change we found that **Dr. Pal's `Member, IEEE` grade was incorrect** — he is not an IEEE member, and the grade had appeared in every draft since April. It has been removed. No grade is claimed for Dr. G. Murali Mohan either. Yours is now the only membership grade in the paper.
 

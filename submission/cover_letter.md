@@ -6,7 +6,7 @@
 - School of Mechanical Engineering (SMEC), Vellore Institute of Technology (VIT) Chennai, Vandalur–Kelambakkam Road, Chennai 600127, Tamil Nadu, India
 - LIRMM, Université de Montpellier, CNRS, UMR 5506, 161 rue Ada, 34095 Montpellier Cedex 5, France
 
-**Corresponding author:** Dr. Ahmed Chemori (Ahmed.Chemori@lirmm.fr)
+**Corresponding author:** Dr. Abhishek Rudra Pal (abhishek.rudrapal@vit.ac.in)
 **Date:** [TODO insert at submission]
 
 ---
@@ -33,15 +33,15 @@ We have suggested reviewers and excluded conflicts in the submission portal acco
 
 Sincerely,
 
-Dr. Ahmed Chemori, Senior Member, IEEE
-CNRS Researcher HDR
-LIRMM, Université de Montpellier, CNRS, UMR 5506
-161 rue Ada, 34095 Montpellier Cedex 5, France
+Dr. Abhishek Rudra Pal
+School of Mechanical Engineering (SMEC)
+Vellore Institute of Technology (VIT) Chennai
+Vandalur–Kelambakkam Road, Chennai 600127, Tamil Nadu, India
 ORCID: [TODO]
-Email: Ahmed.Chemori@lirmm.fr
+Email: abhishek.rudrapal@vit.ac.in
 
 On behalf of co-authors:
 Muhammed Raslan Thalassery (ORCID: [TODO])
 Sulaiman Shiyas Ali (ORCID: [TODO])
-Abhishek Rudra Pal (ORCID: [TODO])
+Ahmed Chemori, Senior Member, IEEE (ORCID: [TODO])
 G. Murali Mohan (ORCID: [TODO])

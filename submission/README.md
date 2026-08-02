@@ -3,7 +3,7 @@
 **Manuscript:** Inter-Hemispheric Occipital Coherence for Subject-Independent Driver Drowsiness Monitoring and Advance Prediction
 **Authors:** Muhammed Raslan Thalassery, Sulaiman Shiyas Ali, Abhishek Rudra Pal, Ahmed Chemori, G. Murali Mohan
 **Affiliations:** School of Mechanical Engineering (SMEC), VIT Chennai, India · LIRMM, Université de Montpellier, CNRS, UMR 5506, France
-**Corresponding author:** Dr. Ahmed Chemori (Ahmed.Chemori@lirmm.fr)
+**Corresponding author:** Dr. Abhishek Rudra Pal (abhishek.rudrapal@vit.ac.in)
 **Target venue:** IEEE Sensors Journal
 **Status:** Draft v4 — A. Chemori review of 2026-07-25 addressed; artifacts in `../revision/`
 
@@ -180,7 +180,7 @@ The current draft is at the upper edge of these targets to give room for cutting
 
 1. **Self-review.** Read the compiled PDF cold, twice, three days apart.
 2. **Co-author review.** S. S. Ali reads it as a critical reader; both students agree on every numerical claim.
-3. **Guide review.** Dr. Pal, Dr. Chemori and Dr. G. Murali Mohan read as the senior authors; resolve any disagreements before submission. Dr. Chemori is the corresponding author and signs the cover letter.
+3. **Guide review.** Dr. Pal, Dr. Chemori and Dr. G. Murali Mohan read as the senior authors; resolve any disagreements before submission. Dr. Pal is the corresponding author and signs the cover letter.
 4. **External reader (optional but recommended).** A friend in CS / ECE who has not seen the work — they catch unclear sentences your familiarity hides.
 5. **One sleep before submitting.** Do not click "submit" the same day you finalise. One overnight gap catches more typos than another full read-through.
 
