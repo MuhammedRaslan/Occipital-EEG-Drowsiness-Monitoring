@@ -7,7 +7,7 @@
 - LIRMM, Université de Montpellier, CNRS, UMR 5506, 161 rue Ada, 34095 Montpellier Cedex 5, France
 
 **Corresponding author:** Dr. Abhishek Rudra Pal (abhishek.rudrapal@vit.ac.in)
-**Date:** [TODO insert at submission]
+**Date:** 2 August 2026
 
 ---
 
@@ -25,7 +25,7 @@ We submit for your consideration the enclosed manuscript titled **"Inter-Hemisph
 
 - This manuscript has not been published or submitted elsewhere; an earlier version of this work appears solely as a university capstone thesis at VIT Chennai, which is not considered prior publication under IEEE policy.
 - All authors have approved the submission and agreed to the listed authorship order.
-- The authors declare no conflicts of interest. [TODO: confirm the funding statement with Dr. Chemori — "no external funding was received for this work" was accurate while the work was VIT-internal, but a CNRS/LIRMM co-author may require an institutional or grant acknowledgement.]
+- The authors declare no conflicts of interest. No external funding was received for this work.
 - All analysis scripts, pinned dependencies, and a single-entry reproducer are released at `https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG` (Zenodo DOI to be added after submission acceptance).
 - We have respected the data-use agreements for DROZY and SEED-VIG; no raw data is redistributed in the submission package.
 
@@ -37,11 +37,11 @@ Dr. Abhishek Rudra Pal
 School of Mechanical Engineering (SMEC)
 Vellore Institute of Technology (VIT) Chennai
 Vandalur–Kelambakkam Road, Chennai 600127, Tamil Nadu, India
-ORCID: [TODO]
+ORCID: 0000-0002-4274-1195
 Email: abhishek.rudrapal@vit.ac.in
 
 On behalf of co-authors:
-Muhammed Raslan Thalassery (ORCID: [TODO])
-Sulaiman Shiyas Ali (ORCID: [TODO])
-Ahmed Chemori, Senior Member, IEEE (ORCID: [TODO])
-G. Murali Mohan (ORCID: [TODO])
+Muhammed Raslan Thalassery (ORCID: 0009-0009-7473-8343)
+Sulaiman Shiyas Ali (ORCID: 0009-0003-3671-2309)
+Ahmed Chemori, Senior Member, IEEE (ORCID: 0000-0001-9739-9473)
+G. Murali Mohan (ORCID: 0000-0002-9431-2456)

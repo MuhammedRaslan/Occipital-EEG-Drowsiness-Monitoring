@@ -37,8 +37,33 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 warnings.filterwarnings("ignore")
 
+# --- Two-column camera-ready figure geometry -------------------------------
+# Authored at the IEEEtran two-column \columnwidth and placed 1:1, so the type
+# sizes below are the sizes that reach the page. The previous 6.5 x 4.5 in
+# geometry was sized for the one-column draft class and scales to 51 % here.
+COL_W = 3.45
+plt.rcParams.update({
+    "font.size":       7,
+    "axes.titlesize":  7.5,
+    "axes.labelsize":  7,
+    "xtick.labelsize": 6.5,
+    "ytick.labelsize": 6.5,
+    "legend.fontsize": 5.5,
+})
+
 _SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
-SEED_DIR     = r"c:/Users/muham/OneDrive/Documents/#1_DMS/SEED-VIG"
+# The dataset root has moved between machines (OneDrive -> plain Documents).
+# Only perclos_labels/ is read here; the features come from SEED_CACHE.
+SEED_DIR_CANDIDATES = [
+    os.environ.get("SEED_VIG_DIR", ""),
+    r"c:/Users/muham/Documents/#1_DMS/SEED-VIG",
+    r"c:/Users/muham/OneDrive/Documents/#1_DMS/SEED-VIG",
+]
+SEED_DIR = next(
+    (d for d in SEED_DIR_CANDIDATES
+     if d and os.path.isdir(os.path.join(d, "perclos_labels"))),
+    SEED_DIR_CANDIDATES[1],
+)
 LBL_DIR      = os.path.join(SEED_DIR, "perclos_labels")
 SEED_CACHE   = os.path.join(_SCRIPT_DIR, "features_seed_vig_cache.npz")
 RESULTS_FILE = os.path.join(_SCRIPT_DIR, "publication_results_v20_severity.json")
@@ -183,11 +208,11 @@ def plot_curve(results, fig_path):
     proact  = [results[str(t)]["proactive_rate"] for t in thrs]
     fa      = [results[str(t)]["per_session_fa"] for t in thrs]
 
-    fig, ax1 = plt.subplots(figsize=(6.5, 4.5))
+    fig, ax1 = plt.subplots(figsize=(COL_W, COL_W * 0.92))
     color1 = "#1f3b6e"
     ax1.fill_between(thrs, iqr_lo, iqr_hi, alpha=0.18, color=color1,
                      label="Lead IQR (25-75%)")
-    ax1.plot(thrs, medians, "o-", color=color1, lw=2, ms=7, label="Median lead (min)")
+    ax1.plot(thrs, medians, "o-", color=color1, lw=1.3, ms=3.5, label="Median lead (min)")
     ax1.axhline(0, color="0.6", lw=0.8, ls="--")
     ax1.set_xlabel("Behavioural PERCLOS threshold (sustained 60 s)")
     ax1.set_ylabel("EEG → PERCLOS lead time (min)", color=color1)
@@ -196,24 +221,35 @@ def plot_curve(results, fig_path):
 
     ax2 = ax1.twinx()
     color2 = "#a02a2a"
-    ax2.plot(thrs, proact, "s--", color=color2, lw=1.5, ms=6,
+    ax2.plot(thrs, proact, "s--", color=color2, lw=1.1, ms=3.2,
              label="Proactive rate")
-    ax2.plot(thrs, fa, "^:", color="#c75f1e", lw=1.3, ms=6,
+    ax2.plot(thrs, fa, "^:", color="#c75f1e", lw=1.0, ms=3.2,
              label="Per-session false-alert rate")
     ax2.set_ylabel("Rate", color=color2)
     ax2.tick_params(axis="y", labelcolor=color2)
     ax2.set_ylim(0, 1.05)
 
-    # Combine legends
+    # Combined legend in the figure header. Four series plus a filled IQR band
+    # leave no interior space at 3.45 in: in-axes at upper left it sat directly
+    # on the flat proactive-rate line and hid it. A header legend also avoids
+    # the axis-ordering trap, since ax2 is drawn over anything placed on ax1.
     l1, lbl1 = ax1.get_legend_handles_labels()
     l2, lbl2 = ax2.get_legend_handles_labels()
-    ax1.legend(l1 + l2, lbl1 + lbl2, loc="upper left", fontsize=8.5)
+    fig.legend(l1 + l2, lbl1 + lbl2, loc="upper center",
+               bbox_to_anchor=(0.5, 0.895), ncol=2, frameon=False,
+               labelspacing=0.3, handlelength=1.6, handletextpad=0.5,
+               columnspacing=1.2)
 
+    # The second title line was one 82-character run, which overruns a 3.45 in
+    # figure. The dropped detail ("of first 5 min") is stated in Sec. V.
     fig.suptitle("Advance-prediction envelope vs PERCLOS severity\n"
-                 "v20 EEG onset rule fixed (per-subj 99th pctile of first 5 min, dwell 10s, tau 30s)",
-                 fontsize=10)
-    fig.tight_layout()
-    fig.savefig(fig_path, dpi=200)
+                 "v20 EEG rule fixed: 99th pctile, dwell 10 s, $\\tau$ = 30 s",
+                 fontsize=7.5, y=0.995)
+    # rect reserves room for the header legend only. tight_layout already
+    # accounts for the suptitle itself, so reserving for the title here too
+    # double-counts it and opens a dead band between legend and axes.
+    fig.tight_layout(rect=[0, 0, 1, 0.93])
+    fig.savefig(fig_path, dpi=400)
     plt.close(fig)
 
 

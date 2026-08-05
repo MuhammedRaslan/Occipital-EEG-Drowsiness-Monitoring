@@ -109,7 +109,7 @@ Two-column compresses the page count substantially; expect the manuscript to dro
 
 **Manuscript-level**
 
-- [ ] Replace `[TODO]` ORCID placeholders in `main.tex` and `cover_letter.md` with real ORCIDs (orcid.org → register, 5 min each).
+- [x] Replace `[TODO]` ORCID placeholders in `main.tex` and `cover_letter.md` with real ORCIDs. *(Done — five iDs, each checksum-valid and confirmed against its public ORCID record.)*
 - [ ] Verify all author email addresses with the institution.
 - [ ] Run a final spell-check (Grammarly free tier or Word's built-in is fine for a first pass).
 - [ ] Compile `main.tex` and read the PDF cold from start to finish at 100 % zoom. Look for: missing references (`?` in citations), broken figures, table overflow, equation alignment.
@@ -167,9 +167,9 @@ The current draft is at the upper edge of these targets to give room for cutting
 
 ## Things to update in the next iteration (before submission)
 
-1. **ORCID placeholders** — see `main.tex` lines 30, 34 and `cover_letter.md` lines 5, 78–80.
-2. **Acknowledgements** — `main.tex` line ~end-of-Conclusion has a `% [TODO]` marker.
-3. **Funding statement** — confirm "no external funding" is correct; update if your guide has used a VIT internal grant for the work.
+1. ~~**ORCID placeholders**~~ — done: five verified iDs in `main.tex` and `cover_letter.md`.
+2. ~~**Acknowledgements**~~ — done: dataset contributors plus VIT Chennai.
+3. ~~**Funding statement**~~ — done: confirmed 2026-08-02 that no CNRS/LIRMM acknowledgement is required; "no external funding was received for this work" stands.
 4. **Reviewer email verification** — `suggested_reviewers.md` warns to verify emails on each candidate's faculty page; do this 24 hours before the portal submission, not earlier (academic emails change).
 5. **Zenodo DOI** — add to `main.tex` Reproducibility section once the GitHub release is created.
 6. **Title bar metadata** — `main.tex` line 51 uses placeholder `Vol.~XX, No.~X, Month~2026`; the IEEE production team replaces this at acceptance, so you can ignore it for submission.

@@ -4,7 +4,7 @@ No LaTeX toolchain is available, so this substitutes static analysis for a
 compile. Checks LaTeX integrity, revision-markup safety, bibliography health,
 cross-file consistency, and traceability against all 15 review items.
 """
-import io, os, re, collections
+import io, os, re, struct, collections
 
 ROOT = r"c:/Users/muham/Documents/Antigravity/DMS_Drafting/Pro-Active-Driver-Monitoring-System-Using-EEG"
 TEX = os.path.join(ROOT, "submission/main.tex")
@@ -190,6 +190,74 @@ for f in figs:
        "MISSING figure file: %s" % f)
 ck(len(figs) == len(set(figs)), "no figure included twice", "duplicate includegraphics")
 
+
+# --------------------------------------------------- two-column camera-ready
+# The manuscript was converted from the one-column 11 pt draft class. In two
+# columns \columnwidth roughly halves, so a figure authored for the draft
+# layout scales to 36-49 % and its labels shrink with it. Each PNG is now
+# authored at the width it is placed at, and these checks assert that pairing
+# still holds -- a figure regenerated at the old size would silently ship
+# with ~4.5 pt tick labels, which no static check would otherwise catch.
+def _png_inches(path):
+    """(width_in, height_in) from the PNG IHDR + pHYs chunks. stdlib only."""
+    with open(path, "rb") as fh:
+        data = fh.read(8192)
+    if data[:8] != b"\x89PNG\r\n\x1a\n":
+        return None
+    w, h = struct.unpack(">II", data[16:24])
+    dpi = 100.0
+    off = 8
+    while off + 8 < len(data):
+        ln, typ = struct.unpack(">I", data[off:off + 4])[0], data[off + 4:off + 8]
+        if typ == b"pHYs":
+            ppux, _ppuy, unit = struct.unpack(">IIB", data[off + 8:off + 17])
+            if unit == 1 and ppux:
+                dpi = ppux * 0.0254
+            break
+        if typ == b"IDAT":
+            break
+        off += 12 + ln
+    return w / dpi, h / dpi
+
+
+COL_IN, TEXT_IN, TOL = 3.5, 7.16, 0.25
+# Read the options off the real \documentclass line. Testing the whole
+# preamble would match the comment above it that names the old draft options.
+_dc = re.search(r"^\s*\\documentclass(?:\[([^\]]*)\])?\{", tex, re.M)
+_dcopts = (_dc.group(1) or "") if _dc else ""
+ck(_dc is not None and "onecolumn" not in _dcopts,
+   "document class is two-column (options: %s)" % (_dcopts or "none"),
+   "document class still requests `onecolumn` -- floats are sized for two")
+ck(_dc is not None and "draftcls" not in _dcopts,
+   "draft class removed (camera-ready layout)",
+   "`draftcls` still set -- this is not the camera-ready layout")
+
+for m in re.finditer(r"\\includegraphics\[width=([^\]]*)\]\{([^}]*)\}", tex):
+    spec, fname = m.group(1), m.group(2)
+    p = os.path.join(ROOT, "submission/figures", fname)
+    if not os.path.exists(p):
+        continue
+    dims = _png_inches(p)
+    if dims is None:
+        continue
+    w_in = dims[0]
+    if "textwidth" in spec:
+        target, where = TEXT_IN, "\\textwidth (figure*)"
+    else:
+        target, where = COL_IN, "\\columnwidth"
+    ok = abs(w_in - target) <= TOL
+    ck(ok,
+       "%s authored %.2f in for %s" % (fname, w_in, where),
+       "%s is authored %.2f in but placed at %s (%.2f in) -> scales to %d%%"
+       % (fname, w_in, where, target, round(100 * target / w_in)))
+
+n_figstar = len(re.findall(r"\\begin\{figure\*\}", tex))
+n_tabstar = len(re.findall(r"\\begin\{table\*\}", tex))
+ck(n_figstar + n_tabstar <= 8,
+   "%d full-width floats (%d figure*, %d table*)" % (n_figstar + n_tabstar, n_figstar, n_tabstar),
+   "%d full-width floats -- IEEEtran places these only at page tops; too many "
+   "will drift to the end of the document" % (n_figstar + n_tabstar))
+
 # ------------------------------------------------------- item traceability
 sec("6. TRACEABILITY - CHEMORI'S 15 ITEMS")
 checks = [
@@ -201,7 +269,14 @@ checks = [
  (6,  "III.E lead-in added",       "The pipeline is assessed on two tasks" in tex),
  (7,  "sections renamed",          "Data, Signal Processing, and Evaluation Design" in tex),
  (8,  "Fig 2 legend fixed",        "upper left" in io.open(os.path.join(ROOT, "reviewer_revision_analysis.py"), encoding="utf-8").read()),
- (9,  "Fig 3 + script fixed",      "figsize=(7.6, 6.0)" in io.open(os.path.join(ROOT, "v17_roc.py"), encoding="utf-8").read()),
+ # The substance of item 9 is that the operating-point statistics moved off
+ # the curve and into a legend parked in the empty lower-right region, where
+ # it cannot touch the ROC, the diagonal, or another label. That is what is
+ # asserted here. This previously keyed on "figsize=(7.6, 6.0)", which was
+ # the one-column draft geometry and had to change for the two-column
+ # camera-ready; the figure is now authored at COL_W and placed 1:1.
+ (9,  "Fig 3 + script fixed",      all(s in io.open(os.path.join(ROOT, "v17_roc.py"), encoding="utf-8").read()
+                                       for s in ('loc="lower right"', "figsize=(COL_W"))),
  (10, "future work added",         "textbf{Future work.}" in tex),
  (11, "IEEE Sensors keyword gone", "IEEE Sensors.\n\\end{IEEEkeywords}" not in tex),
  (12, "results restructured",      "Causal Smoothing and Operating-Point Selection" in tex),

@@ -26,9 +26,15 @@
 %     - Sec IV.A (new): per-subject F1/AUC/kappa (v11 & v17) + bootstrap 95% CIs (Item 2).
 %     - Sec IV.A.2 + Sec VI.B: raw-vs-EMA posterior figure + latency analysis (Item 3).
 
-\documentclass[journal,onecolumn,11pt,draftcls]{IEEEtran}
-% On submission switch `draftcls` -> remove (camera-ready) and `onecolumn` -> twocolumn for the final layout.
-% Keeping draft+onecolumn during writing makes editing easier; flip both at the end.
+% Camera-ready IEEE Sensors Journal layout: two columns, 10 pt, no draft class.
+% (`journal` already implies twocolumn + 10pt in IEEEtran, so the options that
+% forced the one-column 11 pt draft layout are simply dropped.)
+%
+% The drafting layout was [journal,onecolumn,11pt,draftcls]. Reverting to it
+% will make every float too wide for its column: the floats below are sized for
+% two columns, six tables and one figure are full-width (table*/figure*), and
+% the figures are authored at 3.45 in to sit in a 3.5 in column.
+\documentclass[journal]{IEEEtran}
 
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
@@ -116,8 +122,8 @@
 % role to A. Chemori and marked it accordingly; that was reverted.
 \thanks{A.~R.~Pal and G.~Murali Mohan are with the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, Chennai 600127, Tamil Nadu, India (e-mail: abhishek.rudrapal@vit.ac.in; muralimohan.g@vit.ac.in). Corresponding author: A.~R.~Pal.}
 \thanks{\add{A.~Chemori is with LIRMM, Universit\'e de Montpellier, CNRS, UMR 5506, 161 rue Ada, 34095 Montpellier Cedex 5, France (e-mail: Ahmed.Chemori@lirmm.fr).}}
-\thanks{\add{ORCID: M.~R.~Thalassery, [TODO]; S.~S.~Ali, [TODO]; A.~R.~Pal, [TODO]; A.~Chemori, [TODO]; G.~Murali Mohan, [TODO].}}
-\thanks{Manuscript received Month DD, 2026.}
+\thanks{\add{ORCID: M.~R.~Thalassery, 0009-0009-7473-8343; S.~S.~Ali, 0009-0003-3671-2309; A.~R.~Pal, 0000-0002-4274-1195; A.~Chemori, 0000-0001-9739-9473; G.~Murali Mohan, 0000-0002-9431-2456.}}
+\thanks{Manuscript received August 2, 2026.}
 }
 
 % Running head: deliberately shorter than the full title so it fits the header
@@ -271,8 +277,8 @@ Table~\ref{tab:loso} reports the full pipeline progression on DROZY LOSO. The le
 \caption{LOSO monitoring performance on DROZY (10 subjects, 14\,498 epochs). The lean LDA + EMA smoother (v17) is the published headline. ``v11'' denotes the lean 10-feature LDA; ``v17'' denotes v11 with the causal EMA smoother (\(\tau=600\) s). Random forest, Riemannian, and EEGNet baselines are included. \(\kappa\) is Cohen's kappa.}
 \label{tab:loso}
 \centering
-\small
-\setlength{\tabcolsep}{4pt}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
 \begin{tabular}{l c c c c}
 \toprule
 Pipeline & Acc (\%) & F1 (\%) & AUC (\%) & \(\kappa\) \\
@@ -299,7 +305,7 @@ Table~\ref{tab:ablation} reports the per-family ablation on the 50-feature exten
 \caption{Feature-family LOSO ablation. Coherence is the single load-bearing family.}
 \label{tab:ablation}
 \centering
-\small
+\footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{l c c}
 \toprule
@@ -323,7 +329,7 @@ The ablation establishes that coherence is the load-bearing \emph{family} but do
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.98\columnwidth]{fig13_coherence_separation.png}
+\includegraphics[width=\columnwidth]{fig13_coherence_separation.png}
 \caption{Awake (blue) vs drowsy (orange) distributions of \(O_1\)--\(O_2\) magnitude-squared coherence in the \(\theta\), \(\alpha\), and \(\beta\) bands on DROZY (14\,498 epochs). Horizontal bars are medians. Coherence decreases with drowsiness in every band; the effect (Cohen's \(d\)) is largest in \(\beta\). All three Mann--Whitney \(U\) contrasts give \(p < 10^{-50}\).}
 \label{fig:coh}
 \end{figure}
@@ -332,8 +338,8 @@ The ablation establishes that coherence is the load-bearing \emph{family} but do
 \caption{Awake-vs-drowsy \(O_1\)--\(O_2\) coherence by band on DROZY (\(n=7\,234\) awake, \(7\,264\) drowsy epochs). \(U\): Mann--Whitney; \(d\): Cohen's (drowsy\,$-$\,awake).}
 \label{tab:coh}
 \centering
-\small
-\setlength{\tabcolsep}{4pt}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{l c c c c}
 \toprule
 Band & Awake (mean\(\pm\)sd) & Drowsy (mean\(\pm\)sd) & \(d\) & \(p\) \\
@@ -359,7 +365,7 @@ Figure~\ref{fig:ema} illustrates the smoother on a representative subject (05M).
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.98\columnwidth]{fig14_ema_raw_vs_smoothed.png}
+\includegraphics[width=\columnwidth]{fig14_ema_raw_vs_smoothed.png}
 \caption{Raw per-epoch posterior \(p_t\) (grey) vs causal EMA-smoothed \(\tilde{p}_t\) (red, \(\tau=600\) s) for a representative subject (05M). The dotted line is the 0.5 decision threshold; the dashed vertical line marks the awake\,\(\to\)\,drowsy session boundary. The raw posterior crosses the threshold repeatedly within each state; the smoother removes this epoch-level noise while remaining strictly causal.}
 \label{fig:ema}
 \end{figure}
@@ -369,12 +375,12 @@ A full ROC of the v17 smoothed posterior is shown in Figure~\ref{fig:roc}. Three
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.98\columnwidth]{fig10_v17_roc.png}
+\includegraphics[width=\columnwidth]{fig10_v17_roc.png}
 \caption{Monitoring-track ROC of the v11 lean LDA + v17 causal EMA (\(\tau=600\) s) on DROZY LOSO (AUC = 76.62~\%). Three reviewer-facing operating points are highlighted.}
 \label{fig:roc}
 \end{figure}
 
-\begin{table}[t]
+\begin{table*}[t]
 \caption{Monitoring-track operating points from the v17 ROC. The F1-maximising threshold (0.5231) and the high-precision (FPR \(\leq 5\)~\%) point (0.523) coincide to three decimals, and the default threshold = 0.5 already produces near-optimal F1.}
 \label{tab:roc}
 \centering
@@ -391,7 +397,7 @@ F1-max                              & 0.523 & 0.613 & 0.049 & 77.50 & \(+0.563\)
 Default (0.5)                       & 0.500 & 0.694 & 0.155 & 76.79 & \(+0.539\) \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 % Item 12: the two statistical subsubsections are grouped under their own
 % subsection so that significance testing is findable as a unit rather than
@@ -407,7 +413,7 @@ On per-subject F1 across the 10 DROZY subjects, the v17 smoother improves over t
 \caption{Paired subject-level tests. Row 1 is the v17 smoother test (vs.\ v11 lean); the remainder are baselines vs.\ v11 lean. Wilcoxon \(p\) is one-sided.}
 \label{tab:paired}
 \centering
-\small
+\footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{l c c c}
 \toprule
@@ -431,7 +437,7 @@ Because the sample is modest (10 DROZY subjects), Table~\ref{tab:persubj} report
 
 Subject-cluster percentile bootstrap (5\,000 resamples over subjects, the unit of independence) gives 95\,\% confidence intervals for the concatenated metrics. For v17: F1 \(\in [61.9, 89.2]\), AUC \(\in [54.8, 95.0]\), \(\kappa \in [0.27, 0.78]\); for v11: F1 \(\in [52.8, 68.8]\), AUC \(\in [51.8, 75.1]\), \(\kappa \in [0.07, 0.38]\). The intervals are wide --- an honest consequence of \(n=10\) and of resampling at the subject rather than epoch level. Nonetheless the v11 \(\kappa\) interval \([0.07, 0.38]\) excludes zero, so the absolute drowsiness signal is real, and the v17 \(\kappa\) lower bound \((0.27)\) clears the v11 \(\kappa\) point estimate \((0.24)\), so the smoothing gain survives subject-level resampling on \(\kappa\). The wider v17 F1 interval overlaps the v11 F1 point estimate \((62.08)\) at its lower edge \((61.9)\), reflecting the limited subject count rather than an absence of effect: the paired within-subject test of Table~\ref{tab:paired}, which removes between-subject variance, establishes the F1 gain directly (\(p=0.005\), \(d=1.11\)).
 
-\begin{table}[t]
+\begin{table*}[t]
 \caption{Per-subject monitoring performance on DROZY LOSO for the unsmoothed lean LDA (v11) and the EMA-smoothed pipeline (v17). Bottom rows: across-subject mean / median / s.d.\ and the concatenated point estimate. 95\,\% subject-cluster bootstrap CIs are given in the text.}
 \label{tab:persubj}
 \centering
@@ -461,13 +467,13 @@ s.d.   & 15.41 & 19.21 & 0.26 & 26.44 & 31.94 & 0.44 \\
 Concat & 62.08 & 64.55 & \(+0.242\) & \textbf{76.79} & \textbf{76.62} & \(\mathbf{+0.539}\) \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \subsection{\chg{Cross-Dataset and Pooled LOSO}{Cross-Dataset Transfer and Pooled 31-Subject Generalisation}}
 \label{sec:cross-dataset}
 Table~\ref{tab:cross} reports the four-protocol cross-dataset evaluation. DROZY \(\to\) SEED-VIG transfer without any fine-tuning achieves F1 = 64.93~\%, and the pooled 31-subject LOSO across DROZY \(\cup\) SEED-VIG achieves concatenated F1 = 66.13~\%, mean per-subject F1 = 71.92 \(\pm 17.16\)~\% --- the strongest generalisation result in this paper.
 
-\begin{table}[t]
+\begin{table*}[t]
 \caption{Cross-dataset and pooled LOSO evaluation of the lean LDA pipeline.}
 \label{tab:cross}
 \centering
@@ -483,7 +489,7 @@ SEED-VIG internal LOSO           & 21 & 9\,155 & 71.25 & 70.98 & 0.337 \\
 \textbf{Pooled DROZY+SEED-VIG (31 subj)} & \textbf{31} & \textbf{23\,653} & \textbf{66.13} & \textbf{69.44} & \textbf{0.319} \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \subsection{\chg{Negative Ablations}{Negative Ablations: What Does Not Help at Two Channels}}
 \label{sec:negative}
@@ -497,7 +503,7 @@ Two engineering tracks that might reasonably be expected to improve the pipeline
 \label{sec:proactive}
 Table~\ref{tab:proactive} reports the FPR-budget Pareto front on SEED-VIG. The recommended deployment operating point is \emph{per-subject 99\textsuperscript{th} percentile of the first 5 min of smoothed \(p(\mathrm{drowsy})\), 10-s dwell, EMA \(\tau = 30\)~s}, which delivers \(\mathit{proactive\_rate} = 85.7\)~\% with median lead \(+31.67\) min against PERCLOS \(>0.70\). The epoch-level FPR (against PERCLOS \(<0.35\) epochs) is 27.6~\%; the per-session false-alert rate (sessions where EEG fires but PERCLOS never confirms) is 9.5~\% (2 of 21).
 
-\begin{table}[t]
+\begin{table*}[t]
 % NOTE: no \add/\chg markup inside \caption — soul's \hl is fragile in
 % captions (a moving argument) and cannot take inline math. The symbol note
 % for eta is placed in the body text below instead.
@@ -516,7 +522,7 @@ FPR budget & Threshold mode & Proactive rate & Median lead (min) & Sens@drowsy \
 \(\leq 50\)~\% & per-subj 99\(\%\)pct of 2-min       & 90.5~\% & \(+33.50\) & 0.79 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \subsubsection{Graceful degradation across PERCLOS severity}
 \label{sec:severity}
@@ -524,12 +530,12 @@ A natural reviewer concern is that the 31-min lead reflects the choice of a part
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\columnwidth]{fig11_lead_vs_severity.png}
+\includegraphics[width=\columnwidth]{fig11_lead_vs_severity.png}
 \caption{Lead-time vs PERCLOS-severity curve on SEED-VIG with the v20 EEG rule held constant. Median lead and IQR are shown on the left axis; proactive rate and per-session false-alert rate on the right axis.}
 \label{fig:severity}
 \end{figure}
 
-\begin{table}[t]
+\begin{table*}[t]
 \caption{Advance-prediction envelope vs PERCLOS severity. EEG rule constant.}
 \label{tab:severity}
 \centering
@@ -546,7 +552,7 @@ PERCLOS thresh. & \(n\) both & Proactive & Per-session FA & Med.\ lead (min) & I
 0.70 (severe) & 19 & 85.7~\% & 9.5~\% & \(+31.67\) & \([+12.8, +49.2]\) \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
 \subsubsection{Paired test against the prior uncontrolled protocol}
 An earlier (uncontrolled) version of the protocol used a global posterior threshold of 0.5, 30-s dwell, and the both-onset-required filter that silently dropped censored cases. On the 11 SEED-VIG subjects where both protocols detect both onsets (so that per-subject leads are paired), the new survival-framed protocol lifts the mean lead from \(-4.95\) min to \(+32.06\) min --- paired difference \(+37.02 \pm 32.19\) min. One-sided paired Wilcoxon gives \(p = 0.001\), Cohen's \(d = 1.15\) (very large). The new protocol additionally detects 8 SEED-VIG subjects whose EEG onsets the prior global-threshold protocol missed entirely, with no losses in the reverse direction.
@@ -555,12 +561,15 @@ An earlier (uncontrolled) version of the protocol used a global posterior thresh
 \label{sec:demo}
 Figure~\ref{fig:demo} demonstrates the algorithm running on three representative SEED-VIG subjects: a strong-lead case (subject 8, lead = \(+91.33\) min), the median-lead case (subject 11, lead = \(+31.67\) min, matching the headline number exactly), and a marginal failure case (subject 17, lead = \(-0.33\) min, where the EEG lagged the camera by 20 seconds). The marginal case is included to avoid cherry-picking; the deployment system must tolerate such failure modes.
 
-\begin{figure}[t]
+% Full-width float: three stacked session timelines are unreadable at
+% \columnwidth. The PNG is authored at \textwidth (7.16 in) so it is placed
+% 1:1 and its type matches the four single-column figures.
+\begin{figure*}[t]
 \centering
-\includegraphics[width=0.98\columnwidth]{fig12_live_demo.png}
+\includegraphics[width=\textwidth]{fig12_live_demo.png}
 \caption{Live-system demonstrator on three representative SEED-VIG subjects (strong, median, marginal). For each subject, the raw and EMA-smoothed posteriors are overlaid with the per-subject calibrated threshold, the PERCLOS trace on a secondary axis, and the EEG and PERCLOS onsets. The animated playback of the median-lead case is in the supplementary material.}
 \label{fig:demo}
-\end{figure}
+\end{figure*}
 
 \subsection{Comparison with Baselines and Existing Systems}
 \label{sec:dl-baselines}
@@ -570,7 +579,7 @@ Table~\ref{tab:compare} situates the proposed pipeline against camera DMS, the R
 \caption{Comparison with baselines and existing 2-channel EEG pipelines evaluated under matched LOSO protocols.}
 \label{tab:compare}
 \centering
-\small
+\footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{l l l l l}
 \toprule
@@ -641,16 +650,20 @@ We presented a two-channel occipital EEG pipeline for in-vehicle drowsiness moni
 Prospective in-car validation is identified as the most important outstanding work.
 
 \section*{Acknowledgements}
-The authors thank the contributors of the DROZY~\cite{drozy2016} and SEED-VIG~\cite{zheng2017seedvig} datasets for making this work possible. % [TODO: add specific acknowledgements once finalised]
+The authors thank the contributors of the DROZY~\cite{drozy2016} and SEED-VIG~\cite{zheng2017seedvig} datasets for making this work possible. \add{The authors also thank the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, for supporting this work.}
 
 \section*{Reproducibility}
 All analysis scripts, pinned dependencies, and a single-entry reproducer (\texttt{reproduce.py}) are released at \url{https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG} under the commit tagged \texttt{paper-submission-v1}. Per-subject feature caches (DROZY: 14\,498 epochs \(\times\) 50 features; SEED-VIG: 9\,155 epochs) regenerate automatically from the raw EDF/MAT files via the reproducer. Wall-clock time is approximately 5 minutes on a laptop CPU excluding the EEGNet baseline (\(\sim\)28 minutes).
 
 \section*{Author Contributions}
-M.~R.~Thalassery designed the pipeline, implemented the experiments, conducted the ablations and statistical analyses, and drafted the manuscript. S.~S.~Ali contributed to the feature-extraction implementation and the live demonstrator. A.~R.~Pal supervised the project, provided guidance on signal-processing methodology, and reviewed and approved the final manuscript. \add{A.~Chemori [TODO: CRediT contribution to be supplied by A.~Chemori].} G.~Murali Mohan provided project supervision and reviewed the final manuscript.
+M.~R.~Thalassery designed the pipeline, implemented the experiments, conducted the ablations and statistical analyses, and drafted the manuscript. S.~S.~Ali contributed to the feature-extraction implementation and the live demonstrator. A.~R.~Pal supervised the project, provided guidance on signal-processing methodology, and reviewed and approved the final manuscript. \add{A.~Chemori provided methodological guidance and contributed to the critical review and editing of the manuscript.} G.~Murali Mohan provided project supervision and reviewed the final manuscript.
 
 \section*{Conflicts of Interest}
-The authors declare no conflicts of interest. \chg{No external funding was received for this work.}{[TODO: confirm with A.~Chemori whether CNRS/LIRMM requires a funding or institutional-support acknowledgement; the statement ``no external funding was received for this work'' was accurate while the work was VIT-internal.]}
+% Confirmed 2026-08-02: no CNRS/LIRMM funding or institutional-support
+% requirement. The sentence is therefore unchanged from the reviewed draft
+% and carries no markup -- marking it would claim a change that is not
+% happening, the same rule applied to the corresponding-author line.
+The authors declare no conflicts of interest. No external funding was received for this work.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

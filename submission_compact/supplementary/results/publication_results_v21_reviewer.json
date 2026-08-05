@@ -1,0 +1,257 @@
+{
+  "timestamp": "2026-06-21T22:30:24.991709",
+  "methodology": "Reviewer-revision additions; reproduces v11 lean LDA LOSO + continuous EMA tau=600s (v17).",
+  "item1_coherence": {
+    "theta": {
+      "awake_mean": 0.5642,
+      "awake_median": 0.5784,
+      "awake_sd": 0.1438,
+      "drowsy_mean": 0.5284,
+      "drowsy_median": 0.5304,
+      "drowsy_sd": 0.1487,
+      "direction": "decrease",
+      "mannwhitney_U": 30138317.0,
+      "p_value": 4.352653357045532e-53,
+      "cohens_d": -0.245
+    },
+    "alpha": {
+      "awake_mean": 0.4685,
+      "awake_median": 0.4698,
+      "awake_sd": 0.1275,
+      "drowsy_mean": 0.435,
+      "drowsy_median": 0.4331,
+      "drowsy_sd": 0.1318,
+      "direction": "decrease",
+      "mannwhitney_U": 30086132.0,
+      "p_value": 1.0345205224284186e-51,
+      "cohens_d": -0.259
+    },
+    "beta": {
+      "awake_mean": 0.2833,
+      "awake_median": 0.2777,
+      "awake_sd": 0.0859,
+      "drowsy_mean": 0.2506,
+      "drowsy_median": 0.2401,
+      "drowsy_sd": 0.0763,
+      "direction": "decrease",
+      "mannwhitney_U": 32300223.0,
+      "p_value": 2.0628423465226724e-126,
+      "cohens_d": -0.403
+    }
+  },
+  "item2_subjectwise": {
+    "per_subject": {
+      "01M": {
+        "v11": {
+          "f1": 59.96,
+          "auc": 62.92,
+          "kappa": 0.2
+        },
+        "v17": {
+          "f1": 65.55,
+          "auc": 83.48,
+          "kappa": 0.328
+        }
+      },
+      "02F": {
+        "v11": {
+          "f1": 71.44,
+          "auc": 76.76,
+          "kappa": 0.434
+        },
+        "v17": {
+          "f1": 79.33,
+          "auc": 97.49,
+          "kappa": 0.602
+        }
+      },
+      "03F": {
+        "v11": {
+          "f1": 62.72,
+          "auc": 66.97,
+          "kappa": 0.255
+        },
+        "v17": {
+          "f1": 79.0,
+          "auc": 90.94,
+          "kappa": 0.582
+        }
+      },
+      "04M": {
+        "v11": {
+          "f1": 33.6,
+          "auc": 30.65,
+          "kappa": -0.206
+        },
+        "v17": {
+          "f1": 28.37,
+          "auc": 18.91,
+          "kappa": -0.166
+        }
+      },
+      "05M": {
+        "v11": {
+          "f1": 69.89,
+          "auc": 77.37,
+          "kappa": 0.401
+        },
+        "v17": {
+          "f1": 94.89,
+          "auc": 99.42,
+          "kappa": 0.898
+        }
+      },
+      "06M": {
+        "v11": {
+          "f1": 70.18,
+          "auc": 76.31,
+          "kappa": 0.405
+        },
+        "v17": {
+          "f1": 96.15,
+          "auc": 99.44,
+          "kappa": 0.923
+        }
+      },
+      "07F": {
+        "v11": {
+          "f1": 31.51,
+          "auc": 30.24,
+          "kappa": -0.252
+        },
+        "v17": {
+          "f1": 26.98,
+          "auc": 20.03,
+          "kappa": -0.264
+        }
+      },
+      "08M": {
+        "v11": {
+          "f1": 70.85,
+          "auc": 78.17,
+          "kappa": 0.418
+        },
+        "v17": {
+          "f1": 94.19,
+          "auc": 96.43,
+          "kappa": 0.884
+        }
+      },
+      "09M": {
+        "v11": {
+          "f1": 66.27,
+          "auc": 71.96,
+          "kappa": 0.325
+        },
+        "v17": {
+          "f1": 94.04,
+          "auc": 97.79,
+          "kappa": 0.881
+        }
+      },
+      "10M": {
+        "v11": {
+          "f1": 71.8,
+          "auc": 81.85,
+          "kappa": 0.443
+        },
+        "v17": {
+          "f1": 85.89,
+          "auc": 88.91,
+          "kappa": 0.721
+        }
+      }
+    },
+    "summary_across_subjects": {
+      "v11": {
+        "f1": {
+          "mean": 60.82,
+          "median": 68.08,
+          "sd": 15.41
+        },
+        "auc": {
+          "mean": 65.32,
+          "median": 74.13,
+          "sd": 19.21
+        },
+        "kappa": {
+          "mean": 0.24,
+          "median": 0.36,
+          "sd": 0.26
+        }
+      },
+      "v17": {
+        "f1": {
+          "mean": 74.44,
+          "median": 82.61,
+          "sd": 26.44
+        },
+        "auc": {
+          "mean": 79.28,
+          "median": 93.69,
+          "sd": 31.94
+        },
+        "kappa": {
+          "mean": 0.54,
+          "median": 0.66,
+          "sd": 0.44
+        }
+      }
+    },
+    "concatenated_point": {
+      "v11": {
+        "f1": 62.08,
+        "auc": 64.55,
+        "kappa": 0.242
+      },
+      "v17": {
+        "f1": 76.79,
+        "auc": 76.62,
+        "kappa": 0.539
+      }
+    },
+    "bootstrap_ci_95": {
+      "method": "subject-cluster percentile bootstrap, 5000 resamples",
+      "v11": {
+        "f1": [
+          52.81,
+          68.81
+        ],
+        "auc": [
+          51.84,
+          75.08
+        ],
+        "kappa": [
+          0.071,
+          0.378
+        ]
+      },
+      "v17": {
+        "f1": [
+          61.92,
+          89.17
+        ],
+        "auc": [
+          54.82,
+          95.03
+        ],
+        "kappa": [
+          0.266,
+          0.783
+        ]
+      }
+    }
+  },
+  "item3_latency": {
+    "tau_sec": 600,
+    "alpha": 0.01653,
+    "step_response_lag_min": {
+      "0.5": 6.93,
+      "0.63": 9.94,
+      "0.9": 23.03
+    },
+    "representative_subject": "05M",
+    "empirical_cross_min": 2.6666666666666665,
+    "proactive_track_tau_sec": 30
+  }
+}

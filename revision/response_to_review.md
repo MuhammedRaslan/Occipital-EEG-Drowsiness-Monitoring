@@ -83,7 +83,7 @@ Propagated to `main.tex` (author block, affiliation `\thanks`, Author Contributi
 
 While making this change we found that **Dr. Pal's `Member, IEEE` grade was incorrect** — he is not an IEEE member, and the grade had appeared in every draft since April. It has been removed. No grade is claimed for Dr. G. Murali Mohan either. Yours is now the only membership grade in the paper.
 
-**Three items still need you:** your ORCID; your CRediT contribution statement; and confirmation of whether CNRS/LIRMM requires a funding or institutional acknowledgement. All three are marked `[TODO]` in the source.
+**All three items we owed you are now closed.** Your ORCID (0000-0001-9739-9473) is in the author block; your CRediT contribution is recorded as methodology guidance and writing — review & editing; and you have confirmed that CNRS/LIRMM requires no funding or institutional acknowledgement, so "no external funding was received for this work" stands unchanged. No `[TODO]` placeholders remain anywhere in the manuscript.
 
 ### 3. Bibliography style is not homogeneous; all references should follow IEEE style
 
@@ -197,8 +197,8 @@ First-use definitions added for *p*<sub>t</sub>, *p̃*<sub>t</sub>, Δ*t*, τ, �
 
 ## Outstanding
 
-**Needs Dr. Chemori:** ORCID · CRediT contribution statement · confirmation of CNRS/LIRMM funding acknowledgement.
+**Nothing outstanding from Dr. Chemori.** ORCID, CRediT statement and the funding confirmation were all supplied on 2 August 2026 and are in the manuscript.
 
-**Needs a compile.** No LaTeX toolchain was available on the machine used for this revision, so all validation was static: 26/26 cross-references resolve, 36/36 citation keys resolve, no duplicate labels, braces and environments balanced, and all 15 items traced. What static analysis cannot check is package interaction (`soul` + `ulem` + `hyperref`), overfull boxes, float placement and page count. **The first Overleaf build is the real test** and may need one cleanup round.
+**Two-column camera-ready conversion: done.** The manuscript is now `\documentclass[journal]{IEEEtran}`. Measuring the consequences rather than assuming them changed the plan in two ways worth recording. First, *all five* figures were unreadable at `\columnwidth`, not two: each had been authored 6.5–9 inches for the one-column draft, which put their tick labels at 3.8–5.1 pt in two columns. Rather than promote them all to `figure*`, each was regenerated at the width it is actually placed at — four at 3.45 in for `\columnwidth`, and the three-panel demonstrator at 7.16 in for the single `figure*` — with 7 pt type set directly, so every figure now lands 1:1 and the paper carries one typographic scale. Second, eight of the ten tables overflowed a 252 pt column; six moved to `table*` and four were kept single-column at a smaller size. Every reported number was reproduced exactly during regeneration — the results JSONs differ from their previous versions only in their timestamp field.
 
-**Deferred by decision.** The manuscript is currently one-column draft format. The switch to the two-column camera-ready layout is still owed, and will require the figures to be resized — in two-column, `\columnwidth` is roughly half, so figures authored at 7–9 inches will shrink to 36–49 % and their labels with them. Figures 2 and 5 will likely need promotion to full-width `figure*`.
+**Needs a compile.** No LaTeX toolchain was available on the machine used for this revision, so all validation was static: 26/26 cross-references resolve, 36/36 citation keys resolve, no duplicate labels, braces and environments balanced, all 15 items traced, and every float referenced in source order. What static analysis cannot check is package interaction (`soul` + `ulem` + `hyperref`), overfull boxes, float placement and page count — the table widths in particular are analytic estimates carrying an 8 % safety margin, not measurements. **The first Overleaf build is the real test** and may need one cleanup round. Expect roughly 11–12 two-column pages.

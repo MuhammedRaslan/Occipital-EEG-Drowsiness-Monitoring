@@ -37,9 +37,39 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 warnings.filterwarnings("ignore")
 
+# --- Two-column camera-ready figure geometry -------------------------------
+# This is the one full-width float in the paper: three stacked panels do not
+# read at 3.45 in, so it is placed in a figure* at \textwidth. Authoring it at
+# \textwidth means it is placed 1:1 and the type sizes below are the sizes that
+# reach the page — matching the four \columnwidth figures, which are authored
+# at 3.45 in with the same 7 pt body. The previous 9.0 in geometry was sized
+# for the one-column draft class.
+TEXT_W = 7.16
+plt.rcParams.update({
+    "font.size":       7,
+    "axes.titlesize":  7.5,
+    "axes.labelsize":  7,
+    "xtick.labelsize": 6.5,
+    "ytick.labelsize": 6.5,
+    "legend.fontsize": 6,
+})
+
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 SEED_CACHE  = os.path.join(_SCRIPT_DIR, "features_seed_vig_cache.npz")
-SEED_DIR    = r"c:/Users/muham/OneDrive/Documents/#1_DMS/SEED-VIG"
+
+# The dataset root has moved between machines (it was under OneDrive, then
+# plain Documents). Only perclos_labels/ is needed here — the features come
+# from SEED_CACHE — so resolve against the first candidate that has it.
+SEED_DIR_CANDIDATES = [
+    os.environ.get("SEED_VIG_DIR", ""),
+    r"c:/Users/muham/Documents/#1_DMS/SEED-VIG",
+    r"c:/Users/muham/OneDrive/Documents/#1_DMS/SEED-VIG",
+]
+SEED_DIR = next(
+    (d for d in SEED_DIR_CANDIDATES
+     if d and os.path.isdir(os.path.join(d, "perclos_labels"))),
+    SEED_DIR_CANDIDATES[1],
+)
 LBL_DIR     = os.path.join(SEED_DIR, "perclos_labels")
 FIG_DIR     = os.path.join(_SCRIPT_DIR, "publication_figures_v5")
 FIG_PATH    = os.path.join(FIG_DIR, "fig12_live_demo.png")
@@ -172,14 +202,34 @@ def plot_panel(ax, s, a, title_prefix):
     ax.plot(t_min, a["p_smooth"], "-", color="#1f3b6e", lw=1.6, label=f"p(drowsy) EMA tau={V20_TAU}s")
     ax.axhline(a["thr_eeg"], color="#c75f1e", ls="--", lw=1.0,
                label=f"per-subj thr = {a['thr_eeg']:.2f}")
+    # Onset labels. Both were previously drawn at y = 1.02 in axis coordinates,
+    # i.e. in the same band as the panel title, with no vertical stagger. That
+    # produced two collisions in the compiled PDF: each label overprinted the
+    # title, and when the two onsets fell close together in time they also
+    # overprinted each other ("PERCLOS onset" / "EEG onset" merging into an
+    # unreadable run). They are now placed inside the axes, staggered in y so
+    # they cannot touch each other, boxed so they stay legible over the traces,
+    # and horizontally aligned away from whichever axis edge they sit near.
+    def _onset_label(t_sec, text, colour, y, ls, lw):
+        x = t_sec / 60.0
+        ax.axvline(x, color=colour, lw=lw, ls=ls, alpha=0.9)
+        span = t_min[-1] - t_min[0]
+        frac = (x - t_min[0]) / span if span > 0 else 0.5
+        if frac < 0.12:
+            ha, dx = "left", 0.010 * span
+        elif frac > 0.88:
+            ha, dx = "right", -0.010 * span
+        else:
+            ha, dx = "center", 0.0
+        ax.text(x + dx, y, text, color=colour, fontsize=6.5, ha=ha, va="top",
+                transform=ax.get_xaxis_transform(), zorder=6,
+                bbox=dict(boxstyle="round,pad=0.18", facecolor="white",
+                          edgecolor="none", alpha=0.82))
+
     if a["eeg_t"] is not None:
-        ax.axvline(a["eeg_t"]/60.0, color="#c75f1e", lw=1.4, alpha=0.9)
-        ax.text(a["eeg_t"]/60.0, 1.02, "EEG onset", color="#c75f1e",
-                fontsize=8, ha="center", va="bottom", transform=ax.get_xaxis_transform())
+        _onset_label(a["eeg_t"], "EEG onset", "#c75f1e", 0.97, "-", 1.4)
     if a["behav_t"] is not None:
-        ax.axvline(a["behav_t"]/60.0, color="#a02a2a", lw=1.4, ls=":")
-        ax.text(a["behav_t"]/60.0, 1.02, "PERCLOS onset", color="#a02a2a",
-                fontsize=8, ha="center", va="bottom", transform=ax.get_xaxis_transform())
+        _onset_label(a["behav_t"], "PERCLOS onset", "#a02a2a", 0.86, ":", 1.4)
     ax.set_ylim(0, 1.0)
     ax.set_ylabel("p(drowsy)")
     ax.grid(alpha=0.25)
@@ -194,13 +244,14 @@ def plot_panel(ax, s, a, title_prefix):
     ax2.tick_params(axis="y", labelcolor="#567d46")
 
     lead_txt = f"lead = {a['lead_min']:+.2f} min" if a["lead_min"] is not None else "lead = n/a"
-    ax.set_title(f"{title_prefix}  (subj {s})  —  {lead_txt}", fontsize=10)
+    ax.set_title(f"{title_prefix}  (subj {s})  —  {lead_txt}", fontsize=7.5, pad=3)
 
     return ax2
 
 
 def build_static_figure(picks, path):
-    fig, axes = plt.subplots(len(picks), 1, figsize=(9.0, 2.4 * len(picks)), sharex=False)
+    fig, axes = plt.subplots(len(picks), 1,
+                             figsize=(TEXT_W, 1.75 * len(picks) + 0.5), sharex=False)
     if len(picks) == 1:
         axes = [axes]
     labels = ["Strong-lead case", "Median-lead case", "Marginal-lead case"]
@@ -208,15 +259,23 @@ def build_static_figure(picks, path):
     for ax, (s, a), lbl in zip(axes, picks, labels):
         sec_axes.append(plot_panel(ax, s, a, lbl))
     axes[-1].set_xlabel("Session time (min)")
-    # Combined legend on the top panel
+    # Combined legend, placed in the figure header rather than inside the top
+    # panel. In-axes it collided two ways: the twin PERCLOS axis is created
+    # after ax, so its trace and dotted 0.70 threshold drew straight through
+    # the legend text, and an upper-left legend sits exactly where an early
+    # EEG-onset label lands. A header legend cannot collide with either, and
+    # it survives the down-scaling this figure gets in the two-column layout.
     h1, l1 = axes[0].get_legend_handles_labels()
     h2, l2 = sec_axes[0].get_legend_handles_labels()
-    axes[0].legend(h1 + h2, l1 + l2, loc="upper left", fontsize=8, framealpha=0.9)
+    fig.legend(h1 + h2, l1 + l2, loc="upper center", bbox_to_anchor=(0.5, 0.925),
+               ncol=4, frameon=False)
     fig.suptitle("v20 Pro-Active algorithm running on three representative SEED-VIG subjects\n"
                  "(lean LDA posterior → causal EMA → per-subject 99th-pctile of first 5 min → first sustained crossing)",
-                 fontsize=10, y=0.995)
-    fig.tight_layout(rect=[0, 0, 1, 0.96])
-    fig.savefig(path, dpi=200)
+                 fontsize=7.5, y=0.995)
+    # rect reserves room for the header legend only; tight_layout already
+    # accounts for the suptitle, so reserving for it here would double-count.
+    fig.tight_layout(rect=[0, 0, 1, 0.925])
+    fig.savefig(path, dpi=400)
     plt.close(fig)
 
 

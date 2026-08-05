@@ -37,6 +37,22 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 np.random.seed(20260526)
 
+# --- Two-column camera-ready figure geometry -------------------------------
+# Both figures below are authored at the IEEEtran two-column \columnwidth and
+# placed at width=\columnwidth, i.e. 1:1, so these are the sizes that reach the
+# page. The previous 7.0/7.2 in geometry was sized for the one-column 11 pt
+# draft class and scales to about 48 % in two columns, taking its 10 pt tick
+# labels down to roughly 4.8 pt.
+COL_W = 3.45
+plt.rcParams.update({
+    "font.size":       7,
+    "axes.titlesize":  7.5,
+    "axes.labelsize":  7,
+    "xtick.labelsize": 6.5,
+    "ytick.labelsize": 6.5,
+    "legend.fontsize": 5.5,
+})
+
 _DIR = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(_DIR, "features_v9_cache.npz")
 FIGDIR = os.path.join(_DIR, "submission", "figures")
@@ -120,7 +136,7 @@ for band, col in bands:
 results["item1_coherence"] = coh_stats
 
 # Figure: violin (awake vs drowsy) per band
-fig, ax = plt.subplots(figsize=(7.0, 4.2))
+fig, ax = plt.subplots(figsize=(COL_W, COL_W * 0.74))
 positions = []
 data = []
 labels = []
@@ -142,12 +158,16 @@ for bi, (band, col) in enumerate(bands):
     base = bi * 3
     d = coh_stats[band]["cohens_d"]
     ytop = max(np.percentile(Xfull[:, cols.index(col)], 99), 0.9)
-    ax.text(base + 1.1, 1.02, f"$d={d:+.2f}$\n$p<10^{{-50}}$", ha="center", va="bottom", fontsize=8)
+    ax.text(base + 1.1, 1.02, f"$d={d:+.2f}$\n$p<10^{{-50}}$", ha="center", va="bottom", fontsize=5.5)
 ax.set_xticks([bi * 3 + 1.1 for bi in range(3)])
-ax.set_xticklabels([r"$\theta$ (4--8 Hz)", r"$\alpha$ (8--13 Hz)", r"$\beta$ (13--30 Hz)"])
-ax.set_ylabel(r"$O_1$--$O_2$ magnitude-squared coherence")
+# Real en-dashes: "--" is a LaTeX input convention and matplotlib prints it
+# literally as two hyphens, so the shipped figure read "4--8 Hz".
+ax.set_xticklabels(["$\\theta$ (4–8 Hz)", "$\\alpha$ (8–13 Hz)", "$\\beta$ (13–30 Hz)"])
+ax.set_ylabel("$O_1$–$O_2$ magnitude-squared coherence")
 ax.set_ylim(0, 1.18)
-ax.set_title("Inter-hemispheric occipital coherence: awake vs drowsy")
+# 53 characters of DejaVu Sans runs the full 3.45 in at the default 7.5 pt
+# title size and touches the figure edge; 6.5 pt leaves a real margin.
+ax.set_title("Inter-hemispheric occipital coherence: awake vs drowsy", fontsize=6.5)
 from matplotlib.patches import Patch
 ax.legend(handles=[Patch(facecolor=palette["awake"], alpha=0.6, label="Awake"),
                    Patch(facecolor=palette["drowsy"], alpha=0.6, label="Drowsy")],
@@ -155,7 +175,7 @@ ax.legend(handles=[Patch(facecolor=palette["awake"], alpha=0.6, label="Awake"),
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
 f1path = os.path.join(FIGDIR, "fig13_coherence_separation.png")
-fig.savefig(f1path, dpi=300); plt.close(fig)
+fig.savefig(f1path, dpi=320); plt.close(fig)
 print(f"  wrote {f1path}")
 
 # ============================================================================
@@ -257,11 +277,15 @@ rep = "05M"
 m = np.where(subj == rep)[0]
 t_min = np.arange(len(m)) * EPOCH_SEC / 60.0
 boundary = int(np.argmax(y[m] == 1))  # first drowsy epoch index
-fig, ax = plt.subplots(figsize=(7.2, 4.2))
-ax.plot(t_min, p_raw[m], color="#bdbdbd", lw=0.8, label="raw posterior $p_t$")
-ax.plot(t_min, p_sm[m], color="#c1272d", lw=1.8, label=r"EMA-smoothed $\tilde p_t$ ($\tau=600$ s)")
+fig, ax = plt.subplots(figsize=(COL_W, COL_W * 0.74))
+ax.plot(t_min, p_raw[m], color="#bdbdbd", lw=0.6, label="raw posterior $p_t$")
+# Legend labels are kept short deliberately: at 3.45 in the two-column
+# legend is wider than the axes if the full phrasings are used, and it then
+# hangs past the right-hand spine. The detail dropped here ("session",
+# "smoothed") is carried by the LaTeX caption.
+ax.plot(t_min, p_sm[m], color="#c1272d", lw=1.3, label=r"EMA $\tilde p_t$ ($\tau = 600$ s)")
 ax.axhline(0.5, color="black", ls=":", lw=0.8, label="decision threshold (0.5)")
-ax.axvline(t_min[boundary], color="#1f78b4", ls="--", lw=1.0, label="awake$\\to$drowsy session boundary")
+ax.axvline(t_min[boundary], color="#1f78b4", ls="--", lw=1.0, label="awake$\\to$drowsy boundary")
 ax.set_xlabel("Time within subject stream (min)")
 ax.set_ylabel("$p(\\mathrm{drowsy})$")
 # Item 8 (A. Chemori): the legend previously sat at "center left", directly on
@@ -269,14 +293,15 @@ ax.set_ylabel("$p(\\mathrm{drowsy})$")
 # the label text. Reserve a clear band above the data and lay the legend out
 # horizontally in that band so it cannot overlap any plotted element.
 ax.set_ylim(-0.02, 1.34)
-ax.legend(loc="upper left", ncol=2, fontsize=8, frameon=True,
-          framealpha=0.95, edgecolor="0.8", borderpad=0.5,
-          handlelength=1.8, columnspacing=1.4)
-ax.set_title(f"Raw vs causal-EMA posterior (subject {rep})", pad=8)
+ax.legend(loc="upper left", ncol=2, frameon=True,
+          framealpha=0.95, edgecolor="0.8", borderpad=0.35,
+          handlelength=1.4, columnspacing=0.9, handletextpad=0.4,
+          labelspacing=0.25)
+ax.set_title(f"Raw vs causal-EMA posterior (subject {rep})", pad=4)
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
 f3path = os.path.join(FIGDIR, "fig14_ema_raw_vs_smoothed.png")
-fig.savefig(f3path, dpi=300); plt.close(fig)
+fig.savefig(f3path, dpi=320); plt.close(fig)
 print(f"  wrote {f3path}")
 
 # Latency: EMA step response reaches fraction q at t = -tau*ln(1-q)

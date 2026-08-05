@@ -1,0 +1,244 @@
+{
+  "timestamp": "2026-04-21T04:51:45.522735",
+  "methodology": "EEGNet (Lawhern 2018) on raw O1/O2 windows. LOSO over 10 DROZY subjects. Per-subject train-fold awake z-score; test-subject z-score uses first 30 epochs of own session-1. Adam lr=0.001, batch=64, epochs=15, channels=2, samples=1280, F1=8, D=2, F2=16.",
+  "overall": {
+    "accuracy": 52.41,
+    "precision": 54.05,
+    "recall": 52.41,
+    "f1_score": 47.32,
+    "auc_roc": 53.82,
+    "kappa": 0.0495,
+    "confusion_matrix": [
+      [
+        6046,
+        1188
+      ],
+      [
+        5711,
+        1553
+      ]
+    ]
+  },
+  "per_subject": [
+    {
+      "subject": "01M",
+      "accuracy": 46.95,
+      "precision": 46.93,
+      "recall": 46.95,
+      "f1_score": 46.89,
+      "auc_roc": 45.78,
+      "kappa": -0.0612,
+      "confusion_matrix": [
+        [
+          367,
+          363
+        ],
+        [
+          410,
+          317
+        ]
+      ],
+      "n": 1457,
+      "train_loss_last_epoch": 0.6486,
+      "time_s": 169.2
+    },
+    {
+      "subject": "02F",
+      "accuracy": 53.76,
+      "precision": 53.75,
+      "recall": 53.76,
+      "f1_score": 53.74,
+      "auc_roc": 55.19,
+      "kappa": 0.0748,
+      "confusion_matrix": [
+        [
+          412,
+          326
+        ],
+        [
+          351,
+          375
+        ]
+      ],
+      "n": 1464,
+      "train_loss_last_epoch": 0.6538,
+      "time_s": 174.2
+    },
+    {
+      "subject": "03F",
+      "accuracy": 57.95,
+      "precision": 58.44,
+      "recall": 57.95,
+      "f1_score": 57.4,
+      "auc_roc": 62.31,
+      "kappa": 0.1597,
+      "confusion_matrix": [
+        [
+          507,
+          223
+        ],
+        [
+          393,
+          342
+        ]
+      ],
+      "n": 1465,
+      "train_loss_last_epoch": 0.6578,
+      "time_s": 175.6
+    },
+    {
+      "subject": "04M",
+      "accuracy": 48.3,
+      "precision": 44.41,
+      "recall": 48.3,
+      "f1_score": 34.35,
+      "auc_roc": 38.63,
+      "kappa": -0.0153,
+      "confusion_matrix": [
+        [
+          662,
+          31
+        ],
+        [
+          700,
+          21
+        ]
+      ],
+      "n": 1414,
+      "train_loss_last_epoch": 0.6503,
+      "time_s": 161.5
+    },
+    {
+      "subject": "05M",
+      "accuracy": 50.76,
+      "precision": 61.19,
+      "recall": 50.76,
+      "f1_score": 35.8,
+      "auc_roc": 59.89,
+      "kappa": 0.0152,
+      "confusion_matrix": [
+        [
+          717,
+          7
+        ],
+        [
+          706,
+          18
+        ]
+      ],
+      "n": 1448,
+      "train_loss_last_epoch": 0.6624,
+      "time_s": 156.8
+    },
+    {
+      "subject": "06M",
+      "accuracy": 49.66,
+      "precision": 50.91,
+      "recall": 49.66,
+      "f1_score": 34.32,
+      "auc_roc": 52.25,
+      "kappa": 0.0011,
+      "confusion_matrix": [
+        [
+          710,
+          11
+        ],
+        [
+          721,
+          12
+        ]
+      ],
+      "n": 1454,
+      "train_loss_last_epoch": 0.6573,
+      "time_s": 171.7
+    },
+    {
+      "subject": "07F",
+      "accuracy": 51.03,
+      "precision": 51.58,
+      "recall": 51.03,
+      "f1_score": 45.96,
+      "auc_roc": 46.67,
+      "kappa": 0.0198,
+      "confusion_matrix": [
+        [
+          595,
+          134
+        ],
+        [
+          579,
+          148
+        ]
+      ],
+      "n": 1456,
+      "train_loss_last_epoch": 0.6635,
+      "time_s": 163.6
+    },
+    {
+      "subject": "08M",
+      "accuracy": 62.72,
+      "precision": 70.26,
+      "recall": 62.72,
+      "f1_score": 58.9,
+      "auc_roc": 75.3,
+      "kappa": 0.2545,
+      "confusion_matrix": [
+        [
+          674,
+          49
+        ],
+        [
+          490,
+          233
+        ]
+      ],
+      "n": 1446,
+      "train_loss_last_epoch": 0.665,
+      "time_s": 165.0
+    },
+    {
+      "subject": "09M",
+      "accuracy": 52.94,
+      "precision": 59.01,
+      "recall": 52.94,
+      "f1_score": 43.46,
+      "auc_roc": 60.18,
+      "kappa": 0.0593,
+      "confusion_matrix": [
+        [
+          679,
+          44
+        ],
+        [
+          637,
+          87
+        ]
+      ],
+      "n": 1447,
+      "train_loss_last_epoch": 0.6558,
+      "time_s": 166.9
+    },
+    {
+      "subject": "10M",
+      "accuracy": 49.97,
+      "precision": 24.97,
+      "recall": 49.97,
+      "f1_score": 33.29,
+      "auc_roc": 68.64,
+      "kappa": 0.0,
+      "confusion_matrix": [
+        [
+          723,
+          0
+        ],
+        [
+          724,
+          0
+        ]
+      ],
+      "n": 1447,
+      "train_loss_last_epoch": 0.6714,
+      "time_s": 168.4
+    }
+  ]
+}

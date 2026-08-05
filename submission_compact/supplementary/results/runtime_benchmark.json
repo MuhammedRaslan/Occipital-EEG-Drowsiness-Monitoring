@@ -1,0 +1,76 @@
+{
+  "timestamp": "2026-04-21T01:20:42.683206",
+  "config": {
+    "fs_hz": 128,
+    "epoch_sec": 10,
+    "n_samples_per_epoch": 1280,
+    "n_features": 50,
+    "warmup_trials": 20,
+    "trials": 500
+  },
+  "per_stage_ms": [
+    {
+      "stage": "welch PSD (single)",
+      "ms_per_call": 1.396
+    },
+    {
+      "stage": "band power (1 band)",
+      "ms_per_call": 1.468
+    },
+    {
+      "stage": "spectral entropy",
+      "ms_per_call": 2.055
+    },
+    {
+      "stage": "Hjorth params",
+      "ms_per_call": 0.183
+    },
+    {
+      "stage": "ZCR",
+      "ms_per_call": 0.026
+    },
+    {
+      "stage": "skewness",
+      "ms_per_call": 1.081
+    },
+    {
+      "stage": "DWT energies (db4, L=5)",
+      "ms_per_call": 0.147
+    },
+    {
+      "stage": "sample entropy (m=2)",
+      "ms_per_call": 5.599
+    },
+    {
+      "stage": "perm entropy (order=3)",
+      "ms_per_call": 0.171
+    },
+    {
+      "stage": "aperiodic slope",
+      "ms_per_call": 2.583
+    },
+    {
+      "stage": "peak alpha freq",
+      "ms_per_call": 1.605
+    },
+    {
+      "stage": "coherence (1 band)",
+      "ms_per_call": 5.013
+    },
+    {
+      "stage": "FULL 50-feature extraction (per 10s epoch)",
+      "ms_per_call": 56.491
+    }
+  ],
+  "full_pipeline_ms_per_epoch": 56.491,
+  "real_time_factor": 0.005649,
+  "lda_fit_seconds_on_14498x50": 0.086,
+  "lda_predict_proba_single_us": 222.557,
+  "end_to_end_ms_per_epoch": 55.991,
+  "memory_bytes": {
+    "serialized_lda_model": 0,
+    "feature_vector_per_epoch": 400,
+    "raw_epoch_per_channel_pair": 20480
+  },
+  "interpretation": "With a 10-s epoch, the pipeline processes one epoch in 56.5 ms. That is ~177x faster than real-time on a laptop CPU, so a single core can easily handle continuous streaming with headroom for BLE I/O."
+}

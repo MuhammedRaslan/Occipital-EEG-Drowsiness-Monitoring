@@ -12,7 +12,7 @@ This file consolidates the four declaration paragraphs the portal will request. 
 
 **A. R. Pal (third author, corresponding author):** supervision, conceptualization (driver-monitoring framing), methodology guidance, writing — review & editing, project administration.
 
-**A. Chemori (fourth author):** [TODO — CRediT statement to be supplied by Dr. Chemori. Expected to include supervision, methodology guidance, and writing — review & editing, based on his pre-submission review of 2026-07-25; confirm with him before submission.]
+**A. Chemori (fourth author):** methodology guidance, writing — review & editing.
 
 **G. Murali Mohan (fifth author):** supervision.
 
@@ -28,7 +28,7 @@ The authors declare no conflicts of interest, financial or otherwise, related to
 
 ## 3. Funding
 
-[TODO — confirm with Dr. Chemori before submission. The statement below was accurate while the work was entirely VIT-internal; a CNRS/LIRMM co-author may carry an obligation to acknowledge laboratory or grant support, which must be added here if so.]
+Confirmed 2026-08-02: no CNRS/LIRMM funding or institutional-support acknowledgement is required, so the statement below stands as originally drafted.
 
 This work received no external funding. The work was conducted as the undergraduate capstone project of the first and second authors at the School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, under the supervision of the third, fourth and fifth authors. No part of the manuscript preparation was supported by industry sponsorship.
 

@@ -35,6 +35,24 @@ from sklearn.metrics import (
 
 warnings.filterwarnings("ignore")
 
+# --- Two-column camera-ready figure geometry -------------------------------
+# The figure is authored at the IEEEtran two-column \columnwidth (3.5 in) and
+# placed at width=\columnwidth, i.e. essentially 1:1, so the sizes below are
+# the sizes that reach the page. The earlier 7.6 x 6.0 in geometry was tuned
+# for the one-column 11 pt draft class, where \columnwidth was about 6.5 in;
+# carried into two columns unchanged it scales to 45 % and its tick labels
+# land near 4.5 pt, well under the legible floor.
+COL_W = 3.45
+plt.rcParams.update({
+    "font.size":       7,
+    "axes.titlesize":  7.5,
+    "axes.labelsize":  7,
+    "xtick.labelsize": 6.5,
+    "ytick.labelsize": 6.5,
+    "legend.fontsize": 5.5,
+    "lines.linewidth": 1.2,
+})
+
 _SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 LEAN_CACHE   = os.path.join(_SCRIPT_DIR, "features_v9_cache.npz")
 RESULTS_FILE = os.path.join(_SCRIPT_DIR, "publication_results_v17_roc.json")
@@ -171,17 +189,16 @@ def main():
     #       They are now annotated directly on the curve, leaving a two-line
     #       legend that cannot crowd the plotted data.
     #
-    # NOTE: figsize/dpi below reproduce the 1920x1500 px figure shipped in
-    # submission/figures/. Do not change these without regenerating the PNG —
-    # a previous hand-edit of the image left this script emitting a different
-    # size and a broken title, so reproduce.py silently undid the fix.
-    # figsize chosen so that at width=0.98\columnwidth the on-page text size
-    # matches Figs 1 and 2 (~85% scale). An earlier 9.6x7.5 version scaled to
-    # 57-66% and its labels came out visibly smaller than the other figures.
-    fig, ax = plt.subplots(figsize=(7.6, 6.0))
-    ax.plot(fpr, tpr, "-", lw=2.6, color="#1f3b6e", zorder=3,
+    # NOTE: figsize/dpi below define the PNG shipped in submission/figures/.
+    # Do not change these without regenerating the PNG — a previous hand-edit
+    # of the image left this script emitting a different size and a broken
+    # title, so reproduce.py silently undid the fix.
+    # Authored at COL_W so that width=\columnwidth places it 1:1; see the
+    # rcParams block at the top for the accompanying type sizes.
+    fig, ax = plt.subplots(figsize=(COL_W, COL_W * 0.86))
+    ax.plot(fpr, tpr, "-", lw=1.6, color="#1f3b6e", zorder=3,
             label=f"v17 ROC  (AUC = {auc:.2f}%)")
-    ax.plot([0, 1], [0, 1], color="0.45", lw=1.4, linestyle=(0, (6, 4)),
+    ax.plot([0, 1], [0, 1], color="0.45", lw=1.0, linestyle=(0, (6, 4)),
             zorder=2, label="chance")
     # The three operating points sit close together on the upper-left knee. An
     # earlier revision annotated each one in the empty mid-right with leader
@@ -196,19 +213,20 @@ def main():
     }
     for name, (mk, col, lbl) in labels.items():
         m = ops[name]
-        ax.plot(m["fpr"], m["tpr"], mk, color=col, ms=10, mec="k", mew=0.8,
+        ax.plot(m["fpr"], m["tpr"], mk, color=col, ms=4.5, mec="k", mew=0.5,
                 zorder=4, linestyle="none",
                 label=f"{lbl}:  TPR = {m['tpr']:.2f},  F1 = {m['f1_score']:.1f}%")
     ax.set_xlabel("False-positive rate (awake misclassified as drowsy)")
     ax.set_ylabel("True-positive rate (drowsy detected)")
     ax.set_title("Monitoring-track ROC: lean LDA + causal EMA ($\\tau$ = 600 s)\n"
-                 "DROZY LOSO, 10 subjects, 14,498 epochs", fontsize=11, pad=8)
+                 "DROZY LOSO, 10 subjects, 14,498 epochs", pad=4)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1.02)
     ax.grid(alpha=0.25)
-    ax.legend(loc="lower right", fontsize=8.5, framealpha=0.96,
-              edgecolor="0.75", borderpad=0.6, labelspacing=0.5)
-    fig.tight_layout()
-    fig.savefig(FIG_PATH, dpi=200)
+    ax.legend(loc="lower right", framealpha=0.96, edgecolor="0.75",
+              borderpad=0.4, labelspacing=0.35, handlelength=1.6,
+              handletextpad=0.5)
+    fig.tight_layout(pad=0.4)
+    fig.savefig(FIG_PATH, dpi=400)
     plt.close(fig)
     print(f"  figure -> {FIG_PATH}")
 

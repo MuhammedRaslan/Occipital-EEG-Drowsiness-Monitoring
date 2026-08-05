@@ -1,0 +1,436 @@
+% References for IEEE Sensors Journal submission
+% Authors: M. R. Thalassery, S. S. Ali, A. R. Pal, A. Chemori, G. Murali Mohan
+% Title:   Inter-Hemispheric Occipital Coherence for Subject-Independent Driver Drowsiness Monitoring and Advance Prediction
+%
+% Item 3 (A. Chemori review, 2026-07-25): style homogenised for IEEEtran.
+% NOTE: \bibliographystyle{IEEEtran} was already correct — the inconsistency
+% was in the DATA, not the style file. Normalised here without lookups:
+%   * journal names unified (Sensors vs "Sensors (MDPI)")
+%   * {IEEE} braced consistently across all journal names
+%   * abbreviation spacing unified on "\ " after each abbreviated word
+%   * who2023road retyped @article -> @techreport (WHO is not a journal)
+%   * seeingmachines2024 institution corrected (was "Annual Report")
+%   * stray note field removed from zheng2017seedvig (it printed in the ref)
+% STILL OUTSTANDING (requires verification against the source papers — do not
+% guess these): full author lists for the 10 entries marked FIXME-AUTHORS,
+% issue numbers for the 10 entries marked FIXME-ISSUE, and DOIs throughout.
+% who2023road no longer counts toward the issue-number total now that it is a
+% @techreport.
+
+@techreport{who2023road,
+  author      = {{World Health Organization}},
+  title       = {Global Status Report on Road Safety 2023},
+  institution = {World Health Organization},
+  address     = {Geneva, Switzerland},
+  year        = {2023},
+}
+
+@inproceedings{drozy2016,
+  author    = {Massoz, Q. and Langohr, T. and Fran\c{c}ois, C. and Verly, J. G.},
+  title     = {The {ULg} multimodality drowsiness database (called {DROZY}) and examples of use},
+  booktitle = {Proc.\ {IEEE} Winter Conf.\ Applications of Computer Vision ({WACV})},
+  pages     = {1--7},
+  year      = {2016},
+}
+
+@article{sahayadhas2012sensors,
+  author    = {Sahayadhas, A. and Sundaraj, K. and Murugappan, M.},
+  title     = {Detecting driver drowsiness based on sensors: A review},
+  journal   = {Sensors},
+  volume    = {12}, number = {12},
+  pages     = {16937--16953},
+  year      = {2012},
+}
+
+@article{stancin2021review,
+  author    = {Stancin, I. and Cifrek, M. and Jovic, A.},
+  title     = {A review of {EEG} signal features and their application in driver drowsiness detection systems},
+  journal   = {Sensors},
+  volume    = {21}, number = {11},
+  pages     = {3786},
+  year      = {2021},
+}
+
+% CORRECTED 2026-07-25 against Crossref (DOI 10.1109/JSEN.2018.2807245).
+% The entry previously read "Chowdhury, M. E. H. and others", journal
+% {IEEE} Access, vol. 6, pp. 22235--22258. All four were wrong: the first
+% author is Anuva Chowdhury (not M. E. H.), and the paper is in IEEE SENSORS
+% JOURNAL, not IEEE Access. Note this means the manuscript already cites one
+% IEEE Sensors Journal paper once the venue is corrected.
+@article{chowdhury2018access,
+  author    = {Chowdhury, A. and Shankaran, R. and Kavakli, M. and Haque, M. M.},
+  title     = {Sensor applications and physiological features in drivers' drowsiness detection: A review},
+  journal   = {{IEEE} Sensors J.},
+  volume    = {18}, number = {8},
+  pages     = {3055--3067},
+  year      = {2018},
+  doi       = {10.1109/JSEN.2018.2807245},
+}
+
+@article{jap2009eeg,
+  author    = {Jap, B. T. and Lal, S. and Fischer, P. and Bekiaris, E.},
+  title     = {Using {EEG} spectral components to assess algorithms for detecting fatigue},
+  journal   = {Expert Syst.\ Appl.},
+  volume    = {36}, number = {2},
+  pages     = {2352--2359},
+  year      = {2009},
+}
+
+@techreport{seeingmachines2024,
+  author    = {{Seeing Machines Ltd.}},
+  title     = {{DMS} market review and technology landscape},
+  institution = {Seeing Machines Ltd.},
+  type        = {Annual Report},
+  year      = {2024},
+}
+
+@article{larocco2020headsets,
+  author    = {LaRocco, J. and Le, M. D. and Bhatt, D. G.},
+  title     = {A systematic review of available low-cost {EEG} headsets used for drowsiness detection},
+  journal   = {Front.\ Neuroinform.},
+  volume    = {14},
+  pages     = {553352},
+  year      = {2020},
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
+}
+
+% CORRECTED 2026-07-25 (DOI 10.1016/j.cmpb.2021.106535). Was recorded as an
+% IEEE CRC conference paper, 2020, pp. 34--38. It is a JOURNAL article in
+% Computer Methods and Programs in Biomedicine, 2022. Venue, year, type and
+% pages were all wrong.
+@article{gangadharan2020wireless,
+  author    = {{Gangadharan K}, S. and Vinod, A. P.},
+  title     = {Drowsiness detection using portable wireless {EEG}},
+  journal   = {Comput.\ Methods Programs Biomed.},
+  volume    = {214},
+  pages     = {106535},
+  year      = {2022},
+  doi       = {10.1016/j.cmpb.2021.106535},
+}
+
+@article{balam2024review,
+  author    = {Balam, V. P.},
+  title     = {Systematic review of single-channel {EEG}-based drowsiness detection methods},
+  journal   = {{IEEE} Trans.\ Intell.\ Transp.\ Syst.},
+  volume    = {25},
+  pages     = {15210--15228},
+  year      = {2024},
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
+}
+
+% CORRECTED 2026-07-25 (DOI 10.3390/brainsci9120348). Was recorded as Jeong,
+% Yoo and Yun, IEEE Trans. Consumer Electron. 68(3):294--302, 2022. Only the
+% first author was right: the paper is in Brain Sciences, 2019. Currently
+% uncited; keep or drop as the authors prefer.
+@article{jeong2022consumer,
+  author    = {Jeong, J.-H. and Yu, B.-W. and Lee, D.-H. and Lee, S.-W.},
+  title     = {Classification of drowsiness levels based on a deep spatio-temporal convolutional bidirectional {LSTM} network using electroencephalography signals},
+  journal   = {Brain Sci.},
+  volume    = {9}, number = {12},
+  pages     = {348},
+  year      = {2019},
+  doi       = {10.3390/brainsci9120348},
+}
+
+% CORRECTED 2026-07-25 (DOI 10.3390/app9235078). Was recorded as Cheng, Chen
+% and Chen, IEEE BIBM 2021, pp. 2741--2747. The real paper is a 2019 Applied
+% Sciences article by Cheng, Young and Lin. Co-authors, venue, year and pages
+% were all wrong.
+@article{cheng2021bibm,
+  author    = {Cheng, E. J. and Young, K.-Y. and Lin, C.-T.},
+  title     = {Temporal {EEG} imaging for drowsy driving prediction},
+  journal   = {Appl.\ Sci.},
+  volume    = {9}, number = {23},
+  pages     = {5078},
+  year      = {2019},
+  doi       = {10.3390/app9235078},
+}
+
+@misc{nunez2025patent,
+  author    = {Nunez, P. L.},
+  title     = {Headrest-integrated real-time alertness prediction system},
+  howpublished = {{U.S.} Patent 12,446,811 B2},
+  month     = {Apr.},
+  year      = {2025},
+}
+
+@misc{toyota2021patent,
+  author    = {{Toyota Motor Corporation}},
+  title     = {Drowsiness estimation device},
+  howpublished = {{U.S.} Patent 11,091,168 B2},
+  month     = {Aug.},
+  year      = {2021},
+}
+
+@article{barachant2013riemannian,
+  author    = {Barachant, A. and Bonnet, S. and Congedo, M. and Jutten, C.},
+  title     = {Classification of covariance matrices using a {Riemannian}-based kernel for {BCI} applications},
+  journal   = {Neurocomputing},
+  volume    = {112},
+  pages     = {172--178},
+  year      = {2013},
+  % FIXME-ISSUE: no issue number; other @article entries carry one.
+}
+
+@article{lawhern2018eegnet,
+  author    = {Lawhern, V. J. and Solon, A. J. and Waytowich, N. R. and Gordon, S. M. and Hung, C. P. and Lance, B. J.},
+  title     = {{EEGNet}: a compact convolutional neural network for {EEG}-based brain--computer interfaces},
+  journal   = {J.\ Neural Eng.},
+  volume    = {15}, number = {5},
+  pages     = {056013},
+  year      = {2018},
+}
+
+@article{zheng2017seedvig,
+  author    = {Zheng, W.-L. and Lu, B.-L.},
+  title     = {A multimodal approach to estimating vigilance using {EEG} and forehead {EOG}},
+  journal   = {J.\ Neural Eng.},
+  volume    = {14}, number = {2},
+  pages     = {026017},
+  year      = {2017},
+}
+
+@article{ledoit2004shrinkage,
+  author    = {Ledoit, O. and Wolf, M.},
+  title     = {A well-conditioned estimator for large-dimensional covariance matrices},
+  journal   = {J.\ Multivar.\ Anal.},
+  volume    = {88}, number = {2},
+  pages     = {365--411},
+  year      = {2004},
+}
+
+@article{nolte2004imcoh,
+  author    = {Nolte, G. and Bai, O. and Wheaton, L. and Mari, Z. and Vorbach, S. and Hallett, M.},
+  title     = {Identifying true brain interaction from {EEG} data using the imaginary part of coherency},
+  journal   = {Clin.\ Neurophysiol.},
+  volume    = {115}, number = {10},
+  pages     = {2292--2307},
+  year      = {2004},
+}
+
+@article{vinck2011wpli,
+  author    = {Vinck, M. and Oostenveld, R. and van Wingerden, M. and Battaglia, F. and Pennartz, C. M. A.},
+  title     = {An improved index of phase-synchronization for electrophysiological data in the presence of volume-conduction, noise and sample-size bias},
+  journal   = {NeuroImage},
+  volume    = {55}, number = {4},
+  pages     = {1548--1565},
+  year      = {2011},
+}
+
+@article{lachaux1999plv,
+  author    = {Lachaux, J.-P. and Rodriguez, E. and Martinerie, J. and Varela, F. J.},
+  title     = {Measuring phase synchrony in brain signals},
+  journal   = {Hum.\ Brain Mapp.},
+  volume    = {8}, number = {4},
+  pages     = {194--208},
+  year      = {1999},
+}
+
+% --- Recent (2024-2025) papers ---
+
+% CORRECTED 2026-07-25 against Crossref (DOI 10.3389/fnins.2024.1508747).
+% Previously "Cui, J. and others" -- the authors are Feng, Guo and Kwong.
+@article{id3rsnet2024,
+  author    = {Feng, X. and Guo, Z. and Kwong, S.},
+  title     = {{ID3RSNet}: cross-subject driver drowsiness detection from raw single-channel {EEG} with an interpretable residual shrinkage network},
+  journal   = {Front.\ Neurosci.},
+  volume    = {18},
+  pages     = {1508747},
+  year      = {2025},
+  doi       = {10.3389/fnins.2024.1508747},
+}
+
+% CORRECTED 2026-07-25 against Crossref (DOI 10.1038/s41598-025-02111-x).
+% Previously "Sciaraffa, N. and others" with pages {2111}; the authors are
+% Hassan et al., and "2111" was not a page number -- it is a fragment of the
+% DOI suffix (s41598-025-02111-x). Article number pending verification.
+@article{transformer2025drowsiness,
+  author    = {Hassan, O. F. and Ibrahim, A. F. and Gomaa, A. and Makhlouf, M. A. and Hafiz, B.},
+  title     = {Real-time driver drowsiness detection using transformer architectures: A novel deep learning approach},
+  journal   = {Sci.\ Rep.},
+  volume    = {15}, number = {1},
+  year      = {2025},
+  doi       = {10.1038/s41598-025-02111-x},
+}
+
+% CORRECTED 2026-07-25 against Crossref (DOI 10.1109/LSENS.2024.3363735).
+% Previously "Mehmood, R. M. and others", {IEEE} Sensors J., vol. 24,
+% pp. 5614--5625. The authors are Divvala and Mishra, and the venue is IEEE
+% SENSORS LETTERS -- a different publication from IEEE Sensors Journal. Before
+% this correction the manuscript cited zero IEEE Sensors Journal papers while
+% appearing to cite one.
+@article{attention2024eeg,
+  author    = {Divvala, C. and Mishra, M.},
+  title     = {Deep learning-based attention mechanism for automatic drowsiness detection using {EEG} signal},
+  journal   = {{IEEE} Sensors Lett.},
+  volume    = {8}, number = {3},
+  pages     = {1--4},
+  year      = {2024},
+  doi       = {10.1109/LSENS.2024.3363735},
+}
+
+% ADDED 2026-07-25 for item 13 (second IEEE Sensors Journal citation) and
+% item 5 (form-factor coverage). Verified against the publisher record;
+% DOI 10.1109/JSEN.2023.3307766.
+@article{nguyen2023behindear,
+  author    = {Nguyen, H. T. and Mai, N. D. and Lee, B. G. and Chung, W. Y.},
+  title     = {Behind-the-ear {EEG}-based wearable driver drowsiness detection system using embedded tiny neural networks},
+  journal   = {{IEEE} Sensors J.},
+  volume    = {23}, number = {19},
+  pages     = {23875--23892},
+  year      = {2023},
+  doi       = {10.1109/JSEN.2023.3307766},
+}
+
+% CORRECTED 2026-07-25 (DOI 10.3390/s25175530). Was "Aslan, M. and others";
+% the authors are Zayed et al. -- the same group as minimal2024electrodes.
+@article{scalograms2025drowsiness,
+  author    = {Zayed, A. and Belhadj, N. and {Ben Khalifa}, K. and Valderrama, C. and Bedoui, M. H.},
+  title     = {A novel hybrid approach for drowsiness detection using {EEG} scalograms to overcome inter-subject variability},
+  journal   = {Sensors},
+  volume    = {25}, number = {17},
+  pages     = {5530},
+  year      = {2025},
+  doi       = {10.3390/s25175530},
+}
+
+% CORRECTED 2026-07-25 against Crossref (DOI 10.3390/s24134256).
+% Previously "Hultman, M. and others"; the authors are Zayed et al. The
+% published title spells out "Electroencephalography-Based", not "EEG-Based".
+@article{minimal2024electrodes,
+  author    = {Zayed, A. and Belhadj, N. and {Ben Khalifa}, K. and Bedoui, M. H. and Valderrama, C.},
+  title     = {Efficient generalized electroencephalography-based drowsiness detection approach with minimal electrodes},
+  journal   = {Sensors},
+  volume    = {24}, number = {13},
+  pages     = {4256},
+  year      = {2024},
+  doi       = {10.3390/s24134256},
+}
+
+% CORRECTED 2026-07-25 (DOI 10.1016/j.neucom.2024.128961). Was "Cui, Y. and
+% others", vol. 606, art. 128350, 2024. Authors, volume, article number and
+% year were all wrong.
+@article{hybrid2024simulated,
+  author    = {Lin, X. and Huang, Z. and Ma, W. and Tang, W.},
+  title     = {{EEG}-based driver drowsiness detection based on simulated driving environment},
+  journal   = {Neurocomputing},
+  volume    = {616},
+  pages     = {128961},
+  year      = {2025},
+  doi       = {10.1016/j.neucom.2024.128961},
+}
+
+% CORRECTED 2026-07-25 (DOI 10.1038/s41598-025-93765-0). Was "Mihalache, S.
+% and others" with pages {93765}. The authors are Yadav et al. (10 authors, so
+% IEEE style takes the first followed by et al.), and "93765" was a fragment of
+% the DOI suffix, not a page number.
+@article{hybridcnn2025,
+  author    = {Yadav, A. and Hussain, R. and Shukla, M. and Jayaprakash, B. and Kalia, R. and Mary, S. P. and others},
+  title     = {Enhancing convolutional neural networks in electroencephalogram driver drowsiness detection using human-inspired optimizers},
+  journal   = {Sci.\ Rep.},
+  volume    = {15}, number = {1},
+  year      = {2025},
+  doi       = {10.1038/s41598-025-93765-0},
+}
+
+% CORRECTED 2026-07-25 (DOI 10.48084/etasr.12725). Was "Patel, R. and others"
+% with pages {12725}. The authors are Nasir et al.; "12725" was a fragment of
+% the DOI suffix. Real pages are 27594--27600, issue 5.
+@article{cnnlstmsafedrive2025,
+  author    = {Nasir, O. and Aljaidi, M. and Alsarhan, A. and Alshammari, S. A. and Albalawi, N. S. and Alshammari, N. H. and others},
+  title     = {{SAFE-DRIVE-AI}: A {CNN--LSTM--Attention} framework for drowsiness detection},
+  journal   = {Eng.\ Technol.\ Appl.\ Sci.\ Res.},
+  volume    = {15}, number = {5},
+  pages     = {27594--27600},
+  year      = {2025},
+  doi       = {10.48084/etasr.12725},
+}
+
+% CORRECTED 2026-07-25 (DOI 10.1038/s41597-025-06540-1). Was "Ghoddoosian, R.
+% and others", arXiv:2507.13403, 2025. The authors are Bodaghi et al. and the
+% paper is published in Scientific Data (2026), not an arXiv preprint.
+@article{eeguldd2025,
+  author    = {Bodaghi, M. and Hosseini, M. and Gottumukkala, R. and Bhupatiraju, R. T. and Ahmad, I. and Gabbouj, M.},
+  title     = {A multimodal drowsiness dataset using video, biometric, and behavioral data},
+  journal   = {Sci.\ Data},
+  volume    = {13}, number = {1},
+  year      = {2026},
+  doi       = {10.1038/s41597-025-06540-1},
+}
+
+% --- Verified prior work on EEG-based prediction of drowsiness / microsleep ---
+% Added 2026-07-25 to replace nguyen2021biomed and lin2020generalised, neither
+% of which exists (see the audit note at the head of this file). All four
+% records below were confirmed against Crossref by DOI.
+
+@article{buriro2018microsleep,
+  author    = {Buriro, A. B. and Shoorangiz, R. and Weddell, S. J. and Jones, R. D.},
+  title     = {Predicting microsleep states using {EEG} inter-channel relationships},
+  journal   = {{IEEE} Trans.\ Neural Syst.\ Rehabil.\ Eng.},
+  volume    = {26}, number = {12},
+  pages     = {2260--2269},
+  year      = {2018},
+  doi       = {10.1109/TNSRE.2018.2878587},
+}
+
+@article{golz2016microsleep,
+  author    = {Golz, M. and Sommer, D. and Krajewski, J.},
+  title     = {Prediction of immediately occurring microsleep events from brain electric signals},
+  journal   = {Curr.\ Dir.\ Biomed.\ Eng.},
+  volume    = {2}, number = {1},
+  pages     = {149--153},
+  year      = {2016},
+  doi       = {10.1515/cdbme-2016-0035},
+}
+
+@article{lin2005drowsiness,
+  author    = {Lin, C.-T. and Wu, R.-C. and Liang, S.-F. and Chao, W.-H. and Chen, Y.-J. and Jung, T.-P.},
+  title     = {{EEG}-based drowsiness estimation for safety driving using independent component analysis},
+  journal   = {{IEEE} Trans.\ Circuits Syst.\ I, Reg.\ Papers},
+  volume    = {52}, number = {12},
+  pages     = {2726--2738},
+  year      = {2005},
+  doi       = {10.1109/TCSI.2005.857555},
+}
+
+@article{ladouce2025vigilance,
+  author    = {Ladouce, S. and {Torre Tresols}, J. J. and {Le Goff}, K. and Dehais, F.},
+  title     = {{EEG}-based assessment of long-term vigilance and lapses of attention using a user-centered framework},
+  journal   = {J.\ Neural Eng.},
+  volume    = {22}, number = {3},
+  pages     = {036018},
+  year      = {2025},
+  doi       = {10.1088/1741-2552/add771},
+}
+
+% --- Form factor and cross-subject transfer (added 2026-07-25, item 5) ---
+% All verified against Crossref by DOI.
+
+@inproceedings{ha2016earmodule,
+  author    = {Ha, U. and Yoo, H.-J.},
+  title     = {An {EEG-NIRS} ear-module {SoC} for wearable drowsiness monitoring system},
+  booktitle = {Proc.\ {IEEE} Asian Solid-State Circuits Conf.\ ({A-SSCC})},
+  pages     = {193--196},
+  year      = {2016},
+  doi       = {10.1109/ASSCC.2016.7844168},
+}
+
+@article{athavipach2019inear,
+  author    = {Athavipach, C. and Pan-ngum, S. and Israsena, P.},
+  title     = {A wearable in-ear {EEG} device for emotion monitoring},
+  journal   = {Sensors},
+  volume    = {19}, number = {18},
+  pages     = {4014},
+  year      = {2019},
+  doi       = {10.3390/s19184014},
+}
+
+@article{maswanganyi2025transfer,
+  author    = {Maswanganyi, R. C. and Tu, C. and Owolawi, P. A. and Du, S.},
+  title     = {Single-source and multi-source cross-subject transfer based on domain adaptation algorithms for {EEG} classification},
+  journal   = {Mathematics},
+  volume    = {13}, number = {5},
+  pages     = {802},
+  year      = {2025},
+  doi       = {10.3390/math13050802},
+}

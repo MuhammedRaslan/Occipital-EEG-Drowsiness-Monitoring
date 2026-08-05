@@ -26,10 +26,12 @@ This is the single-page reference for the ScholarOne portal upload session. Prin
 
 ## Pre-submission action list (fill in before opening the portal)
 
-- [ ] Replace `[TODO]` placeholders in `main.tex` with **five** real ORCIDs.
-- [ ] Replace `[TODO]` in `cover_letter.md` with **five** real ORCIDs and the submission date.
-- [ ] Obtain A. Chemori's CRediT contribution statement (`main.tex` Author Contributions, `declarations.md` §1).
-- [ ] Confirm the funding statement with A. Chemori — CNRS/LIRMM may require an acknowledgement (`main.tex` Conflicts, `cover_letter.md`, `declarations.md` §3).
+- [x] Replace `[TODO]` placeholders in `main.tex` with **five** real ORCIDs. *(Done. All five validated: ISO 7064 MOD 11-2 check digit correct and the public ORCID record resolves to the named author.)*
+- [x] Replace `[TODO]` ORCIDs in `cover_letter.md`. *(Done, same five.)*
+- [x] Insert the submission date in `cover_letter.md` and update `\thanks{Manuscript received ...}` in `main.tex`. *(Both set to 2 August 2026.)*
+- [x] Obtain A. Chemori's CRediT contribution statement (`main.tex` Author Contributions, `declarations.md` §1). *(Methodology guidance; writing — review & editing.)*
+- [x] Confirm the funding statement with A. Chemori — CNRS/LIRMM may require an acknowledgement. *(Confirmed 2026-08-02: none required. "No external funding was received for this work" stands, and now carries no revision markup because it is unchanged from the reviewed draft.)*
+- [x] Acknowledgements finalised — dataset contributors plus VIT Chennai (`main.tex` Acknowledgements).
 - [ ] Corresponding author remains **A. R. Pal** (abhishek.rudrapal@vit.ac.in) — the ScholarOne account and all editor correspondence stay with him. A. Chemori joins as fourth author only.
 - [ ] Make `https://github.com/MuhammedRaslan/Pro-Active-Driver-Monitoring-System-Using-EEG` public.
 - [ ] `git tag -a paper-submission-v1 -m "IEEE Sensors v1"; git push origin paper-submission-v1`.

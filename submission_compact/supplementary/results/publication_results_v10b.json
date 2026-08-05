@@ -1,0 +1,285 @@
+{
+  "timestamp": "2026-04-24T02:12:14.850446",
+  "comparisons": {
+    "v17_vs_v11": {
+      "comparison": "v17 (continuous EMA tau=600s) vs v11 (no smoothing) \u2014 per-subject monitoring F1 on DROZY",
+      "n_subjects": 10,
+      "per_subject_F1": {
+        "subjects": [
+          "01M",
+          "02F",
+          "03F",
+          "04M",
+          "05M",
+          "06M",
+          "07F",
+          "08M",
+          "09M",
+          "10M"
+        ],
+        "f1_v11": [
+          59.96,
+          71.44,
+          62.72,
+          33.6,
+          69.89,
+          70.18,
+          31.51,
+          70.85,
+          66.27,
+          71.8
+        ],
+        "f1_v17": [
+          65.55,
+          79.33,
+          79.0,
+          28.37,
+          94.89,
+          96.15,
+          26.98,
+          94.19,
+          94.04,
+          85.89
+        ],
+        "delta": [
+          5.59,
+          7.89,
+          16.29,
+          -5.23,
+          25.0,
+          25.97,
+          -4.53,
+          23.34,
+          27.77,
+          14.09
+        ],
+        "auc_v11": [
+          62.92,
+          76.76,
+          66.97,
+          30.65,
+          77.37,
+          76.31,
+          30.24,
+          78.17,
+          71.96,
+          81.85
+        ],
+        "auc_v17": [
+          83.48,
+          97.49,
+          90.94,
+          18.91,
+          99.42,
+          99.44,
+          20.03,
+          96.43,
+          97.79,
+          88.91
+        ]
+      },
+      "mean_f1_v11": 60.82,
+      "mean_f1_v17": 74.44,
+      "mean_delta": 13.62,
+      "sd_delta": 12.32,
+      "wilcoxon_W": 52.0,
+      "wilcoxon_p": 0.004883,
+      "cohens_d_paired": 1.105,
+      "alternative": "greater (v17 > v11)",
+      "notes": "One-sided paired Wilcoxon signed-rank; per-subject F1 at threshold=0.5. n=10 DROZY subjects. The paired Cohen's d uses mean(diff)/sd(diff); for small n this is descriptive, not inferential."
+    },
+    "v20_vs_v13": {
+      "comparison": "v20 (pct_300, 99th pctile, dwell=10s, tau=30s) vs v13 (thr=0.5, dwell=30s, tau=30s) \u2014 advance lead time on SEED-VIG",
+      "n_subjects_tested": 21,
+      "n_paired_both_detected": 11,
+      "n_v20_only_detected": 8,
+      "n_v13_only_detected": 0,
+      "n_neither_detected": 2,
+      "paired_leads_min_v13": [
+        0.67,
+        -6.33,
+        -0.33,
+        19.83,
+        23.83,
+        -35.0,
+        -7.67,
+        -61.0,
+        12.17,
+        0.5,
+        -1.17
+      ],
+      "paired_leads_min_v20": [
+        13.5,
+        35.67,
+        91.33,
+        29.5,
+        31.67,
+        -0.83,
+        62.33,
+        21.5,
+        12.0,
+        13.5,
+        42.5
+      ],
+      "paired_mean_v13": -4.95,
+      "paired_mean_v20": 32.06,
+      "paired_mean_delta": 37.02,
+      "paired_sd_delta": 32.19,
+      "wilcoxon_W": 65.0,
+      "wilcoxon_p": 0.000977,
+      "cohens_d_paired": 1.15,
+      "alternative": "greater (v20 > v13 lead time)",
+      "per_subject": [
+        {
+          "subject": "1",
+          "lead13_min": 0.6666666666666666,
+          "lead20_min": 13.5,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "2",
+          "lead13_min": null,
+          "lead20_min": 45.833333333333336,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "3",
+          "lead13_min": -6.333333333333333,
+          "lead20_min": 35.666666666666664,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "4",
+          "lead13_min": null,
+          "lead20_min": 55.166666666666664,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "5",
+          "lead13_min": null,
+          "lead20_min": 10.666666666666666,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "6",
+          "lead13_min": null,
+          "lead20_min": null,
+          "both_v13": false,
+          "both_v20": false
+        },
+        {
+          "subject": "7",
+          "lead13_min": null,
+          "lead20_min": 66.33333333333333,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "8",
+          "lead13_min": -0.3333333333333333,
+          "lead20_min": 91.33333333333333,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "9",
+          "lead13_min": null,
+          "lead20_min": 52.5,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "10",
+          "lead13_min": 19.833333333333332,
+          "lead20_min": 29.5,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "11",
+          "lead13_min": 23.833333333333332,
+          "lead20_min": 31.666666666666668,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "12",
+          "lead13_min": -35.0,
+          "lead20_min": -0.8333333333333334,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "13",
+          "lead13_min": null,
+          "lead20_min": -0.3333333333333333,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "14",
+          "lead13_min": null,
+          "lead20_min": 38.5,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "15",
+          "lead13_min": -7.666666666666667,
+          "lead20_min": 62.333333333333336,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "16",
+          "lead13_min": -61.0,
+          "lead20_min": 21.5,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "17",
+          "lead13_min": null,
+          "lead20_min": -0.3333333333333333,
+          "both_v13": false,
+          "both_v20": true
+        },
+        {
+          "subject": "18",
+          "lead13_min": 12.166666666666666,
+          "lead20_min": 12.0,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "19",
+          "lead13_min": null,
+          "lead20_min": null,
+          "both_v13": false,
+          "both_v20": false
+        },
+        {
+          "subject": "20",
+          "lead13_min": 0.5,
+          "lead20_min": 13.5,
+          "both_v13": true,
+          "both_v20": true
+        },
+        {
+          "subject": "21",
+          "lead13_min": -1.1666666666666667,
+          "lead20_min": 42.5,
+          "both_v13": true,
+          "both_v20": true
+        }
+      ],
+      "notes": "One-sided paired Wilcoxon signed-rank on the lead times of subjects where both v13 and v20 detected both onsets. Subjects that v20 detects but v13 misses count as a categorical gain in detection (n_v20_only) and are reported but not included in the paired continuous test."
+    }
+  },
+  "methodology": "Fresh paired-sample tests for the two Phase 7 headline comparisons. Part A: per-subject F1 on DROZY (n=10) for the v17 EMA smoother against the unsmoothed v11 baseline, one-sided Wilcoxon signed-rank (alternative='greater'), paired Cohen's d = mean(diff)/sd(diff). Part B: paired advance lead times on SEED-VIG for v20 (per-subject 99th-pctile threshold, dwell=10s, tau=30s) vs v13 (global thr=0.5, dwell=30s, tau=30s), restricted to the subset of subjects where both protocols detect both onsets; subjects gained by v20's more sensitive threshold are reported separately."
+}
