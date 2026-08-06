@@ -29,11 +29,11 @@ Two supplementary items accompany this manuscript.
       Complete analysis code and the archived numerical results behind
       every headline number in the paper. Uncompressed contents:
 
-          reproduce.py            single-entry reproducer          8 KB
+          reproduce.py            single-entry reproducer         10 KB
           requirements.txt        pinned Python dependencies       4 KB
           README.txt              this file                        8 KB
-          scripts/                22 analysis scripts            340 KB
-          results/                14 JSON result files           408 KB
+          scripts/                24 analysis scripts            364 KB
+          results/                16 JSON result files           468 KB
 
 Total supplementary payload: approximately 7.7 MB.
 
@@ -74,21 +74,30 @@ available from the originating institutions:
               Zheng and Lu, J. Neural Eng. 2017.
               Access requires application to BCMI Lab.
 
-Step 3 -- place the raw files in the layout the reproducer expects, in the
-working directory from which you run it:
+Step 3 -- place the raw files in the layout the reproducer expects. Every
+analysis script resolves its paths relative to its own location, so the data
+goes INSIDE scripts/, beside them -- not beside reproduce.py:
 
-    DROZY_O1_O2/        extracted occipital EDF files from DROZY
-    Raw_Data/           SEED-VIG raw .mat files
-    perclos_labels/     SEED-VIG PERCLOS annotation .mat files
+    scripts/DROZY_O1_O2/        extracted occipital EDF files from DROZY
+    scripts/Raw_Data/           SEED-VIG raw .mat files
+    scripts/perclos_labels/     SEED-VIG PERCLOS annotation .mat files
+
+SEED-VIG can instead be left anywhere and pointed at with the SEED_VIG_DIR
+environment variable.
 
 The helper script scripts/extract_O1_O2_channels.py produces DROZY_O1_O2/
-from a full DROZY download.
+from a full DROZY download, and writes it to the right place by default.
+
+Run `python reproduce.py --list` first. It prints the layout it resolved and
+flags any script it cannot find, so you can confirm the arrangement before
+committing an hour of CPU to it.
 
 
 4. HOW TO RUN, AND WHAT TO EXPECT
 --------------------------------------------------------------------------------
 
-    python reproduce.py --list        show the 17-step plan without running
+    python reproduce.py --list        show the 18-step plan and the resolved
+                                      layout, without running anything
     python reproduce.py               run every step
     python reproduce.py --only v17    run one named step
 
@@ -96,9 +105,10 @@ The reproducer is idempotent: any step whose output JSON, cache or figure
 already exists is skipped, so an interrupted run can simply be restarted.
 
 Expected output. Each step writes a publication_results_v*.json file into
-the working directory and prints a one-line summary of the metrics it
-computed. On completion the JSON files reproduce the archived copies in
-results/ to within floating-point tolerance. The figures are regenerated
+scripts/, beside the script that produced it, and prints a one-line summary
+of the metrics it computed. Nothing is written to results/: that directory
+holds the archived copies behind the paper's numbers, and a fresh run should
+reproduce them to within floating-point tolerance. Compare, do not overwrite. The figures are regenerated
 into publication_figures_v5/.
 
 Expected wall-clock time on the reference machine:
@@ -131,6 +141,7 @@ Step-to-script mapping used by reproduce.py, in dependency order:
     v18        extended_coherence.py          phase-coherence negative ablation
     v19        ensemble_analysis.py           ensemble negative ablation
     v20        advance_prediction_v20.py      FPR-controlled advance prediction
+    v10        stat_analysis.py               paired Wilcoxon harvest
     v21        reviewer_revision_analysis.py  coherence stats, per-subject CIs
     ROC        v17_roc.py                     monitoring ROC, operating points
     stats      v17_v20_stats.py               paired Wilcoxon, Cohen's d

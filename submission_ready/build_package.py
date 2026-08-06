@@ -182,9 +182,19 @@ zip_path = os.path.join(sup_dir, "supplementary_code_and_results.zip")
 with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
     for name in ("reproduce.py", "requirements.txt"):
         z.write(os.path.join(SRC, "supplementary", name), name)
-    for sub in ("scripts", "results"):
+    # Only the file types these directories are for. Running the reproducer in
+    # place leaves caches and freshly-computed JSONs behind, and an unfiltered
+    # os.listdir would post a 5.9 MB .npz to the portal without a word.
+    for sub, ext in (("scripts", ".py"), ("results", ".json")):
         root = os.path.join(SRC, "supplementary", sub)
-        for f in sorted(os.listdir(root)):
+        found = sorted(os.listdir(root))
+        stray = [f for f in found if not f.endswith(ext)]
+        if stray:
+            raise SystemExit(
+                f"supplementary/{sub}/ holds {len(stray)} file(s) that are not "
+                f"{ext}: {stray}\nThey are most likely left over from a "
+                f"reproducer run. Remove them rather than ship them.")
+        for f in found:
             z.write(os.path.join(root, f), f"{sub}/{f}")
     z.write(os.path.join(sup_dir, "README.txt"), "README.txt")
 n = len(zipfile.ZipFile(zip_path).namelist())

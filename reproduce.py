@@ -19,14 +19,32 @@ Wall-clock budget on a laptop CPU (no GPU): ~1.5 hr if EEGNet (v14) is
 included, ~5 min otherwise. EEGNet dominates because it is the only
 deep-learning baseline; everything else is feature-extraction + LDA.
 
+Two layouts
+-----------
+This file works unchanged in both places it ships:
+
+  supplementary zip   reproduce.py beside scripts/ and results/
+  cloned repository   reproduce.py beside the analysis scripts themselves
+
+The analysis scripts resolve every path relative to their own file location,
+so they are run where they live and they write their outputs there too. In the
+zip that means `scripts/`. The `results/` directory is not where new output
+lands -- it holds the reference JSONs behind the numbers printed in the paper,
+to compare a fresh run against.
+
 Pre-requisites
 --------------
 1. `pip install -r requirements.txt` (and the torch CPU wheel — see the
    comment block in requirements.txt).
-2. The DROZY EDF files extracted to `DROZY_O1_O2/` (run
-   `extract_O1_O2_channels.py` once if you only have the raw EDFs).
-3. SEED-VIG `Raw_Data/` and `perclos_labels/` directories at the
-   repository root (only needed for v12 / v13 / SEED-VIG figures).
+2. The DROZY EDF files extracted to `DROZY_O1_O2/`, **beside the analysis
+   scripts** (run `extract_O1_O2_channels.py` once if you only have the raw
+   EDFs; it writes there by default).
+3. SEED-VIG `Raw_Data/` and `perclos_labels/` directories, likewise beside the
+   scripts, or pointed at by the `SEED_VIG_DIR` environment variable. Only
+   needed for v12 / v13 / SEED-VIG figures.
+
+Run `python reproduce.py --list` first: it prints the resolved layout, so you
+can see where it will look before committing an hour of CPU to it.
 """
 from __future__ import annotations
 
@@ -44,9 +62,23 @@ except Exception:
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# Where the analysis scripts actually are. In the supplementary zip they sit in
+# scripts/; in the repository they sit beside this file. Resolving it rather
+# than assuming is the whole fix: the packaged copy used to look for them next
+# to reproduce.py, where they have never been, so `python reproduce.py` failed
+# on its first step for anyone working from the zip.
+SCRIPTS = os.path.join(ROOT, "scripts")
+if not os.path.isdir(SCRIPTS):
+    SCRIPTS = ROOT
+
+# Each script writes its JSON next to itself, so that is where completed work
+# is looked for. results/ is reference output, never a destination.
+OUTPUTS = SCRIPTS
+REFERENCE = os.path.join(ROOT, "results")
+
 
 def _exists(*names: str) -> bool:
-    return all(os.path.exists(os.path.join(ROOT, n)) for n in names)
+    return all(os.path.exists(os.path.join(OUTPUTS, n)) for n in names)
 
 
 # (label, script, list-of-output-files-that-mark-success)
@@ -149,23 +181,59 @@ def matches(label: str, only: list[str]) -> bool:
 def run_step(script: str, label: str) -> tuple[bool, float]:
     print("─" * 78)
     print(f"  RUNNING: {label}")
-    print(f"  $ python {script}")
+    print(f"  $ python {os.path.relpath(os.path.join(SCRIPTS, script), ROOT)}")
     print("─" * 78, flush=True)
     t0 = time.time()
-    rc = subprocess.call([sys.executable, os.path.join(ROOT, script)], cwd=ROOT)
+    rc = subprocess.call([sys.executable, os.path.join(SCRIPTS, script)],
+                         cwd=SCRIPTS)
     return rc == 0, time.time() - t0
+
+
+def describe_layout() -> None:
+    rel = os.path.relpath(SCRIPTS, ROOT)
+    print("Layout:")
+    print(f"  scripts    {rel if rel != '.' else 'beside this file'}"
+          f"  ({SCRIPTS})")
+    print(f"  outputs    written beside the scripts")
+    print(f"  reference  {'results/' if os.path.isdir(REFERENCE) else '(none)'}"
+          f"  -- the JSONs behind the paper's numbers, to compare against")
+    print()
+
+
+def check_layout() -> list[str]:
+    """Return the scripts the plan needs that are not where we expect them."""
+    return [s for _, s, _ in STEPS
+            if not os.path.isfile(os.path.join(SCRIPTS, s))]
 
 
 def main() -> int:
     args = parse_args()
 
     if args.list:
+        describe_layout()
         print("Reproducer plan (run order top → bottom):")
         for i, (label, script, outs) in enumerate(STEPS, 1):
-            print(f"  {i:2d}. {label}")
+            mark = " " if os.path.isfile(os.path.join(SCRIPTS, script)) else "!"
+            print(f"  {i:2d}.{mark} {label}")
             print(f"      script:  {script}")
             print(f"      outputs: {', '.join(outs)}")
+        missing = check_layout()
+        if missing:
+            print(f"\n  ! {len(missing)} script(s) not found in {SCRIPTS}:")
+            for s in missing:
+                print(f"      {s}")
         return 0
+
+    describe_layout()
+    missing = check_layout()
+    if missing:
+        print(f"  {len(missing)} of {len(STEPS)} scripts are missing from "
+              f"{SCRIPTS}:")
+        for s in missing:
+            print(f"    {s}")
+        print("\n  Nothing has been run. Either this archive is incomplete, or "
+              "reproduce.py\n  has been moved away from the scripts it drives.")
+        return 1
 
     skipped, ran, failed = [], [], []
     total_t = 0.0
@@ -196,6 +264,10 @@ def main() -> int:
         print("  Steps run:")
         for label, dt in ran:
             print(f"    - {label}  ({dt:.1f}s)")
+        if os.path.isdir(REFERENCE):
+            print(f"\n  New JSONs are in {OUTPUTS}.")
+            print(f"  The values published in the paper are in {REFERENCE} —"
+                  f" compare against those.")
     if failed:
         print("  Steps failed:")
         for label in failed:
