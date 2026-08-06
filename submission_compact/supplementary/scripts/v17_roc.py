@@ -9,7 +9,10 @@ answers it.
 
 Outputs:
   - publication_results_v17_roc.json  (ROC point cloud + 3 chosen ops)
-  - publication_figures_v5/fig10_v17_roc.png
+  - submission_compact/figures/fig3_roc.{pdf,png}
+    (the figure lands on its final printed name in the manuscript's own figure
+    directory -- the legacy publication_figures_v5/fig10_v17_roc.png write and
+    the hand copy that followed it are gone)
 
 Chosen operating points (reviewer-facing):
   * HIGH-PRECISION (FPR<=5%): lowest-FA point in the cluster
@@ -51,13 +54,18 @@ plt.rcParams.update({
     "ytick.labelsize": 6.5,
     "legend.fontsize": 5.5,
     "lines.linewidth": 1.2,
+    # A line plot, so the manuscript copy is vector PDF. fonttype 42 embeds
+    # TrueType outlines; matplotlib's default Type-3 is a standard IEEE
+    # production reject.
+    "pdf.fonttype": 42,
+    "ps.fonttype":  42,
 })
 
 _SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
 LEAN_CACHE   = os.path.join(_SCRIPT_DIR, "features_v9_cache.npz")
 RESULTS_FILE = os.path.join(_SCRIPT_DIR, "publication_results_v17_roc.json")
-FIG_DIR      = os.path.join(_SCRIPT_DIR, "publication_figures_v5")
-FIG_PATH     = os.path.join(FIG_DIR, "fig10_v17_roc.png")
+FIG_DIR      = os.path.join(_SCRIPT_DIR, "submission_compact", "figures")
+FIG_STEM     = os.path.join(FIG_DIR, "fig3_roc")
 os.makedirs(FIG_DIR, exist_ok=True)
 
 LEAN_NAMES = [
@@ -189,10 +197,10 @@ def main():
     #       They are now annotated directly on the curve, leaving a two-line
     #       legend that cannot crowd the plotted data.
     #
-    # NOTE: figsize/dpi below define the PNG shipped in submission/figures/.
-    # Do not change these without regenerating the PNG — a previous hand-edit
-    # of the image left this script emitting a different size and a broken
-    # title, so reproduce.py silently undid the fix.
+    # NOTE: figsize/dpi below define the figures shipped in
+    # submission_compact/figures/. Do not change these without regenerating
+    # them — a previous hand-edit of the image left this script emitting a
+    # different size and a broken title, so reproduce.py silently undid the fix.
     # Authored at COL_W so that width=\columnwidth places it 1:1; see the
     # rcParams block at the top for the accompanying type sizes.
     fig, ax = plt.subplots(figsize=(COL_W, COL_W * 0.86))
@@ -226,9 +234,11 @@ def main():
               borderpad=0.4, labelspacing=0.35, handlelength=1.6,
               handletextpad=0.5)
     fig.tight_layout(pad=0.4)
-    fig.savefig(FIG_PATH, dpi=400)
+    # PDF for main.tex, PNG for the Author Portal's per-figure upload slot.
+    for ext in ("pdf", "png"):
+        fig.savefig(f"{FIG_STEM}.{ext}", dpi=400)
+        print(f"  figure -> {FIG_STEM}.{ext}")
     plt.close(fig)
-    print(f"  figure -> {FIG_PATH}")
 
     # Save the point cloud (downsampled for the JSON) + the chosen ops.
     sample = np.linspace(0, len(fpr) - 1, 200).astype(int)

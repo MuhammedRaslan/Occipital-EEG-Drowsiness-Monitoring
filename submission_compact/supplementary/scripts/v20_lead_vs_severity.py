@@ -19,7 +19,11 @@ This produces the "advance-prediction severity curve" figure.
 
 Outputs:
   publication_results_v20_severity.json
-  publication_figures_v5/fig11_lead_vs_severity.png
+  submission_compact/figures/fig4_lead_vs_severity.{pdf,png}
+
+The figure lands on its final printed name in the manuscript's own figure
+directory. The legacy publication_figures_v5/fig11_lead_vs_severity.png write,
+and the hand copy that followed it, are gone.
 """
 
 import os, sys, io, json, warnings
@@ -49,6 +53,11 @@ plt.rcParams.update({
     "xtick.labelsize": 6.5,
     "ytick.labelsize": 6.5,
     "legend.fontsize": 5.5,
+    # A line plot, so the manuscript copy is vector PDF. fonttype 42 embeds
+    # TrueType outlines; matplotlib's default Type-3 is a standard IEEE
+    # production reject.
+    "pdf.fonttype": 42,
+    "ps.fonttype":  42,
 })
 
 _SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
@@ -67,8 +76,8 @@ SEED_DIR = next(
 LBL_DIR      = os.path.join(SEED_DIR, "perclos_labels")
 SEED_CACHE   = os.path.join(_SCRIPT_DIR, "features_seed_vig_cache.npz")
 RESULTS_FILE = os.path.join(_SCRIPT_DIR, "publication_results_v20_severity.json")
-FIG_DIR      = os.path.join(_SCRIPT_DIR, "publication_figures_v5")
-FIG_PATH     = os.path.join(FIG_DIR, "fig11_lead_vs_severity.png")
+FIG_DIR      = os.path.join(_SCRIPT_DIR, "submission_compact", "figures")
+FIG_STEM     = os.path.join(FIG_DIR, "fig4_lead_vs_severity")
 os.makedirs(FIG_DIR, exist_ok=True)
 
 EPOCH_SEC      = 10
@@ -200,7 +209,7 @@ def sweep_severity(timelines):
     return results
 
 
-def plot_curve(results, fig_path):
+def plot_curve(results, fig_stem):
     thrs = sorted(float(t) for t in results.keys())
     medians = [results[str(t)]["median_lead_min"] for t in thrs]
     iqr_lo  = [results[str(t)]["iqr_lead_min"][0] for t in thrs]
@@ -249,7 +258,9 @@ def plot_curve(results, fig_path):
     # accounts for the suptitle itself, so reserving for the title here too
     # double-counts it and opens a dead band between legend and axes.
     fig.tight_layout(rect=[0, 0, 1, 0.93])
-    fig.savefig(fig_path, dpi=400)
+    # PDF for main.tex, PNG for the Author Portal's per-figure upload slot.
+    for ext in ("pdf", "png"):
+        fig.savefig(f"{fig_stem}.{ext}", dpi=400)
     plt.close(fig)
 
 
@@ -272,8 +283,9 @@ def main():
               f"{r['n_behav_only']:>11}  {r['proactive_rate']:>9}  "
               f"{r['per_session_fa']:>11}  {med:>12}  {iqr_str:>18}")
 
-    plot_curve(res, FIG_PATH)
-    print(f"  figure -> {FIG_PATH}")
+    plot_curve(res, FIG_STEM)
+    for ext in ("pdf", "png"):
+        print(f"  figure -> {FIG_STEM}.{ext}")
 
     payload = {
         "timestamp": datetime.now().isoformat(),
