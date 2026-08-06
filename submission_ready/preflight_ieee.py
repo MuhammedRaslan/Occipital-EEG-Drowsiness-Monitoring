@@ -20,6 +20,7 @@ import os
 import re
 import sys
 import zipfile
+from datetime import date
 
 import numpy as np
 from PIL import Image
@@ -100,6 +101,55 @@ if abst:
 
 ck(re.search(B + r"begin\{IEEEkeywords\}", tex_nc) is not None,
    "index terms present", "no IEEEkeywords block")
+
+# --- submission date -------------------------------------------------------
+# Two dates are authored and must agree with each other and with the day the
+# paper is actually sent: the \thanks{Manuscript received ...} line, which IEEE
+# production overwrites at acceptance but an editor still reads, and the cover
+# letter's own date, which is a letter dated to the day it is sent.
+#
+# The date in declarations.md is deliberately NOT checked here -- it records
+# when the funding position was confirmed, which is a past event and must not
+# be moved forward.
+MONTHS = {m: i for i, m in enumerate(
+    ["January", "February", "March", "April", "May", "June", "July",
+     "August", "September", "October", "November", "December"], start=1)}
+
+
+def parse_dates():
+    out = {}
+    m = re.search(r"Manuscript received (\w+)\s+(\d{1,2}),\s*(\d{4})", tex_nc)
+    if m and m.group(1) in MONTHS:
+        out["main.tex"] = date(int(m.group(3)), MONTHS[m.group(1)],
+                               int(m.group(2)))
+    cl = os.path.join(SRC, "cover_letter.md")
+    if os.path.isfile(cl):
+        m = re.search(r"\*\*Date:\*\*\s*(\d{1,2})\s+(\w+)\s+(\d{4})",
+                      open(cl, encoding="utf-8").read())
+        if m and m.group(2) in MONTHS:
+            out["cover_letter.md"] = date(int(m.group(3)), MONTHS[m.group(2)],
+                                          int(m.group(1)))
+    return out
+
+
+dates = parse_dates()
+ck(len(dates) == 2, f"submission date found in both files ({len(dates)}/2)",
+   f"could not parse the submission date from {2 - len(dates)} file(s); "
+   f"found {sorted(dates)}", hard=False)
+if len(dates) == 2:
+    vals = set(dates.values())
+    ck(len(vals) == 1,
+       f"manuscript and cover letter agree on {sorted(vals)[0].isoformat()}",
+       f"date mismatch: " + ", ".join(f"{k}={v.isoformat()}"
+                                      for k, v in sorted(dates.items())))
+    if vals:
+        age = (date.today() - sorted(vals)[0]).days
+        ck(age <= 7,
+           f"submission date is {age} day(s) old, still current",
+           f"submission date is {sorted(vals)[0].isoformat()}, {age} days ago "
+           f"-- set it to the day you actually submit "
+           f"(main.tex \\thanks, and cover_letter.md **Date:**), then rebuild",
+           hard=False)
 
 # citation integrity -- what a compile would report as "?"
 cited = set()
