@@ -41,6 +41,11 @@ ITEMS = [
     ("supplementary/demo_v20.gif", "9  Supplementary -- multimedia"),
     ("supplementary/supplementary_code_and_results.zip",
      "10 Supplementary -- code and results"),
+    # Typed into portal fields rather than uploaded, but a co-author has to read
+    # and approve them -- the corresponding author signs the cover letter.
+    ("portal_text/cover_letter.pdf", "-  Cover letter (portal field)"),
+    ("portal_text/declarations.pdf", "-  Declarations, 6 sections (portal fields)"),
+    ("portal_text/suggested_reviewers.pdf", "-  Suggested/excluded reviewers"),
 ]
 
 
@@ -123,12 +128,15 @@ Drowsiness Monitoring and Advance Prediction
 M. R. Thalassery, S. S. Ali, A. R. Pal, A. Chemori, G. Murali Mohan
 Corresponding author: Dr. Abhishek Rudra Pal <abhishek.rudrapal@vit.ac.in>
 
-Start with main.pdf ({pages} pages). Everything else in this folder is one of
-the files that gets uploaded to the portal, in upload order:
+Start with main.pdf ({pages} pages). Items 1-10 are the files uploaded to the
+portal, in upload order. The three marked "-" are not uploaded as files -- their
+text is typed into portal fields -- but they need reading and approving, and the
+corresponding author signs the cover letter.
 
 {listing}
 
-Total {total / 1048576:.2f} MB. The portal cap is 40 MB.
+Total {total / 1048576:.2f} MB. The portal cap is 40 MB, and applies only to
+items 1-10.
 
 Portal: IEEE Author Portal, https://ieee.atyponrex.com/journal/sensors
 (not ScholarOne). Article type: Regular Paper.
@@ -178,9 +186,8 @@ What still needs a decision before submitting
   - three suggested reviewers, with emails verified 24 h beforehand
   - open access (US$2,800, 5%% IEEE-member / 20%% society discount) versus
     traditional publication, which is free
-  - the cover letter and the six declaration statements are not in this folder;
-    they are typed into portal fields rather than uploaded. Ask if you want
-    them sent across for review as well.
+  - approval of the cover letter and the six declaration statements, which are
+    included here as PDFs
 """
     open(os.path.join(OUT, "README.txt"), "w", encoding="utf-8",
          newline="\r\n").write(text.replace("%%", "%"))
