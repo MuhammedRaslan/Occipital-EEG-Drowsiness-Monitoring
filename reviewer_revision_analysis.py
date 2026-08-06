@@ -15,9 +15,13 @@ Reproduces the exact published pipeline (per-subject awake z-score, lean
 stay consistent with hmm_smoothing.py / publication_results_v17.json.
 
 Outputs:
-  submission/figures/fig13_coherence_separation.png
-  submission/figures/fig14_ema_raw_vs_smoothed.png
+  submission_compact/figures/fig1_coherence_separation.{pdf,png}
+  submission_compact/figures/fig2_ema_raw_vs_smoothed.{pdf,png}
   publication_results_v21_reviewer.json   (provenance for the new tables)
+
+The figures land on their final printed names in the manuscript's own figure
+directory. There is no copy-and-rename step afterwards; the legacy fig13/fig14
+names and the write into submission/figures/ are gone.
 """
 
 import os, io, sys, json, warnings
@@ -51,12 +55,31 @@ plt.rcParams.update({
     "xtick.labelsize": 6.5,
     "ytick.labelsize": 6.5,
     "legend.fontsize": 5.5,
+    # These are line/box plots, so the manuscript copy is vector PDF. fonttype
+    # 42 embeds TrueType outlines; matplotlib's default Type-3 is a standard
+    # IEEE production reject.
+    "pdf.fonttype": 42,
+    "ps.fonttype":  42,
 })
 
 _DIR = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(_DIR, "features_v9_cache.npz")
-FIGDIR = os.path.join(_DIR, "submission", "figures")
+FIGDIR = os.path.join(_DIR, "submission_compact", "figures")
 os.makedirs(FIGDIR, exist_ok=True)
+
+
+def save_fig(fig, stem, dpi):
+    """Write the manuscript copy (vector PDF) and the portal copy (PNG).
+
+    main.tex includes the PDF. The PNG exists only for the IEEE Author Portal's
+    per-figure upload slots, which take one image file per figure. Both land on
+    the final fig<N>_ name here, so nothing needs copying or renaming later.
+    """
+    for ext in ("pdf", "png"):
+        p = os.path.join(FIGDIR, f"{stem}.{ext}")
+        fig.savefig(p, dpi=dpi)
+        print(f"  wrote {p}")
+    plt.close(fig)
 
 LEAN_NAMES = [
     "sample_entropy_O1", "sample_entropy_O2",
@@ -174,9 +197,7 @@ ax.legend(handles=[Patch(facecolor=palette["awake"], alpha=0.6, label="Awake"),
           loc="lower center", ncol=2, frameon=False)
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
-f1path = os.path.join(FIGDIR, "fig13_coherence_separation.png")
-fig.savefig(f1path, dpi=320); plt.close(fig)
-print(f"  wrote {f1path}")
+save_fig(fig, "fig1_coherence_separation", dpi=320)
 
 # ============================================================================
 # ITEM 2 — per-subject metrics + bootstrap CIs
@@ -300,9 +321,7 @@ ax.legend(loc="upper left", ncol=2, frameon=True,
 ax.set_title(f"Raw vs causal-EMA posterior (subject {rep})", pad=4)
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
-f3path = os.path.join(FIGDIR, "fig14_ema_raw_vs_smoothed.png")
-fig.savefig(f3path, dpi=320); plt.close(fig)
-print(f"  wrote {f3path}")
+save_fig(fig, "fig2_ema_raw_vs_smoothed", dpi=320)
 
 # Latency: EMA step response reaches fraction q at t = -tau*ln(1-q)
 alpha = 1.0 - np.exp(-EPOCH_SEC / TAU)

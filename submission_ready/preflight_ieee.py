@@ -150,29 +150,74 @@ inc = re.findall(r"includegraphics\[width=" + B + r"(\w+)\]\{([^}]+)\}", tex_nc)
 ck(len(inc) == 5, f"{len(inc)} figures included",
    f"expected 5 included figures, found {len(inc)}", hard=False)
 
+
+def media_box_in(path):
+    """Authored width of a single-page PDF, in inches, from /MediaBox."""
+    m = re.search(rb"/MediaBox\s*\[\s*([\d.+-]+)\s+[\d.+-]+\s+([\d.+-]+)\s+"
+                  rb"[\d.+-]+\s*\]", open(path, "rb").read())
+    return None if not m else (float(m.group(2)) - float(m.group(1))) / 72.0
+
+
 for i, (width, fname) in enumerate(inc, start=1):
     p = os.path.join(SRC, "figures", fname)
     if not os.path.isfile(p):
         ck(False, "", f"Fig. {i}: file missing -- {fname}")
         continue
-    im = Image.open(p)
     printed = TEXT_IN if width == "textwidth" else COL_IN
-    eff = im.size[0] / printed
-    ck(eff >= MIN_DPI,
-       f"Fig. {i} {fname}: {im.size[0]}px at {printed:.2f}in = {eff:.0f} dpi",
-       f"Fig. {i} {fname}: {eff:.0f} dpi at {printed:.2f}in, under {MIN_DPI}; "
-       f"needs >= {int(MIN_DPI * printed)}px wide")
+
+    if fname.lower().endswith(".pdf"):
+        # Vector. Counting pixels is meaningless, so the resolution test is
+        # replaced by two that are not: the fonts must be embedded and must not
+        # be Type 3 (a standard IEEE production reject), and the authored width
+        # must be close to the printed width, because the ratio between them
+        # multiplies every font size in the figure.
+        blob = open(p, "rb").read()
+        ck(b"/Type3" not in blob and b"/FontFile" in blob,
+           f"Fig. {i} {fname}: vector, fonts embedded, no Type 3",
+           f"Fig. {i} {fname}: Type-3 or unembedded fonts -- set "
+           f"matplotlib.rcParams['pdf.fonttype'] = 42 and re-render")
+        box = media_box_in(p)
+        if ck(box is not None, f"Fig. {i} {fname}: /MediaBox readable",
+              f"Fig. {i} {fname}: no readable /MediaBox"):
+            scale = printed / box
+            ck(0.70 <= scale <= 1.10,
+               f"Fig. {i} {fname}: authored {box:.2f}in, printed "
+               f"{printed:.2f}in = {scale:.2f}x",
+               f"Fig. {i} {fname}: authored {box:.2f}in but printed "
+               f"{printed:.2f}in, a {scale:.2f}x rescale of every font in it")
+    else:
+        im = Image.open(p)
+        eff = im.size[0] / printed
+        ck(eff >= MIN_DPI,
+           f"Fig. {i} {fname}: {im.size[0]}px at {printed:.2f}in = {eff:.0f} dpi",
+           f"Fig. {i} {fname}: {eff:.0f} dpi at {printed:.2f}in, under {MIN_DPI}; "
+           f"needs >= {int(MIN_DPI * printed)}px wide")
+
     ck(fname.startswith(f"fig{i}_"),
        f"Fig. {i} filename matches its printed number",
        f"Fig. {i} is named {fname}, which does not match figure {i}", hard=False)
     ck(" " not in fname, f"Fig. {i} filename has no spaces",
        f"Fig. {i} filename contains a space")
 
-# packaged copies must be RGB with no alpha
+    # The Portal takes one image per figure in its own upload slots, so each
+    # vector figure must have a raster twin on the same stem.
+    if fname.lower().endswith(".pdf"):
+        twin = os.path.join(SRC, "figures", fname[:-4] + ".png")
+        if ck(os.path.isfile(twin),
+              f"Fig. {i} has a PNG twin for the Portal's upload slot",
+              f"Fig. {i}: no PNG twin beside {fname} for the Portal slot"):
+            eff = Image.open(twin).size[0] / printed
+            ck(eff >= MIN_DPI,
+               f"Fig. {i} PNG twin: {eff:.0f} dpi at {printed:.2f}in",
+               f"Fig. {i} PNG twin: {eff:.0f} dpi at {printed:.2f}in, "
+               f"under {MIN_DPI}")
+
+# packaged raster copies must be RGB with no alpha
 pkg = os.path.join(HERE, "figures")
 if os.path.isdir(pkg):
     bad = [f for f in sorted(os.listdir(pkg))
-           if Image.open(os.path.join(pkg, f)).mode not in ("RGB", "L")]
+           if f.lower().endswith((".png", ".tif", ".tiff", ".jpg", ".jpeg"))
+           and Image.open(os.path.join(pkg, f)).mode not in ("RGB", "L")]
     ck(not bad, "packaged figures are RGB with no alpha channel",
        f"packaged figures still carry alpha/palette: {bad}")
 
@@ -280,11 +325,13 @@ if os.path.isfile(decl):
 
 # ======================================================================
 for item in (
-    "Compile the PDF and confirm the page count against the 8-page limit "
-    "($175/page beyond it)",
+    "Page count: 11, accepted at $525 overlength on 2026-08-06 after measuring "
+    "that 8 pages is unreachable (removing all 15 floats still leaves 9). "
+    "build_manuscript.py now gates on growth past 11, not on the 8-page limit",
     "Confirm tables PRINT in citation order -- six are full-width table* floats "
-    "that IEEEtran numbers on placement",
-    "Confirm the PDF and the source archive match exactly",
+    "that IEEEtran numbers on placement (build_manuscript.py reports this)",
+    "Confirm the PDF and the source archive match exactly (build_manuscript.py "
+    "writes both from one compile, so this holds unless they are built apart)",
     "Select the mandatory category from the journal's editorial keyword list",
     "Verify each suggested reviewer's email, 24 h before submitting",
     "Make the GitHub repository public and push the paper-submission-v1 tag",

@@ -18,8 +18,9 @@ Layout notes:
   * fonts are authored at 9 pt so that after the 7.16/9.0 = 0.796 scale to
     \textwidth they land at ~7.2 pt, above the 6 pt legibility floor.
 
-Writes to submission_compact/figures/ only. The canonical figure under
-submission/ is left alone.
+Writes submission_compact/figures/fig5_live_demo.{pdf,png} and nothing else.
+main.tex includes the PDF; the PNG is for the Author Portal's per-figure upload
+slot. The canonical figure under submission/ is left alone.
 """
 import os
 import sys
@@ -36,12 +37,17 @@ import live_demo_figure as L
 
 # Named for the figure number it prints as (Fig. 5), not the legacy analysis
 # tag it used to carry (fig12).
-OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                   "figures", "fig5_live_demo.png")
+FIGDIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                      "figures")
+STEM = os.path.join(FIGDIR, "fig5_live_demo")
 
 plt.rcParams.update({
     "font.size": 9, "axes.titlesize": 9, "axes.labelsize": 9,
     "xtick.labelsize": 8, "ytick.labelsize": 8, "legend.fontsize": 8,
+    # fonttype 42 embeds TrueType outlines in the PDF; matplotlib's default
+    # Type-3 is a standard IEEE production reject.
+    "pdf.fonttype": 42,
+    "ps.fonttype":  42,
 })
 
 
@@ -113,27 +119,41 @@ def main():
     fig.legend(h1 + h2, l1 + l2, loc="upper center", bbox_to_anchor=(0.5, 0.995),
                ncol=4, fontsize=8, frameon=False)
     fig.tight_layout(rect=[0, 0, 1, 0.90])
-    # The figure is authored 9.0 in wide but placed at \textwidth = 7.16 in, so
-    # the effective print resolution is dpi * 9.0/7.16. dpi=200 gave only
-    # 251 dpi at placement, under IEEE's 300 dpi minimum for colour figures.
-    # 300 * 9.0/7.16 = 377, so anything from 240 up clears 2148 px of width;
-    # 250 leaves margin. Point sizes are unaffected -- dpi does not change how
-    # large the type is relative to the figure.
-    fig.savefig(OUT, dpi=250)
+
+    # PDF is what main.tex includes: resolution-independent, so the dpi
+    # argument is irrelevant to it. The traces are per-epoch posteriors --
+    # roughly 360 points per session, ~3k vector segments in the whole figure
+    # -- so nothing here needs rasterising to keep the file small. The size is
+    # printed below; if it ever passes ~2 MB, pass rasterized=True to the trace
+    # artists in panel() and leave the text vector.
+    #
+    # The PNG is only for the portal's per-figure upload slot. It is authored
+    # 9.0 in wide but placed at \textwidth = 7.16 in, so its effective print
+    # resolution is dpi * 9.0/7.16. dpi=200 gave only 251 dpi at placement,
+    # under IEEE's 300 dpi minimum for colour figures. 300 * 9.0/7.16 = 377, so
+    # anything from 240 up clears 2148 px of width; 250 leaves margin. Point
+    # sizes are unaffected -- dpi does not change how large type is relative to
+    # the figure.
+    for ext in ("pdf", "png"):
+        fig.savefig(f"{STEM}.{ext}", dpi=250)
     plt.close(fig)
 
     from PIL import Image
-    im = Image.open(OUT)
+    png = f"{STEM}.png"
+    im = Image.open(png)
     d = im.info.get("dpi", (250,))[0]
     w, h = im.size[0] / d, im.size[1] / d
     placed_h = 7.16 / (w / h)
     eff_dpi = im.size[0] / 7.16
-    print(f"  {OUT}")
     print(f"  authored {w:.2f} x {h:.2f} in  (aspect {w/h:.2f})")
     print(f"  at \\textwidth: height {placed_h:.2f} in -> cost {2*(placed_h+0.35):.2f} col-in"
           f"  (was 12.20)")
-    print(f"  {im.size[0]}x{im.size[1]} px -> {eff_dpi:.0f} dpi at 7.16 in "
-          f"({'OK' if eff_dpi >= 300 else 'UNDER 300 dpi'})")
+    print(f"  {png}  {im.size[0]}x{im.size[1]} px -> {eff_dpi:.0f} dpi at 7.16 in "
+          f"({'OK' if eff_dpi >= 300 else 'UNDER 300 dpi'})"
+          f"  {os.path.getsize(png) / 1024:.0f} kB")
+    pdf = f"{STEM}.pdf"
+    print(f"  {pdf}  vector, {os.path.getsize(pdf) / 1024:.0f} kB"
+          f"  ({'OK' if os.path.getsize(pdf) < 2 * 1024**2 else 'OVER 2 MB -- rasterise the traces'})")
 
 
 if __name__ == "__main__":

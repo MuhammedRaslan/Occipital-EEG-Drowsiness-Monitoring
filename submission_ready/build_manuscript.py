@@ -30,6 +30,20 @@ TECTONIC = os.path.join(os.environ.get("LOCALAPPDATA", ""), "tectonic", "tectoni
 PAGE_LIMIT = 8
 OVERLENGTH_USD = 175
 
+# Overlength was measured and then decided, on 2026-08-06, rather than assumed.
+#
+# The 8-page figure is IEEE's charging threshold, not a submission cap. Getting
+# under it is not achievable here: removing Tables III, VI and IX -- the three
+# that duplicate a figure or belong in supplementary -- changes the printed
+# page count by zero, removing all ten tables reaches 10 pages, and removing
+# every one of the fifteen floats still leaves 9. Only deleting all floats AND
+# the Limitations subsection reaches 8, which is not a paper any more.
+#
+# So 11 pages is accepted deliberately, at $525. This gate no longer fails on
+# being over the limit -- it fails if the manuscript grows PAST the length that
+# was signed off, which is the thing that could still happen by accident.
+ACCEPTED_PAGES = 11
+
 ap = argparse.ArgumentParser()
 ap.add_argument("--source", default="submission_compact")
 args = ap.parse_args()
@@ -80,11 +94,18 @@ def in_order(kind):
     return pgs == sorted(pgs), seq
 
 
-print(f"\n  pages                 {pages}   (limit {PAGE_LIMIT})")
+print(f"\n  pages                 {pages}   (limit {PAGE_LIMIT}, "
+      f"accepted {ACCEPTED_PAGES})")
 if pages > PAGE_LIMIT:
     over = pages - PAGE_LIMIT
-    print(f"  OVERLENGTH            {over} page(s) -> "
-          f"${over * OVERLENGTH_USD} at acceptance")
+    print(f"  overlength            {over} page(s) -> "
+          f"${over * OVERLENGTH_USD} at acceptance"
+          + ("  (accepted 2026-08-06)" if pages <= ACCEPTED_PAGES else ""))
+if pages > ACCEPTED_PAGES:
+    print(f"  GREW                  {pages - ACCEPTED_PAGES} page(s) past the "
+          f"{ACCEPTED_PAGES} signed off -> "
+          f"${(pages - PAGE_LIMIT) * OVERLENGTH_USD}, not "
+          f"${(ACCEPTED_PAGES - PAGE_LIMIT) * OVERLENGTH_USD}")
 print(f"  undefined refs/cites  {undef}")
 print(f"  overfull hboxes       {len(overfull)}"
       + (f"  (worst {max(overfull):.1f}pt)" if overfull else ""))
@@ -101,10 +122,16 @@ with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
     z.write(os.path.join(SRC, "references.bib"), "references.bib")
     # .bbl so the Portal can typeset the bibliography without running BibTeX
     z.write(os.path.join(build, "main.bbl"), "main.bbl")
+    # Only the files main.tex actually includes. Every figure is generated as
+    # both a vector PDF (what the manuscript uses) and a PNG (for the Portal's
+    # per-figure upload slots); shipping the unused PNGs inside the source
+    # archive would just invite a copy-editor to typeset the raster one.
     figdir = os.path.join(SRC, "figures")
-    for f in sorted(os.listdir(figdir)):
-        if f.startswith("fig") and f.endswith(".png"):
-            z.write(os.path.join(figdir, f), f"figures/{f}")
+    included = set(re.findall(r"includegraphics\[[^\]]*\]\{([^}]+)\}",
+                              open(os.path.join(SRC, "main.tex"),
+                                   encoding="utf-8").read()))
+    for f in sorted(included):
+        z.write(os.path.join(figdir, f), f"figures/{f}")
 
 print(f"\n  wrote {OUT}\\main.pdf          "
       f"{os.path.getsize(os.path.join(OUT, 'main.pdf')) / 1024:.0f} kB")
@@ -112,4 +139,4 @@ print(f"  wrote {OUT}\\main_source.zip   "
       f"{os.path.getsize(zip_path) / 1024:.0f} kB, "
       f"{len(zipfile.ZipFile(zip_path).namelist())} files")
 shutil.rmtree(build, ignore_errors=True)
-sys.exit(1 if (undef or pages > PAGE_LIMIT) else 0)
+sys.exit(1 if (undef or pages > ACCEPTED_PAGES) else 0)

@@ -8,6 +8,11 @@ env/
 venv/
 ENV/
 build/
+# `build/` above targets Python build artefacts, but it also swallows
+# submission_compact/build/, which holds the Fig. 5 generator -- source, not
+# output. Re-include the directory itself; git cannot re-include a file whose
+# parent directory is still excluded.
+!submission_compact/build/
 develop-eggs/
 dist/
 downloads/
@@ -54,6 +59,12 @@ Thumbs.db
 
 # Generated PDFs (optional - uncomment if you want to include PDFs)
 *.pdf
+
+# ...except the manuscript's figures. Since 2026-08-06 these are vector PDFs and
+# main.tex includes them by name, so they are source, not output: a snapshot
+# without them cannot rebuild the paper, and the Reproducibility section names
+# the paper-submission-v1 tag explicitly.
+!submission_compact/figures/*.pdf
 
 # Cached feature matrices — regeneratable from DROZY_O1_O2/ + SEED-VIG/ via reproduce.py
 *.npz

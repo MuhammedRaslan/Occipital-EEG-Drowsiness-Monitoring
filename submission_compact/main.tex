@@ -197,7 +197,7 @@ EEG, in contrast, observes the substrate of vigilance directly --- the alpha des
 
 \subsection{\add{Prior Work on Single- and Few-Channel EEG Drowsiness Detection}}
 \label{sec:related}
-EEG-based drowsiness detection has been reviewed comprehensively in~\cite{stancin2021review,sahayadhas2012sensors,chowdhury2018access,balam2024review}. Single-channel and few-channel approaches dominate the deployment-oriented literature because they minimise sensor cost and improve mounting tolerance~\cite{larocco2020headsets,gangadharan2020wireless,minimal2024electrodes}. \add{Form factor is as decisive as channel count: behind-the-ear montages have been shown to support drowsiness classification on embedded hardware without scalp-cap mounting~\mbox{\cite{nguyen2023behindear}}, ear-module system-on-chip designs integrate acquisition and inference in a wearable envelope~\mbox{\cite{ha2016earmodule}}, and in-ear electrodes have been used for continuous affective and vigilance monitoring~\mbox{\cite{athavipach2019inear}}. These share the design pressure that motivates the headrest-integrated occipital placement studied here: the sensor must disappear into something the driver already touches. A complementary line of work attacks the same subject-variability problem from the modelling side, using domain adaptation to transfer EEG classifiers across subjects~\mbox{\cite{maswanganyi2025transfer}}; the per-driver percentile calibration used in Section~\mbox{\ref{sec:proactive}} is a deliberately lightweight alternative to that approach.} Most cited results lie in the 70--95~\% accuracy range but a substantial fraction of the highest numbers are obtained under stratified or session-mixed splits that confound subject identity with class label; the recent IEEE-TITS systematic review of single-channel methods explicitly identifies this as the dominant source of optimism~\cite{balam2024review}.
+EEG-based drowsiness detection has been reviewed comprehensively in~\cite{stancin2021review,sahayadhas2012sensors,chowdhury2018access,balam2024review}. Single-channel and few-channel approaches dominate the deployment-oriented literature because they minimise sensor cost and improve mounting tolerance~\cite{larocco2020headsets,gangadharan2020wireless,minimal2024electrodes}. \add{Form factor is as decisive as channel count: behind-the-ear montages have been shown to support drowsiness classification on embedded hardware without scalp-cap mounting~\mbox{\cite{nguyen2023behindear}}, ear-module system-on-chip designs integrate acquisition and inference in a wearable envelope~\mbox{\cite{ha2016earmodule}}, and in-ear electrodes have been used for continuous affective and vigilance monitoring~\mbox{\cite{athavipach2019inear}}. These share the design pressure that motivates the headrest-integrated occipital placement studied here: the sensor must disappear into something the driver already touches. The headrest position itself is claimed in the patent literature, both as a headrest-integrated alertness-prediction system~\mbox{\cite{nunez2025patent}} and as an in-cabin drowsiness-estimation device~\mbox{\cite{toyota2021patent}}; those disclosures establish commercial interest in the placement, but a patent is not an evaluation, and neither is accompanied by a subject-independent benchmark on public data against a behavioural anchor. A complementary line of work attacks the same subject-variability problem from the modelling side, using domain adaptation to transfer EEG classifiers across subjects~\mbox{\cite{maswanganyi2025transfer}}; the per-driver percentile calibration used in Section~\mbox{\ref{sec:proactive}} is a deliberately lightweight alternative to that approach.} Most cited results lie in the 70--95~\% accuracy range but a substantial fraction of the highest numbers are obtained under stratified or session-mixed splits that confound subject identity with class label; the recent IEEE-TITS systematic review of single-channel methods explicitly identifies this as the dominant source of optimism~\cite{balam2024review}.
 
 The two datasets employed here have established benchmarks. DROZY~\cite{drozy2016} provides multimodal drowsiness recordings from 14 subjects across alert and sleep-deprived sessions; the publicly-available LOSO numbers on its EEG modality typically range from 55--65~\% F1 under strict subject-independent splits. SEED-VIG~\cite{zheng2017seedvig} provides 21 subjects with continuous PERCLOS annotations and is the de-facto behavioural-anchor benchmark for advance-prediction studies. \add{Newer multimodal corpora combining video, biometric and behavioural streams are beginning to appear~\mbox{\cite{eeguldd2025}}, but none yet pairs occipital EEG with a continuous behavioural anchor at the session lengths required to measure minutes-scale lead.}
 
@@ -333,7 +333,7 @@ The ablation establishes that coherence is the load-bearing \emph{family} but do
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{fig1_coherence_separation.png}
+\includegraphics[width=\columnwidth]{fig1_coherence_separation.pdf}
 \caption{Awake (blue) vs drowsy (orange) distributions of \(O_1\)--\(O_2\) magnitude-squared coherence in the \(\theta\), \(\alpha\), and \(\beta\) bands on DROZY (14\,498 epochs). Horizontal bars are medians. Coherence decreases with drowsiness in every band; the effect (Cohen's \(d\)) is largest in \(\beta\). All three Mann--Whitney \(U\) contrasts give \(p < 10^{-50}\).}
 \label{fig:coh}
 \end{figure}
@@ -369,7 +369,7 @@ Figure~\ref{fig:ema} illustrates the smoother on a representative subject (05M).
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{fig2_ema_raw_vs_smoothed.png}
+\includegraphics[width=\columnwidth]{fig2_ema_raw_vs_smoothed.pdf}
 \caption{Raw per-epoch posterior \(p_t\) (grey) vs causal EMA-smoothed \(\tilde{p}_t\) (red, \(\tau=600\) s) for a representative subject (05M). The dotted line is the 0.5 decision threshold; the dashed vertical line marks the awake\,\(\to\)\,drowsy session boundary. The raw posterior crosses the threshold repeatedly within each state; the smoother removes this epoch-level noise while remaining strictly causal.}
 \label{fig:ema}
 \end{figure}
@@ -379,7 +379,7 @@ A full ROC of the v17 smoothed posterior is shown in Figure~\ref{fig:roc}. Three
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{fig3_roc.png}
+\includegraphics[width=\columnwidth]{fig3_roc.pdf}
 \caption{Monitoring-track ROC of the v11 lean LDA + v17 causal EMA (\(\tau=600\) s) on DROZY LOSO (AUC = 76.62~\%). Three reviewer-facing operating points are highlighted.}
 \label{fig:roc}
 \end{figure}
@@ -534,7 +534,7 @@ A natural reviewer concern is that the 31-min lead reflects the choice of a part
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{fig4_lead_vs_severity.png}
+\includegraphics[width=\columnwidth]{fig4_lead_vs_severity.pdf}
 \caption{Lead-time vs PERCLOS-severity curve on SEED-VIG with the v20 EEG rule held constant. Median lead and IQR are shown on the left axis; proactive rate and per-session false-alert rate on the right axis.}
 \label{fig:severity}
 \end{figure}
@@ -570,7 +570,7 @@ Figure~\ref{fig:demo} demonstrates the algorithm running on three representative
 % 1:1 and its type matches the four single-column figures.
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\textwidth]{fig5_live_demo.png}
+\includegraphics[width=\textwidth]{fig5_live_demo.pdf}
 \caption{Live-system demonstrator on three representative SEED-VIG subjects (strong, median, marginal). For each subject, the raw and EMA-smoothed posteriors are overlaid with the per-subject calibrated threshold, the PERCLOS trace on a secondary axis, and the EEG and PERCLOS onsets. The animated playback of the median-lead case is in the supplementary material.}
 \label{fig:demo}
 \end{figure*}

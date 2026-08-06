@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-05T23:03:20.806551",
+  "timestamp": "2026-08-06T10:03:16.802186",
   "methodology": "Reviewer-revision additions; reproduces v11 lean LDA LOSO + continuous EMA tau=600s (v17).",
   "item1_coherence": {
     "theta": {

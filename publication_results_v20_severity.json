@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-02T12:36:11.203300",
+  "timestamp": "2026-08-06T10:03:06.988266",
   "methodology": "Sweep of the behavioural onset threshold (PERCLOS > {0.3,0.4,0.5,0.6,0.7} sustained 60 s) with the v20 EEG-onset rule held constant (per-subject 99th-percentile threshold on 5-min baseline of causal-EMA-smoothed p(drowsy), tau=30 s, dwell=10 s). Produces the advance-prediction envelope: as the behavioural marker becomes more conservative (higher PERCLOS), the lead grows but the absolute number of paired onsets falls.",
   "eeg_rule": {
     "threshold_mode": "per_subject_pct",

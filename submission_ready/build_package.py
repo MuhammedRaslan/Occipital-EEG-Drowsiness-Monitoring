@@ -5,9 +5,10 @@ Everything here is derived from submission/ -- this script never writes to
 submission/, and never touches main.tex or references.bib.
 
 What it does:
-  1. figures/   copies the five manuscript figures under names that match
-                their printed figure numbers, and flattens RGBA -> RGB
-                (IEEE production does not want an alpha channel).
+  1. figures/   stages both copies of each of the five manuscript figures:
+                the vector PDF that main.tex includes, and the PNG for the
+                Author Portal's per-figure upload slots (flattened RGBA -> RGB,
+                because IEEE production does not want an alpha channel).
   2. supplementary/  copies the demo animation and zips code + results,
                      alongside a plain-text README (IEEE requires the
                      README in PDF or TXT, not Markdown).
@@ -45,24 +46,20 @@ print(f"source: {args.source}/\n")
 IEEE_MIN_DPI = 300
 COL_IN, TEXT_IN = 3.5, 7.16
 
-# Printed figure number -> source file. Order taken from the order the
-# figure environments appear in main.tex; see 01_FIGURE_NUMBERING.md.
-# Source filenames now match the printed figure numbers in submission_compact/;
-# the legacy fig10-fig14 names are still what submission/ carries, so both are
-# accepted here and resolved in order.
+# Printed figure number -> filename stem. Order taken from the order the figure
+# environments appear in main.tex; see the "Figure numbering" section of
+# 02_CONSISTENCY_AUDIT.md. Every generator now writes both a .pdf and a .png on
+# this stem straight into submission_compact/figures/, so the legacy
+# fig10-fig14 names no longer appear anywhere in the live tree.
 #
 # The last field is the width the figure is printed at: \columnwidth for the
 # four single-column figures, \textwidth for the full-width live demo.
 FIGURE_MAP = [
-    (1, ["fig1_coherence_separation.png", "fig13_coherence_separation.png"],
-     "fig1_coherence_separation.png", COL_IN),
-    (2, ["fig2_ema_raw_vs_smoothed.png", "fig14_ema_raw_vs_smoothed.png"],
-     "fig2_ema_raw_vs_smoothed.png", COL_IN),
-    (3, ["fig3_roc.png", "fig10_v17_roc.png"], "fig3_roc.png", COL_IN),
-    (4, ["fig4_lead_vs_severity.png", "fig11_lead_vs_severity.png"],
-     "fig4_lead_vs_severity.png", COL_IN),
-    (5, ["fig5_live_demo.png", "fig12_live_demo.png"],
-     "fig5_live_demo.png", TEXT_IN),
+    (1, "fig1_coherence_separation", COL_IN),
+    (2, "fig2_ema_raw_vs_smoothed", COL_IN),
+    (3, "fig3_roc", COL_IN),
+    (4, "fig4_lead_vs_severity", COL_IN),
+    (5, "fig5_live_demo", TEXT_IN),
 ]
 
 
@@ -70,6 +67,23 @@ def ensure(*parts):
     p = os.path.join(HERE, *parts)
     os.makedirs(p, exist_ok=True)
     return p
+
+
+def pdf_media_box_in(path):
+    """Authored width of a single-page PDF, in inches.
+
+    Read straight out of /MediaBox rather than through a PDF library, so the
+    build keeps its two dependencies. matplotlib writes the page object
+    uncompressed with a literal array, which is the only case this needs to
+    handle -- it raises rather than guessing if that stops being true.
+    """
+    blob = open(path, "rb").read()
+    m = re.search(rb"/MediaBox\s*\[\s*([\d.+-]+)\s+([\d.+-]+)\s+"
+                  rb"([\d.+-]+)\s+([\d.+-]+)\s*\]", blob)
+    if not m:
+        raise SystemExit(f"no readable /MediaBox in {path}")
+    x0, _, x1, _ = (float(v) for v in m.groups())
+    return (x1 - x0) / 72.0                      # PostScript points -> inches
 
 
 def strip_markdown(text):
@@ -95,13 +109,38 @@ def strip_markdown(text):
 fig_dir = ensure("figures")
 print("figures/")
 warnings = []
-for num, src_names, dst_name, print_in in FIGURE_MAP:
-    cands = [os.path.join(SRC, "figures", n) for n in src_names]
-    src = next((p for p in cands if os.path.isfile(p)), None)
-    if src is None:
-        raise SystemExit(f"Fig. {num}: none of {src_names} found in {SRC}/figures")
-    dst = os.path.join(fig_dir, dst_name)
-    im = Image.open(src)
+for num, stem, print_in in FIGURE_MAP:
+    # --- the vector PDF: the copy main.tex includes -----------------------
+    src_pdf = os.path.join(SRC, "figures", f"{stem}.pdf")
+    if not os.path.isfile(src_pdf):
+        raise SystemExit(f"Fig. {num}: {stem}.pdf not found in {SRC}/figures -- "
+                         f"re-run its generator")
+    dst_pdf = os.path.join(fig_dir, f"{stem}.pdf")
+    shutil.copy2(src_pdf, dst_pdf)
+
+    # A dpi test on a vector figure is meaningless -- there are no pixels to
+    # count. What can go wrong instead is the authored width drifting from the
+    # width it is printed at, which silently rescales every font in the figure.
+    # So assert on the MediaBox: authored inches vs printed inches.
+    box_in = pdf_media_box_in(dst_pdf)
+    scale = print_in / box_in
+    scale_flag = "" if 0.70 <= scale <= 1.10 else "  << SCALED OUT OF RANGE"
+    if scale_flag:
+        warnings.append(
+            f"Fig. {num} ({stem}.pdf) is authored {box_in:.2f} in wide but "
+            f"printed at {print_in:.2f} in, a {scale:.2f}x rescale. Every font "
+            f"in it is multiplied by that factor. Re-author it near the printed "
+            f"width, or accept the resulting point sizes deliberately.")
+    print(f"  Fig. {num}  {stem + '.pdf':38s} vector, authored {box_in:.2f}in  "
+          f"printed {print_in:.2f}in -> {scale:.2f}x  "
+          f"{os.path.getsize(dst_pdf) / 1024:5.0f}kB{scale_flag}")
+
+    # --- the PNG: only for the Portal's per-figure upload slots -----------
+    src_png = os.path.join(SRC, "figures", f"{stem}.png")
+    if not os.path.isfile(src_png):
+        raise SystemExit(f"Fig. {num}: {stem}.png not found in {SRC}/figures")
+    dst_png = os.path.join(fig_dir, f"{stem}.png")
+    im = Image.open(src_png)
     if im.mode in ("RGBA", "LA", "P"):
         flat = Image.new("RGB", im.size, "white")
         rgba = im.convert("RGBA")
@@ -115,18 +154,18 @@ for num, src_names, dst_name, print_in in FIGURE_MAP:
     # actually cares about is pixels per printed inch once LaTeX has scaled the
     # figure to \columnwidth or \textwidth, so compute that instead.
     eff_dpi = w / print_in
-    im.save(dst, format="PNG", dpi=(eff_dpi, eff_dpi), optimize=True)
+    im.save(dst_png, format="PNG", dpi=(eff_dpi, eff_dpi), optimize=True)
 
     flag = "" if eff_dpi >= IEEE_MIN_DPI else "  << UNDER 300 dpi"
     if flag:
         warnings.append(
-            f"Fig. {num} ({dst_name}) is {w}px wide. Printed at {print_in:.2f} in "
+            f"Fig. {num} ({stem}.png) is {w}px wide. Printed at {print_in:.2f} in "
             f"that is {eff_dpi:.0f} dpi, below IEEE's {IEEE_MIN_DPI} dpi minimum "
             f"for colour figures. Re-render it at least "
             f"{int(IEEE_MIN_DPI * print_in)}px wide.")
-    print(f"  Fig. {num}  {dst_name:34s} {w}x{h}px  "
+    print(f"  Fig. {num}  {stem + '.png':38s} {w}x{h}px  "
           f"printed {print_in:.2f}in -> {eff_dpi:5.0f} dpi  "
-          f"{os.path.getsize(dst) / 1024:5.0f}kB  RGB{flag}")
+          f"{os.path.getsize(dst_png) / 1024:5.0f}kB  RGB{flag}")
 
 # ----------------------------------------------------------------------
 # 2. Supplementary
