@@ -72,6 +72,11 @@ Thumbs.db
 # Packaged submission/Overleaf archives — repackaged copies of tracked files
 *.zip
 
+# Review bundle for co-authors: every byte of it is copied from
+# submission_ready/ by build_professor_bundle.py, so tracking it would just
+# duplicate the package and let the two drift apart.
+submission_professor/
+
 # Claude Code workspace & Streamlit local state (not source)
 .claude/
 .streamlit/
