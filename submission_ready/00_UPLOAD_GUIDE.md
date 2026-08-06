@@ -44,8 +44,8 @@ PNGs, not some of each.
 | Ethics | `portal_text/declarations.txt` §5 |
 | AI-assistance disclosure | `portal_text/declarations.txt` §6 |
 | Graphical abstract caption | `graphical_abstract/gagraphic_caption.txt` |
-| Suggested reviewers | `portal_text/suggested_reviewers.txt` — pick 3 from the SUGGEST list |
-| Excluded reviewers | same file, EXCLUDE list |
+| Suggested reviewers | `portal_text/suggested_reviewers.txt` — the portal takes 3–5; that file lists 7 candidates and recommends picking 4 |
+| Excluded reviewers | same file, EXCLUDE list — 0–2 allowed, 1 listed (P. L. Nunez, patent conflict) |
 | Keywords | 3–6 from the Portal dropdown, **plus** one category from the journal's editorial keyword list (a separate mandatory classification) |
 
 ---

@@ -44,7 +44,7 @@ ITEMS = [
     # Typed into portal fields rather than uploaded, but a co-author has to read
     # and approve them -- the corresponding author signs the cover letter.
     ("portal_text/cover_letter.pdf", "-  Cover letter (portal field)"),
-    ("portal_text/declarations.pdf", "-  Declarations, 6 sections (portal fields)"),
+    ("portal_text/declarations.pdf", "-  Declarations (portal fields)"),
     ("portal_text/suggested_reviewers.pdf", "-  Suggested/excluded reviewers"),
 ]
 
@@ -74,11 +74,40 @@ def pdf_page_count(path):
     return n or None
 
 
+def check_fresh():
+    """Refuse to bundle a package that predates the source it was built from.
+
+    The bundle is a copy, so it goes stale the moment anything upstream is
+    rebuilt -- which has already happened once, when a verification run
+    recompiled the manuscript after the bundle had been assembled. The two
+    PDFs were the same document, but they were not the same file, and nothing
+    said so. Compare timestamps and say so.
+    """
+    pdf = os.path.join(HERE, "manuscript", "main.pdf")
+    built = os.path.getmtime(pdf)
+    src = os.path.join(REPO, "submission_compact")
+    newer = []
+    for rel in ["main.tex", "references.bib"]:
+        p = os.path.join(src, rel)
+        if os.path.getmtime(p) > built:
+            newer.append(rel)
+    figdir = os.path.join(src, "figures")
+    for f in sorted(os.listdir(figdir)):
+        if os.path.getmtime(os.path.join(figdir, f)) > built:
+            newer.append(f"figures/{f}")
+    if newer:
+        sys.exit("submission_ready/manuscript/main.pdf is older than its "
+                 "source:\n  " + "\n  ".join(newer)
+                 + "\n\nRe-run build_package.py and build_manuscript.py first, "
+                   "then this script last.")
+
+
 def main():
     missing = [s for s, _ in ITEMS if not os.path.isfile(os.path.join(HERE, s))]
     if missing:
         sys.exit("not built yet -- run build_package.py and build_manuscript.py "
                  "first.\nmissing:\n  " + "\n  ".join(missing))
+    check_fresh()
 
     # The bundle is derived in full, so rebuild it from empty rather than
     # letting a file removed upstream survive here from a previous run.
@@ -116,7 +145,10 @@ def main():
 
 
 def write_readme(rows, total, pages):
-    listing = "\n".join(f"  {slot:36s} {name}" for slot, name, _ in rows)
+    # Width from the data, so a longer label can never shunt the filename
+    # column out of alignment.
+    w = max(len(slot) for slot, _, _ in rows)
+    listing = "\n".join(f"  {slot:{w}s}  {name}" for slot, name, _ in rows)
     over = max(0, pages - 8)
     charge = over * 175
     text = f"""IEEE Sensors Journal submission -- review copy
@@ -135,8 +167,8 @@ corresponding author signs the cover letter.
 
 {listing}
 
-Total {total / 1048576:.2f} MB. The portal cap is 40 MB, and applies only to
-items 1-10.
+Total {total / 1048576:.2f} MB, against a 40 MB portal cap that applies to
+items 1-10 only.
 
 Portal: IEEE Author Portal, https://ieee.atyponrex.com/journal/sensors
 (not ScholarOne). Article type: Regular Paper.
@@ -183,7 +215,10 @@ tagged paper-submission-v1
 What still needs a decision before submitting
 ---------------------------------------------
   - the mandatory category from the journal's editorial keyword list
-  - three suggested reviewers, with emails verified 24 h beforehand
+  - which reviewers to name. The portal takes 3-5 suggestions and 0-2
+    exclusions; suggested_reviewers.pdf lists 7 candidates and recommends
+    picking 4, plus 1 exclusion. Verify each email on the candidate's faculty
+    page 24 h beforehand, not earlier -- academic addresses change.
   - open access (US$2,800, 5%% IEEE-member / 20%% society discount) versus
     traditional publication, which is free
   - approval of the cover letter and the six declaration statements, which are
