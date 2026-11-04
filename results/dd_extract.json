@@ -1,0 +1,43 @@
+{
+ "script": "01_dd_extract.py",
+ "git_commit": "ee587b9",
+ "timestamp": "2026-11-04T20:49:52",
+ "source": "data/DD-Database",
+ "n_epochs": 14498,
+ "n_trials": 20,
+ "epochs_per_trial": {
+  "01M_1": 730,
+  "01M_2": 727,
+  "02F_1": 738,
+  "02F_2": 726,
+  "03F_1": 730,
+  "03F_2": 735,
+  "04M_1": 693,
+  "04M_2": 721,
+  "05M_1": 724,
+  "05M_2": 724,
+  "06M_1": 721,
+  "06M_2": 733,
+  "07F_1": 729,
+  "07F_2": 727,
+  "08M_1": 723,
+  "08M_2": 723,
+  "09M_1": 723,
+  "09M_2": 724,
+  "10M_1": 723,
+  "10M_2": 724
+ },
+ "unit_field_in_edf": [
+  "uV."
+ ],
+ "scale_applied": [
+  1.0
+ ],
+ "min_distinct_values_first_200k_samples": 198834,
+ "median_abs_uV_range": [
+  3.265,
+  6.8031
+ ],
+ "spot_check_max_deviation": 0.0,
+ "elapsed_s": 227.4244
+}

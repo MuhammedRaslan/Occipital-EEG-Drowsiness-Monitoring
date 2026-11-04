@@ -1,0 +1,111 @@
+{
+ "script": "24_offsets.py",
+ "git_commit": "e6056c2",
+ "timestamp": "2026-11-03T23:41:37",
+ "DD-Database": {
+  "Lean-10 LDA": {
+   "pooled_AUC": 59.9795,
+   "pooled_AUC_offsets_removed": 52.5928,
+   "rho_mean_score_drowsy_share": 0.503,
+   "subject_AUC_median": 59.8793,
+   "subject_AUC": {
+    "01M": 63.5834,
+    "02F": 60.2931,
+    "03F": 62.8166,
+    "04M": 47.4871,
+    "05M": 39.3196,
+    "06M": 59.4655,
+    "07F": 57.0667,
+    "08M": 65.9903,
+    "09M": 45.5829,
+    "10M": 67.576
+   }
+  },
+  "Riemannian TS + LDA": {
+   "pooled_AUC": 33.9577,
+   "pooled_AUC_offsets_removed": 50.8375,
+   "rho_mean_score_drowsy_share": -0.4788,
+   "subject_AUC_median": 59.128,
+   "subject_AUC": {
+    "01M": 72.4101,
+    "02F": 52.7027,
+    "03F": 73.8987,
+    "04M": 26.2317,
+    "05M": 55.5136,
+    "06M": 55.0982,
+    "07F": 67.2722,
+    "08M": 36.0461,
+    "09M": 62.7425,
+    "10M": 67.7977
+   }
+  },
+  "Riemannian TS + LogReg": {
+   "pooled_AUC": 53.7036,
+   "pooled_AUC_offsets_removed": 50.9203,
+   "rho_mean_score_drowsy_share": 0.2848,
+   "subject_AUC_median": 59.4211,
+   "subject_AUC": {
+    "01M": 72.6629,
+    "02F": 52.8782,
+    "03F": 74.766,
+    "04M": 25.9473,
+    "05M": 54.9139,
+    "06M": 55.2262,
+    "07F": 67.3446,
+    "08M": 35.5433,
+    "09M": 63.6161,
+    "10M": 67.9479
+   }
+  },
+  "EEGNet": {
+   "pooled_AUC": 66.9184,
+   "pooled_AUC_offsets_removed": 52.2765,
+   "rho_mean_score_drowsy_share": 0.6606,
+   "subject_AUC_median": 56.5126,
+   "subject_AUC": {
+    "01M": 47.7283,
+    "02F": 57.8024,
+    "03F": 55.6167,
+    "04M": 65.4778,
+    "05M": 57.4085,
+    "06M": 58.0549,
+    "07F": 82.4251,
+    "08M": 45.9628,
+    "09M": 38.4423,
+    "10M": 44.1512
+   }
+  }
+ },
+ "versus_lean10": {
+  "Riemannian TS + LDA": {
+   "n": 10,
+   "mean_diff": 0.0532,
+   "median_diff": 4.5242,
+   "n_increase": 6,
+   "n_decrease": 4,
+   "p_two_sided": 0.7695,
+   "paired_d": 0.0033,
+   "p_holm": 1.0
+  },
+  "Riemannian TS + LogReg": {
+   "n": 10,
+   "mean_diff": 0.1665,
+   "median_diff": 4.7257,
+   "n_increase": 6,
+   "n_decrease": 4,
+   "p_two_sided": 0.7695,
+   "paired_d": 0.0103,
+   "p_holm": 1.0
+  },
+  "EEGNet": {
+   "n": 10,
+   "mean_diff": -1.6111,
+   "median_diff": -4.8156,
+   "n_increase": 3,
+   "n_decrease": 7,
+   "p_two_sided": 0.6953,
+   "paired_d": -0.0952,
+   "p_holm": 1.0
+  }
+ }
+}

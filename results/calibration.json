@@ -1,0 +1,264 @@
+{
+ "script": "17_calibration.py",
+ "git_commit": "6fb851e",
+ "timestamp": "2026-10-31T10:29:23",
+ "note": "training subjects keep the standard calibration; only the held-out subject's window moves",
+ "results": {
+  "SEED-VIG": {
+   "lean10": {
+    "standard": {
+     "pooled": {
+      "AUC": 72.8405,
+      "F1w": 71.9994,
+      "BalAcc": 65.2511,
+      "kappa": 0.3546,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 78.1148,
+     "subjects_with_variant_window": 19,
+     "n_subjects": 19
+    },
+    "at_1800": {
+     "pooled": {
+      "AUC": 59.7146,
+      "F1w": 63.9251,
+      "BalAcc": 57.2692,
+      "kappa": 0.1728,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 75.1604,
+     "subjects_with_variant_window": 12,
+     "n_subjects": 19
+    },
+    "at_3600": {
+     "pooled": {
+      "AUC": 67.9462,
+      "F1w": 66.8147,
+      "BalAcc": 60.0553,
+      "kappa": 0.2399,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 73.757,
+     "subjects_with_variant_window": 6,
+     "n_subjects": 19
+    },
+    "drowsy_labelled": {
+     "pooled": {
+      "AUC": 64.1135,
+      "F1w": 54.8072,
+      "BalAcc": 50.1953,
+      "kappa": 0.005,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 60.872,
+     "subjects_with_variant_window": 19,
+     "n_subjects": 19
+    }
+   },
+   "lean7": {
+    "standard": {
+     "pooled": {
+      "AUC": 76.8336,
+      "F1w": 72.3042,
+      "BalAcc": 65.5069,
+      "kappa": 0.3622,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 77.205,
+     "subjects_with_variant_window": 19,
+     "n_subjects": 19
+    },
+    "at_1800": {
+     "pooled": {
+      "AUC": 62.3817,
+      "F1w": 64.1944,
+      "BalAcc": 57.5797,
+      "kappa": 0.1827,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 77.205,
+     "subjects_with_variant_window": 12,
+     "n_subjects": 19
+    },
+    "at_3600": {
+     "pooled": {
+      "AUC": 71.2057,
+      "F1w": 66.2512,
+      "BalAcc": 59.5207,
+      "kappa": 0.2286,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 76.2361,
+     "subjects_with_variant_window": 6,
+     "n_subjects": 19
+    },
+    "drowsy_labelled": {
+     "pooled": {
+      "AUC": 68.7294,
+      "F1w": 53.9126,
+      "BalAcc": 49.6874,
+      "kappa": -0.0081,
+      "n": 8525,
+      "n_pos": 2849
+     },
+     "subject_AUC_median": 72.6313,
+     "subjects_with_variant_window": 19,
+     "n_subjects": 19
+    }
+   }
+  },
+  "DD-Database": {
+   "lean10": {
+    "standard": {
+     "pooled": {
+      "AUC": 59.9795,
+      "F1w": 60.6244,
+      "BalAcc": 55.3354,
+      "kappa": 0.118,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 59.8793,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    },
+    "at_1800": {
+     "pooled": {
+      "AUC": 49.2591,
+      "F1w": 53.3164,
+      "BalAcc": 48.4934,
+      "kappa": -0.035,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 61.0254,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    },
+    "at_3600": {
+     "pooled": {
+      "AUC": 38.8938,
+      "F1w": 49.987,
+      "BalAcc": 44.46,
+      "kappa": -0.1206,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 65.7308,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    },
+    "before_first_press": {
+     "pooled": {
+      "AUC": 51.0818,
+      "F1w": 54.5154,
+      "BalAcc": 49.4468,
+      "kappa": -0.0127,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 58.842,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    }
+   },
+   "lean7": {
+    "standard": {
+     "pooled": {
+      "AUC": 60.8766,
+      "F1w": 59.118,
+      "BalAcc": 53.8114,
+      "kappa": 0.0851,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 59.5708,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    },
+    "at_1800": {
+     "pooled": {
+      "AUC": 50.7773,
+      "F1w": 52.826,
+      "BalAcc": 47.9327,
+      "kappa": -0.0477,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 61.8991,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    },
+    "at_3600": {
+     "pooled": {
+      "AUC": 42.0719,
+      "F1w": 50.3311,
+      "BalAcc": 44.7933,
+      "kappa": -0.1112,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 64.5415,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    },
+    "before_first_press": {
+     "pooled": {
+      "AUC": 55.6162,
+      "F1w": 54.0564,
+      "BalAcc": 48.9123,
+      "kappa": -0.0247,
+      "n": 7965,
+      "n_pos": 5158
+     },
+     "subject_AUC_median": 64.4004,
+     "subjects_with_variant_window": 10,
+     "n_subjects": 10
+    }
+   }
+  }
+ },
+ "dd_presses_during_calibration": [
+  {
+   "press_s": [
+    226.0
+   ],
+   "this_trial": {
+    "trial": "02F_1",
+    "n_drowsy": 279,
+    "n_alert": 13,
+    "AUC": 56.3551
+   },
+   "other_trial": {
+    "trial": "02F_2",
+    "n_drowsy": 239,
+    "n_alert": 53,
+    "AUC": 79.6558
+   }
+  },
+  {
+   "press_s": [
+    106.0
+   ],
+   "this_trial": {
+    "trial": "04M_2",
+    "n_drowsy": 401,
+    "n_alert": 0,
+    "AUC": null
+   },
+   "other_trial": {
+    "trial": "04M_1",
+    "n_drowsy": 321,
+    "n_alert": 56,
+    "AUC": 56.7868
+   }
+  }
+ ]
+}

@@ -1,0 +1,495 @@
+{
+ "script": "16_reference.py",
+ "git_commit": "14a58c1",
+ "timestamp": "2026-10-27T18:18:09",
+ "dataset": "DD-Database (original recordings, self-report labels)",
+ "reference_electrode": "A1 or A2 (per the dataset README); shared by all EEG channels",
+ "seed_vig_reference": "not reported by the dataset authors (Zheng & Lu 2017)",
+ "consistency_with_feature_cache_max_abs": {
+  "theta": 0.0,
+  "alpha": 0.0,
+  "beta": 0.0
+ },
+ "results": {
+  "MSC O1-O2 theta": {
+   "mean_all_labelled": 0.7459,
+   "alert_mean": 0.7449,
+   "drowsy_mean": 0.7456,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0007,
+    "median_diff": -0.0044,
+    "n_increase": 4,
+    "n_decrease": 6,
+    "p_two_sided": 0.625,
+    "paired_d": 0.0235,
+    "p_holm_bands": 1.0,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-O2 alpha": {
+   "mean_all_labelled": 0.6795,
+   "alert_mean": 0.669,
+   "drowsy_mean": 0.6707,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0017,
+    "median_diff": 0.0106,
+    "n_increase": 6,
+    "n_decrease": 4,
+    "p_two_sided": 0.6953,
+    "paired_d": 0.0346,
+    "p_holm_bands": 1.0,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-O2 beta": {
+   "mean_all_labelled": 0.5727,
+   "alert_mean": 0.5828,
+   "drowsy_mean": 0.5614,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0214,
+    "median_diff": 0.0003,
+    "n_increase": 5,
+    "n_decrease": 5,
+    "p_two_sided": 0.4922,
+    "paired_d": -0.4401,
+    "p_holm_bands": 1.0,
+    "p_holm_all": 1.0
+   }
+  },
+  "zero-lag share O1-O2 theta": {
+   "mean_all_labelled": 0.9628,
+   "alert_mean": 0.9639,
+   "drowsy_mean": 0.9625,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0013,
+    "median_diff": -0.0025,
+    "n_increase": 2,
+    "n_decrease": 8,
+    "p_two_sided": 0.3223,
+    "paired_d": -0.124,
+    "p_holm_bands": 0.3223,
+    "p_holm_all": 1.0
+   }
+  },
+  "ImCoh O1-O2 theta": {
+   "mean_all_labelled": 0.118,
+   "alert_mean": 0.1199,
+   "drowsy_mean": 0.1183,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0016,
+    "median_diff": 0.0049,
+    "n_increase": 7,
+    "n_decrease": 3,
+    "p_two_sided": 0.4922,
+    "paired_d": -0.0897,
+    "p_holm_bands": 0.4922,
+    "p_holm_all": 1.0
+   }
+  },
+  "wPLI O1-O2 theta": {
+   "mean_all_labelled": 0.4363,
+   "alert_mean": 0.4458,
+   "drowsy_mean": 0.436,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0098,
+    "median_diff": 0.0035,
+    "n_increase": 7,
+    "n_decrease": 3,
+    "p_two_sided": 0.7695,
+    "paired_d": -0.2055,
+    "p_holm_bands": 0.7695,
+    "p_holm_all": 1.0
+   }
+  },
+  "zero-lag share O1-O2 alpha": {
+   "mean_all_labelled": 0.9453,
+   "alert_mean": 0.9505,
+   "drowsy_mean": 0.9415,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.009,
+    "median_diff": -0.004,
+    "n_increase": 1,
+    "n_decrease": 9,
+    "p_two_sided": 0.0273,
+    "paired_d": -0.7849,
+    "p_holm_bands": 0.0547,
+    "p_holm_all": 0.6836
+   }
+  },
+  "ImCoh O1-O2 alpha": {
+   "mean_all_labelled": 0.1407,
+   "alert_mean": 0.1347,
+   "drowsy_mean": 0.144,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0092,
+    "median_diff": 0.0096,
+    "n_increase": 9,
+    "n_decrease": 1,
+    "p_two_sided": 0.0488,
+    "paired_d": 0.6677,
+    "p_holm_bands": 0.0977,
+    "p_holm_all": 1.0
+   }
+  },
+  "wPLI O1-O2 alpha": {
+   "mean_all_labelled": 0.4473,
+   "alert_mean": 0.435,
+   "drowsy_mean": 0.4515,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0165,
+    "median_diff": 0.0269,
+    "n_increase": 8,
+    "n_decrease": 2,
+    "p_two_sided": 0.1309,
+    "paired_d": 0.4259,
+    "p_holm_bands": 0.2617,
+    "p_holm_all": 1.0
+   }
+  },
+  "zero-lag share O1-O2 beta": {
+   "mean_all_labelled": 0.9348,
+   "alert_mean": 0.9413,
+   "drowsy_mean": 0.9276,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0136,
+    "median_diff": -0.0081,
+    "n_increase": 0,
+    "n_decrease": 10,
+    "p_two_sided": 0.002,
+    "paired_d": -0.8209,
+    "p_holm_bands": 0.0059,
+    "p_holm_all": 0.0586
+   }
+  },
+  "ImCoh O1-O2 beta": {
+   "mean_all_labelled": 0.142,
+   "alert_mean": 0.1381,
+   "drowsy_mean": 0.1468,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0086,
+    "median_diff": 0.0067,
+    "n_increase": 9,
+    "n_decrease": 1,
+    "p_two_sided": 0.0059,
+    "paired_d": 0.9935,
+    "p_holm_bands": 0.0176,
+    "p_holm_all": 0.1699
+   }
+  },
+  "wPLI O1-O2 beta": {
+   "mean_all_labelled": 0.4054,
+   "alert_mean": 0.4035,
+   "drowsy_mean": 0.4123,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0088,
+    "median_diff": 0.0084,
+    "n_increase": 9,
+    "n_decrease": 1,
+    "p_two_sided": 0.0195,
+    "paired_d": 0.9542,
+    "p_holm_bands": 0.0586,
+    "p_holm_all": 0.5273
+   }
+  },
+  "MSC C3-C4 theta": {
+   "mean_all_labelled": 0.8866,
+   "alert_mean": 0.8892,
+   "drowsy_mean": 0.884,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0052,
+    "median_diff": -0.0079,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.375,
+    "paired_d": -0.1785,
+    "p_holm_bands": 1.0,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC C3-C4 alpha": {
+   "mean_all_labelled": 0.8472,
+   "alert_mean": 0.8401,
+   "drowsy_mean": 0.8416,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0016,
+    "median_diff": -0.0055,
+    "n_increase": 4,
+    "n_decrease": 6,
+    "p_two_sided": 0.8457,
+    "paired_d": 0.0388,
+    "p_holm_bands": 1.0,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC C3-C4 beta": {
+   "mean_all_labelled": 0.7465,
+   "alert_mean": 0.7545,
+   "drowsy_mean": 0.7437,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0109,
+    "median_diff": -0.0048,
+    "n_increase": 4,
+    "n_decrease": 6,
+    "p_two_sided": 0.625,
+    "paired_d": -0.2385,
+    "p_holm_bands": 1.0,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-C3 theta": {
+   "mean_all_labelled": 0.4037,
+   "alert_mean": 0.4341,
+   "drowsy_mean": 0.4069,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0272,
+    "median_diff": -0.0276,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.1055,
+    "paired_d": -0.5876,
+    "p_holm_bands": 0.2109,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-C3 alpha": {
+   "mean_all_labelled": 0.3999,
+   "alert_mean": 0.4271,
+   "drowsy_mean": 0.3992,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0278,
+    "median_diff": -0.0321,
+    "n_increase": 1,
+    "n_decrease": 9,
+    "p_two_sided": 0.0195,
+    "paired_d": -0.9342,
+    "p_holm_bands": 0.0586,
+    "p_holm_all": 0.5273
+   }
+  },
+  "MSC O1-C3 beta": {
+   "mean_all_labelled": 0.4171,
+   "alert_mean": 0.4484,
+   "drowsy_mean": 0.4146,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0338,
+    "median_diff": -0.027,
+    "n_increase": 4,
+    "n_decrease": 6,
+    "p_two_sided": 0.1602,
+    "paired_d": -0.5851,
+    "p_holm_bands": 0.2109,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O2-C4 theta": {
+   "mean_all_labelled": 0.3968,
+   "alert_mean": 0.4249,
+   "drowsy_mean": 0.4054,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0195,
+    "median_diff": -0.0262,
+    "n_increase": 4,
+    "n_decrease": 6,
+    "p_two_sided": 0.1309,
+    "paired_d": -0.4856,
+    "p_holm_bands": 0.3926,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O2-C4 alpha": {
+   "mean_all_labelled": 0.3854,
+   "alert_mean": 0.4039,
+   "drowsy_mean": 0.3907,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0131,
+    "median_diff": -0.0141,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.2754,
+    "paired_d": -0.4125,
+    "p_holm_bands": 0.3926,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O2-C4 beta": {
+   "mean_all_labelled": 0.418,
+   "alert_mean": 0.4419,
+   "drowsy_mean": 0.4235,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0184,
+    "median_diff": -0.0098,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.1602,
+    "paired_d": -0.4342,
+    "p_holm_bands": 0.3926,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-C4 theta": {
+   "mean_all_labelled": 0.3773,
+   "alert_mean": 0.4055,
+   "drowsy_mean": 0.3825,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.023,
+    "median_diff": -0.0176,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.1934,
+    "paired_d": -0.4694,
+    "p_holm_bands": 0.2109,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-C4 alpha": {
+   "mean_all_labelled": 0.3699,
+   "alert_mean": 0.3923,
+   "drowsy_mean": 0.3719,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0205,
+    "median_diff": -0.0177,
+    "n_increase": 1,
+    "n_decrease": 9,
+    "p_two_sided": 0.0273,
+    "paired_d": -1.018,
+    "p_holm_bands": 0.082,
+    "p_holm_all": 0.6836
+   }
+  },
+  "MSC O1-C4 beta": {
+   "mean_all_labelled": 0.3881,
+   "alert_mean": 0.4137,
+   "drowsy_mean": 0.3877,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.026,
+    "median_diff": -0.0268,
+    "n_increase": 4,
+    "n_decrease": 6,
+    "p_two_sided": 0.1055,
+    "paired_d": -0.5615,
+    "p_holm_bands": 0.2109,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O2-C3 theta": {
+   "mean_all_labelled": 0.3815,
+   "alert_mean": 0.408,
+   "drowsy_mean": 0.3857,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0223,
+    "median_diff": -0.0269,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.0645,
+    "paired_d": -0.5754,
+    "p_holm_bands": 0.1934,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O2-C3 alpha": {
+   "mean_all_labelled": 0.3554,
+   "alert_mean": 0.3698,
+   "drowsy_mean": 0.3561,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0137,
+    "median_diff": -0.023,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.1934,
+    "paired_d": -0.3865,
+    "p_holm_bands": 0.3867,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O2-C3 beta": {
+   "mean_all_labelled": 0.3716,
+   "alert_mean": 0.3998,
+   "drowsy_mean": 0.373,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": -0.0268,
+    "median_diff": -0.0147,
+    "n_increase": 3,
+    "n_decrease": 7,
+    "p_two_sided": 0.1934,
+    "paired_d": -0.5473,
+    "p_holm_bands": 0.3867,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-O2 (common-average ref) theta": {
+   "mean_all_labelled": 0.4058,
+   "alert_mean": 0.3864,
+   "drowsy_mean": 0.3977,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0113,
+    "median_diff": 0.0139,
+    "n_increase": 5,
+    "n_decrease": 5,
+    "p_two_sided": 0.5566,
+    "paired_d": 0.228,
+    "p_holm_bands": 0.5566,
+    "p_holm_all": 1.0
+   }
+  },
+  "MSC O1-O2 (common-average ref) alpha": {
+   "mean_all_labelled": 0.2902,
+   "alert_mean": 0.2513,
+   "drowsy_mean": 0.2848,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0336,
+    "median_diff": 0.0278,
+    "n_increase": 9,
+    "n_decrease": 1,
+    "p_two_sided": 0.0371,
+    "paired_d": 0.8012,
+    "p_holm_bands": 0.0742,
+    "p_holm_all": 0.8535
+   }
+  },
+  "MSC O1-O2 (common-average ref) beta": {
+   "mean_all_labelled": 0.1823,
+   "alert_mean": 0.1714,
+   "drowsy_mean": 0.1913,
+   "subject_level": {
+    "n": 10,
+    "mean_diff": 0.0199,
+    "median_diff": 0.0132,
+    "n_increase": 9,
+    "n_decrease": 1,
+    "p_two_sided": 0.0098,
+    "paired_d": 0.9938,
+    "p_holm_bands": 0.0293,
+    "p_holm_all": 0.2734
+   }
+  }
+ }
+}

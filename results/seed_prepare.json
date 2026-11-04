@@ -1,0 +1,141 @@
+{
+ "script": "03_seed_prepare.py",
+ "git_commit": "14a58c1",
+ "timestamp": "2026-10-27T17:42:42",
+ "n_epochs": 9155,
+ "n_awake": 5923,
+ "n_drowsy": 3232,
+ "n_subject_ids": 21,
+ "n_recordings": 23,
+ "split_subjects_rows": {
+  "4": [
+   447,
+   387
+  ],
+  "5": [
+   564,
+   463
+  ]
+ },
+ "subject_ids_with_both_classes": [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20",
+  "21"
+ ],
+ "n_test_subjects": 19,
+ "single_class_subject_ids": [
+  "6",
+  "13"
+ ],
+ "per_subject_counts": {
+  "1": {
+   "n_awake": 90,
+   "n_drowsy": 307
+  },
+  "2": {
+   "n_awake": 613,
+   "n_drowsy": 37
+  },
+  "3": {
+   "n_awake": 74,
+   "n_drowsy": 67
+  },
+  "4": {
+   "n_awake": 607,
+   "n_drowsy": 227
+  },
+  "5": {
+   "n_awake": 701,
+   "n_drowsy": 326
+  },
+  "6": {
+   "n_awake": 247,
+   "n_drowsy": 0
+  },
+  "7": {
+   "n_awake": 80,
+   "n_drowsy": 28
+  },
+  "8": {
+   "n_awake": 562,
+   "n_drowsy": 77
+  },
+  "9": {
+   "n_awake": 167,
+   "n_drowsy": 32
+  },
+  "10": {
+   "n_awake": 219,
+   "n_drowsy": 28
+  },
+  "11": {
+   "n_awake": 261,
+   "n_drowsy": 13
+  },
+  "12": {
+   "n_awake": 257,
+   "n_drowsy": 382
+  },
+  "13": {
+   "n_awake": 0,
+   "n_drowsy": 383
+  },
+  "14": {
+   "n_awake": 184,
+   "n_drowsy": 156
+  },
+  "15": {
+   "n_awake": 232,
+   "n_drowsy": 56
+  },
+  "16": {
+   "n_awake": 160,
+   "n_drowsy": 403
+  },
+  "17": {
+   "n_awake": 19,
+   "n_drowsy": 119
+  },
+  "18": {
+   "n_awake": 341,
+   "n_drowsy": 281
+  },
+  "19": {
+   "n_awake": 115,
+   "n_drowsy": 14
+  },
+  "20": {
+   "n_awake": 501,
+   "n_drowsy": 168
+  },
+  "21": {
+   "n_awake": 493,
+   "n_drowsy": 128
+  }
+ },
+ "reproduction_check_published_internal_loso": {
+  "AUC": 70.9821,
+  "F1w": 71.245,
+  "BalAcc": 64.5043,
+  "kappa": 0.3372,
+  "n": 8525,
+  "n_pos": 2849
+ },
+ "note": "SEED-VIG features come from features_seed_vig_cache.npz (built from the distributed 200-Hz recordings, resampled to 128 Hz, no additional band-pass filter); the raw recordings are not on this machine."
+}

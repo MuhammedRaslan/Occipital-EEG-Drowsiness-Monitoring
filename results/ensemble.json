@@ -1,0 +1,71 @@
+{
+ "script": "19_ensemble.py",
+ "git_commit": "14a58c1",
+ "timestamp": "2026-10-27T18:27:48",
+ "dataset": "DD-Database (self-report labels)",
+ "summary": {
+  "M1 lean-10 LDA": {
+   "pooled_AUC": 59.9795,
+   "F1w": 60.6244,
+   "subject_AUC_median": 59.8793,
+   "accuracy": 63.6033
+  },
+  "M2 Riemannian TS+LDA": {
+   "pooled_AUC": 33.9577,
+   "F1w": 47.1065,
+   "subject_AUC_median": 59.128,
+   "accuracy": 54.1745
+  },
+  "M3 EMA (nested tau)": {
+   "pooled_AUC": 59.9795,
+   "F1w": 59.9849,
+   "subject_AUC_median": 63.0986,
+   "accuracy": 64.5449
+  },
+  "average": {
+   "pooled_AUC": 53.7405,
+   "F1w": 55.6678,
+   "subject_AUC_median": 60.3646,
+   "accuracy": 61.2806
+  },
+  "stacked LDA (LOSO)": {
+   "pooled_AUC": 53.6338,
+   "F1w": 58.2276,
+   "subject_AUC_median": 51.1987,
+   "accuracy": 62.2724
+  }
+ },
+ "pairs": {
+  "M1 lean-10 LDA ~ M2 Riemannian TS+LDA": {
+   "posterior_r": 0.1156,
+   "posterior_r_within_subject_median": 0.2371,
+   "error_r": 0.413,
+   "yules_Q": 0.7237,
+   "disagreement": 0.2906,
+   "double_fault": 0.2658
+  },
+  "M1 lean-10 LDA ~ M3 EMA (nested tau)": {
+   "posterior_r": 0.8999,
+   "posterior_r_within_subject_median": 0.7873,
+   "error_r": 0.8216,
+   "yules_Q": 0.9827,
+   "disagreement": 0.0822,
+   "double_fault": 0.3181
+  },
+  "M2 Riemannian TS+LDA ~ M3 EMA (nested tau)": {
+   "posterior_r": 0.1221,
+   "posterior_r_within_subject_median": 0.2744,
+   "error_r": 0.4619,
+   "yules_Q": 0.7834,
+   "disagreement": 0.2677,
+   "double_fault": 0.2726
+  }
+ },
+ "best_member_by_subject_AUC": "M3 EMA (nested tau)",
+ "oracle_accuracy": 75.2919,
+ "member_accuracy_on_best_member_errors": {
+  "M1 lean-10 LDA": 10.2691,
+  "M2 Riemannian TS+LDA": 23.1232
+ },
+ "n_epochs": 7965
+}

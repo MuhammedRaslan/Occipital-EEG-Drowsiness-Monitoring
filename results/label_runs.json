@@ -1,0 +1,199 @@
+{
+ "script": "22_label_runs.py",
+ "git_commit": "6fb851e",
+ "timestamp": "2026-10-31T10:21:26",
+ "definition": "consecutive labeled epochs with the same label, no gap > 10 s",
+ "results": {
+  "SEED-VIG": {
+   "alert": {
+    "n_runs": 121,
+    "median_run_s": 230.0,
+    "epoch_weighted_median_run_s": 1040.0
+   },
+   "drowsy": {
+    "n_runs": 60,
+    "median_run_s": 275.0,
+    "epoch_weighted_median_run_s": 1060.0
+   }
+  },
+  "DD-Database": {
+   "alert": {
+    "n_runs": 26,
+    "median_run_s": 470.0,
+    "epoch_weighted_median_run_s": 3700.0
+   },
+   "drowsy": {
+    "n_runs": 208,
+    "median_run_s": 120.0,
+    "epoch_weighted_median_run_s": 310.0
+   }
+  }
+ },
+ "seed_calibration_windows": {
+  "per_recording": {
+   "1": {
+    "subject": "1",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "10": {
+    "subject": "10",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "11": {
+    "subject": "11",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "12": {
+    "subject": "12",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 4,
+    "n_drowsy_in_window": 0
+   },
+   "13": {
+    "subject": "13",
+    "first_retained_s": 1160.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 6
+   },
+   "14": {
+    "subject": "14",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "15": {
+    "subject": "15",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "16": {
+    "subject": "16",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "17": {
+    "subject": "17",
+    "first_retained_s": 940.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 6
+   },
+   "18": {
+    "subject": "18",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 3,
+    "n_drowsy_in_window": 0
+   },
+   "19": {
+    "subject": "19",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "2": {
+    "subject": "2",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "20": {
+    "subject": "20",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "21": {
+    "subject": "21",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "3": {
+    "subject": "3",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "4-1": {
+    "subject": "4",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "4-2": {
+    "subject": "4",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "5-1": {
+    "subject": "5",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "5-2": {
+    "subject": "5",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "6": {
+    "subject": "6",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "7": {
+    "subject": "7",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "8": {
+    "subject": "8",
+    "first_retained_s": 0.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   },
+   "9": {
+    "subject": "9",
+    "first_retained_s": 200.0,
+    "n_epochs_in_window": 6,
+    "n_drowsy_in_window": 0
+   }
+  },
+  "n_recordings": 23,
+  "late_start_recordings": [
+   "9",
+   "17",
+   "13"
+  ],
+  "late_start_s": [
+   200.0,
+   940.0,
+   1160.0
+  ],
+  "all_drowsy_window_subjects": [
+   "13",
+   "17"
+  ],
+  "n_windows_under_6_epochs": 2,
+  "late_start_test_subjects": [
+   "17",
+   "9"
+  ],
+  "without_late_test_subjects": {
+   "n_subjects": 17,
+   "pooled_AUC": 73.9987,
+   "subject_AUC_median": 78.7521
+  }
+ }
+}

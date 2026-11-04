@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article below."
+title: "Occipital EEG drowsiness monitoring: code and results"
+type: software
+license: MIT
+repository-code: "https://github.com/MuhammedRaslan/Occipital-EEG-Drowsiness-Monitoring"
+authors:
+  - family-names: Thalassery
+    given-names: M. R.
+    orcid: "https://orcid.org/0009-0009-7473-8343"
+    affiliation: "School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, India"
+  - family-names: Ali
+    given-names: S. S.
+    orcid: "https://orcid.org/0009-0003-3671-2309"
+    affiliation: "School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, India"
+  - family-names: Pal
+    given-names: A. R.
+    orcid: "https://orcid.org/0000-0002-4274-1195"
+    affiliation: "School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, India"
+  - family-names: Chemori
+    given-names: A.
+    orcid: "https://orcid.org/0000-0001-9739-9473"
+    affiliation: "LIRMM, Université de Montpellier, CNRS, France"
+  - family-names: Murali Mohan
+    given-names: G.
+    orcid: "https://orcid.org/0000-0002-9431-2456"
+    affiliation: "School of Mechanical Engineering, Vellore Institute of Technology (VIT) Chennai, India"
+preferred-citation:
+  type: article
+  title: "Subject-Independent Driver Drowsiness Monitoring With an Inter-Hemispheric Occipital EEG Electrode Pair"
+  journal: "IEEE Sensors Journal"
+  status: submitted
+  year: 2026
+  authors:
+    - family-names: Thalassery
+      given-names: M. R.
+    - family-names: Ali
+      given-names: S. S.
+    - family-names: Pal
+      given-names: A. R.
+    - family-names: Chemori
+      given-names: A.
+    - family-names: Murali Mohan
+      given-names: G.
